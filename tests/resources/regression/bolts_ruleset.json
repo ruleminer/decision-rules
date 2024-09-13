@@ -1,0 +1,87 @@
+{
+  "meta": {
+    "attributes": [
+      "name",
+      "RUN",
+      "SPEED1",
+      "TOTAL",
+      "SPEED2",
+      "NUMBER2",
+      "SENS",
+      "TIME"
+    ],
+    "decision_attribute": "class",
+    "y_train_median": 23.32
+  },
+  "rules": [
+    {
+      "uuid": "96bb8827-c6a2-411d-b165-e4da16b3e7ed",
+      "string": "IF TIME = <37.00, 100,000.00) AND RUN > 7.00 THEN class = {75.92} [70.50, 81.33] ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [6],
+            "negated": false,
+            "left": 37.0,
+            "right": 100000.0,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [1],
+            "negated": false,
+            "left": 7.0,
+            "right": null,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 70.50175564175633,
+        "value": 75.91833333333334,
+        "high": 81.33491102491034,
+        "fixed": false,
+        "train_covered_y_mean": 75.91833333333334,
+        "train_covered_y_std": 5.416577691576998,
+        "train_covered_y_min": 70.97,
+        "train_covered_y_max": 86.3
+      },
+      "coverage": { "p": 5, "n": 1, "P": 5, "N": 23 }
+    },
+    {
+      "uuid": "102da306-cab5-446c-afcc-607ac20399ab",
+      "string": "IF TIME = <24.77, 10,000.00) THEN class = {61.66} [38.41, 84.91] ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [6],
+            "negated": false,
+            "left": 24.77,
+            "right": 10000.0,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 38.40571634108285,
+        "value": 61.65727272727272,
+        "high": 84.90882911346259,
+        "fixed": false,
+        "train_covered_y_mean": 61.65727272727272,
+        "train_covered_y_std": 23.25155638618987,
+        "train_covered_y_min": 9.39,
+        "train_covered_y_max": 86.3
+      },
+      "coverage": { "p": 8, "n": 3, "P": 8, "N": 20 }
+    }
+  ]
+}

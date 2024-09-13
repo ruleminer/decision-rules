@@ -1,0 +1,195 @@
+{
+  "meta": {
+    "attributes": [
+      "AGE",
+      "SBP",
+      "DBP",
+      "BMI",
+      "CHOL",
+      "DIABETES",
+      "RXHYPER",
+      "CHID",
+      "SMOKE",
+      "DRINKING",
+      "survival_time",
+      "SMOKE1",
+      "SMOKE2"
+    ],
+    "decision_attribute": "survival_status",
+    "survival_time_attribute": "survival_time",
+    "default_conclusion": {
+      "times": [
+        1.1, 2.7, 4.3, 4.4, 6.4, 8.4, 9.9, 13.2, 16.1, 17.4, 17.8, 18.2, 19.1,
+        19.9, 21.1, 22.1, 22.6, 25.1, 26.1, 26.9, 28.1
+      ],
+      "events_count": [
+        1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, 0.0, 1.0,
+        1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0
+      ],
+      "censored_count": [
+        0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 20.0, 0.0, 0.0, 0.0, 8.0, 0.0,
+        0.0, 11.0, 0.0, 6.0, 0.0, 0.0, 12.0
+      ],
+      "at_risk_count": [
+        75.0, 74.0, 73.0, 72.0, 71.0, 70.0, 69.0, 68.0, 67.0, 47.0, 46.0, 45.0,
+        44.0, 36.0, 35.0, 34.0, 22.0, 21.0, 15.0, 14.0, 13.0
+      ],
+      "probabilities": [
+        0.9866666666666667, 0.9733333333333334, 0.96, 0.9466666666666667,
+        0.9333333333333333, 0.92, 0.9066666666666667, 0.8933333333333334,
+        0.8933333333333334, 0.8743262411347519, 0.8553191489361703,
+        0.8363120567375888, 0.8363120567375888, 0.8130811662726558,
+        0.7898502758077228, 0.7666193853427898, 0.7317730496453904,
+        0.7317730496453904, 0.682988179669031, 0.6342033096926717,
+        0.5854184397163124
+      ]
+    }
+  },
+  "rules": [
+    {
+      "uuid": "922b5471-9305-4736-9a7d-31c27b9268a1",
+      "string": "IF SMOKE = (-inf, 3.50) AND AGE = (-inf, 54.70) THEN survival_status = inf ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [8],
+            "negated": false,
+            "left": null,
+            "right": 3.5,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [0],
+            "negated": false,
+            "left": null,
+            "right": 54.7,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": Infinity,
+        "median_survival_time_ci_lower": Infinity,
+        "median_survival_time_ci_upper": Infinity
+      },
+      "coverage": { "p": 47, "n": 0, "P": 75, "N": 0 }
+    },
+    {
+      "uuid": "330d2ba0-e0b9-4dc1-bfe8-fe2383549a6b",
+      "string": "IF DBP = <86.00, inf) AND AGE = <54.70, inf) THEN survival_status = 13.2 ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [2],
+            "negated": false,
+            "left": 86.0,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [0],
+            "negated": false,
+            "left": 54.7,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": 13.2,
+        "median_survival_time_ci_lower": 1.1,
+        "median_survival_time_ci_upper": 21.1
+      },
+      "coverage": { "p": 8, "n": 0, "P": 75, "N": 0 }
+    },
+    {
+      "uuid": "99bb6154-fd63-4461-a315-6a7b4ee81bb7",
+      "string": "IF SMOKE = (-inf, 2.50) AND AGE = <54.70, inf) THEN survival_status = 19.9 ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [8],
+            "negated": false,
+            "left": null,
+            "right": 2.5,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [0],
+            "negated": false,
+            "left": 54.7,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": 19.9,
+        "median_survival_time_ci_lower": 13.2,
+        "median_survival_time_ci_upper": 26.1
+      },
+      "coverage": { "p": 18, "n": 0, "P": 75, "N": 0 }
+    },
+    {
+      "uuid": "4b1921f2-08d3-4401-956e-f2d7f09900d8",
+      "string": "IF SBP = (-inf, 142.00) AND DBP = (-inf, 97.00) AND AGE = (-inf, 54.70) THEN survival_status = inf ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [1],
+            "negated": false,
+            "left": null,
+            "right": 142.0,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [2],
+            "negated": false,
+            "left": null,
+            "right": 97.0,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [0],
+            "negated": false,
+            "left": null,
+            "right": 54.7,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": Infinity,
+        "median_survival_time_ci_lower": 26.9,
+        "median_survival_time_ci_upper": Infinity
+      },
+      "coverage": { "p": 44, "n": 0, "P": 75, "N": 0 }
+    }
+  ]
+}
