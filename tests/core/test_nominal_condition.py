@@ -49,5 +49,21 @@ class TestNominalCondition(unittest.TestCase):
         self.assertTrue(cond_1 != cond_2)
 
 
+    def test_on_none_values(self):
+        X = np.array([
+            None,
+            'a'
+        ]).reshape(2, 1)
+        condition = NominalCondition(
+            column_index=0,
+            value='a'
+        )
+        condition.negated = True
+        self.assertFalse(
+            condition.covered_mask(X)[0],
+            'Empty values should not be covered'
+        )
+
+
 if __name__ == '__main__':
     unittest.main()
