@@ -139,8 +139,8 @@ class TestSurvivalRuleSet(unittest.TestCase):
         with self.assertRaises(ValueError, msg='Should fail for survival status of type different than string'):
             self.ruleset.update(self.X, self.y)
 
-        self.y.iloc[0] = '-1'
         self.y = self.y.astype(str)
+        self.y.iloc[0] = '-1'
         with self.assertRaises(ValueError, msg='Should fail for survival status with values different than 0 and 1'):
             self.ruleset.update(self.X, self.y)
 
