@@ -1,0 +1,2348 @@
+{
+  "meta": {
+    "attributes": ["buying", "maint", "doors", "persons", "lug_boot", "safety"],
+    "decision_attribute": "class",
+    "decision_attribute_distribution": {
+      "acc": 384,
+      "good": 69,
+      "unacc": 1210,
+      "vgood": 65
+    }
+  },
+  "rules": [
+    {
+      "uuid": "a7a6fadb-63ec-486d-b5ef-369a949d4dd2",
+      "string": "IF persons = {2} THEN class = unacc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "2"
+          }
+        ]
+      },
+      "conclusion": { "value": "unacc" },
+      "coverage": { "p": 576, "n": 0 }
+    },
+    {
+      "uuid": "11b7da4c-31e1-442c-aa04-7443579afc74",
+      "string": "IF safety = {low} THEN class = unacc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "low"
+          }
+        ]
+      },
+      "conclusion": { "value": "unacc" },
+      "coverage": { "p": 576, "n": 0 }
+    },
+    {
+      "uuid": "80b6be20-0aa1-45f1-bb1a-b4dd4ff87b21",
+      "string": "IF maint = {vhigh} AND buying = {vhigh} THEN class = unacc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "vhigh"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "vhigh"
+          }
+        ]
+      },
+      "conclusion": { "value": "unacc" },
+      "coverage": { "p": 108, "n": 0 }
+    },
+    {
+      "uuid": "7cc0039c-0379-490a-8e11-77f54a65aa16",
+      "string": "IF maint = {high} AND buying = {vhigh} THEN class = unacc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "high"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "vhigh"
+          }
+        ]
+      },
+      "conclusion": { "value": "unacc" },
+      "coverage": { "p": 108, "n": 0 }
+    },
+    {
+      "uuid": "6ee8a26e-b507-45fc-afe1-5ee01adf670c",
+      "string": "IF safety = {med} AND lug_boot = {small} AND buying = {vhigh} THEN class = unacc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "small"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "vhigh"
+          }
+        ]
+      },
+      "conclusion": { "value": "unacc" },
+      "coverage": { "p": 48, "n": 0 }
+    },
+    {
+      "uuid": "42007044-fdd7-4af2-8dfc-5e4a43315db8",
+      "string": "IF doors = {2} AND buying = {vhigh} THEN class = unacc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [2],
+            "negated": false,
+            "value": "2"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "vhigh"
+          }
+        ]
+      },
+      "conclusion": { "value": "unacc" },
+      "coverage": { "p": 94, "n": 14 }
+    },
+    {
+      "uuid": "abacd426-0fd0-4894-bd62-78e1c78c30be",
+      "string": "IF buying = {high} AND maint = {vhigh} THEN class = unacc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "high"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "vhigh"
+          }
+        ]
+      },
+      "conclusion": { "value": "unacc" },
+      "coverage": { "p": 108, "n": 0 }
+    },
+    {
+      "uuid": "1c49cc91-19b3-492f-b147-77393e97e2c4",
+      "string": "IF safety = {med} AND lug_boot = {small} AND maint = {vhigh} THEN class = unacc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "small"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "vhigh"
+          }
+        ]
+      },
+      "conclusion": { "value": "unacc" },
+      "coverage": { "p": 48, "n": 0 }
+    },
+    {
+      "uuid": "ba56ed28-a8ca-49db-8b3a-171d85c2cfca",
+      "string": "IF doors = {2} AND maint = {vhigh} THEN class = unacc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [2],
+            "negated": false,
+            "value": "2"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "vhigh"
+          }
+        ]
+      },
+      "conclusion": { "value": "unacc" },
+      "coverage": { "p": 94, "n": 14 }
+    },
+    {
+      "uuid": "7aaf23c6-1308-476a-a4b7-137de4d1c865",
+      "string": "IF persons = {more} AND doors = {2} AND lug_boot = {small} THEN class = unacc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "more"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [2],
+            "negated": false,
+            "value": "2"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "small"
+          }
+        ]
+      },
+      "conclusion": { "value": "unacc" },
+      "coverage": { "p": 48, "n": 0 }
+    },
+    {
+      "uuid": "1bdcc464-fc10-452d-bfd1-848daab9ced2",
+      "string": "IF safety = {med} AND buying = {high} AND lug_boot = {small} THEN class = unacc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "high"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "small"
+          }
+        ]
+      },
+      "conclusion": { "value": "unacc" },
+      "coverage": { "p": 48, "n": 0 }
+    },
+    {
+      "uuid": "b1d09dd7-ad63-4543-97a9-66ffca5e8390",
+      "string": "IF buying = {med} AND maint = {high} AND safety = {med} AND lug_boot = {small} THEN class = unacc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "high"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "small"
+          }
+        ]
+      },
+      "conclusion": { "value": "unacc" },
+      "coverage": { "p": 12, "n": 0 }
+    },
+    {
+      "uuid": "63adde08-a98d-46e3-9bf2-ed699972054a",
+      "string": "IF safety = {med} AND lug_boot = {med} AND buying = {high} AND doors = {2} THEN class = unacc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "high"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [2],
+            "negated": false,
+            "value": "2"
+          }
+        ]
+      },
+      "conclusion": { "value": "unacc" },
+      "coverage": { "p": 12, "n": 0 }
+    },
+    {
+      "uuid": "c1c66713-89ae-4add-abea-7d27f810156c",
+      "string": "IF maint = {high} AND buying = {high} AND persons = {4} AND safety = {high} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "high"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "high"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "4"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 12, "n": 0 }
+    },
+    {
+      "uuid": "37a58237-72e6-463c-826b-a559f319d2d3",
+      "string": "IF maint = {med} AND buying = {high} AND persons = {4} AND safety = {high} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "high"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "4"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 12, "n": 0 }
+    },
+    {
+      "uuid": "7bfb1091-f956-4e07-ad2f-3db798298177",
+      "string": "IF maint = {low} AND buying = {high} AND persons = {4} AND safety = {high} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "low"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "high"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "4"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 12, "n": 0 }
+    },
+    {
+      "uuid": "d3ce91af-928e-4333-bfd7-e2f555b9e4a9",
+      "string": "IF buying = {med} AND lug_boot = {small} AND persons = {4} AND safety = {high} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "small"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "4"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 12, "n": 4 }
+    },
+    {
+      "uuid": "fee0fd77-31d8-42b8-bd9a-bf1b1f358e13",
+      "string": "IF lug_boot = {small} AND persons = {4} AND safety = {high} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "small"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "4"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 40, "n": 24 }
+    },
+    {
+      "uuid": "2b55d977-5656-4ae7-9fb5-15c89bbb5f7f",
+      "string": "IF maint = {vhigh} AND buying = {med} AND persons = {4} AND safety = {high} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "vhigh"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "4"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 12, "n": 0 }
+    },
+    {
+      "uuid": "f6fe9df5-4d35-4445-95c4-98f3bc2b19b2",
+      "string": "IF maint = {high} AND buying = {med} AND persons = {4} AND safety = {high} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "high"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "4"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 12, "n": 0 }
+    },
+    {
+      "uuid": "92addd83-0f14-46e8-944d-7fc696ba12be",
+      "string": "IF buying = {vhigh} AND maint = {med} AND persons = {4} AND safety = {high} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "vhigh"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "4"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 12, "n": 0 }
+    },
+    {
+      "uuid": "bf6117b6-c7fb-4d3e-9fda-4d43d4a1ab8c",
+      "string": "IF doors = {2} AND persons = {4} AND safety = {high} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [2],
+            "negated": false,
+            "value": "2"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "4"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 28, "n": 20 }
+    },
+    {
+      "uuid": "c25e788a-aeca-4542-9760-67463f097137",
+      "string": "IF doors = {3} AND persons = {4} AND safety = {high} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [2],
+            "negated": false,
+            "value": "3"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "4"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 28, "n": 20 }
+    },
+    {
+      "uuid": "676db606-f1b4-401a-a2f6-a6f302cdeaf6",
+      "string": "IF persons = {4} AND safety = {high} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "4"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 108, "n": 84 }
+    },
+    {
+      "uuid": "517389b9-4690-46e4-a444-1e56d5d2a1ee",
+      "string": "IF maint = {high} AND buying = {high} AND persons = {more} AND safety = {high} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "high"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "high"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "more"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 11, "n": 1 }
+    },
+    {
+      "uuid": "936224be-13d1-442a-9ebb-f78bc6fadf8a",
+      "string": "IF maint = {med} AND buying = {high} AND persons = {more} AND safety = {high} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "high"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "more"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 11, "n": 1 }
+    },
+    {
+      "uuid": "7f0edbd7-eb92-40e0-9051-ed340fff12b1",
+      "string": "IF maint = {low} AND buying = {high} AND persons = {more} AND safety = {high} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "low"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "high"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "more"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 11, "n": 1 }
+    },
+    {
+      "uuid": "0a974337-bfc0-4918-a899-b4f3f3271c21",
+      "string": "IF maint = {vhigh} AND buying = {med} AND persons = {more} AND safety = {high} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "vhigh"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "more"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 11, "n": 1 }
+    },
+    {
+      "uuid": "51132c57-c065-4c02-b3ae-23d2f2323c77",
+      "string": "IF maint = {high} AND buying = {med} AND persons = {more} AND safety = {high} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "high"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "more"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 11, "n": 1 }
+    },
+    {
+      "uuid": "53cfc2da-50b1-41ca-9f40-8c4be2fe3893",
+      "string": "IF buying = {vhigh} AND maint = {med} AND persons = {more} AND safety = {high} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "vhigh"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "more"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 11, "n": 1 }
+    },
+    {
+      "uuid": "0cf3dd56-5055-4728-92a2-03faf109af2a",
+      "string": "IF doors = {3} AND persons = {more} AND safety = {high} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [2],
+            "negated": false,
+            "value": "3"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "more"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 26, "n": 22 }
+    },
+    {
+      "uuid": "3124cac9-1184-4376-a923-c7f9c9ca5095",
+      "string": "IF doors = {4} AND persons = {more} AND safety = {high} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [2],
+            "negated": false,
+            "value": "4"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "more"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 26, "n": 22 }
+    },
+    {
+      "uuid": "03a58d4c-e219-48c2-bea9-01b1168c6dce",
+      "string": "IF doors = {5more} AND persons = {more} AND safety = {high} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [2],
+            "negated": false,
+            "value": "5more"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "more"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 26, "n": 22 }
+    },
+    {
+      "uuid": "3648971e-b66f-40bf-9751-385fc531c860",
+      "string": "IF persons = {more} AND safety = {high} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "more"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 96, "n": 96 }
+    },
+    {
+      "uuid": "cb3289e2-8890-4b5f-89f2-17e1c8ce0f91",
+      "string": "IF buying = {high} AND lug_boot = {big} AND safety = {med} AND persons = {4} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "high"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "big"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "4"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 12, "n": 4 }
+    },
+    {
+      "uuid": "68eaa62f-c631-4eeb-92af-5f6be8f3103d",
+      "string": "IF buying = {med} AND lug_boot = {big} AND safety = {med} AND persons = {4} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "big"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "4"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 12, "n": 4 }
+    },
+    {
+      "uuid": "2de96b32-a4dd-4d5d-ab6b-b74d699163b2",
+      "string": "IF lug_boot = {big} AND safety = {med} AND persons = {4} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "big"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "4"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 40, "n": 24 }
+    },
+    {
+      "uuid": "7bd56c02-28c9-44b6-9842-19998aa06c27",
+      "string": "IF maint = {med} AND buying = {med} AND safety = {med} AND persons = {4} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "4"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 12, "n": 0 }
+    },
+    {
+      "uuid": "12c37c8e-139e-4a21-ac9a-42f40c9b90c9",
+      "string": "IF buying = {med} AND safety = {med} AND persons = {4} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "4"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 30, "n": 18 }
+    },
+    {
+      "uuid": "cc10fe84-2b6c-4eca-a7eb-088d97dba0b0",
+      "string": "IF maint = {high} AND buying = {low} AND safety = {med} AND persons = {4} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "high"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "low"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "4"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 12, "n": 0 }
+    },
+    {
+      "uuid": "0a88ee93-fd04-49d1-aa54-56697d25649e",
+      "string": "IF lug_boot = {small} AND buying = {low} AND safety = {med} AND persons = {4} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "small"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "low"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "4"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 12, "n": 4 }
+    },
+    {
+      "uuid": "6658cb27-2cdc-42c7-a6d9-06f4a6a22537",
+      "string": "IF buying = {low} AND safety = {med} AND persons = {4} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "low"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "4"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 30, "n": 18 }
+    },
+    {
+      "uuid": "a89139ee-7ba8-416f-9c4b-35a7a30ed372",
+      "string": "IF lug_boot = {med} AND doors = {4} AND safety = {med} AND persons = {4} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [2],
+            "negated": false,
+            "value": "4"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "4"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 10, "n": 6 }
+    },
+    {
+      "uuid": "ca87c152-6c7e-4026-984e-569fb24f0fcf",
+      "string": "IF lug_boot = {med} AND doors = {5more} AND safety = {med} AND persons = {4} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [2],
+            "negated": false,
+            "value": "5more"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "4"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 10, "n": 6 }
+    },
+    {
+      "uuid": "bbf327f0-300e-41e1-ab51-87a1968ac2bd",
+      "string": "IF buying = {high} AND lug_boot = {big} AND safety = {med} AND persons = {more} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "high"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "big"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "more"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 12, "n": 4 }
+    },
+    {
+      "uuid": "91202393-ea94-41ad-9e54-d3a2e60552b0",
+      "string": "IF buying = {med} AND lug_boot = {big} AND safety = {med} AND persons = {more} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "big"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "more"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 12, "n": 4 }
+    },
+    {
+      "uuid": "ba08c3ee-172a-4824-bcc3-0798107def55",
+      "string": "IF lug_boot = {big} AND safety = {med} AND persons = {more} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "big"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "more"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 40, "n": 24 }
+    },
+    {
+      "uuid": "1ab2dfaf-2777-48bc-adce-960eeabac2f4",
+      "string": "IF maint = {med} AND buying = {med} AND safety = {med} AND persons = {more} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "more"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 11, "n": 1 }
+    },
+    {
+      "uuid": "7af3623f-d80d-4c47-b1ae-197c0ac6c065",
+      "string": "IF lug_boot = {med} AND buying = {med} AND safety = {med} AND persons = {more} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "more"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 11, "n": 5 }
+    },
+    {
+      "uuid": "3cacb551-e3da-40df-a5ba-dfe84c2ede4d",
+      "string": "IF lug_boot = {med} AND maint = {med} AND safety = {med} AND persons = {more} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "more"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 11, "n": 5 }
+    },
+    {
+      "uuid": "b4c82de3-ff32-4b44-be1f-11d694ff7e28",
+      "string": "IF maint = {high} AND lug_boot = {med} AND safety = {med} AND persons = {more} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "high"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "more"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 10, "n": 6 }
+    },
+    {
+      "uuid": "3643f2c6-1584-48ea-9cee-66d044e85801",
+      "string": "IF lug_boot = {med} AND safety = {med} AND persons = {more} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "more"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 35, "n": 29 }
+    },
+    {
+      "uuid": "c5da887b-f40d-4bd1-a4f9-ce7a99067a9d",
+      "string": "IF lug_boot = {small} AND buying = {low} AND safety = {med} AND persons = {more} THEN class = acc ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "small"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "low"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "more"
+          }
+        ]
+      },
+      "conclusion": { "value": "acc" },
+      "coverage": { "p": 9, "n": 7 }
+    },
+    {
+      "uuid": "ff9b1fc8-cf77-41d8-ba49-10115668acfd",
+      "string": "IF persons = {4} AND lug_boot = {big} AND buying = {low} AND safety = {high} THEN class = vgood ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "4"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "big"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "low"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "vgood" },
+      "coverage": { "p": 12, "n": 4 }
+    },
+    {
+      "uuid": "0984b2dc-382d-4088-b3d5-9dfd9c83caa9",
+      "string": "IF persons = {more} AND lug_boot = {big} AND buying = {low} AND safety = {high} THEN class = vgood ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "more"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "big"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "low"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "vgood" },
+      "coverage": { "p": 12, "n": 4 }
+    },
+    {
+      "uuid": "0e9e9188-92cf-43b3-9185-d9763e752fdb",
+      "string": "IF lug_boot = {med} AND persons = {more} AND buying = {low} AND safety = {high} THEN class = vgood ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "more"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "low"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "vgood" },
+      "coverage": { "p": 9, "n": 7 }
+    },
+    {
+      "uuid": "8cd0f168-1075-4b2e-8d2e-dbad224c34a1",
+      "string": "IF persons = {4} AND buying = {low} AND safety = {high} THEN class = vgood ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "4"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "low"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "vgood" },
+      "coverage": { "p": 18, "n": 30 }
+    },
+    {
+      "uuid": "ace73a29-bb57-49c4-9637-ed6bc4397bd3",
+      "string": "IF maint = {med} AND buying = {med} AND lug_boot = {big} AND safety = {high} THEN class = vgood ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "big"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "vgood" },
+      "coverage": { "p": 8, "n": 4 }
+    },
+    {
+      "uuid": "a24e8ab4-7b78-4862-8b6e-f6e584fe1dde",
+      "string": "IF maint = {low} AND buying = {med} AND lug_boot = {big} AND safety = {high} THEN class = vgood ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "low"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "big"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "vgood" },
+      "coverage": { "p": 8, "n": 4 }
+    },
+    {
+      "uuid": "a9018f87-2e29-4f5b-8f5f-241461aa2f12",
+      "string": "IF lug_boot = {med} AND buying = {med} AND persons = {more} AND safety = {high} THEN class = vgood ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "more"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          }
+        ]
+      },
+      "conclusion": { "value": "vgood" },
+      "coverage": { "p": 6, "n": 10 }
+    },
+    {
+      "uuid": "2739ef87-583a-4a53-8907-5f3a50f6a4d4",
+      "string": "IF lug_boot = {big} AND safety = {med} AND maint = {med} AND buying = {low} THEN class = good ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "big"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "low"
+          }
+        ]
+      },
+      "conclusion": { "value": "good" },
+      "coverage": { "p": 8, "n": 4 }
+    },
+    {
+      "uuid": "9dbee472-6088-4a23-bffe-22f52005236a",
+      "string": "IF lug_boot = {med} AND safety = {med} AND maint = {med} AND buying = {low} THEN class = good ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "low"
+          }
+        ]
+      },
+      "conclusion": { "value": "good" },
+      "coverage": { "p": 5, "n": 7 }
+    },
+    {
+      "uuid": "6f3162f7-0aa9-4640-932c-a5dcdbe293a9",
+      "string": "IF safety = {high} AND persons = {4} AND maint = {med} AND buying = {low} THEN class = good ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "4"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "low"
+          }
+        ]
+      },
+      "conclusion": { "value": "good" },
+      "coverage": { "p": 6, "n": 6 }
+    },
+    {
+      "uuid": "d206836b-c3db-4d3a-848a-07e6714c9212",
+      "string": "IF lug_boot = {big} AND safety = {med} AND maint = {low} AND buying = {low} THEN class = good ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "big"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "low"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "low"
+          }
+        ]
+      },
+      "conclusion": { "value": "good" },
+      "coverage": { "p": 8, "n": 4 }
+    },
+    {
+      "uuid": "7bef2b01-6072-4694-acf3-fdcc499c9548",
+      "string": "IF lug_boot = {med} AND safety = {med} AND maint = {low} AND buying = {low} THEN class = good ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "low"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "low"
+          }
+        ]
+      },
+      "conclusion": { "value": "good" },
+      "coverage": { "p": 5, "n": 7 }
+    },
+    {
+      "uuid": "ee11359f-7f81-4136-a7d4-226abd793859",
+      "string": "IF safety = {high} AND persons = {4} AND maint = {low} AND buying = {low} THEN class = good ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "4"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "low"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "low"
+          }
+        ]
+      },
+      "conclusion": { "value": "good" },
+      "coverage": { "p": 6, "n": 6 }
+    },
+    {
+      "uuid": "f5a56982-f3e3-4a0e-be0b-c780daba2fa8",
+      "string": "IF lug_boot = {small} AND safety = {high} AND persons = {more} AND buying = {low} THEN class = good ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "small"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "more"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "low"
+          }
+        ]
+      },
+      "conclusion": { "value": "good" },
+      "coverage": { "p": 6, "n": 10 }
+    },
+    {
+      "uuid": "2142e902-ffb2-48b7-b048-546c6633849a",
+      "string": "IF lug_boot = {big} AND safety = {med} AND buying = {med} AND maint = {low} THEN class = good ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "big"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "low"
+          }
+        ]
+      },
+      "conclusion": { "value": "good" },
+      "coverage": { "p": 8, "n": 4 }
+    },
+    {
+      "uuid": "0acbb02f-60a0-4da0-adea-c4cc358b346f",
+      "string": "IF lug_boot = {med} AND safety = {med} AND buying = {med} AND maint = {low} THEN class = good ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [4],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "low"
+          }
+        ]
+      },
+      "conclusion": { "value": "good" },
+      "coverage": { "p": 5, "n": 7 }
+    },
+    {
+      "uuid": "7b1869a1-7da7-43ea-8a92-32cc4c4193e2",
+      "string": "IF safety = {high} AND persons = {4} AND buying = {med} AND maint = {low} THEN class = good ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "4"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [0],
+            "negated": false,
+            "value": "med"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "low"
+          }
+        ]
+      },
+      "conclusion": { "value": "good" },
+      "coverage": { "p": 6, "n": 6 }
+    },
+    {
+      "uuid": "a492b60d-98c3-4470-ad63-3b8f8d35d3e2",
+      "string": "IF safety = {high} AND persons = {more} AND maint = {low} THEN class = good ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [5],
+            "negated": false,
+            "value": "high"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [3],
+            "negated": false,
+            "value": "more"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "low"
+          }
+        ]
+      },
+      "conclusion": { "value": "good" },
+      "coverage": { "p": 8, "n": 40 }
+    }
+  ]
+}

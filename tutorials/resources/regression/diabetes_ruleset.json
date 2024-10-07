@@ -1,0 +1,4983 @@
+{
+  "meta": {
+    "attributes": [
+      "age",
+      "sex",
+      "bmi",
+      "bp",
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5",
+      "s6"
+    ],
+    "decision_attribute": "target",
+    "y_train_median": 140.5
+  },
+  "rules": [
+    {
+      "uuid": "441656ea-15a1-4168-9879-6b4465f43533",
+      "string": "IF bp >= 0.10 THEN target = {229.44} [174.71, 284.18]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 0.09818317739373558,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 174.71052014574474,
+        "value": 229.44444444444446,
+        "high": 284.1783687431442,
+        "fixed": false,
+        "train_covered_y_mean": 229.44444444444446,
+        "train_covered_y_std": 54.73392429869973,
+        "train_covered_y_min": 103.0,
+        "train_covered_y_max": 296.0
+      },
+      "coverage": {
+        "p": 7,
+        "n": 2,
+        "P": 144,
+        "N": 298
+      }
+    },
+    {
+      "uuid": "7b666f93-556d-4026-b459-ba721d4af1b0",
+      "string": "IF bmi >= -0.03 AND bp >= 0.09 THEN target = {243.08} [180.91, 305.25]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": -0.027762195613423073,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 0.09245083051894656,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 180.90537190479986,
+        "value": 243.07692307692307,
+        "high": 305.2484742490463,
+        "fixed": false,
+        "train_covered_y_mean": 243.07692307692307,
+        "train_covered_y_std": 62.17155117212321,
+        "train_covered_y_min": 48.0,
+        "train_covered_y_max": 308.0
+      },
+      "coverage": {
+        "p": 11,
+        "n": 2,
+        "P": 142,
+        "N": 300
+      }
+    },
+    {
+      "uuid": "d1fa03fc-d452-4bd8-a263-6f7e9808fdf0",
+      "string": "IF bmi < -0.00 AND s6 >= -0.04 AND s5 >= -0.05 AND s6 < 0.04 AND s1 >= -0.05 AND s3 >= 0.02 AND s5 < -0.02 THEN target = {85.22} [49.08, 121.37]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.0045892360249858806,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": -0.040427713191393294,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": -0.052183257070424774,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.03827231819046137,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": -0.05247921557365272,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": 0.01734617811540962,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.017584987364312524,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 49.07659768979084,
+        "value": 85.22222222222223,
+        "high": 121.36784675465361,
+        "fixed": false,
+        "train_covered_y_mean": 85.22222222222223,
+        "train_covered_y_std": 36.14562453243139,
+        "train_covered_y_min": 49.0,
+        "train_covered_y_max": 216.0
+      },
+      "coverage": {
+        "p": 16,
+        "n": 2,
+        "P": 166,
+        "N": 276
+      }
+    },
+    {
+      "uuid": "7907c6f6-4059-4bae-910c-699a08db20b1",
+      "string": "IF bmi < -0.02 AND s1 < 0.02 AND s5 >= -0.09 AND age >= -0.06 AND s6 < 0.02 AND s5 < -0.03 AND s3 < 0.08 AND s1 >= -0.05 AND s3 >= 0.02 THEN target = {86.38} [57.93, 114.82]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.019678605059317077,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.017694380194604443,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": -0.08940682032820613,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": -0.06363517019512074,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.015490730158871856,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.03199675509066306,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.07993402078488762,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": -0.050415286286351044,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": 0.01734617811540962,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 57.93454685663394,
+        "value": 86.375,
+        "high": 114.81545314336606,
+        "fixed": false,
+        "train_covered_y_mean": 86.375,
+        "train_covered_y_std": 28.440453143366053,
+        "train_covered_y_min": 59.0,
+        "train_covered_y_max": 181.0
+      },
+      "coverage": {
+        "p": 15,
+        "n": 1,
+        "P": 138,
+        "N": 304
+      }
+    },
+    {
+      "uuid": "f8827e1c-7053-4a85-9776-6838dd5d2234",
+      "string": "IF bmi >= -0.05 AND age < 0.04 AND sex < 0.00 AND bmi < 0.00 AND s3 >= 0.04 AND s6 >= -0.06 AND s1 >= -0.05 AND s5 < -0.02 THEN target = {97.40} [67.37, 127.43]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": -0.04662390690633708,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.03625963720791331,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.003019241116414738,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.0018776364182989133,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": 0.043117642744018206,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": -0.056996140850731125,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": -0.05247921557365272,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.017584987364312524,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 67.37267910718641,
+        "value": 97.4,
+        "high": 127.4273208928136,
+        "fixed": false,
+        "train_covered_y_mean": 97.4,
+        "train_covered_y_std": 30.027320892813588,
+        "train_covered_y_min": 65.0,
+        "train_covered_y_max": 179.0
+      },
+      "coverage": {
+        "p": 8,
+        "n": 2,
+        "P": 132,
+        "N": 310
+      }
+    },
+    {
+      "uuid": "1617e2f8-ba25-4d16-a17a-f5ad1ad791ab",
+      "string": "IF s1 >= -0.05 AND s3 >= 0.02 AND bmi < 0.02 AND s5 < -0.02 THEN target = {85.56} [47.39, 123.73]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": -0.05247921557365272,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": 0.01734617811540962,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.01966153563733211,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.017584987364312524,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 47.3942521696505,
+        "value": 85.56060606060606,
+        "high": 123.72695995156162,
+        "fixed": false,
+        "train_covered_y_mean": 85.56060606060606,
+        "train_covered_y_std": 38.16635389095556,
+        "train_covered_y_min": 39.0,
+        "train_covered_y_max": 216.0
+      },
+      "coverage": {
+        "p": 54,
+        "n": 12,
+        "P": 175,
+        "N": 267
+      }
+    },
+    {
+      "uuid": "37667415-d8b0-43a4-9035-8bb904b92821",
+      "string": "IF s1 < 0.04 AND age < 0.03 AND bmi < -0.03 AND s6 < 0.02 AND s5 < -0.02 AND s6 >= -0.07 AND s3 < 0.08 AND s2 >= -0.08 AND s3 >= 0.02 THEN target = {80.33} [48.61, 112.05]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.039709625925822375,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.0344433679824036,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.029917819761184683,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.017561783616289083,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.019754500785483575,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": -0.06735140813781726,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.07625238298080068,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              5
+            ],
+            "negated": false,
+            "left": -0.0783483990264443,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": 0.01734617811540962,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 48.61442905073097,
+        "value": 80.33333333333333,
+        "high": 112.0522376159357,
+        "fixed": false,
+        "train_covered_y_mean": 80.33333333333333,
+        "train_covered_y_std": 31.71890428260236,
+        "train_covered_y_min": 43.0,
+        "train_covered_y_max": 181.0
+      },
+      "coverage": {
+        "p": 13,
+        "n": 2,
+        "P": 155,
+        "N": 287
+      }
+    },
+    {
+      "uuid": "6813e011-54d5-46f2-98b6-9e6195f13ed1",
+      "string": "IF s1 < -0.00 AND s2 < -0.01 AND age < 0.00 AND bmi >= -0.06 AND bmi < -0.00 AND s3 < 0.08 AND s5 < -0.03 AND s6 >= -0.10 AND s3 >= 0.02 THEN target = {76.50} [36.39, 116.61]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.004320865536613488,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              5
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.010708331279904766,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.0035667911487385264,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": -0.06440780612537025,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.001355799803343493,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.0817748396869311,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.032616616068140515,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": -0.10048826345649291,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": 0.01734617811540962,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 36.394929663860864,
+        "value": 76.5,
+        "high": 116.60507033613914,
+        "fixed": false,
+        "train_covered_y_mean": 76.5,
+        "train_covered_y_std": 40.105070336139136,
+        "train_covered_y_min": 37.0,
+        "train_covered_y_max": 181.0
+      },
+      "coverage": {
+        "p": 11,
+        "n": 1,
+        "P": 178,
+        "N": 264
+      }
+    },
+    {
+      "uuid": "5e85ed25-8b2f-495c-a6a4-f706f007494f",
+      "string": "IF s1 < 0.03 AND bmi < -0.00 AND bmi >= -0.05 AND age < 0.00 AND s1 >= -0.04 AND bp >= -0.06 AND s5 < -0.02 THEN target = {98.09} [47.53, 148.65]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.030077955918414532,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.002433611877224289,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": -0.04716281294327747,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.001750521923228816,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": -0.04353552199534544,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": -0.06075603790634557,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.017584987364312524,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 47.5286980031546,
+        "value": 98.0909090909091,
+        "high": 148.65312017866358,
+        "fixed": false,
+        "train_covered_y_mean": 98.0909090909091,
+        "train_covered_y_std": 50.56221108775449,
+        "train_covered_y_min": 25.0,
+        "train_covered_y_max": 216.0
+      },
+      "coverage": {
+        "p": 18,
+        "n": 4,
+        "P": 224,
+        "N": 218
+      }
+    },
+    {
+      "uuid": "73d99ca5-47bc-4e6c-9163-6b6b2db82da5",
+      "string": "IF bp < -0.02 AND s1 >= -0.08 AND s3 >= 0.01 THEN target = {88.58} [47.16, 129.99]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.022884677172003695,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": -0.08275017845407737,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": 0.013664540311322679,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 47.16224463407786,
+        "value": 88.578125,
+        "high": 129.99400536592213,
+        "fixed": false,
+        "train_covered_y_mean": 88.578125,
+        "train_covered_y_std": 41.41588036592214,
+        "train_covered_y_min": 39.0,
+        "train_covered_y_max": 276.0
+      },
+      "coverage": {
+        "p": 53,
+        "n": 11,
+        "P": 188,
+        "N": 254
+      }
+    },
+    {
+      "uuid": "66b1c667-141d-4f89-ad79-129a6496b4f4",
+      "string": "IF s2 < -0.01 AND s5 < -0.02 AND bmi < 0.01 AND bmi >= -0.05 AND sex >= 0.00 AND age < 0.07 AND s1 >= -0.09 THEN target = {74.00} [33.89, 114.11]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              5
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.014466112821379194,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.018656070670983113,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.010500133009345299,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": -0.04662390690633707,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 0.003019241116414738,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.06895248326708808,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": -0.08687803702868074,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 33.89181297207929,
+        "value": 74.0,
+        "high": 114.1081870279207,
+        "fixed": false,
+        "train_covered_y_mean": 74.0,
+        "train_covered_y_std": 40.10818702792071,
+        "train_covered_y_min": 42.0,
+        "train_covered_y_max": 219.0
+      },
+      "coverage": {
+        "p": 17,
+        "n": 1,
+        "P": 174,
+        "N": 268
+      }
+    },
+    {
+      "uuid": "859a4406-4ad4-49e4-9673-42f9b57b88ad",
+      "string": "IF age < 0.01 AND s3 < 0.01 AND bmi < -0.02 AND bp >= -0.04 AND sex >= 0.00 AND s3 >= -0.01 THEN target = {93.12} [70.42, 115.83]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.010831868050777366,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.011823721409279208,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.017522980911555484,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": -0.04354178302709927,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 0.003019241116414738,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": -0.01210692431728591,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 70.4179663980519,
+        "value": 93.125,
+        "high": 115.8320336019481,
+        "fixed": false,
+        "train_covered_y_mean": 93.125,
+        "train_covered_y_std": 22.707033601948098,
+        "train_covered_y_min": 71.0,
+        "train_covered_y_max": 138.0
+      },
+      "coverage": {
+        "p": 6,
+        "n": 2,
+        "P": 107,
+        "N": 335
+      }
+    },
+    {
+      "uuid": "98720a6d-c4ff-4809-853f-a6f30c2b9db8",
+      "string": "IF s3 < 0.02 AND age < 0.02 AND s1 < -0.02 AND age >= -0.09 AND s5 < -0.03 AND s3 >= 0.00 THEN target = {60.71} [35.15, 86.27]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.01734617811540962,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.01991321417832592,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.02220825269322806,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": -0.087246670126747,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.027726095267895677,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": 0.002619626899061856,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 35.1536335556355,
+        "value": 60.714285714285715,
+        "high": 86.27493787293594,
+        "fixed": false,
+        "train_covered_y_mean": 60.714285714285715,
+        "train_covered_y_std": 25.560652158650214,
+        "train_covered_y_min": 31.0,
+        "train_covered_y_max": 116.0
+      },
+      "coverage": {
+        "p": 5,
+        "n": 2,
+        "P": 108,
+        "N": 334
+      }
+    },
+    {
+      "uuid": "37f6259d-e1bc-4a05-8560-1d41c9193ebf",
+      "string": "IF s5 >= -0.05 AND s3 < 0.01 AND s6 < 0.01 AND bmi < -0.00 AND bmi >= -0.07 AND bp < 0.04 AND s5 < -0.02 AND s3 >= -0.01 THEN target = {123.17} [84.05, 162.29]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": -0.051021017737654537,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.013664540311322679,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.007206516329202944,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.0029725179141646962,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": -0.06602452423619147,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.03564378941743375,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.023081695738119863,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": -0.008425286513198968,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 84.04541640261937,
+        "value": 123.16666666666667,
+        "high": 162.28791693071398,
+        "fixed": false,
+        "train_covered_y_mean": 123.16666666666667,
+        "train_covered_y_std": 39.1212502640473,
+        "train_covered_y_min": 53.0,
+        "train_covered_y_max": 168.0
+      },
+      "coverage": {
+        "p": 4,
+        "n": 2,
+        "P": 153,
+        "N": 289
+      }
+    },
+    {
+      "uuid": "b13ad540-1297-4515-b995-3f080a72890d",
+      "string": "IF s5 >= -0.04 AND s3 < 0.03 AND bmi < -0.01 AND age >= -0.08 AND s6 >= -0.07 AND bmi >= -0.07 AND bp < 0.02 AND age < 0.04 THEN target = {120.76} [64.58, 176.93]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": -0.0391342719342636,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.030231910429713918,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.005667048098866695,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": -0.08179786245021786,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": -0.06942246159523449,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": -0.06818014838395309,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.018429534538187436,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.03807590643342302,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 64.58363017372957,
+        "value": 120.75925925925925,
+        "high": 176.93488834478893,
+        "fixed": false,
+        "train_covered_y_mean": 120.75925925925925,
+        "train_covered_y_std": 56.175629085529685,
+        "train_covered_y_min": 25.0,
+        "train_covered_y_max": 262.0
+      },
+      "coverage": {
+        "p": 33,
+        "n": 21,
+        "P": 223,
+        "N": 219
+      }
+    },
+    {
+      "uuid": "8bb52314-924b-47ee-9570-ac4331c8b691",
+      "string": "IF s2 >= -0.06 AND s5 >= -0.11 AND age >= -0.07 AND s5 < -0.03 AND bmi < 0.01 AND s3 >= -0.02 THEN target = {88.86} [45.72, 131.99]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              5
+            ],
+            "negated": false,
+            "left": -0.06206467901338848,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": -0.11386853993204016,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": -0.06726770864614018,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.027726095267895677,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.010500133009345299,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": -0.019470199925459793,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 45.7245743728063,
+        "value": 88.85507246376811,
+        "high": 131.98557055472992,
+        "fixed": false,
+        "train_covered_y_mean": 88.85507246376811,
+        "train_covered_y_std": 43.13049809096181,
+        "train_covered_y_min": 31.0,
+        "train_covered_y_max": 216.0
+      },
+      "coverage": {
+        "p": 52,
+        "n": 17,
+        "P": 194,
+        "N": 248
+      }
+    },
+    {
+      "uuid": "8450b3eb-a492-4a34-92ae-7cbc64b15b36",
+      "string": "IF s1 < 0.01 AND s5 < -0.02 AND s4 >= -0.02 AND bp < 0.00 AND bmi < -0.00 AND bp >= -0.06 AND age < 0.08 AND age >= -0.09 THEN target = {79.44} [52.18, 106.71]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.014942474478202204,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.024234819468280086,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              7
+            ],
+            "negated": false,
+            "left": -0.021042822436138284,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.003504775557880889,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.002433611877224289,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": -0.059034612418420944,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.07985009862014636,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": -0.087246670126747,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 52.17985156849345,
+        "value": 79.44444444444444,
+        "high": 106.70903732039544,
+        "fixed": false,
+        "train_covered_y_mean": 79.44444444444444,
+        "train_covered_y_std": 27.264592875951,
+        "train_covered_y_min": 54.0,
+        "train_covered_y_max": 146.0
+      },
+      "coverage": {
+        "p": 8,
+        "n": 1,
+        "P": 132,
+        "N": 310
+      }
+    },
+    {
+      "uuid": "f5132255-7562-4c0f-ab32-bc1e60fdd71a",
+      "string": "IF s3 < -0.02 AND s4 >= -0.03 AND s6 < 0.06 AND bmi >= -0.05 AND bmi < 0.02 AND age >= -0.06 AND age < 0.07 THEN target = {159.90} [98.27, 221.54]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.02131101882750326,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              7
+            ],
+            "negated": false,
+            "left": -0.03211315869891129,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.06105390622205087,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": -0.04877953105409867,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.01696700545263011,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": -0.056370093293081916,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.06895248326708808,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 98.26711272090034,
+        "value": 159.90384615384616,
+        "high": 221.54057958679198,
+        "fixed": false,
+        "train_covered_y_mean": 159.90384615384616,
+        "train_covered_y_std": 61.636733432945825,
+        "train_covered_y_min": 50.0,
+        "train_covered_y_max": 311.0
+      },
+      "coverage": {
+        "p": 33,
+        "n": 19,
+        "P": 201,
+        "N": 241
+      }
+    },
+    {
+      "uuid": "9dfb0879-f45f-4f66-b71d-e8a466c724f9",
+      "string": "IF s3 < 0.00 AND age >= -0.08 AND bp < -0.03 AND s1 < -0.01 AND s6 < -0.00 AND bp >= -0.06 AND bmi >= -0.07 AND bmi < 0.02 AND s5 < -0.02 THEN target = {112.30} [66.24, 158.36]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.0026196268990618557,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": -0.08179786245021786,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.028048953635777592,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.00638479482391517,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.0010776975004659674,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": -0.059034612418420944,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": -0.07356920875335707,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.01804481752651091,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.017584987364312524,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 66.23906210247125,
+        "value": 112.3,
+        "high": 158.36093789752874,
+        "fixed": false,
+        "train_covered_y_mean": 112.3,
+        "train_covered_y_std": 46.06093789752875,
+        "train_covered_y_min": 64.0,
+        "train_covered_y_max": 199.0
+      },
+      "coverage": {
+        "p": 7,
+        "n": 3,
+        "P": 193,
+        "N": 249
+      }
+    },
+    {
+      "uuid": "c54e2eab-f577-49ba-959d-8fe7b05c7dc4",
+      "string": "IF s3 < 0.04 AND sex < 0.00 AND s5 >= -0.07 AND age < -0.08 AND s3 >= -0.02 AND s1 < 0.02 AND bp >= -0.08 THEN target = {143.20} [97.31, 189.09]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.03759518603788779,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.003019241116414738,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": -0.06931147437454407,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.07998159322470814,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": -0.01578856212137285,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.02388616805650949,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": -0.07969171827351651,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 97.30708115623932,
+        "value": 143.2,
+        "high": 189.09291884376066,
+        "fixed": false,
+        "train_covered_y_mean": 143.2,
+        "train_covered_y_std": 45.892918843760675,
+        "train_covered_y_min": 68.0,
+        "train_covered_y_max": 246.0
+      },
+      "coverage": {
+        "p": 8,
+        "n": 2,
+        "P": 157,
+        "N": 285
+      }
+    },
+    {
+      "uuid": "92fb6d11-b468-44de-bcfe-c9758efbd734",
+      "string": "IF bmi >= 0.01 AND bp >= -0.02 AND s3 < 0.04 AND s2 >= -0.03 AND age >= -0.03 AND s4 < 0.00 AND bmi < 0.07 AND s3 >= -0.04 THEN target = {215.88} [151.34, 280.42]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 0.011577945083226095,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": -0.021163251684079065,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.03943600493993127,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              5
+            ],
+            "negated": false,
+            "left": -0.028401219371013496,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": -0.029126054910436256,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              7
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.00294290613320322,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.07085760914667007,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": -0.04156002674998144,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 151.3408212013818,
+        "value": 215.88,
+        "high": 280.4191787986182,
+        "fixed": false,
+        "train_covered_y_mean": 215.88,
+        "train_covered_y_std": 64.53917879861818,
+        "train_covered_y_min": 70.0,
+        "train_covered_y_max": 296.0
+      },
+      "coverage": {
+        "p": 16,
+        "n": 9,
+        "P": 170,
+        "N": 272
+      }
+    },
+    {
+      "uuid": "4071b2fc-e72a-4bca-958a-2ebf81f77a2a",
+      "string": "IF age < 0.06 AND s2 >= -0.07 AND bp < 0.01 AND s5 < -0.02 AND age >= -0.07 AND s1 >= -0.05 AND s4 < -0.01 THEN target = {88.02} [47.65, 128.40]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.05623859868852012,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              5
+            ],
+            "negated": false,
+            "left": -0.07490376594675943,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.009822407098564287,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.024799986830097775,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": -0.06726770864614018,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": -0.053167192002753286,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              7
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.014769631887233577,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 47.64538567844517,
+        "value": 88.0204081632653,
+        "high": 128.39543064808544,
+        "fixed": false,
+        "train_covered_y_mean": 88.0204081632653,
+        "train_covered_y_std": 40.37502248482013,
+        "train_covered_y_min": 31.0,
+        "train_covered_y_max": 187.0
+      },
+      "coverage": {
+        "p": 36,
+        "n": 13,
+        "P": 185,
+        "N": 257
+      }
+    },
+    {
+      "uuid": "d726b62b-2633-4131-9aaf-7ccc6b89e0d4",
+      "string": "IF s3 < 0.00 AND bmi >= 0.01 AND age < 0.02 AND s1 < -0.01 AND s5 < -0.02 THEN target = {150.29} [104.51, 196.06]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.0007788079970183852,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 0.012116851120166501,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.018096944952816208,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.007760747682116291,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.02252108617760719,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 104.50763379885652,
+        "value": 150.28571428571428,
+        "high": 196.06379477257204,
+        "fixed": false,
+        "train_covered_y_mean": 150.28571428571428,
+        "train_covered_y_std": 45.77808048685777,
+        "train_covered_y_min": 52.0,
+        "train_covered_y_max": 201.0
+      },
+      "coverage": {
+        "p": 5,
+        "n": 2,
+        "P": 149,
+        "N": 293
+      }
+    },
+    {
+      "uuid": "44c9da59-f854-4df3-9cd6-aa3be9216495",
+      "string": "IF s3 < 0.04 AND s2 >= -0.02 AND bp < 0.05 AND s1 < 0.04 AND bmi >= -0.05 AND age >= -0.08 AND bp >= -0.06 AND s5 < -0.02 AND s6 < 0.05 THEN target = {105.92} [55.69, 156.14]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.043117642744018206,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              5
+            ],
+            "negated": false,
+            "left": -0.017441023208379765,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.04941519332083079,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.041773555213124064,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": -0.05416859142350267,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": -0.07634905477368872,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": -0.056159831853586806,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.023081695738119863,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.05276969239238196,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 55.69389903196849,
+        "value": 105.91666666666667,
+        "high": 156.13943430136484,
+        "fixed": false,
+        "train_covered_y_mean": 105.91666666666667,
+        "train_covered_y_std": 50.22276763469818,
+        "train_covered_y_min": 47.0,
+        "train_covered_y_max": 244.0
+      },
+      "coverage": {
+        "p": 16,
+        "n": 8,
+        "P": 215,
+        "N": 227
+      }
+    },
+    {
+      "uuid": "60116a65-0754-4a32-b82a-76348e11d716",
+      "string": "IF s6 < 0.01 AND sex >= 0.00 AND s5 >= -0.05 AND s1 < -0.01 AND bmi < -0.02 AND s1 >= -0.04 AND age >= -0.07 AND s5 < -0.01 THEN target = {105.00} [47.79, 162.21]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.005135462871785716,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 0.003019241116414738,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": -0.05006843726491346,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.009824676969417972,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.02398985335484028,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": -0.04353552199534543,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": -0.07271651632266929,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.011400050993453053,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 47.7869478760892,
+        "value": 105.0,
+        "high": 162.2130521239108,
+        "fixed": false,
+        "train_covered_y_mean": 105.0,
+        "train_covered_y_std": 57.2130521239108,
+        "train_covered_y_min": 47.0,
+        "train_covered_y_max": 200.0
+      },
+      "coverage": {
+        "p": 4,
+        "n": 2,
+        "P": 244,
+        "N": 198
+      }
+    },
+    {
+      "uuid": "76a5a953-f9ec-4e25-93bf-67d4f3b572ad",
+      "string": "IF bmi >= -0.02 AND age >= -0.03 AND s1 < 0.01 AND s6 >= -0.03 AND s3 >= -0.03 AND s5 >= -0.06 AND s1 >= -0.05 AND bmi < 0.06 AND age < 0.07 AND bp < 0.10 AND s5 < -0.01 THEN target = {125.17} [59.85, 190.48]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": -0.015367356763793895,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": -0.02549351645941684,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.014942474478202203,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": -0.03214349936172439,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": -0.030515113337720615,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": -0.06204633909440404,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": -0.05179123914455216,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.06331292462950447,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.06895248326708808,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.10162602836958484,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.011400050993453053,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 59.84842861463237,
+        "value": 125.16666666666667,
+        "high": 190.484904718701,
+        "fixed": false,
+        "train_covered_y_mean": 125.16666666666667,
+        "train_covered_y_std": 65.3182380520343,
+        "train_covered_y_min": 44.0,
+        "train_covered_y_max": 293.0
+      },
+      "coverage": {
+        "p": 9,
+        "n": 3,
+        "P": 260,
+        "N": 182
+      }
+    },
+    {
+      "uuid": "ccfd720a-7646-486c-927f-b9af52ae2a9d",
+      "string": "IF age < 0.04 AND bp >= -0.04 AND bmi >= -0.06 AND s5 >= -0.06 AND s1 < 0.04 AND s3 >= 0.05 AND s6 < 0.01 AND s1 >= -0.06 AND bp < 0.03 THEN target = {101.86} [41.80, 161.91]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.03807590643342302,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": -0.04009893205125,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": -0.05686312160820468,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": -0.06475367306956287,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.04039760235492294,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": 0.04679928054810515,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.005135462871785716,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": -0.05591909771915552,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.027036661977810593,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 41.801386450691524,
+        "value": 101.85714285714286,
+        "high": 161.9128992635942,
+        "fixed": false,
+        "train_covered_y_mean": 101.85714285714286,
+        "train_covered_y_std": 60.05575640645134,
+        "train_covered_y_min": 59.0,
+        "train_covered_y_max": 302.0
+      },
+      "coverage": {
+        "p": 13,
+        "n": 1,
+        "P": 251,
+        "N": 191
+      }
+    },
+    {
+      "uuid": "91d77959-61cb-4bfe-a1f1-a6f5a243dd26",
+      "string": "IF s3 >= 0.03 AND s5 < 0.01 THEN target = {92.71} [49.54, 135.88]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": 0.028391091527670446,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.006616937565137579,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 49.53686932689412,
+        "value": 92.70786516853933,
+        "high": 135.87886101018455,
+        "fixed": false,
+        "train_covered_y_mean": 92.70786516853933,
+        "train_covered_y_std": 43.17099584164521,
+        "train_covered_y_min": 37.0,
+        "train_covered_y_max": 302.0
+      },
+      "coverage": {
+        "p": 67,
+        "n": 22,
+        "P": 192,
+        "N": 250
+      }
+    },
+    {
+      "uuid": "8cf79368-6a1d-4231-9619-2c439e87e471",
+      "string": "IF s2 < 0.01 AND s1 < -0.00 AND bmi >= -0.06 AND s3 < 0.01 AND bp < 0.05 AND s2 >= -0.06 AND s6 < 0.04 AND bmi < -0.01 AND s3 >= -0.04 AND s1 >= -0.06 THEN target = {98.48} [48.30, 148.66]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              5
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.013090951816099879,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.000880983391110686,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": -0.06063546386678747,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.009982902507235738,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.04998326373184592,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              5
+            ],
+            "negated": false,
+            "left": -0.05705430362475593,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.03827231819046137,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.008900484320509083,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": -0.036037570043851025,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": -0.06486279129746281,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 48.29783027788208,
+        "value": 98.47826086956522,
+        "high": 148.65869146124837,
+        "fixed": false,
+        "train_covered_y_mean": 98.47826086956522,
+        "train_covered_y_std": 50.18043059168314,
+        "train_covered_y_min": 42.0,
+        "train_covered_y_max": 252.0
+      },
+      "coverage": {
+        "p": 18,
+        "n": 5,
+        "P": 221,
+        "N": 221
+      }
+    },
+    {
+      "uuid": "a70a938e-b67b-4b91-82a3-60be2a841112",
+      "string": "IF s5 >= -0.04 AND s3 < 0.04 AND s6 >= -0.07 AND bp < 0.03 AND s5 < 0.00 AND age >= -0.04 AND bmi < 0.02 THEN target = {116.23} [61.52, 170.94]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": -0.0391342719342636,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.03575436713584433,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": -0.07149351505265172,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.030479512953659853,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.002856751488528117,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": -0.043656208714513936,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.0202004416742725,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 61.52452241784509,
+        "value": 116.23255813953489,
+        "high": 170.94059386122467,
+        "fixed": false,
+        "train_covered_y_mean": 116.23255813953489,
+        "train_covered_y_std": 54.7080357216898,
+        "train_covered_y_min": 25.0,
+        "train_covered_y_max": 277.0
+      },
+      "coverage": {
+        "p": 31,
+        "n": 12,
+        "P": 222,
+        "N": 220
+      }
+    },
+    {
+      "uuid": "60091309-aa90-4101-b981-e68746274b1d",
+      "string": "IF s5 >= -0.03 AND bmi >= 0.05 AND s4 < -0.00 AND s2 >= -0.03 AND s3 >= -0.03 AND bp < 0.07 THEN target = {245.30} [182.85, 307.75]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": -0.034152595107919154,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 0.047145743521292485,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              7
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.0005627003500082383,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              5
+            ],
+            "negated": false,
+            "left": -0.03356816899054082,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": -0.025913066082611944,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.07351515015177562,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 182.8467374751327,
+        "value": 245.3,
+        "high": 307.7532625248673,
+        "fixed": false,
+        "train_covered_y_mean": 245.3,
+        "train_covered_y_std": 62.45326252486731,
+        "train_covered_y_min": 78.0,
+        "train_covered_y_max": 321.0
+      },
+      "coverage": {
+        "p": 8,
+        "n": 2,
+        "P": 138,
+        "N": 304
+      }
+    },
+    {
+      "uuid": "661c543e-fe02-4839-8cf6-9caa3e0ceaef",
+      "string": "IF bmi >= -0.00 AND s5 >= -0.01 AND age >= -0.03 AND bp >= -0.06 AND s2 >= -0.03 AND s1 < 0.03 AND bp < 0.03 AND age < 0.09 THEN target = {215.62} [153.03, 278.21]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": -0.000816893766403105,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": -0.005611643336126952,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": -0.03275859336145568,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": -0.058466542007405815,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              5
+            ],
+            "negated": false,
+            "left": -0.03435104014501465,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.03214188520571621,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.030479512953659853,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.0889314447476949,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 153.0265322804189,
+        "value": 215.6206896551724,
+        "high": 278.2148470299259,
+        "fixed": false,
+        "train_covered_y_mean": 215.6206896551724,
+        "train_covered_y_std": 62.5941573747535,
+        "train_covered_y_min": 91.0,
+        "train_covered_y_max": 341.0
+      },
+      "coverage": {
+        "p": 20,
+        "n": 9,
+        "P": 165,
+        "N": 277
+      }
+    },
+    {
+      "uuid": "8ab4f588-b089-4b52-a743-e3fb3c3752c8",
+      "string": "IF s5 >= 0.01 AND bp >= -0.03 AND s3 >= 0.03 AND bp < 0.01 THEN target = {175.00} [109.81, 240.19]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": 0.0075558446339637425,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": -0.03149180461162685,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": 0.03207272933175739,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.006379556122715025,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 109.81104388011725,
+        "value": 175.0,
+        "high": 240.18895611988273,
+        "fixed": false,
+        "train_covered_y_mean": 175.0,
+        "train_covered_y_std": 65.18895611988275,
+        "train_covered_y_min": 69.0,
+        "train_covered_y_max": 262.0
+      },
+      "coverage": {
+        "p": 3,
+        "n": 2,
+        "P": 195,
+        "N": 247
+      }
+    },
+    {
+      "uuid": "782d22b7-5e3d-4fb9-b333-c82d4e468b30",
+      "string": "IF s3 < 0.11 AND s1 < 0.05 AND s5 >= -0.07 AND bmi < 0.01 AND s3 >= 0.03 THEN target = {91.94} [46.26, 137.62]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.11122794211962661,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.04590141378772743,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": -0.0711710573069764,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.008883414898524095,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": 0.028391091527670446,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 46.25935440618096,
+        "value": 91.93846153846154,
+        "high": 137.61756867074212,
+        "fixed": false,
+        "train_covered_y_mean": 91.93846153846154,
+        "train_covered_y_std": 45.67910713228058,
+        "train_covered_y_min": 37.0,
+        "train_covered_y_max": 283.0
+      },
+      "coverage": {
+        "p": 54,
+        "n": 11,
+        "P": 203,
+        "N": 239
+      }
+    },
+    {
+      "uuid": "aee523b4-1fdb-4039-8278-a3bc9ddd0040",
+      "string": "IF s5 >= 0.02 AND age >= 0.01 AND s1 >= -0.00 AND bmi >= -0.04 AND bp >= -0.02 AND s2 < 0.09 AND bp < 0.09 AND bmi < 0.03 THEN target = {210.22} [153.43, 267.02]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": 0.024725082149827864,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 0.009015598825267656,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": -0.00019300696201012598,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": -0.04069594049999268,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": -0.02460610265992833,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              5
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.09294380957243127,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.0941722560068712,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.027206220154497703,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 153.42933447414734,
+        "value": 210.22222222222223,
+        "high": 267.01510997029715,
+        "fixed": false,
+        "train_covered_y_mean": 210.22222222222223,
+        "train_covered_y_std": 56.7928877480749,
+        "train_covered_y_min": 67.0,
+        "train_covered_y_max": 297.0
+      },
+      "coverage": {
+        "p": 17,
+        "n": 10,
+        "P": 150,
+        "N": 292
+      }
+    },
+    {
+      "uuid": "732260ca-871c-42e9-abe1-67a9989407c5",
+      "string": "IF s5 >= 0.01 AND s3 < 0.01 AND s1 >= -0.07 AND s1 < 0.01 AND bmi < -0.03 THEN target = {174.62} [126.98, 222.27]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": 0.006616937565137579,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.009982902507235738,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": -0.06967862630116672,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.00943866304539772,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.03045672579812507,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 126.97802344324458,
+        "value": 174.625,
+        "high": 222.27197655675542,
+        "fixed": false,
+        "train_covered_y_mean": 174.625,
+        "train_covered_y_std": 47.64697655675541,
+        "train_covered_y_min": 94.0,
+        "train_covered_y_max": 252.0
+      },
+      "coverage": {
+        "p": 5,
+        "n": 3,
+        "P": 154,
+        "N": 288
+      }
+    },
+    {
+      "uuid": "40692967-7480-4c02-908c-64ccb8c7ffe6",
+      "string": "IF s1 >= -0.02 AND age < 0.03 AND s5 >= 0.00 AND bmi >= 0.07 THEN target = {255.69} [212.03, 299.36]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": -0.020144323405926378,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.03262709875689389,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": 0.0015668937192184103,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 0.0730132332944317,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 212.028584648353,
+        "value": 255.69230769230768,
+        "high": 299.35603073626237,
+        "fixed": false,
+        "train_covered_y_mean": 255.69230769230768,
+        "train_covered_y_std": 43.66372304395469,
+        "train_covered_y_min": 128.0,
+        "train_covered_y_max": 308.0
+      },
+      "coverage": {
+        "p": 10,
+        "n": 3,
+        "P": 96,
+        "N": 346
+      }
+    },
+    {
+      "uuid": "5f7d5ada-3d1c-4310-af02-de9862735834",
+      "string": "IF age >= 0.01 AND bp >= -0.02 AND bmi < 0.13 AND s5 < 0.09 AND bmi >= 0.07 AND age < 0.05 THEN target = {286.33} [239.80, 332.87]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 0.005383060374248237,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": -0.021163251684079065,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.12528711887765046,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.09009306846586806,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 0.07409104536831247,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.05442232946301041,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 239.79541569859384,
+        "value": 286.3333333333333,
+        "high": 332.8712509680728,
+        "fixed": false,
+        "train_covered_y_mean": 286.3333333333333,
+        "train_covered_y_std": 46.53791763473948,
+        "train_covered_y_min": 180.0,
+        "train_covered_y_max": 341.0
+      },
+      "coverage": {
+        "p": 6,
+        "n": 3,
+        "P": 77,
+        "N": 365
+      }
+    },
+    {
+      "uuid": "93ffd490-13be-40ae-ac0a-2762ec0fb1ea",
+      "string": "IF s1 >= -0.01 AND s3 >= -0.05 AND s6 < 0.12 AND s6 >= 0.01 AND s5 >= -0.04 AND bmi >= 0.07 THEN target = {249.00} [210.48, 287.52]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": -0.005008841965714049,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": -0.052604940162242264,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.11904340302973326,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": 0.013419676701454629,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": -0.04402935053581337,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 0.06870198499890848,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 210.48420237530232,
+        "value": 249.0,
+        "high": 287.51579762469765,
+        "fixed": false,
+        "train_covered_y_mean": 249.0,
+        "train_covered_y_std": 38.515797624697676,
+        "train_covered_y_min": 128.0,
+        "train_covered_y_max": 295.0
+      },
+      "coverage": {
+        "p": 13,
+        "n": 2,
+        "P": 90,
+        "N": 352
+      }
+    },
+    {
+      "uuid": "f4d0f436-cf04-40c1-a1a3-daa9d7954243",
+      "string": "IF s6 >= 0.10 THEN target = {235.14} [173.41, 296.87]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": 0.09626181499814374,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 173.41435348963944,
+        "value": 235.14285714285714,
+        "high": 296.87136079607484,
+        "fixed": false,
+        "train_covered_y_mean": 235.14285714285714,
+        "train_covered_y_std": 61.7285036532177,
+        "train_covered_y_min": 81.0,
+        "train_covered_y_max": 317.0
+      },
+      "coverage": {
+        "p": 9,
+        "n": 5,
+        "P": 152,
+        "N": 290
+      }
+    },
+    {
+      "uuid": "f89fa231-dbb1-406d-9676-8a76e90fb0b8",
+      "string": "IF bmi < 0.07 AND s1 >= 0.02 AND s5 >= 0.06 THEN target = {226.81} [176.69, 276.93]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.07462995140525285,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": 0.02388616805650949,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": 0.06367149430089213,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 176.69012343150715,
+        "value": 226.80769230769232,
+        "high": 276.9252611838775,
+        "fixed": false,
+        "train_covered_y_mean": 226.80769230769232,
+        "train_covered_y_std": 50.117568876185175,
+        "train_covered_y_min": 90.0,
+        "train_covered_y_max": 310.0
+      },
+      "coverage": {
+        "p": 20,
+        "n": 6,
+        "P": 133,
+        "N": 309
+      }
+    },
+    {
+      "uuid": "aa8e9084-bb99-4f73-b556-c4134cf9adb2",
+      "string": "IF s3 < 0.03 AND s5 >= -0.01 AND bmi >= -0.01 AND s6 >= -0.04 AND bmi < 0.04 AND s3 >= -0.04 AND s5 < 0.01 THEN target = {181.00} [136.61, 225.39]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.028391091527670442,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": -0.011400050993453053,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": -0.013211732616032285,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": -0.040427713191393294,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.04229558918882888,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": -0.0378783889458945,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.01293405017384148,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 136.6101189631968,
+        "value": 181.0,
+        "high": 225.3898810368032,
+        "fixed": false,
+        "train_covered_y_mean": 181.0,
+        "train_covered_y_std": 44.38988103680318,
+        "train_covered_y_min": 94.0,
+        "train_covered_y_max": 237.0
+      },
+      "coverage": {
+        "p": 9,
+        "n": 4,
+        "P": 136,
+        "N": 306
+      }
+    },
+    {
+      "uuid": "4661787a-e78d-422f-9205-9cc954d6dfac",
+      "string": "IF bmi < 0.12 AND s1 < 0.06 AND s2 < 0.06 AND bmi >= 0.05 AND s5 >= 0.03 THEN target = {251.81} [195.73, 307.89]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.11666462228660406,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.05690903665333639,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              5
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.05818433031379293,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 0.05469042803845807,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": 0.030249137331465066,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 195.73167057330608,
+        "value": 251.8095238095238,
+        "high": 307.8873770457415,
+        "fixed": false,
+        "train_covered_y_mean": 251.8095238095238,
+        "train_covered_y_std": 56.07785323621771,
+        "train_covered_y_min": 68.0,
+        "train_covered_y_max": 310.0
+      },
+      "coverage": {
+        "p": 17,
+        "n": 4,
+        "P": 124,
+        "N": 318
+      }
+    },
+    {
+      "uuid": "9379fb7a-c989-449c-88aa-182c79b5cbcc",
+      "string": "IF s2 < -0.03 AND s3 < -0.01 AND s2 >= -0.06 AND s5 >= 0.03 THEN target = {241.31} [178.23, 304.38]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              5
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.030280110141750697,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.006584467611155497,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              5
+            ],
+            "negated": false,
+            "left": -0.06096865939712512,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": 0.030249137331465066,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 178.23339592711173,
+        "value": 241.30769230769232,
+        "high": 304.3819886882729,
+        "fixed": false,
+        "train_covered_y_mean": 241.30769230769232,
+        "train_covered_y_std": 63.074296380580584,
+        "train_covered_y_min": 52.0,
+        "train_covered_y_max": 310.0
+      },
+      "coverage": {
+        "p": 11,
+        "n": 2,
+        "P": 146,
+        "N": 296
+      }
+    },
+    {
+      "uuid": "0edc671b-b0ec-43fb-a0cf-0165b1f55541",
+      "string": "IF bp < 0.07 AND s5 < 0.06 AND s3 < 0.03 AND s1 >= -0.02 AND age < 0.07 AND s6 < 0.09 AND bmi < 0.05 AND bmi >= 0.01 AND s2 < 0.04 AND s5 >= 0.03 THEN target = {195.00} [153.55, 236.45]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.07351515015177562,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.06389026876353124,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.03207272933175739,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": -0.02083229983502694,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.06713621404157838,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.08797760116847483,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.0546904280384581,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 0.0148113813048685,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              5
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.04362292684057956,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": 0.030249137331465066,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 153.54587542301195,
+        "value": 195.0,
+        "high": 236.45412457698805,
+        "fixed": false,
+        "train_covered_y_mean": 195.0,
+        "train_covered_y_std": 41.45412457698806,
+        "train_covered_y_min": 99.0,
+        "train_covered_y_max": 242.0
+      },
+      "coverage": {
+        "p": 7,
+        "n": 2,
+        "P": 112,
+        "N": 330
+      }
+    },
+    {
+      "uuid": "fbf61e0c-7421-4b8b-8bcc-ec8326b1ce0e",
+      "string": "IF s1 >= 0.02 AND bp < 0.06 AND s5 < 0.06 AND s5 >= 0.05 AND bp >= -0.03 AND age < 0.03 AND s6 < 0.09 THEN target = {162.20} [116.93, 207.47]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": 0.018382356623705003,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.05630089527252931,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.06323394537561389,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": 0.04506654937395892,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": -0.02632752814785296,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.03262709875689389,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.08797760116847483,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 116.93014247868672,
+        "value": 162.2,
+        "high": 207.46985752131326,
+        "fixed": false,
+        "train_covered_y_mean": 162.2,
+        "train_covered_y_std": 45.26985752131328,
+        "train_covered_y_min": 121.0,
+        "train_covered_y_max": 248.0
+      },
+      "coverage": {
+        "p": 4,
+        "n": 1,
+        "P": 148,
+        "N": 294
+      }
+    },
+    {
+      "uuid": "14fc8a94-171a-4066-9c10-8532162f96a5",
+      "string": "IF s5 < 0.07 AND bp < 0.06 AND bmi < 0.06 AND s1 >= -0.04 AND age >= -0.03 AND bmi >= -0.01 AND s2 < 0.13 AND s5 >= 0.03 AND bp >= -0.02 AND s3 < 0.07 THEN target = {202.18} [148.64, 255.72]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.07219914054251192,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.05802232076045394,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.061157300481742886,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": -0.03734373413344039,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": -0.029126054910436256,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": -0.007822672246628287,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              5
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.12629412075301677,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": 0.031812463179073616,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": -0.017720400708229805,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.0688891073726268,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 148.63945062147454,
+        "value": 202.1818181818182,
+        "high": 255.72418574216184,
+        "fixed": false,
+        "train_covered_y_mean": 202.1818181818182,
+        "train_covered_y_std": 53.54236756034365,
+        "train_covered_y_min": 67.0,
+        "train_covered_y_max": 268.0
+      },
+      "coverage": {
+        "p": 15,
+        "n": 7,
+        "P": 143,
+        "N": 299
+      }
+    },
+    {
+      "uuid": "73cac5a2-fd58-43b5-8cad-1b26007bc1c5",
+      "string": "IF s5 >= 0.01 AND age >= -0.06 AND bmi < 0.04 AND age < 0.04 AND sex >= 0.00 AND s6 < 0.08 AND bp < 0.04 AND s5 < 0.02 THEN target = {115.36} [49.11, 181.62]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": 0.01061868711091105,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": -0.06363517019512076,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.04283449522576928,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.03989217565893273,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 0.003019241116414738,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.08383549425364037,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.03736521490535838,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.01955197766867421,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 49.10755914354249,
+        "value": 115.36363636363636,
+        "high": 181.61971358373023,
+        "fixed": false,
+        "train_covered_y_mean": 115.36363636363636,
+        "train_covered_y_std": 66.25607722009387,
+        "train_covered_y_min": 58.0,
+        "train_covered_y_max": 311.0
+      },
+      "coverage": {
+        "p": 10,
+        "n": 1,
+        "P": 270,
+        "N": 172
+      }
+    },
+    {
+      "uuid": "248e7e9e-84de-4405-99ed-a5c6f88151f8",
+      "string": "IF s3 < 0.07 AND s1 < 0.08 AND bmi >= -0.03 AND s6 >= -0.04 AND s2 >= -0.02 AND bmi < -0.00 AND s6 < 0.09 AND age >= -0.09 AND bp < 0.09 AND s3 >= -0.07 AND age < 0.08 AND s5 < 0.03 THEN target = {107.87} [50.60, 165.14]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.07257074517671375,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.0844280938173588,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": -0.03261234994588669,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": -0.040427713191393294,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              5
+            ],
+            "negated": false,
+            "left": -0.023703992444170457,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.0002779877294626974,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.08797760116847483,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": -0.09087920857776641,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.08728655405517266,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": -0.07101312918267697,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.07985009862014636,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.0270404452127583,
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 50.6037439003499,
+        "value": 107.8695652173913,
+        "high": 165.1353865344327,
+        "fixed": false,
+        "train_covered_y_mean": 107.8695652173913,
+        "train_covered_y_std": 57.2658213170414,
+        "train_covered_y_min": 42.0,
+        "train_covered_y_max": 292.0
+      },
+      "coverage": {
+        "p": 37,
+        "n": 9,
+        "P": 241,
+        "N": 201
+      }
+    },
+    {
+      "uuid": "1694a083-0ad7-4944-b03b-dd0bf4cef40a",
+      "string": "IF s5 < 0.04 AND s3 < -0.01 AND s6 < 0.03 AND bp < 0.08 AND bmi >= 0.02 AND s2 < 0.08 AND s5 >= 0.02 THEN target = {219.56} [138.10, 301.01]",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.0420356115061464,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": -0.006584467611155498,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              9
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.029988104360792453,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.07867942661554952,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 0.021278253748153293,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              5
+            ],
+            "negated": false,
+            "left": null,
+            "right": 0.08088759379353418,
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              8
+            ],
+            "negated": false,
+            "left": 0.016671447243926052,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 138.100576700688,
+        "value": 219.55555555555554,
+        "high": 301.0105344104231,
+        "fixed": false,
+        "train_covered_y_mean": 219.55555555555554,
+        "train_covered_y_std": 81.45497885486753,
+        "train_covered_y_min": 52.0,
+        "train_covered_y_max": 346.0
+      },
+      "coverage": {
+        "p": 7,
+        "n": 2,
+        "P": 211,
+        "N": 231
+      }
+    }
+  ]
+}

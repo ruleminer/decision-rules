@@ -1,0 +1,4594 @@
+{
+  "meta": {
+    "attributes": [
+      "Age",
+      "Gender",
+      "Education Level",
+      "Job Title",
+      "Years of Experience"
+    ],
+    "decision_attribute": "Salary",
+    "decision_attribute_distribution": {
+      "high": 1492,
+      "average": 1214,
+      "minimal": 1201,
+      "above average": 1407,
+      "below average": 1390
+    }
+  },
+  "rules": [
+    {
+      "uuid": "b408831b-dc12-4bd4-9d18-dfcd57a07791",
+      "string": "IF Age < 31.50 AND Years of Experience < 5.50 AND Years of Experience >= 2.50 AND Education Level = {Bachelor's Degree} THEN Salary = below average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 31.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 5.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 2.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Bachelor's Degree",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5314,
+        "P": 1390,
+        "n": 169,
+        "p": 672
+      },
+      "conclusion": {
+        "value": "below average"
+      }
+    },
+    {
+      "uuid": "6e579572-d648-44b2-9c5a-aaa70f1aae79",
+      "string": "IF Years of Experience >= 2.50 AND Years of Experience < 6.50 AND Education Level = {Bachelor's Degree} THEN Salary = below average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 2.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 6.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Bachelor's Degree",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5314,
+        "P": 1390,
+        "n": 278,
+        "p": 798
+      },
+      "conclusion": {
+        "value": "below average"
+      }
+    },
+    {
+      "uuid": "f87ca5f3-50b4-427f-9aad-42f9458768ce",
+      "string": "IF Age >= 24.50 AND Years of Experience >= 1.50 AND Years of Experience < 6.50 AND Education Level = {Bachelor's Degree} THEN Salary = below average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 24.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 1.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 6.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Bachelor's Degree",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5314,
+        "P": 1390,
+        "n": 468,
+        "p": 900
+      },
+      "conclusion": {
+        "value": "below average"
+      }
+    },
+    {
+      "uuid": "716043bd-40b6-43d2-942e-5d27e8c33edd",
+      "string": "IF Years of Experience >= 0.50 AND Age >= 24.50 AND Years of Experience < 6.50 AND Education Level = {Bachelor's Degree} THEN Salary = below average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 0.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 24.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 6.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Bachelor's Degree",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5314,
+        "P": 1390,
+        "n": 585,
+        "p": 939
+      },
+      "conclusion": {
+        "value": "below average"
+      }
+    },
+    {
+      "uuid": "31db221a-9973-41c0-b9b1-0972ce14ce21",
+      "string": "IF Years of Experience >= 0.50 AND Age >= 23.50 AND Years of Experience < 6.50 AND Education Level = {Bachelor's Degree} THEN Salary = below average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 0.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 23.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 6.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Bachelor's Degree",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5314,
+        "P": 1390,
+        "n": 652,
+        "p": 952
+      },
+      "conclusion": {
+        "value": "below average"
+      }
+    },
+    {
+      "uuid": "99cb64c1-d442-42a8-bc2b-f0f418310a6c",
+      "string": "IF Age >= 22.50 AND Years of Experience >= 0.50 AND Years of Experience < 6.50 AND Education Level = {Bachelor's Degree} THEN Salary = below average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 22.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 0.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 6.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Bachelor's Degree",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5314,
+        "P": 1390,
+        "n": 708,
+        "p": 957
+      },
+      "conclusion": {
+        "value": "below average"
+      }
+    },
+    {
+      "uuid": "822612cb-560d-4173-a1ed-73761aae5d52",
+      "string": "IF Years of Experience >= 2.50 AND Years of Experience < 7.50 AND Education Level = {Bachelor's Degree} THEN Salary = below average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 2.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 7.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Bachelor's Degree",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5314,
+        "P": 1390,
+        "n": 378,
+        "p": 825
+      },
+      "conclusion": {
+        "value": "below average"
+      }
+    },
+    {
+      "uuid": "3cbb1f17-db97-4ec3-acd6-7f042565d089",
+      "string": "IF Age < 37.50 AND Years of Experience >= 2.50 AND Years of Experience < 8.50 AND Education Level = {Bachelor's Degree} THEN Salary = below average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 37.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 2.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 8.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Bachelor's Degree",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5314,
+        "P": 1390,
+        "n": 456,
+        "p": 852
+      },
+      "conclusion": {
+        "value": "below average"
+      }
+    },
+    {
+      "uuid": "a84cabb3-0cee-4ffc-a91f-d585b26cc30f",
+      "string": "IF Age < 29.50 AND Years of Experience < 4.50 AND Age >= 26.50 AND Years of Experience >= 2.50 THEN Salary = below average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 29.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 4.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 26.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 2.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5314,
+        "P": 1390,
+        "n": 251,
+        "p": 530
+      },
+      "conclusion": {
+        "value": "below average"
+      }
+    },
+    {
+      "uuid": "7836407b-417c-434a-9987-8279cc8d9a33",
+      "string": "IF Years of Experience < 4.50 AND Age < 30.50 AND Age >= 26.50 AND Years of Experience >= 2.50 THEN Salary = below average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 4.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 30.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 26.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 2.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5314,
+        "P": 1390,
+        "n": 307,
+        "p": 567
+      },
+      "conclusion": {
+        "value": "below average"
+      }
+    },
+    {
+      "uuid": "8db54ea4-57f8-47af-902e-2363f7c1e2bd",
+      "string": "IF Age >= 24.50 AND Years of Experience >= 2.50 AND Years of Experience < 6.50 THEN Salary = below average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 24.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 2.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 6.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5314,
+        "P": 1390,
+        "n": 982,
+        "p": 979
+      },
+      "conclusion": {
+        "value": "below average"
+      }
+    },
+    {
+      "uuid": "cd5cfc9d-59a4-4636-b44c-7f1ab55b4e06",
+      "string": "IF Age < 29.50 AND Years of Experience < 4.50 AND Age >= 26.50 AND Years of Experience >= 1.75 THEN Salary = below average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 29.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 4.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 26.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 1.75,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5314,
+        "P": 1390,
+        "n": 437,
+        "p": 607
+      },
+      "conclusion": {
+        "value": "below average"
+      }
+    },
+    {
+      "uuid": "a1d3a2a1-a512-4d7a-8443-136afbc5a3a3",
+      "string": "IF Age < 27.50 AND Years of Experience >= 1.75 THEN Salary = below average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 27.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 1.75,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5314,
+        "P": 1390,
+        "n": 568,
+        "p": 408
+      },
+      "conclusion": {
+        "value": "below average"
+      }
+    },
+    {
+      "uuid": "5e1320d0-5209-4502-bbc3-65477a0a65c6",
+      "string": "IF Education Level = {Bachelor's} AND Job Title = {Data Analyst} AND Years of Experience < 1.50 THEN Salary = below average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "value": "Bachelor's",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Data Analyst",
+            "negated": false,
+            "attributes": [
+              3
+            ]
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 1.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5314,
+        "P": 1390,
+        "n": 4,
+        "p": 36
+      },
+      "conclusion": {
+        "value": "below average"
+      }
+    },
+    {
+      "uuid": "3b4758a0-6dbc-4d1d-948d-89b65e10dc8d",
+      "string": "IF Age >= 24.50 AND Years of Experience >= 1.75 AND Years of Experience < 7.50 THEN Salary = below average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 24.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 1.75,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 7.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5314,
+        "P": 1390,
+        "n": 1676,
+        "p": 1199
+      },
+      "conclusion": {
+        "value": "below average"
+      }
+    },
+    {
+      "uuid": "ad9edb0d-589d-40d5-8e9e-4af131f68d33",
+      "string": "IF Years of Experience < 8.50 THEN Salary = below average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 8.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5314,
+        "P": 1390,
+        "n": 2653,
+        "p": 1371
+      },
+      "conclusion": {
+        "value": "below average"
+      }
+    },
+    {
+      "uuid": "6d4a29ed-3283-4262-8349-e5e27bc7e040",
+      "string": "IF Age < 38.50 AND Years of Experience < 10.50 THEN Salary = below average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 38.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 10.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5314,
+        "P": 1390,
+        "n": 3190,
+        "p": 1376
+      },
+      "conclusion": {
+        "value": "below average"
+      }
+    },
+    {
+      "uuid": "3ec4bfad-6767-4fab-9a84-8bb0ee92adef",
+      "string": "IF Years of Experience >= 9.50 AND Age >= 37.50 AND Education Level = {Bachelor's} AND Age < 39.50 THEN Salary = below average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 9.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 37.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Bachelor's",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 39.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5314,
+        "P": 1390,
+        "n": 9,
+        "p": 7
+      },
+      "conclusion": {
+        "value": "below average"
+      }
+    },
+    {
+      "uuid": "10d40093-507d-476c-9ad5-a9ff7fd7a83c",
+      "string": "IF Years of Experience >= 11.50 AND Age >= 38.50 AND Gender = {Female} AND Years of Experience < 15.50 AND Age < 40.50 THEN Salary = below average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 11.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 38.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Female",
+            "negated": false,
+            "attributes": [
+              1
+            ]
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 15.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 40.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5314,
+        "P": 1390,
+        "n": 90,
+        "p": 7
+      },
+      "conclusion": {
+        "value": "below average"
+      }
+    },
+    {
+      "uuid": "14376f9f-eade-4032-9d05-2d2fefdff6bb",
+      "string": "IF Education Level = {Bachelor's Degree} AND Years of Experience >= 10.50 AND Age < 37.50 AND Years of Experience < 13.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "value": "Bachelor's Degree",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          },
+          {
+            "left": 10.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 37.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 13.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 2,
+        "p": 62
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "97acf965-03d4-4650-b6d6-75d18c25b095",
+      "string": "IF Gender = {Male} AND Years of Experience < 11.50 AND Age < 38.50 AND Age >= 32.50 AND Years of Experience >= 7.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "value": "Male",
+            "negated": false,
+            "attributes": [
+              1
+            ]
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 11.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 38.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 32.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 7.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 250,
+        "p": 290
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "9e9f6676-1cce-41e0-8e68-b421bce69188",
+      "string": "IF Age < 34.50 AND Years of Experience < 10.50 AND Age >= 31.50 AND Years of Experience >= 8.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 34.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 10.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 31.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 8.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 87,
+        "p": 158
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "aa58c4f4-6a44-4151-93dd-291830411e41",
+      "string": "IF Age >= 33.50 AND Years of Experience >= 9.50 AND Age < 37.50 AND Years of Experience < 11.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 33.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 9.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 37.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 11.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 78,
+        "p": 159
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "4de5ad63-d2e1-406c-b83a-36f52de9b296",
+      "string": "IF Years of Experience < 11.50 AND Age < 38.50 AND Age >= 31.50 AND Years of Experience >= 8.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 11.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 38.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 31.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 8.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 343,
+        "p": 367
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "18d59c57-0bcd-4e90-a643-9f02e0da0ba6",
+      "string": "IF Age >= 31.50 AND Years of Experience >= 8.50 AND Age < 46.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 31.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 8.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 46.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 1174,
+        "p": 912
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "47589033-0e21-4da3-9f2a-a91b3e77ffaf",
+      "string": "IF Years of Experience < 11.50 AND Age < 38.50 AND Age >= 30.50 AND Years of Experience >= 8.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 11.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 38.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 30.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 8.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 398,
+        "p": 386
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "fc2f6725-3249-468d-b9db-bbc1688af1b2",
+      "string": "IF Age < 37.50 AND Years of Experience < 11.50 AND Age >= 32.50 AND Years of Experience >= 7.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 37.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 11.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 32.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 7.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 463,
+        "p": 387
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "942badb1-66b8-4445-be14-665abec879a2",
+      "string": "IF Years of Experience < 9.50 AND Job Title = {Data Scientist} AND Age < 32.50 AND Education Level = {PhD} AND Years of Experience >= 7.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 9.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Data Scientist",
+            "negated": false,
+            "attributes": [
+              3
+            ]
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 32.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "PhD",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          },
+          {
+            "left": 7.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 4,
+        "p": 54
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "8b052262-14d8-4049-8c88-e9af1f2f7183",
+      "string": "IF Years of Experience >= 8.50 AND Age < 47.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 8.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 47.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 1275,
+        "p": 936
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "102d60ef-7bba-4083-9ed5-3b5d200e28e5",
+      "string": "IF Age >= 37.50 AND Years of Experience >= 11.50 AND Years of Experience < 21.50 AND Age < 49.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 37.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 11.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 21.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 49.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 722,
+        "p": 482
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "e65d98a1-a2ca-49be-97da-4d64efa4713b",
+      "string": "IF Age >= 30.50 AND Age < 50.50 AND Years of Experience < 16.50 AND Years of Experience >= 7.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 30.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 50.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 16.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 7.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 1463,
+        "p": 953
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "b5848b1c-2c29-4fff-9438-13cc58832fa9",
+      "string": "IF Years of Experience >= 20.50 AND Age >= 49.50 AND Years of Experience < 22.50 AND Age < 50.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 20.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 49.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 22.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 50.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 5,
+        "p": 5
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "b67dbeee-0033-4915-84e1-c2840181cada",
+      "string": "IF Years of Experience >= 21.50 AND Age >= 50.50 AND Age < 52.50 AND Years of Experience < 25.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 21.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 50.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 52.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 25.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 14,
+        "p": 5
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "8b8668d1-2375-4244-b656-24bfed436331",
+      "string": "IF Job Title = {Senior Project Engineer} AND Years of Experience >= 19.50 AND Age < 53.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "value": "Senior Project Engineer",
+            "negated": false,
+            "attributes": [
+              3
+            ]
+          },
+          {
+            "left": 19.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 53.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 16,
+        "p": 21
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "933ea813-49fe-4740-a7e1-4eaaeaab4b1a",
+      "string": "IF Age >= 33.50 AND Gender = {Male} AND Years of Experience < 11.50 AND Age < 38.50 AND Years of Experience >= 6.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 33.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Male",
+            "negated": false,
+            "attributes": [
+              1
+            ]
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 11.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 38.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 6.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 221,
+        "p": 264
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "a98f9e80-096e-4098-aa94-9f2da4fbea1d",
+      "string": "IF Job Title = {Full Stack Engineer} AND Age < 37.50 AND Years of Experience >= 6.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "value": "Full Stack Engineer",
+            "negated": false,
+            "attributes": [
+              3
+            ]
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 37.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 6.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 17,
+        "p": 86
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "f5de24d0-4bb4-4f24-a645-d29ccf7e18ce",
+      "string": "IF Years of Experience < 7.50 AND Age < 31.50 AND Education Level = {Master's Degree} AND Gender = {Male} AND Age >= 30.50 AND Years of Experience >= 6.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 7.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 31.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Master's Degree",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Male",
+            "negated": false,
+            "attributes": [
+              1
+            ]
+          },
+          {
+            "left": 30.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 6.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 2,
+        "p": 18
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "225f23fa-8e48-4425-a27d-d36972477ded",
+      "string": "IF Job Title = {Data Analyst} AND Age < 29.50 AND Years of Experience >= 6.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "value": "Data Analyst",
+            "negated": false,
+            "attributes": [
+              3
+            ]
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 29.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 6.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 0,
+        "p": 10
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "da6057c6-8087-4b03-86b1-37050b7530e1",
+      "string": "IF Years of Experience < 31.50 AND Age < 54.50 AND Age >= 30.50 AND Years of Experience >= 6.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 31.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 54.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 30.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 6.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 2156,
+        "p": 1113
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "75765789-3bad-48a6-9bb4-418207d499ec",
+      "string": "IF Years of Experience >= 5.50 AND Age >= 32.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 5.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 32.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 2010,
+        "p": 1022
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "a177b30a-c669-41ea-a1f8-93fc5883f316",
+      "string": "IF Years of Experience >= 5.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 5.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 2714,
+        "p": 1181
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "6bfd9be0-4af5-489c-a5e8-0486937a9173",
+      "string": "IF Education Level = {Bachelor's} AND Age < 28.50 AND Age >= 27.50 AND Years of Experience >= 4.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "value": "Bachelor's",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 28.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 27.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 4.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 0,
+        "p": 54
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "c4014a82-6ae6-4fbd-b155-5b8e9d73fc5f",
+      "string": "IF Age >= 26.50 AND Age < 46.50 AND Years of Experience >= 4.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 26.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 46.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 4.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 2527,
+        "p": 1232
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "dcbd3133-1719-42a2-9b91-bece0f72e793",
+      "string": "IF Years of Experience < 5.50 AND Age < 30.50 AND Education Level = {Bachelor's} AND Years of Experience >= 3.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 5.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 30.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Bachelor's",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          },
+          {
+            "left": 3.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 7,
+        "p": 167
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "826a7a51-54f8-460e-9013-ae81ea56a68b",
+      "string": "IF Age < 28.50 AND Education Level = {Master's} AND Years of Experience >= 2.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 28.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Master's",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          },
+          {
+            "left": 2.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 2,
+        "p": 25
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "bf749704-145e-47bf-91e7-1ec4fce09984",
+      "string": "IF Job Title = {Data Analyst} AND Age < 26.50 AND Gender = {Male} AND Years of Experience >= 2.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "value": "Data Analyst",
+            "negated": false,
+            "attributes": [
+              3
+            ]
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 26.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Male",
+            "negated": false,
+            "attributes": [
+              1
+            ]
+          },
+          {
+            "left": 2.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 18,
+        "p": 38
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "6afb8a14-cadd-4b80-ac45-63d22ca4eaef",
+      "string": "IF Years of Experience < 10.50 AND Age < 34.50 AND Gender = {Female} AND Age >= 25.50 AND Years of Experience >= 2.50 THEN Salary = above average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 10.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 34.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Female",
+            "negated": false,
+            "attributes": [
+              1
+            ]
+          },
+          {
+            "left": 25.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 2.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5297,
+        "P": 1407,
+        "n": 1030,
+        "p": 273
+      },
+      "conclusion": {
+        "value": "above average"
+      }
+    },
+    {
+      "uuid": "b90a7bd6-21dd-47e9-8c92-457f30c57ae4",
+      "string": "IF Age >= 36.50 AND Years of Experience >= 13.50 THEN Salary = high ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 36.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 13.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5212,
+        "P": 1492,
+        "n": 356,
+        "p": 922
+      },
+      "conclusion": {
+        "value": "high"
+      }
+    },
+    {
+      "uuid": "29bf7942-36db-4735-8df8-84521695f52d",
+      "string": "IF Age >= 29.50 AND Years of Experience >= 11.50 THEN Salary = high ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 29.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 11.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5212,
+        "P": 1492,
+        "n": 659,
+        "p": 1124
+      },
+      "conclusion": {
+        "value": "high"
+      }
+    },
+    {
+      "uuid": "17234999-2250-4420-98fb-a2b62c262385",
+      "string": "IF Years of Experience >= 10.50 THEN Salary = high ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 10.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5212,
+        "P": 1492,
+        "n": 894,
+        "p": 1211
+      },
+      "conclusion": {
+        "value": "high"
+      }
+    },
+    {
+      "uuid": "cfbfaed8-1270-447e-824b-4e3d3636e5dc",
+      "string": "IF Education Level = {Master's} AND Age < 34.50 AND Years of Experience >= 9.50 THEN Salary = high ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "value": "Master's",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 34.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 9.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5212,
+        "P": 1492,
+        "n": 1,
+        "p": 77
+      },
+      "conclusion": {
+        "value": "high"
+      }
+    },
+    {
+      "uuid": "d02bc240-0960-4387-92f8-d28630765120",
+      "string": "IF Education Level = {Bachelor's} AND Age < 34.50 AND Age >= 31.00 THEN Salary = high ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "value": "Bachelor's",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 34.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 31.0,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5212,
+        "P": 1492,
+        "n": 71,
+        "p": 128
+      },
+      "conclusion": {
+        "value": "high"
+      }
+    },
+    {
+      "uuid": "6121eba1-a1b4-4c41-a4bf-19d49c03c1b0",
+      "string": "IF Age >= 30.50 AND Years of Experience >= 8.50 THEN Salary = high ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 30.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 8.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5212,
+        "P": 1492,
+        "n": 1378,
+        "p": 1295
+      },
+      "conclusion": {
+        "value": "high"
+      }
+    },
+    {
+      "uuid": "39501f73-fc94-4bed-9011-53ec82b79b21",
+      "string": "IF Age >= 32.50 AND Education Level = {PhD} AND Years of Experience >= 7.50 THEN Salary = high ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 32.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "PhD",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          },
+          {
+            "left": 7.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5212,
+        "P": 1492,
+        "n": 405,
+        "p": 743
+      },
+      "conclusion": {
+        "value": "high"
+      }
+    },
+    {
+      "uuid": "1bf8318a-3b5b-4358-95b1-d5647e6761bd",
+      "string": "IF Age < 34.50 AND Education Level = {Bachelor's} AND Years of Experience >= 7.50 THEN Salary = high ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 34.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Bachelor's",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          },
+          {
+            "left": 7.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5212,
+        "P": 1492,
+        "n": 2,
+        "p": 134
+      },
+      "conclusion": {
+        "value": "high"
+      }
+    },
+    {
+      "uuid": "5f35b22d-6f6e-4c5e-bdc6-5f12059d9abc",
+      "string": "IF Age < 30.50 AND Job Title = {Data Scientist} AND Age >= 29.50 THEN Salary = high ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 30.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Data Scientist",
+            "negated": false,
+            "attributes": [
+              3
+            ]
+          },
+          {
+            "left": 29.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5212,
+        "P": 1492,
+        "n": 2,
+        "p": 56
+      },
+      "conclusion": {
+        "value": "high"
+      }
+    },
+    {
+      "uuid": "e17c41a6-acf3-4d25-a058-8dfca6a5d276",
+      "string": "IF Age < 34.50 AND Education Level = {Master's} AND Age >= 28.50 AND Years of Experience >= 5.50 THEN Salary = high ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 34.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Master's",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          },
+          {
+            "left": 28.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 5.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5212,
+        "P": 1492,
+        "n": 28,
+        "p": 132
+      },
+      "conclusion": {
+        "value": "high"
+      }
+    },
+    {
+      "uuid": "a66bac3a-afb5-4c5d-83b8-5a42779beca0",
+      "string": "IF Age < 31.50 AND Years of Experience < 9.50 AND Age >= 28.50 AND Years of Experience >= 5.50 THEN Salary = high ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 31.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 9.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 28.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 5.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5212,
+        "P": 1492,
+        "n": 314,
+        "p": 171
+      },
+      "conclusion": {
+        "value": "high"
+      }
+    },
+    {
+      "uuid": "5951fe72-0b8a-4eaa-a499-61718c91c288",
+      "string": "IF Years of Experience < 13.50 AND Age < 36.50 AND Age >= 26.50 AND Years of Experience >= 2.50 THEN Salary = high ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 13.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 36.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 26.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 2.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5212,
+        "P": 1492,
+        "n": 2862,
+        "p": 478
+      },
+      "conclusion": {
+        "value": "high"
+      }
+    },
+    {
+      "uuid": "aee29af9-3fe6-4a48-b431-ed8cdfd09109",
+      "string": "IF Years of Experience < 2.50 THEN Salary = minimal ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 2.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5503,
+        "P": 1201,
+        "n": 361,
+        "p": 922
+      },
+      "conclusion": {
+        "value": "minimal"
+      }
+    },
+    {
+      "uuid": "8cab506f-516b-42a3-bfd1-afe6a3eb818e",
+      "string": "IF Years of Experience < 3.50 THEN Salary = minimal ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 3.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5503,
+        "P": 1201,
+        "n": 784,
+        "p": 1101
+      },
+      "conclusion": {
+        "value": "minimal"
+      }
+    },
+    {
+      "uuid": "cb6e3346-4c2c-4010-bccd-2f4e64cb6939",
+      "string": "IF Years of Experience < 4.50 THEN Salary = minimal ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 4.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5503,
+        "P": 1201,
+        "n": 1216,
+        "p": 1191
+      },
+      "conclusion": {
+        "value": "minimal"
+      }
+    },
+    {
+      "uuid": "bb56d6b1-f63b-4c99-8823-749baecfc5ad",
+      "string": "IF Years of Experience < 5.50 THEN Salary = minimal ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 5.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5503,
+        "P": 1201,
+        "n": 1608,
+        "p": 1198
+      },
+      "conclusion": {
+        "value": "minimal"
+      }
+    },
+    {
+      "uuid": "714a37f1-4e48-4d3e-a50e-0122a99ef534",
+      "string": "IF Age < 34.50 AND Years of Experience < 8.50 AND Age >= 27.50 AND Years of Experience >= 4.50 AND Education Level = {Master's Degree} THEN Salary = average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 34.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 8.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 27.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 4.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Master's Degree",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5490,
+        "P": 1214,
+        "n": 107,
+        "p": 303
+      },
+      "conclusion": {
+        "value": "average"
+      }
+    },
+    {
+      "uuid": "82f32036-3e2c-4c33-a1a3-674d4c7db11a",
+      "string": "IF Years of Experience < 11.50 AND Age >= 27.50 AND Age < 42.50 AND Years of Experience >= 4.50 THEN Salary = average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 11.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 27.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 42.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 4.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5490,
+        "P": 1214,
+        "n": 1498,
+        "p": 950
+      },
+      "conclusion": {
+        "value": "average"
+      }
+    },
+    {
+      "uuid": "0b1b8823-049f-47c4-951d-25e5eb57bd91",
+      "string": "IF Age >= 33.50 AND Years of Experience >= 8.50 AND Gender = {Female} AND Years of Experience < 12.50 AND Education Level = {Master's Degree} THEN Salary = average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 33.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 8.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Female",
+            "negated": false,
+            "attributes": [
+              1
+            ]
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 12.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Master's Degree",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5490,
+        "P": 1214,
+        "n": 90,
+        "p": 132
+      },
+      "conclusion": {
+        "value": "average"
+      }
+    },
+    {
+      "uuid": "2fd312c0-6946-4015-a60a-a27c5b685c3e",
+      "string": "IF Age < 34.50 AND Years of Experience < 8.50 AND Years of Experience >= 3.50 AND Age >= 27.50 AND Education Level = {Master's Degree} THEN Salary = average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 34.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 8.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 3.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 27.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Master's Degree",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5490,
+        "P": 1214,
+        "n": 142,
+        "p": 310
+      },
+      "conclusion": {
+        "value": "average"
+      }
+    },
+    {
+      "uuid": "8fe2abb7-0b57-49a3-82a0-12fb41d607cd",
+      "string": "IF Age < 42.50 AND Years of Experience >= 3.50 AND Years of Experience < 12.50 AND Education Level = {Master's Degree} THEN Salary = average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 42.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 3.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 12.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Master's Degree",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5490,
+        "P": 1214,
+        "n": 461,
+        "p": 516
+      },
+      "conclusion": {
+        "value": "average"
+      }
+    },
+    {
+      "uuid": "9f21c93e-4888-424d-9393-4ad919163ee5",
+      "string": "IF Age < 34.50 AND Years of Experience < 8.50 AND Years of Experience >= 2.50 AND Age >= 26.50 AND Education Level = {Master's Degree} THEN Salary = average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 34.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 8.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 2.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 26.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Master's Degree",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5490,
+        "P": 1214,
+        "n": 218,
+        "p": 319
+      },
+      "conclusion": {
+        "value": "average"
+      }
+    },
+    {
+      "uuid": "87cd8217-39f1-4df9-879a-039df096b401",
+      "string": "IF Education Level = {Bachelor's} AND Age < 27.50 AND Gender = {Female} THEN Salary = average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "value": "Bachelor's",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 27.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Female",
+            "negated": false,
+            "attributes": [
+              1
+            ]
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5490,
+        "P": 1214,
+        "n": 26,
+        "p": 49
+      },
+      "conclusion": {
+        "value": "average"
+      }
+    },
+    {
+      "uuid": "16c5c61e-f3b5-4330-9945-703fc02739d9",
+      "string": "IF Years of Experience >= 8.50 AND Age >= 34.50 AND Age < 43.50 AND Years of Experience < 12.50 THEN Salary = average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 8.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 34.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 43.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 12.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5490,
+        "P": 1214,
+        "n": 372,
+        "p": 301
+      },
+      "conclusion": {
+        "value": "average"
+      }
+    },
+    {
+      "uuid": "3d944680-0088-49de-ac7f-298efb5d4f83",
+      "string": "IF Age < 46.00 AND Age >= 26.50 AND Years of Experience >= 4.50 AND Years of Experience < 12.50 THEN Salary = average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 46.0,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 26.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 4.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 12.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5490,
+        "P": 1214,
+        "n": 1761,
+        "p": 1019
+      },
+      "conclusion": {
+        "value": "average"
+      }
+    },
+    {
+      "uuid": "46779a63-203b-43c3-bd5e-d8e2432c6a5e",
+      "string": "IF Job Title = {Back end Developer} AND Education Level = {Bachelor's Degree} AND Age < 32.50 AND Age >= 29.50 THEN Salary = average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "value": "Back end Developer",
+            "negated": false,
+            "attributes": [
+              3
+            ]
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Bachelor's Degree",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 32.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 29.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5490,
+        "P": 1214,
+        "n": 0,
+        "p": 38
+      },
+      "conclusion": {
+        "value": "average"
+      }
+    },
+    {
+      "uuid": "4d3a718b-fd1d-4c0f-9905-81b8298327f9",
+      "string": "IF Years of Experience < 8.50 AND Age < 34.50 AND Years of Experience >= 2.50 AND Age >= 27.50 THEN Salary = average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 8.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 34.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 2.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 27.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5490,
+        "P": 1214,
+        "n": 1428,
+        "p": 635
+      },
+      "conclusion": {
+        "value": "average"
+      }
+    },
+    {
+      "uuid": "d92b5a63-671e-49b6-83dd-616d2783034b",
+      "string": "IF Job Title = {Data Analyst} THEN Salary = average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "value": "Data Analyst",
+            "negated": false,
+            "attributes": [
+              3
+            ]
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5490,
+        "P": 1214,
+        "n": 187,
+        "p": 176
+      },
+      "conclusion": {
+        "value": "average"
+      }
+    },
+    {
+      "uuid": "61dea211-59a5-4099-8584-bedd5acf1fd6",
+      "string": "IF Job Title = {Data Scientist} AND Age < 29.50 AND Education Level = {PhD} THEN Salary = average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "value": "Data Scientist",
+            "negated": false,
+            "attributes": [
+              3
+            ]
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 29.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "PhD",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5490,
+        "P": 1214,
+        "n": 0,
+        "p": 20
+      },
+      "conclusion": {
+        "value": "average"
+      }
+    },
+    {
+      "uuid": "bdc6baab-a248-4ed9-bbd4-b1f4541da3ad",
+      "string": "IF Years of Experience < 7.50 AND Job Title = {Product Manager} AND Years of Experience >= 1.75 THEN Salary = average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 7.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Product Manager",
+            "negated": false,
+            "attributes": [
+              3
+            ]
+          },
+          {
+            "left": 1.75,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5490,
+        "P": 1214,
+        "n": 40,
+        "p": 85
+      },
+      "conclusion": {
+        "value": "average"
+      }
+    },
+    {
+      "uuid": "ed84597a-b97e-4f61-a3da-adea41c817b4",
+      "string": "IF Years of Experience < 4.50 AND Age < 27.50 AND Gender = {Male} AND Age >= 23.50 AND Years of Experience >= 0.75 THEN Salary = average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 4.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 27.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Male",
+            "negated": false,
+            "attributes": [
+              1
+            ]
+          },
+          {
+            "left": 23.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 0.75,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5490,
+        "P": 1214,
+        "n": 691,
+        "p": 69
+      },
+      "conclusion": {
+        "value": "average"
+      }
+    },
+    {
+      "uuid": "5ed489d8-f43d-44b1-9d48-3c30aa29f01a",
+      "string": "IF Years of Experience >= 8.50 AND Age >= 34.50 AND Age < 42.50 AND Years of Experience < 13.50 THEN Salary = average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 8.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 34.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 42.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 13.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5490,
+        "P": 1214,
+        "n": 512,
+        "p": 308
+      },
+      "conclusion": {
+        "value": "average"
+      }
+    },
+    {
+      "uuid": "3710fcb9-b017-45b3-977d-e42bb3d6d7ba",
+      "string": "IF Age >= 25.50 AND Years of Experience < 14.50 AND Age < 41.50 AND Years of Experience >= 4.50 THEN Salary = average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 25.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 14.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 41.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 4.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5490,
+        "P": 1214,
+        "n": 1932,
+        "p": 1008
+      },
+      "conclusion": {
+        "value": "average"
+      }
+    },
+    {
+      "uuid": "c7104ce6-34bd-423a-9cc1-c3de77c82fe7",
+      "string": "IF Years of Experience >= 8.50 AND Age >= 34.50 AND Age < 43.50 AND Years of Experience < 15.50 THEN Salary = average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 8.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 34.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 43.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 15.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5490,
+        "P": 1214,
+        "n": 806,
+        "p": 320
+      },
+      "conclusion": {
+        "value": "average"
+      }
+    },
+    {
+      "uuid": "8ee92173-8949-4bde-8fed-54f8734a0a2d",
+      "string": "IF Age >= 38.50 AND Education Level = {Bachelor's} AND Age < 45.50 THEN Salary = average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 38.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "Bachelor's",
+            "negated": false,
+            "attributes": [
+              2
+            ]
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 45.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5490,
+        "P": 1214,
+        "n": 23,
+        "p": 18
+      },
+      "conclusion": {
+        "value": "average"
+      }
+    },
+    {
+      "uuid": "e702ac6b-13ab-4ead-95c9-b50e0f0ab490",
+      "string": "IF Age >= 45.50 AND Years of Experience >= 18.50 AND Age < 57.50 AND Years of Experience < 30.50 THEN Salary = average ",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 45.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 18.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 57.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 30.5,
+            "negated": false,
+            "attributes": [
+              4
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 5490,
+        "P": 1214,
+        "n": 283,
+        "p": 5
+      },
+      "conclusion": {
+        "value": "average"
+      }
+    }
+  ]
+}

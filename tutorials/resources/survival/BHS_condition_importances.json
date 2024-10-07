@@ -1,0 +1,7 @@
+[{"condition": "AGE >= 54.70", "attributes":["AGE"], "importance":1.4926444346709167},
+{"condition": "AGE < 54.70", "attributes":["AGE"], "importance":0.90320225506981},
+{"condition": "DBP >= 86.00", "attributes":["DBP"], "importance":0.49724936786346224},
+{"condition": "SMOKE < 3.50", "attributes":["SMOKE"], "importance":0.4302718283953785},
+{"condition": "SBP < 142.00", "attributes":["SBP"], "importance":0.3328658485991621},
+{"condition": "DBP < 97.00", "attributes":["DBP"], "importance":0.30022299452476936},
+{"condition": "SMOKE < 2.50", "attributes":["SMOKE"], "importance":0.010105843623103128}]
