@@ -94,9 +94,9 @@ def calculate_for_classification(
     G_mean_micro: float = geometric_mean_score(y_true, y_pred, average='micro')
     G_mean_weighted: float = geometric_mean_score(
         y_true, y_pred, average='weighted')
-    Recall_macro: float = recall_score(y_true, y_pred, average='macro')
-    Recall_micro: float = recall_score(y_true, y_pred, average='micro')
-    Recall_weighted: float = recall_score(y_true, y_pred, average='weighted')
+    Recall_macro: float = recall_score(y_true, y_pred, average='macro', zero_division=0.0)
+    Recall_micro: float = recall_score(y_true, y_pred, average='micro', zero_division=0.0)
+    Recall_weighted: float = recall_score(y_true, y_pred, average='weighted', zero_division=0.0)
     c_matrix: np.ndarray = confusion_matrix(y_true, y_pred)
     TN: int = c_matrix[0, 0]
     if c_matrix.shape[1] == 1:
