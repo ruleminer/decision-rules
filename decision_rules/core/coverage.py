@@ -9,19 +9,19 @@ class InvalidCoverageError(ValueError):
 
 
 class Coverage:
-    """Rule coverage
-
-    Attributes:
-        p (int): Positive covered examples.
-        n (int): Negative covered examples.
-        P (int): All positive examples.
-        N (int): All negative examples.
-    """
+    """Rule coverage"""
 
     p: int
+    "Positive covered examples."
+
     n: int
+    "Negative covered examples."
+
     P: int
+    "All positive examples."
+
     N: int
+    "All negative examples."
 
     def __init__(self, p: int, n: int, P: int, N: int):
         self.p = p

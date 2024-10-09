@@ -19,8 +19,11 @@ class LogicOperators(Enum):  # pylint: disable=missing-class-docstring
 
 class NominalCondition(AbstractCondition):
     """Class for elementary condition for nominal attributes.
-    It took following form:
+
+    It takes following form:
+
         IF {ATTRIBUTE} = {VALUE} THEN y = {DECISION}
+
     Example:
         IF gender = 1 THEN y = 1
     """

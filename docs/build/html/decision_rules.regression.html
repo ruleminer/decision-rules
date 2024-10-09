@@ -1,0 +1,660 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>decision_rules.regression package &mdash; decision_rules 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=7ab3649f" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="decision_rules.serialization package" href="decision_rules.serialization.html" />
+    <link rel="prev" title="decision_rules.importances package" href="decision_rules.importances.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            decision_rules
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">API Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="decision_rules.html">decision_rules package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="decision_rules.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.classification.html">decision_rules.classification package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.core.html">decision_rules.core package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.filtering.html">decision_rules.filtering package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.helpers.html">decision_rules.helpers package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.importances.html">decision_rules.importances package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">decision_rules.regression package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.serialization.html">decision_rules.serialization package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.similarity.html">decision_rules.similarity package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.survival.html">decision_rules.survival package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="decision_rules.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="decision_rules.html#module-decision_rules.conditions">decision_rules.conditions module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.conditions.AttributesCondition"><code class="docutils literal notranslate"><span class="pre">AttributesCondition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.conditions.CompoundCondition"><code class="docutils literal notranslate"><span class="pre">CompoundCondition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.conditions.ElementaryCondition"><code class="docutils literal notranslate"><span class="pre">ElementaryCondition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.conditions.LogicOperators"><code class="docutils literal notranslate"><span class="pre">LogicOperators</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.conditions.NominalCondition"><code class="docutils literal notranslate"><span class="pre">NominalCondition</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="decision_rules.html#module-decision_rules.histogram">decision_rules.histogram module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.histogram.Histograms"><code class="docutils literal notranslate"><span class="pre">Histograms</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.histogram.get_histograms"><code class="docutils literal notranslate"><span class="pre">get_histograms()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="decision_rules.html#module-decision_rules.measures">decision_rules.measures module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.accuracy"><code class="docutils literal notranslate"><span class="pre">accuracy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.c1"><code class="docutils literal notranslate"><span class="pre">c1()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.c2"><code class="docutils literal notranslate"><span class="pre">c2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.c_foil"><code class="docutils literal notranslate"><span class="pre">c_foil()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.cn2_significnce"><code class="docutils literal notranslate"><span class="pre">cn2_significnce()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.correlation"><code class="docutils literal notranslate"><span class="pre">correlation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.coverage"><code class="docutils literal notranslate"><span class="pre">coverage()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.f_bayesian_confirmation"><code class="docutils literal notranslate"><span class="pre">f_bayesian_confirmation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.f_measure"><code class="docutils literal notranslate"><span class="pre">f_measure()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.full_coverage"><code class="docutils literal notranslate"><span class="pre">full_coverage()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.g_measure"><code class="docutils literal notranslate"><span class="pre">g_measure()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.geo_rss"><code class="docutils literal notranslate"><span class="pre">geo_rss()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.information_gain"><code class="docutils literal notranslate"><span class="pre">information_gain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.j_measure"><code class="docutils literal notranslate"><span class="pre">j_measure()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.kappa"><code class="docutils literal notranslate"><span class="pre">kappa()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.klosgen"><code class="docutils literal notranslate"><span class="pre">klosgen()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.laplace"><code class="docutils literal notranslate"><span class="pre">laplace()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.lift"><code class="docutils literal notranslate"><span class="pre">lift()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.logical_sufficiency"><code class="docutils literal notranslate"><span class="pre">logical_sufficiency()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.m_estimate"><code class="docutils literal notranslate"><span class="pre">m_estimate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.mutual_support"><code class="docutils literal notranslate"><span class="pre">mutual_support()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.novelty"><code class="docutils literal notranslate"><span class="pre">novelty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.odds_ratio"><code class="docutils literal notranslate"><span class="pre">odds_ratio()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.one_way_support"><code class="docutils literal notranslate"><span class="pre">one_way_support()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.pawlak_dependency_factor"><code class="docutils literal notranslate"><span class="pre">pawlak_dependency_factor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.precision"><code class="docutils literal notranslate"><span class="pre">precision()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.q2"><code class="docutils literal notranslate"><span class="pre">q2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.relative_risk"><code class="docutils literal notranslate"><span class="pre">relative_risk()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.ripper"><code class="docutils literal notranslate"><span class="pre">ripper()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.rss"><code class="docutils literal notranslate"><span class="pre">rss()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.rule_interest"><code class="docutils literal notranslate"><span class="pre">rule_interest()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.s_bayesian"><code class="docutils literal notranslate"><span class="pre">s_bayesian()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.sensitivity"><code class="docutils literal notranslate"><span class="pre">sensitivity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.specificity"><code class="docutils literal notranslate"><span class="pre">specificity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.two_way_support"><code class="docutils literal notranslate"><span class="pre">two_way_support()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.weighted_laplace"><code class="docutils literal notranslate"><span class="pre">weighted_laplace()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.weighted_relative_accuracy"><code class="docutils literal notranslate"><span class="pre">weighted_relative_accuracy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.yails"><code class="docutils literal notranslate"><span class="pre">yails()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="decision_rules.html#module-decision_rules.problem">decision_rules.problem module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.problem.ProblemTypes"><code class="docutils literal notranslate"><span class="pre">ProblemTypes</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="decision_rules.html#module-decision_rules.settings">decision_rules.settings module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.settings.FLOAT_DISPLAY_PRECISION"><code class="docutils literal notranslate"><span class="pre">FLOAT_DISPLAY_PRECISION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.settings.CONCISE_NUMERICAL_CONDITIONS_FORM"><code class="docutils literal notranslate"><span class="pre">CONCISE_NUMERICAL_CONDITIONS_FORM</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="decision_rules.html#module-decision_rules">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">decision_rules</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">decision_rules</a></li>
+          <li class="breadcrumb-item"><a href="decision_rules.html">decision_rules package</a></li>
+      <li class="breadcrumb-item active">decision_rules.regression package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/decision_rules.regression.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="decision-rules-regression-package">
+<h1>decision_rules.regression package<a class="headerlink" href="#decision-rules-regression-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-decision_rules.regression.metrics">
+<span id="decision-rules-regression-metrics-module"></span><h2>decision_rules.regression.metrics module<a class="headerlink" href="#module-decision_rules.regression.metrics" title="Link to this heading"></a></h2>
+<p>Contains class for calculating rule metrics for regression rules</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.regression.metrics.RegressionRulesMetrics">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.regression.metrics.</span></span><span class="sig-name descname"><span class="pre">RegressionRulesMetrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rules</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#decision_rules.regression.rule.RegressionRule" title="decision_rules.regression.rule.RegressionRule"><span class="pre">RegressionRule</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.regression.metrics.RegressionRulesMetrics" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="decision_rules.core.html#decision_rules.core.metrics.AbstractRulesMetrics" title="decision_rules.core.metrics.AbstractRulesMetrics"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractRulesMetrics</span></code></a></p>
+<p>Returns metrics object instance.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.regression.metrics.RegressionRulesMetrics.calculate_p_value">
+<span class="sig-name descname"><span class="pre">calculate_p_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coverage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rule</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#decision_rules.regression.rule.RegressionRule" title="decision_rules.regression.rule.RegressionRule"><span class="pre">RegressionRule</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.regression.metrics.RegressionRulesMetrics.calculate_p_value" title="Link to this definition"></a></dt>
+<dd><p>Calculates ryle p-value on given dataset based on X2 test
+comparing label variance of covered vs. uncovered examples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rule</strong> (<a class="reference internal" href="#decision_rules.regression.rule.RegressionRule" title="decision_rules.regression.rule.RegressionRule"><em>RegressionRule</em></a>) – rule</p></li>
+<li><p><strong>y</strong> (<em>np.ndarray</em>) – labels</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>rule p-value</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.regression.metrics.RegressionRulesMetrics.get_metrics_calculator">
+<span class="sig-name descname"><span class="pre">get_metrics_calculator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rule</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#decision_rules.regression.rule.RegressionRule" title="decision_rules.regression.rule.RegressionRule"><span class="pre">RegressionRule</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#decision_rules.regression.metrics.RegressionRulesMetrics.get_metrics_calculator" title="Link to this definition"></a></dt>
+<dd><p>Returns metrics calculator object in a form of dictionary where
+values are the non-parmetrized callables calculating specified metrics
+and keys are the names of those metrics.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">{</span>
+<span class="gp">&gt;&gt;&gt; </span> <span class="s1">&#39;p&#39;</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">rule</span><span class="o">.</span><span class="n">coverage</span><span class="o">.</span><span class="n">p</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span> <span class="s1">&#39;n&#39;</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">rule</span><span class="o">.</span><span class="n">coverage</span><span class="o">.</span><span class="n">n</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span> <span class="s1">&#39;P&#39;</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">rule</span><span class="o">.</span><span class="n">coverage</span><span class="o">.</span><span class="n">P</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span> <span class="s1">&#39;N&#39;</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">rule</span><span class="o">.</span><span class="n">coverage</span><span class="o">.</span><span class="n">N</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span> <span class="s1">&#39;coverage&#39;</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">measures</span><span class="o">.</span><span class="n">coverage</span><span class="p">(</span><span class="n">rule</span><span class="o">.</span><span class="n">coverage</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rule</strong> (<a class="reference internal" href="decision_rules.core.html#decision_rules.core.rule.AbstractRule" title="decision_rules.core.rule.AbstractRule"><em>AbstractRule</em></a>) – rule</p></li>
+<li><p><strong>X</strong> (<em>pd.DataFrame</em>) – data</p></li>
+<li><p><strong>y</strong> (<em>pd.Series</em>) – labels</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>metrics calculator object</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, Callable[[], Any]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="decision_rules.regression.metrics.RegressionRulesMetrics.supported_metrics">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">supported_metrics</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#decision_rules.regression.metrics.RegressionRulesMetrics.supported_metrics" title="Link to this definition"></a></dt>
+<dd><p>Returns:
+list[str]: list of names of all supported metrics</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-decision_rules.regression.prediction">
+<span id="decision-rules-regression-prediction-module"></span><h2>decision_rules.regression.prediction module<a class="headerlink" href="#module-decision_rules.regression.prediction" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.regression.prediction.VotingPredictionStrategy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.regression.prediction.</span></span><span class="sig-name descname"><span class="pre">VotingPredictionStrategy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rules</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="decision_rules.core.html#decision_rules.core.rule.AbstractRule" title="decision_rules.core.rule.AbstractRule"><span class="pre">AbstractRule</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_conclusion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.rule.AbstractConclusion" title="decision_rules.core.rule.AbstractConclusion"><span class="pre">AbstractConclusion</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.regression.prediction.VotingPredictionStrategy" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="decision_rules.core.html#decision_rules.core.prediction.PredictionStrategy" title="decision_rules.core.prediction.PredictionStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">PredictionStrategy</span></code></a></p>
+<p>Voting prediction strategy for regression prediction.</p>
+</dd></dl>
+
+</section>
+<section id="module-decision_rules.regression.prediction_indicators">
+<span id="decision-rules-regression-prediction-indicators-module"></span><h2>decision_rules.regression.prediction_indicators module<a class="headerlink" href="#module-decision_rules.regression.prediction_indicators" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.regression.prediction_indicators.RegressionGeneralPredictionIndicators">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.regression.prediction_indicators.</span></span><span class="sig-name descname"><span class="pre">RegressionGeneralPredictionIndicators</span></span><a class="headerlink" href="#decision_rules.regression.prediction_indicators.RegressionGeneralPredictionIndicators" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.regression.prediction_indicators.RegressionGeneralPredictionIndicators.MAE">
+<span class="sig-name descname"><span class="pre">MAE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#decision_rules.regression.prediction_indicators.RegressionGeneralPredictionIndicators.MAE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.regression.prediction_indicators.RegressionGeneralPredictionIndicators.MAPE">
+<span class="sig-name descname"><span class="pre">MAPE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#decision_rules.regression.prediction_indicators.RegressionGeneralPredictionIndicators.MAPE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.regression.prediction_indicators.RegressionGeneralPredictionIndicators.RMSE">
+<span class="sig-name descname"><span class="pre">RMSE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#decision_rules.regression.prediction_indicators.RegressionGeneralPredictionIndicators.RMSE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.regression.prediction_indicators.RegressionGeneralPredictionIndicators.maxError">
+<span class="sig-name descname"><span class="pre">maxError</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#decision_rules.regression.prediction_indicators.RegressionGeneralPredictionIndicators.maxError" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.regression.prediction_indicators.RegressionGeneralPredictionIndicators.rMAE">
+<span class="sig-name descname"><span class="pre">rMAE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#decision_rules.regression.prediction_indicators.RegressionGeneralPredictionIndicators.rMAE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.regression.prediction_indicators.RegressionGeneralPredictionIndicators.rRMSE">
+<span class="sig-name descname"><span class="pre">rRMSE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#decision_rules.regression.prediction_indicators.RegressionGeneralPredictionIndicators.rRMSE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.regression.prediction_indicators.RegressionPredictionHistogram">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.regression.prediction_indicators.</span></span><span class="sig-name descname"><span class="pre">RegressionPredictionHistogram</span></span><a class="headerlink" href="#decision_rules.regression.prediction_indicators.RegressionPredictionHistogram" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDict</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.regression.prediction_indicators.RegressionPredictionHistogram.bin_edges">
+<span class="sig-name descname"><span class="pre">bin_edges</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#decision_rules.regression.prediction_indicators.RegressionPredictionHistogram.bin_edges" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.regression.prediction_indicators.RegressionPredictionHistogram.histogram">
+<span class="sig-name descname"><span class="pre">histogram</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#decision_rules.regression.prediction_indicators.RegressionPredictionHistogram.histogram" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.regression.prediction_indicators.RegressionPredictionHistogram.max">
+<span class="sig-name descname"><span class="pre">max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#decision_rules.regression.prediction_indicators.RegressionPredictionHistogram.max" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.regression.prediction_indicators.RegressionPredictionHistogram.min">
+<span class="sig-name descname"><span class="pre">min</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#decision_rules.regression.prediction_indicators.RegressionPredictionHistogram.min" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.regression.prediction_indicators.RegressionPredictionIndicators">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.regression.prediction_indicators.</span></span><span class="sig-name descname"><span class="pre">RegressionPredictionIndicators</span></span><a class="headerlink" href="#decision_rules.regression.prediction_indicators.RegressionPredictionIndicators" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDict</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.regression.prediction_indicators.RegressionPredictionIndicators.general">
+<span class="sig-name descname"><span class="pre">general</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#decision_rules.regression.prediction_indicators.RegressionGeneralPredictionIndicators" title="decision_rules.regression.prediction_indicators.RegressionGeneralPredictionIndicators"><span class="pre">RegressionGeneralPredictionIndicators</span></a></em><a class="headerlink" href="#decision_rules.regression.prediction_indicators.RegressionPredictionIndicators.general" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.regression.prediction_indicators.RegressionPredictionIndicators.histogram">
+<span class="sig-name descname"><span class="pre">histogram</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#decision_rules.regression.prediction_indicators.RegressionPredictionHistogram" title="decision_rules.regression.prediction_indicators.RegressionPredictionHistogram"><span class="pre">RegressionPredictionHistogram</span></a></em><a class="headerlink" href="#decision_rules.regression.prediction_indicators.RegressionPredictionIndicators.histogram" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.regression.prediction_indicators.RegressionPredictionIndicators.type_of_problem">
+<span class="sig-name descname"><span class="pre">type_of_problem</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#decision_rules.regression.prediction_indicators.RegressionPredictionIndicators.type_of_problem" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.regression.prediction_indicators.calculate_for_regression">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.regression.prediction_indicators.</span></span><span class="sig-name descname"><span class="pre">calculate_for_regression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calculate_only_for_covered_examples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#decision_rules.regression.prediction_indicators.RegressionPredictionIndicators" title="decision_rules.regression.prediction_indicators.RegressionPredictionIndicators"><span class="pre">RegressionPredictionIndicators</span></a></span></span><a class="headerlink" href="#decision_rules.regression.prediction_indicators.calculate_for_regression" title="Link to this definition"></a></dt>
+<dd><p>Calculate prediction indicators for regression problem.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y_true</strong> (<em>np.ndarray</em>) – Array containing the actual labels.</p></li>
+<li><p><strong>y_pred</strong> (<em>np.ndarray</em>) – Array containing the predicted labels.</p></li>
+<li><p><strong>calculate_only_for_covered_examples</strong> (<em>bool</em><em>, </em><em>optional</em>) – If true, it will
+calculate indicators only for the examples where prediction was not
+empty. Otherwise, it will calculate indicators for all the examples.
+Defaults to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary containing
+prediction indicators</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#decision_rules.regression.prediction_indicators.RegressionPredictionIndicators" title="decision_rules.regression.prediction_indicators.RegressionPredictionIndicators">RegressionPredictionIndicators</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-decision_rules.regression.rule">
+<span id="decision-rules-regression-rule-module"></span><h2>decision_rules.regression.rule module<a class="headerlink" href="#module-decision_rules.regression.rule" title="Link to this heading"></a></h2>
+<p>Contains regression rule and conclusion classes.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.regression.rule.RegressionConclusion">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.regression.rule.</span></span><span class="sig-name descname"><span class="pre">RegressionConclusion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fixed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.regression.rule.RegressionConclusion" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="decision_rules.core.html#decision_rules.core.rule.AbstractConclusion" title="decision_rules.core.rule.AbstractConclusion"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractConclusion</span></code></a></p>
+<p>Conclusion part of the regression rule</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.regression.rule.RegressionConclusion.calculate_low_high">
+<span class="sig-name descname"><span class="pre">calculate_low_high</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.regression.rule.RegressionConclusion.calculate_low_high" title="Link to this definition"></a></dt>
+<dd><p>Automatically calculate low and high values based on
+standard deviation of covered examples label attribute
+where:</p>
+<blockquote>
+<div><p>low = value - train_covered_y_std
+high = value + train_covered_y_std</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>train_covered_y_std</strong> (<em>float</em>) – standard deviation of covered examples label attribute</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – When conclusion value is None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.regression.rule.RegressionConclusion.is_empty">
+<span class="sig-name descname"><span class="pre">is_empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#decision_rules.regression.rule.RegressionConclusion.is_empty" title="Link to this definition"></a></dt>
+<dd><p>Returns whether conclusion is empty or not.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.regression.rule.RegressionConclusion.make_empty">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">make_empty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#decision_rules.regression.rule.RegressionConclusion" title="decision_rules.regression.rule.RegressionConclusion"><span class="pre">RegressionConclusion</span></a></span></span><a class="headerlink" href="#decision_rules.regression.rule.RegressionConclusion.make_empty" title="Link to this definition"></a></dt>
+<dd><p>Creates empty conclusion. Use it when you don’t want to use default conclusion during
+prediction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>column_name</strong> (<em>str</em>) – decision column name</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>empty conclusion</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="decision_rules.core.html#decision_rules.core.rule.AbstractConclusion" title="decision_rules.core.rule.AbstractConclusion">AbstractConclusion</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.regression.rule.RegressionConclusion.positives_mask">
+<span class="sig-name descname"><span class="pre">positives_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#decision_rules.regression.rule.RegressionConclusion.positives_mask" title="Link to this definition"></a></dt>
+<dd><p>Calculates positive examples mask</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>y</strong> (<em>np.ndarray</em>)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>1 dimensional numpy array of booleans specifying</dt><dd><p>whether given examples are consistent with the conclusion.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="decision_rules.regression.rule.RegressionConclusion.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#decision_rules.regression.rule.RegressionConclusion.value" title="Link to this definition"></a></dt>
+<dd><p>Returns:
+float: Conclusion’s value</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.regression.rule.RegressionRule">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.regression.rule.</span></span><span class="sig-name descname"><span class="pre">RegressionRule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">premise</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.condition.AbstractCondition" title="decision_rules.core.condition.AbstractCondition"><span class="pre">AbstractCondition</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">conclusion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#decision_rules.regression.rule.RegressionConclusion" title="decision_rules.regression.rule.RegressionConclusion"><span class="pre">RegressionConclusion</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.regression.rule.RegressionRule" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="decision_rules.core.html#decision_rules.core.rule.AbstractRule" title="decision_rules.core.rule.AbstractRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractRule</span></code></a></p>
+<p>Regression rule.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.regression.rule.RegressionRule.calculate_coverage">
+<span class="sig-name descname"><span class="pre">calculate_coverage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></span><a class="headerlink" href="#decision_rules.regression.rule.RegressionRule.calculate_coverage" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>)</p></li>
+<li><p><strong>y</strong> (<em>np.ndarray</em><em>, </em><em>optional</em>) – if None then <cite>P</cite> and <cite>N</cite> params should
+be passed. Defaults to None.</p></li>
+<li><p><strong>P</strong> (<em>int</em><em>, </em><em>optional</em>) – optional number of all examples from rule
+decison class. Defaults to None.</p></li>
+<li><p><strong>N</strong> (<em>int</em><em>, </em><em>optional</em>) – optional number of all examples not from rule
+decison class. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if y is None and either P or N is None too</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>rule coverage</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage">Coverage</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.regression.rule.RegressionRule.get_coverage_dict">
+<span class="sig-name descname"><span class="pre">get_coverage_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#decision_rules.regression.rule.RegressionRule.get_coverage_dict" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-decision_rules.regression.ruleset">
+<span id="decision-rules-regression-ruleset-module"></span><h2>decision_rules.regression.ruleset module<a class="headerlink" href="#module-decision_rules.regression.ruleset" title="Link to this heading"></a></h2>
+<p>Contains regression ruleset class.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.regression.ruleset.RegressionRuleSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.regression.ruleset.</span></span><span class="sig-name descname"><span class="pre">RegressionRuleSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rules</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#decision_rules.regression.rule.RegressionRule" title="decision_rules.regression.rule.RegressionRule"><span class="pre">RegressionRule</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.regression.ruleset.RegressionRuleSet" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="decision_rules.core.html#decision_rules.core.ruleset.AbstractRuleSet" title="decision_rules.core.ruleset.AbstractRuleSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractRuleSet</span></code></a></p>
+<p>Regression ruleset allowing to perform prediction on data</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.regression.ruleset.RegressionRuleSet.calculate_attribute_importances">
+<span class="sig-name descname"><span class="pre">calculate_attribute_importances</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">condition_importances</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#decision_rules.regression.ruleset.RegressionRuleSet.calculate_attribute_importances" title="Link to this definition"></a></dt>
+<dd><p>Calculate importances of attriubtes in RuleSet based on conditions importances</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Union</strong><strong>[</strong><strong>dict</strong><strong>[</strong><strong>str</strong> (<em>condition_importances</em>) – condition
+importances</p></li>
+<li><p><strong>float</strong><strong>]</strong> – condition
+importances</p></li>
+<li><p><strong>dict</strong><strong>[</strong><strong>str</strong> – condition
+importances</p></li>
+<li><p><strong>dict</strong><strong>[</strong><strong>str</strong> – condition
+importances</p></li>
+<li><p><strong>float</strong><strong>]</strong><strong>]</strong><strong>]</strong> – condition
+importances</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>attribute importances, in the case of classification additionally</dt><dd><p>returns information about class dict[str, dict[str, float]]:</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.regression.ruleset.RegressionRuleSet.calculate_condition_importances">
+<span class="sig-name descname"><span class="pre">calculate_condition_importances</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measure</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#decision_rules.regression.ruleset.RegressionRuleSet.calculate_condition_importances" title="Link to this definition"></a></dt>
+<dd><p>Calculate importances of conditions in RuleSet</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>pd.DataFrame</em>)</p></li>
+<li><p><strong>y</strong> (<em>pd.Series</em>)</p></li>
+<li><p><strong>measure</strong> (<em>Callable</em><em>[</em><em>[</em><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><em>Coverage</em></a><em>]</em><em>, </em><em>float</em><em>]</em>) – measure used to count importance</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>condition importances, in the case of classification additionally returns information about class dict[str, dict[str, float]]:</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.regression.ruleset.RegressionRuleSet.calculate_p_values">
+<span class="sig-name descname"><span class="pre">calculate_p_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#decision_rules.regression.ruleset.RegressionRuleSet.calculate_p_values" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.regression.ruleset.RegressionRuleSet.get_default_prediction_strategy_class">
+<span class="sig-name descname"><span class="pre">get_default_prediction_strategy_class</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="decision_rules.core.html#decision_rules.core.prediction.PredictionStrategy" title="decision_rules.core.prediction.PredictionStrategy"><span class="pre">PredictionStrategy</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#decision_rules.regression.ruleset.RegressionRuleSet.get_default_prediction_strategy_class" title="Link to this definition"></a></dt>
+<dd><p>Returns default prediction strategy class used when user doesn’t specify any.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>class implementing PredictionStrategy</dt><dd><p>interface</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Type[<a class="reference internal" href="decision_rules.core.html#decision_rules.core.prediction.PredictionStrategy" title="decision_rules.core.prediction.PredictionStrategy">PredictionStrategy</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.regression.ruleset.RegressionRuleSet.get_metrics_object_instance">
+<span class="sig-name descname"><span class="pre">get_metrics_object_instance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.metrics.AbstractRulesMetrics" title="decision_rules.core.metrics.AbstractRulesMetrics"><span class="pre">AbstractRulesMetrics</span></a></span></span><a class="headerlink" href="#decision_rules.regression.ruleset.RegressionRuleSet.get_metrics_object_instance" title="Link to this definition"></a></dt>
+<dd><p>Returns metrics object instance.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="decision_rules.regression.ruleset.RegressionRuleSet.prediction_strategies_choice">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">prediction_strategies_choice</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="decision_rules.core.html#decision_rules.core.prediction.PredictionStrategy" title="decision_rules.core.prediction.PredictionStrategy"><span class="pre">PredictionStrategy</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#decision_rules.regression.ruleset.RegressionRuleSet.prediction_strategies_choice" title="Link to this definition"></a></dt>
+<dd><p>Specifies prediction strategies available for this model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>Dictionary containing available prediction</dt><dd><p>strategies. Keys are prediction strategies names and values are classes
+implementing PredictionStrategy interface for this model.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict[str, Type[<a class="reference internal" href="decision_rules.core.html#decision_rules.core.prediction.PredictionStrategy" title="decision_rules.core.prediction.PredictionStrategy">PredictionStrategy</a>]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.regression.ruleset.RegressionRuleSet.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measure</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#decision_rules.regression.ruleset.RegressionRuleSet.update" title="Link to this definition"></a></dt>
+<dd><p>Updates ruleset using training dataset. This method should be called
+both after creation of new ruleset or after manipulating any of its rules
+or internal conditions. This method recalculates rules coverages and voting
+weights making it ready for prediction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_train</strong> (<em>pd.DataFrame</em>)</p></li>
+<li><p><strong>y_train</strong> (<em>pd.Series</em>)</p></li>
+<li><p><strong>measure</strong> (<em>Callable</em><em>[</em><em>[</em><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><em>Coverage</em></a><em>]</em><em>, </em><em>float</em><em>]</em>) – voting measure function</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if called on empty ruleset with no rules</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.regression.ruleset.RegressionRuleSet.update_using_coverages">
+<span class="sig-name descname"><span class="pre">update_using_coverages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coverages_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.RegressionCoverageInfodict" title="decision_rules.core.coverage.RegressionCoverageInfodict"><span class="pre">RegressionCoverageInfodict</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measure</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.regression.ruleset.RegressionRuleSet.update_using_coverages" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="decision_rules.regression.ruleset.RegressionRuleSet.y_train_median">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">y_train_median</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#decision_rules.regression.ruleset.RegressionRuleSet.y_train_median" title="Link to this definition"></a></dt>
+<dd><p>Returns:
+float: label’s median value on train dataset</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-decision_rules.regression">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-decision_rules.regression" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="decision_rules.importances.html" class="btn btn-neutral float-left" title="decision_rules.importances package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="decision_rules.serialization.html" class="btn btn-neutral float-right" title="decision_rules.serialization package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Cezary Maszczyk, Dawid Macha, Adam Grzelak.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

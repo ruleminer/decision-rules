@@ -1,0 +1,871 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>decision_rules.survival package &mdash; decision_rules 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=7ab3649f" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="decision_rules.similarity package" href="decision_rules.similarity.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            decision_rules
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">API Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="decision_rules.html">decision_rules package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="decision_rules.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.classification.html">decision_rules.classification package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.core.html">decision_rules.core package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.filtering.html">decision_rules.filtering package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.helpers.html">decision_rules.helpers package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.importances.html">decision_rules.importances package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.regression.html">decision_rules.regression package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.serialization.html">decision_rules.serialization package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.similarity.html">decision_rules.similarity package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">decision_rules.survival package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="decision_rules.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="decision_rules.html#module-decision_rules.conditions">decision_rules.conditions module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.conditions.AttributesCondition"><code class="docutils literal notranslate"><span class="pre">AttributesCondition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.conditions.CompoundCondition"><code class="docutils literal notranslate"><span class="pre">CompoundCondition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.conditions.ElementaryCondition"><code class="docutils literal notranslate"><span class="pre">ElementaryCondition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.conditions.LogicOperators"><code class="docutils literal notranslate"><span class="pre">LogicOperators</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.conditions.NominalCondition"><code class="docutils literal notranslate"><span class="pre">NominalCondition</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="decision_rules.html#module-decision_rules.histogram">decision_rules.histogram module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.histogram.Histograms"><code class="docutils literal notranslate"><span class="pre">Histograms</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.histogram.get_histograms"><code class="docutils literal notranslate"><span class="pre">get_histograms()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="decision_rules.html#module-decision_rules.measures">decision_rules.measures module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.accuracy"><code class="docutils literal notranslate"><span class="pre">accuracy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.c1"><code class="docutils literal notranslate"><span class="pre">c1()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.c2"><code class="docutils literal notranslate"><span class="pre">c2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.c_foil"><code class="docutils literal notranslate"><span class="pre">c_foil()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.cn2_significnce"><code class="docutils literal notranslate"><span class="pre">cn2_significnce()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.correlation"><code class="docutils literal notranslate"><span class="pre">correlation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.coverage"><code class="docutils literal notranslate"><span class="pre">coverage()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.f_bayesian_confirmation"><code class="docutils literal notranslate"><span class="pre">f_bayesian_confirmation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.f_measure"><code class="docutils literal notranslate"><span class="pre">f_measure()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.full_coverage"><code class="docutils literal notranslate"><span class="pre">full_coverage()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.g_measure"><code class="docutils literal notranslate"><span class="pre">g_measure()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.geo_rss"><code class="docutils literal notranslate"><span class="pre">geo_rss()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.information_gain"><code class="docutils literal notranslate"><span class="pre">information_gain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.j_measure"><code class="docutils literal notranslate"><span class="pre">j_measure()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.kappa"><code class="docutils literal notranslate"><span class="pre">kappa()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.klosgen"><code class="docutils literal notranslate"><span class="pre">klosgen()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.laplace"><code class="docutils literal notranslate"><span class="pre">laplace()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.lift"><code class="docutils literal notranslate"><span class="pre">lift()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.logical_sufficiency"><code class="docutils literal notranslate"><span class="pre">logical_sufficiency()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.m_estimate"><code class="docutils literal notranslate"><span class="pre">m_estimate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.mutual_support"><code class="docutils literal notranslate"><span class="pre">mutual_support()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.novelty"><code class="docutils literal notranslate"><span class="pre">novelty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.odds_ratio"><code class="docutils literal notranslate"><span class="pre">odds_ratio()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.one_way_support"><code class="docutils literal notranslate"><span class="pre">one_way_support()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.pawlak_dependency_factor"><code class="docutils literal notranslate"><span class="pre">pawlak_dependency_factor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.precision"><code class="docutils literal notranslate"><span class="pre">precision()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.q2"><code class="docutils literal notranslate"><span class="pre">q2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.relative_risk"><code class="docutils literal notranslate"><span class="pre">relative_risk()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.ripper"><code class="docutils literal notranslate"><span class="pre">ripper()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.rss"><code class="docutils literal notranslate"><span class="pre">rss()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.rule_interest"><code class="docutils literal notranslate"><span class="pre">rule_interest()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.s_bayesian"><code class="docutils literal notranslate"><span class="pre">s_bayesian()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.sensitivity"><code class="docutils literal notranslate"><span class="pre">sensitivity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.specificity"><code class="docutils literal notranslate"><span class="pre">specificity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.two_way_support"><code class="docutils literal notranslate"><span class="pre">two_way_support()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.weighted_laplace"><code class="docutils literal notranslate"><span class="pre">weighted_laplace()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.weighted_relative_accuracy"><code class="docutils literal notranslate"><span class="pre">weighted_relative_accuracy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.yails"><code class="docutils literal notranslate"><span class="pre">yails()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="decision_rules.html#module-decision_rules.problem">decision_rules.problem module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.problem.ProblemTypes"><code class="docutils literal notranslate"><span class="pre">ProblemTypes</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="decision_rules.html#module-decision_rules.settings">decision_rules.settings module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.settings.FLOAT_DISPLAY_PRECISION"><code class="docutils literal notranslate"><span class="pre">FLOAT_DISPLAY_PRECISION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.settings.CONCISE_NUMERICAL_CONDITIONS_FORM"><code class="docutils literal notranslate"><span class="pre">CONCISE_NUMERICAL_CONDITIONS_FORM</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="decision_rules.html#module-decision_rules">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">decision_rules</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">decision_rules</a></li>
+          <li class="breadcrumb-item"><a href="decision_rules.html">decision_rules package</a></li>
+      <li class="breadcrumb-item active">decision_rules.survival package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/decision_rules.survival.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="decision-rules-survival-package">
+<h1>decision_rules.survival package<a class="headerlink" href="#decision-rules-survival-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-decision_rules.survival.kaplan_meier">
+<span id="decision-rules-survival-kaplan-meier-module"></span><h2>decision_rules.survival.kaplan_meier module<a class="headerlink" href="#module-decision_rules.survival.kaplan_meier" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.survival.kaplan_meier.</span></span><span class="sig-name descname"><span class="pre">KaplanMeierEstimator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">surv_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#decision_rules.survival.kaplan_meier.SurvInfo" title="decision_rules.survival.kaplan_meier.SurvInfo"><span class="pre">SurvInfo</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimator.average">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">average</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">estimators</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator" title="decision_rules.survival.kaplan_meier.KaplanMeierEstimator"><span class="pre">KaplanMeierEstimator</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator" title="decision_rules.survival.kaplan_meier.KaplanMeierEstimator"><span class="pre">KaplanMeierEstimator</span></a></span></span><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator.average" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimator.binary_search">
+<span class="sig-name descname"><span class="pre">binary_search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator.binary_search" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimator.calcualte_indicators">
+<span class="sig-name descname"><span class="pre">calcualte_indicators</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator.calcualte_indicators" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimator.calculate_bounds">
+<span class="sig-name descname"><span class="pre">calculate_bounds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">times</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">probabilities</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cumulative_sq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator.calculate_bounds" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimator.calculate_interval">
+<span class="sig-name descname"><span class="pre">calculate_interval</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator.calculate_interval" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimator.calculate_median_survival_time">
+<span class="sig-name descname"><span class="pre">calculate_median_survival_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survival_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator.calculate_median_survival_time" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimator.calculate_probabilities">
+<span class="sig-name descname"><span class="pre">calculate_probabilities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">surv_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#decision_rules.survival.kaplan_meier.SurvInfo" title="decision_rules.survival.kaplan_meier.SurvInfo"><span class="pre">SurvInfo</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#decision_rules.survival.kaplan_meier.SurvInfo" title="decision_rules.survival.kaplan_meier.SurvInfo"><span class="pre">SurvInfo</span></a></span></span><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator.calculate_probabilities" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimator.compare_estimators">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">compare_estimators</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kme1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator" title="decision_rules.survival.kaplan_meier.KaplanMeierEstimator"><span class="pre">KaplanMeierEstimator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">kme2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator" title="decision_rules.survival.kaplan_meier.KaplanMeierEstimator"><span class="pre">KaplanMeierEstimator</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator.compare_estimators" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimator.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survival_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">survival_status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_sorting</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator" title="decision_rules.survival.kaplan_meier.KaplanMeierEstimator"><span class="pre">KaplanMeierEstimator</span></a></span></span><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator.fit" title="Link to this definition"></a></dt>
+<dd><p>Fit Kaplan Meier estimator on given data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>survival_time</strong> (<em>np.ndarray</em>) – survival time data</p></li>
+<li><p><strong>survival_status</strong> (<em>np.ndarray</em>) – survival status data</p></li>
+<li><p><strong>skip_sorting</strong> (<em>bool</em><em>, </em><em>optional</em>) – Flag allowing to optionally skip sorting based
+on survival time. It could be used to speed up the computation if the provided
+data is already sorted ascending by survival time. Defaults to False (this method
+will sort the data under the hood).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>fitted estimator</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator" title="decision_rules.survival.kaplan_meier.KaplanMeierEstimator">KaplanMeierEstimator</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimator.get_at_risk_count_at">
+<span class="sig-name descname"><span class="pre">get_at_risk_count_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator.get_at_risk_count_at" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimator.get_dict">
+<span class="sig-name descname"><span class="pre">get_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimatorDict" title="decision_rules.survival.kaplan_meier.KaplanMeierEstimatorDict"><span class="pre">KaplanMeierEstimatorDict</span></a></span></span><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator.get_dict" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimator.get_events_count_at">
+<span class="sig-name descname"><span class="pre">get_events_count_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator.get_events_count_at" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimator.get_probability_at">
+<span class="sig-name descname"><span class="pre">get_probability_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator.get_probability_at" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimator.log_rank">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">log_rank</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survival_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">survival_status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">covered_examples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uncovered_examples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator.log_rank" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimator.process_surv_info">
+<span class="sig-name descname"><span class="pre">process_surv_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">surv_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#decision_rules.survival.kaplan_meier.SurvInfo" title="decision_rules.survival.kaplan_meier.SurvInfo"><span class="pre">SurvInfo</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator.process_surv_info" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimator.qth_survival_time">
+<span class="sig-name descname"><span class="pre">qth_survival_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">survival_function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Series</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator.qth_survival_time" title="Link to this definition"></a></dt>
+<dd><p>Returns the time when a single survival function reaches the qth percentile, that is,
+solves  <span class="math notranslate nohighlight">\(q = S(t)\)</span> for <span class="math notranslate nohighlight">\(t\)</span>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimator.qth_survival_times">
+<span class="sig-name descname"><span class="pre">qth_survival_times</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">survival_functions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator.qth_survival_times" title="Link to this definition"></a></dt>
+<dd><p>Find the times when one or more survival functions reach the qth percentile.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimator.reverse">
+<span class="sig-name descname"><span class="pre">reverse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator" title="decision_rules.survival.kaplan_meier.KaplanMeierEstimator"><span class="pre">KaplanMeierEstimator</span></a></span></span><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator.reverse" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimator.surv_info">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">surv_info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#decision_rules.survival.kaplan_meier.SurvInfo" title="decision_rules.survival.kaplan_meier.SurvInfo"><span class="pre">SurvInfo</span></a></em><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator.surv_info" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimator.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kaplan_meier_estimator_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_additional_indicators</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator" title="decision_rules.survival.kaplan_meier.KaplanMeierEstimator"><span class="pre">KaplanMeierEstimator</span></a></span></span><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator.update" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimatorDict">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.survival.kaplan_meier.</span></span><span class="sig-name descname"><span class="pre">KaplanMeierEstimatorDict</span></span><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimatorDict" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDict</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimatorDict.at_risk_count">
+<span class="sig-name descname"><span class="pre">at_risk_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimatorDict.at_risk_count" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimatorDict.censored_count">
+<span class="sig-name descname"><span class="pre">censored_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimatorDict.censored_count" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimatorDict.events_count">
+<span class="sig-name descname"><span class="pre">events_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimatorDict.events_count" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimatorDict.probabilities">
+<span class="sig-name descname"><span class="pre">probabilities</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimatorDict.probabilities" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.KaplanMeierEstimatorDict.times">
+<span class="sig-name descname"><span class="pre">times</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimatorDict.times" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.survival.kaplan_meier.SurvInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.survival.kaplan_meier.</span></span><span class="sig-name descname"><span class="pre">SurvInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">events_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">censored_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">at_risk_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">probability</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.survival.kaplan_meier.SurvInfo" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+</section>
+<section id="module-decision_rules.survival.metrics">
+<span id="decision-rules-survival-metrics-module"></span><h2>decision_rules.survival.metrics module<a class="headerlink" href="#module-decision_rules.survival.metrics" title="Link to this heading"></a></h2>
+<p>Contains class for calculating rule metrics for survival rules</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.survival.metrics.SurvivalRulesMetrics">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.survival.metrics.</span></span><span class="sig-name descname"><span class="pre">SurvivalRulesMetrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rules</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="decision_rules.core.html#decision_rules.core.rule.AbstractRule" title="decision_rules.core.rule.AbstractRule"><span class="pre">AbstractRule</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.survival.metrics.SurvivalRulesMetrics" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="decision_rules.core.html#decision_rules.core.metrics.AbstractRulesMetrics" title="decision_rules.core.metrics.AbstractRulesMetrics"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractRulesMetrics</span></code></a></p>
+<p>Class for calculating rule metrics for survival rules</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.metrics.SurvivalRulesMetrics.calculate_p_value">
+<span class="sig-name descname"><span class="pre">calculate_p_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coverage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rule</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#decision_rules.survival.rule.SurvivalRule" title="decision_rules.survival.rule.SurvivalRule"><span class="pre">SurvivalRule</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.survival.metrics.SurvivalRulesMetrics.calculate_p_value" title="Link to this definition"></a></dt>
+<dd><p>Abstract method to calculate p-value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>coverage</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><em>Coverage</em></a><em>]</em><em>, </em><em>optional</em>) – Coverage object for classification rules. Defaults to None.</p></li>
+<li><p><strong>rule</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="decision_rules.regression.html#decision_rules.regression.rule.RegressionRule" title="decision_rules.regression.rule.RegressionRule"><em>RegressionRule</em></a><em>]</em><em>, </em><em>optional</em>) – The rule from regression ruleset for which p-value is to be calculated.. Defaults to None.</p></li>
+<li><p><strong>y</strong> (<em>Optional</em><em>[</em><em>np.ndarray</em><em>]</em><em>, </em><em>optional</em>) – Target labels for regression rules. Defaults to None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.metrics.SurvivalRulesMetrics.get_metrics_calculator">
+<span class="sig-name descname"><span class="pre">get_metrics_calculator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rule</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#decision_rules.survival.rule.SurvivalRule" title="decision_rules.survival.rule.SurvivalRule"><span class="pre">SurvivalRule</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#decision_rules.survival.metrics.SurvivalRulesMetrics.get_metrics_calculator" title="Link to this definition"></a></dt>
+<dd><p>Returns metrics calculator object in a form of dictionary where
+values are the non-parmetrized callables calculating specified metrics
+and keys are the names of those metrics.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">{</span>
+<span class="gp">&gt;&gt;&gt; </span> <span class="s1">&#39;p&#39;</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">rule</span><span class="o">.</span><span class="n">coverage</span><span class="o">.</span><span class="n">p</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span> <span class="s1">&#39;n&#39;</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">rule</span><span class="o">.</span><span class="n">coverage</span><span class="o">.</span><span class="n">n</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span> <span class="s1">&#39;P&#39;</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">rule</span><span class="o">.</span><span class="n">coverage</span><span class="o">.</span><span class="n">P</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span> <span class="s1">&#39;N&#39;</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">rule</span><span class="o">.</span><span class="n">coverage</span><span class="o">.</span><span class="n">N</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span> <span class="s1">&#39;coverage&#39;</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">measures</span><span class="o">.</span><span class="n">coverage</span><span class="p">(</span><span class="n">rule</span><span class="o">.</span><span class="n">coverage</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span> <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rule</strong> (<a class="reference internal" href="decision_rules.core.html#decision_rules.core.rule.AbstractRule" title="decision_rules.core.rule.AbstractRule"><em>AbstractRule</em></a>) – rule</p></li>
+<li><p><strong>X</strong> (<em>pd.DataFrame</em>) – data</p></li>
+<li><p><strong>y</strong> (<em>pd.Series</em>) – labels</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>metrics calculator object</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, Callable[[], Any]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="decision_rules.survival.metrics.SurvivalRulesMetrics.supported_metrics">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">supported_metrics</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#decision_rules.survival.metrics.SurvivalRulesMetrics.supported_metrics" title="Link to this definition"></a></dt>
+<dd><p>Returns:
+list[str]: list of names of all supported metrics</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-decision_rules.survival.prediction">
+<span id="decision-rules-survival-prediction-module"></span><h2>decision_rules.survival.prediction module<a class="headerlink" href="#module-decision_rules.survival.prediction" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.survival.prediction.BestRulePredictionStrategy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.survival.prediction.</span></span><span class="sig-name descname"><span class="pre">BestRulePredictionStrategy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rules</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="decision_rules.core.html#decision_rules.core.rule.AbstractRule" title="decision_rules.core.rule.AbstractRule"><span class="pre">AbstractRule</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_conclusion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.rule.AbstractConclusion" title="decision_rules.core.rule.AbstractConclusion"><span class="pre">AbstractConclusion</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.survival.prediction.BestRulePredictionStrategy" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="decision_rules.core.html#decision_rules.core.prediction.BestRulePredictionStrategy" title="decision_rules.core.prediction.BestRulePredictionStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">BestRulePredictionStrategy</span></code></a></p>
+<p>Best rule prediction strategy for survival prediction.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.survival.prediction.SurvivalPrediction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.survival.prediction.</span></span><span class="sig-name descname"><span class="pre">SurvivalPrediction</span></span><a class="headerlink" href="#decision_rules.survival.prediction.SurvivalPrediction" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDict</span></code></p>
+<p>Object describing survival prediction. It contains
+times and probabilities of the predicted Kaplan-Meier curve.
+It also contains median survival time.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.prediction.SurvivalPrediction.from_kaplan_meier">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_kaplan_meier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">km</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator" title="decision_rules.survival.kaplan_meier.KaplanMeierEstimator"><span class="pre">KaplanMeierEstimator</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#decision_rules.survival.prediction.SurvivalPrediction" title="decision_rules.survival.prediction.SurvivalPrediction"><span class="pre">SurvivalPrediction</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#decision_rules.survival.prediction.SurvivalPrediction.from_kaplan_meier" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.survival.prediction.SurvivalPrediction.median_survival_time">
+<span class="sig-name descname"><span class="pre">median_survival_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#decision_rules.survival.prediction.SurvivalPrediction.median_survival_time" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.survival.prediction.SurvivalPrediction.probabilities">
+<span class="sig-name descname"><span class="pre">probabilities</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#decision_rules.survival.prediction.SurvivalPrediction.probabilities" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.survival.prediction.SurvivalPrediction.times">
+<span class="sig-name descname"><span class="pre">times</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#decision_rules.survival.prediction.SurvivalPrediction.times" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.prediction.SurvivalPrediction.to_kaplan_meier">
+<span class="sig-name descname"><span class="pre">to_kaplan_meier</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator" title="decision_rules.survival.kaplan_meier.KaplanMeierEstimator"><span class="pre">KaplanMeierEstimator</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#decision_rules.survival.prediction.SurvivalPrediction.to_kaplan_meier" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.survival.prediction.VotingPredictionStrategy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.survival.prediction.</span></span><span class="sig-name descname"><span class="pre">VotingPredictionStrategy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rules</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="decision_rules.core.html#decision_rules.core.rule.AbstractRule" title="decision_rules.core.rule.AbstractRule"><span class="pre">AbstractRule</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_conclusion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.rule.AbstractConclusion" title="decision_rules.core.rule.AbstractConclusion"><span class="pre">AbstractConclusion</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.survival.prediction.VotingPredictionStrategy" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="decision_rules.core.html#decision_rules.core.prediction.PredictionStrategy" title="decision_rules.core.prediction.PredictionStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">PredictionStrategy</span></code></a></p>
+<p>Voting prediction strategy for survival prediction.</p>
+<p>Based on article: Wróbel et al. Learning rule sets from survival data BMC Bioinformatics (2017) 18:285 Page 5 of 13
+The learned rule set can be applied for an estimation of the survival function of new observations based on the values taken by their covariates.
+The estimation is performed by rules covering given observation. If observation is not covered by any of the rules then it has assigned the default survival estimate computed on the entire train ing set.
+Otherwise, final survival estimate is calculated as an average of survival estimates of all rules covering the observation</p>
+</dd></dl>
+
+</section>
+<section id="module-decision_rules.survival.prediction_indicators">
+<span id="decision-rules-survival-prediction-indicators-module"></span><h2>decision_rules.survival.prediction_indicators module<a class="headerlink" href="#module-decision_rules.survival.prediction_indicators" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.survival.prediction_indicators.SurvivalGeneralPredictionIndicators">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.survival.prediction_indicators.</span></span><span class="sig-name descname"><span class="pre">SurvivalGeneralPredictionIndicators</span></span><a class="headerlink" href="#decision_rules.survival.prediction_indicators.SurvivalGeneralPredictionIndicators" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDict</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.survival.prediction_indicators.SurvivalGeneralPredictionIndicators.ibs">
+<span class="sig-name descname"><span class="pre">ibs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#decision_rules.survival.prediction_indicators.SurvivalGeneralPredictionIndicators.ibs" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.survival.prediction_indicators.SurvivalPredictionIndicators">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.survival.prediction_indicators.</span></span><span class="sig-name descname"><span class="pre">SurvivalPredictionIndicators</span></span><a class="headerlink" href="#decision_rules.survival.prediction_indicators.SurvivalPredictionIndicators" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDict</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.survival.prediction_indicators.SurvivalPredictionIndicators.general">
+<span class="sig-name descname"><span class="pre">general</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#decision_rules.survival.prediction_indicators.SurvivalGeneralPredictionIndicators" title="decision_rules.survival.prediction_indicators.SurvivalGeneralPredictionIndicators"><span class="pre">SurvivalGeneralPredictionIndicators</span></a></em><a class="headerlink" href="#decision_rules.survival.prediction_indicators.SurvivalPredictionIndicators.general" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.survival.prediction_indicators.SurvivalPredictionIndicators.type_of_problem">
+<span class="sig-name descname"><span class="pre">type_of_problem</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#decision_rules.survival.prediction_indicators.SurvivalPredictionIndicators.type_of_problem" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.survival.prediction_indicators.calculate_for_survival">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.survival.prediction_indicators.</span></span><span class="sig-name descname"><span class="pre">calculate_for_survival</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ruleset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#decision_rules.survival.ruleset.SurvivalRuleSet" title="decision_rules.survival.ruleset.SurvivalRuleSet"><span class="pre">SurvivalRuleSet</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_true</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calculate_only_for_covered_examples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#decision_rules.survival.ruleset.SurvivalRuleSet" title="decision_rules.survival.ruleset.SurvivalRuleSet"><span class="pre">SurvivalRuleSet</span></a></span></span><a class="headerlink" href="#decision_rules.survival.prediction_indicators.calculate_for_survival" title="Link to this definition"></a></dt>
+<dd><p>Calculate prediction indicators for survival problem.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ruleset</strong> (<a class="reference internal" href="#decision_rules.survival.ruleset.SurvivalRuleSet" title="decision_rules.survival.ruleset.SurvivalRuleSet"><em>SurvivalRuleSet</em></a>) – ruleset</p></li>
+<li><p><strong>X</strong> (<em>pd.DataFrame</em>) – Dataset</p></li>
+<li><p><strong>y_true</strong> (<em>np.ndarray</em>) – Survival status column</p></li>
+<li><p><strong>y_pred</strong> (<em>np.ndarray</em>) – Array containing the predicted class labels.</p></li>
+<li><p><strong>calculate_only_for_covered_examples</strong> (<em>bool</em><em>, </em><em>optional</em>) – If true, it will
+calculate indicators only for the examples where prediction was not
+empty. Otherwise, it will calculate indicators for all the examples.
+Defaults to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary containing
+prediction indicators</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#decision_rules.survival.prediction_indicators.SurvivalPredictionIndicators" title="decision_rules.survival.prediction_indicators.SurvivalPredictionIndicators">SurvivalPredictionIndicators</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-decision_rules.survival.rule">
+<span id="decision-rules-survival-rule-module"></span><h2>decision_rules.survival.rule module<a class="headerlink" href="#module-decision_rules.survival.rule" title="Link to this heading"></a></h2>
+<p>Contains survival rule and conclusion classes.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.survival.rule.SurvivalConclusion">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.survival.rule.</span></span><span class="sig-name descname"><span class="pre">SurvivalConclusion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fixed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.survival.rule.SurvivalConclusion" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="decision_rules.core.html#decision_rules.core.rule.AbstractConclusion" title="decision_rules.core.rule.AbstractConclusion"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractConclusion</span></code></a></p>
+<p>Conclusion part of the survival rule</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AbstractConclusion</strong> (<em>_type_</em>)</p>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="decision_rules.survival.rule.SurvivalConclusion.estimator">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">estimator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#decision_rules.survival.kaplan_meier.KaplanMeierEstimator" title="decision_rules.survival.kaplan_meier.KaplanMeierEstimator"><span class="pre">KaplanMeierEstimator</span></a></em><a class="headerlink" href="#decision_rules.survival.rule.SurvivalConclusion.estimator" title="Link to this definition"></a></dt>
+<dd><p>Returns:
+KaplanMeierEstimator: KaplanMeierEstimator</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.rule.SurvivalConclusion.is_empty">
+<span class="sig-name descname"><span class="pre">is_empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#decision_rules.survival.rule.SurvivalConclusion.is_empty" title="Link to this definition"></a></dt>
+<dd><p>Returns whether conclusion is empty or not.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.rule.SurvivalConclusion.make_empty">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">make_empty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#decision_rules.survival.rule.SurvivalConclusion" title="decision_rules.survival.rule.SurvivalConclusion"><span class="pre">SurvivalConclusion</span></a></span></span><a class="headerlink" href="#decision_rules.survival.rule.SurvivalConclusion.make_empty" title="Link to this definition"></a></dt>
+<dd><p>Creates empty conclusion. Use it when you don’t want to use default conclusion during
+prediction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>column_name</strong> (<em>str</em>) – decision column name</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>empty conclusion</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="decision_rules.core.html#decision_rules.core.rule.AbstractConclusion" title="decision_rules.core.rule.AbstractConclusion">AbstractConclusion</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.rule.SurvivalConclusion.positives_mask">
+<span class="sig-name descname"><span class="pre">positives_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#decision_rules.survival.rule.SurvivalConclusion.positives_mask" title="Link to this definition"></a></dt>
+<dd><p>Calculates positive examples mask</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>y</strong> (<em>np.ndarray</em>)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>1 dimensional numpy array of booleans specifying</dt><dd><p>whether given examples are consistent with the conclusion.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.survival.rule.SurvivalRule">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.survival.rule.</span></span><span class="sig-name descname"><span class="pre">SurvivalRule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">premise</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.condition.AbstractCondition" title="decision_rules.core.condition.AbstractCondition"><span class="pre">AbstractCondition</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">conclusion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#decision_rules.survival.rule.SurvivalConclusion" title="decision_rules.survival.rule.SurvivalConclusion"><span class="pre">SurvivalConclusion</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">survival_time_attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.survival.rule.SurvivalRule" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="decision_rules.core.html#decision_rules.core.rule.AbstractRule" title="decision_rules.core.rule.AbstractRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractRule</span></code></a></p>
+<p>Survival decision rule.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.rule.SurvivalRule.calculate_coverage">
+<span class="sig-name descname"><span class="pre">calculate_coverage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></span><a class="headerlink" href="#decision_rules.survival.rule.SurvivalRule.calculate_coverage" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>)</p></li>
+<li><p><strong>y</strong> (<em>np.ndarray</em><em>, </em><em>optional</em>) – if None then <cite>P</cite> and <cite>N</cite> params should
+be passed. Defaults to None.</p></li>
+<li><p><strong>P</strong> (<em>int</em><em>, </em><em>optional</em>) – optional number of all examples from rule
+decison class. Defaults to None.</p></li>
+<li><p><strong>N</strong> (<em>int</em><em>, </em><em>optional</em>) – optional number of all examples not from rule
+decison class. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if y is None and either P or N is None too</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>rule coverage</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage">Coverage</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.rule.SurvivalRule.get_coverage_dict">
+<span class="sig-name descname"><span class="pre">get_coverage_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#decision_rules.survival.rule.SurvivalRule.get_coverage_dict" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.rule.SurvivalRule.set_survival_time_attr">
+<span class="sig-name descname"><span class="pre">set_survival_time_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survival_time_attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.survival.rule.SurvivalRule.set_survival_time_attr" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-decision_rules.survival.ruleset">
+<span id="decision-rules-survival-ruleset-module"></span><h2>decision_rules.survival.ruleset module<a class="headerlink" href="#module-decision_rules.survival.ruleset" title="Link to this heading"></a></h2>
+<p>Contains survival ruleset class.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.survival.ruleset.SurvivalRuleSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.survival.ruleset.</span></span><span class="sig-name descname"><span class="pre">SurvivalRuleSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rules</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#decision_rules.survival.rule.SurvivalRule" title="decision_rules.survival.rule.SurvivalRule"><span class="pre">SurvivalRule</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">survival_time_attr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.survival.ruleset.SurvivalRuleSet" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="decision_rules.core.html#decision_rules.core.ruleset.AbstractRuleSet" title="decision_rules.core.ruleset.AbstractRuleSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractRuleSet</span></code></a></p>
+<p>Survival ruleset allowing to perform prediction on data</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.ruleset.SurvivalRuleSet.calculate_attribute_importances">
+<span class="sig-name descname"><span class="pre">calculate_attribute_importances</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">condition_importances</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#decision_rules.survival.ruleset.SurvivalRuleSet.calculate_attribute_importances" title="Link to this definition"></a></dt>
+<dd><p>Calculate importances of attriubtes in RuleSet based on conditions importances</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Union</strong><strong>[</strong><strong>dict</strong><strong>[</strong><strong>str</strong> (<em>condition_importances</em>) – condition
+importances</p></li>
+<li><p><strong>float</strong><strong>]</strong> – condition
+importances</p></li>
+<li><p><strong>dict</strong><strong>[</strong><strong>str</strong> – condition
+importances</p></li>
+<li><p><strong>dict</strong><strong>[</strong><strong>str</strong> – condition
+importances</p></li>
+<li><p><strong>float</strong><strong>]</strong><strong>]</strong><strong>]</strong> – condition
+importances</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>attribute importances, in the case of classification additionally</dt><dd><p>returns information about class dict[str, dict[str, float]]:</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.ruleset.SurvivalRuleSet.calculate_condition_importances">
+<span class="sig-name descname"><span class="pre">calculate_condition_importances</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#decision_rules.survival.ruleset.SurvivalRuleSet.calculate_condition_importances" title="Link to this definition"></a></dt>
+<dd><p>Calculate importances of conditions in RuleSet</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>pd.DataFrame</em>)</p></li>
+<li><p><strong>y</strong> (<em>pd.Series</em>)</p></li>
+<li><p><strong>measure</strong> (<em>Callable</em><em>[</em><em>[</em><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><em>Coverage</em></a><em>]</em><em>, </em><em>float</em><em>]</em>) – measure used to count importance</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>condition importances, in the case of classification additionally returns information about class dict[str, dict[str, float]]:</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.ruleset.SurvivalRuleSet.calculate_rules_metrics">
+<span class="sig-name descname"><span class="pre">calculate_rules_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metrics_to_calculate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#decision_rules.survival.ruleset.SurvivalRuleSet.calculate_rules_metrics" title="Link to this definition"></a></dt>
+<dd><p>Calculate rules metrics for each rule such as precision,
+coverage, TP, FP etc. This method should be called after updating
+or calculating rules coverages.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>pd.DataFrame</em>)</p></li>
+<li><p><strong>y</strong> (<em>pd.Series</em>)</p></li>
+<li><p><strong>metrics_to_calculate</strong> (<em>Optional</em><em>[</em><em>list</em><em>[</em><em>str</em><em>]</em><em>]</em><em>, </em><em>optional</em>) – list of metrics names
+to calculate. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="decision_rules.core.html#decision_rules.core.exceptions.InvalidStateError" title="decision_rules.core.exceptions.InvalidStateError"><strong>InvalidStateError</strong></a> – if rule’s coverage have not been calculated</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>metrics for each rule</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict[dict[str, str, float]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.ruleset.SurvivalRuleSet.calculate_rules_weights">
+<span class="sig-name descname"><span class="pre">calculate_rules_weights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measure</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.survival.ruleset.SurvivalRuleSet.calculate_rules_weights" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>measure</strong> – quality measure function, in case of Survival it is always log_rank or if not specified, then voting_weight is 1</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if any of the rules in ruleset has uncalculated coverage</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.ruleset.SurvivalRuleSet.get_default_prediction_strategy_class">
+<span class="sig-name descname"><span class="pre">get_default_prediction_strategy_class</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="decision_rules.core.html#decision_rules.core.prediction.PredictionStrategy" title="decision_rules.core.prediction.PredictionStrategy"><span class="pre">PredictionStrategy</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#decision_rules.survival.ruleset.SurvivalRuleSet.get_default_prediction_strategy_class" title="Link to this definition"></a></dt>
+<dd><p>Returns default prediction strategy class used when user doesn’t specify any.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>class implementing PredictionStrategy</dt><dd><p>interface</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Type[<a class="reference internal" href="decision_rules.core.html#decision_rules.core.prediction.PredictionStrategy" title="decision_rules.core.prediction.PredictionStrategy">PredictionStrategy</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.ruleset.SurvivalRuleSet.get_metrics_object_instance">
+<span class="sig-name descname"><span class="pre">get_metrics_object_instance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.metrics.AbstractRulesMetrics" title="decision_rules.core.metrics.AbstractRulesMetrics"><span class="pre">AbstractRulesMetrics</span></a></span></span><a class="headerlink" href="#decision_rules.survival.ruleset.SurvivalRuleSet.get_metrics_object_instance" title="Link to this definition"></a></dt>
+<dd><p>Returns metrics object instance.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.ruleset.SurvivalRuleSet.integrated_bier_score">
+<span class="sig-name descname"><span class="pre">integrated_bier_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.survival.ruleset.SurvivalRuleSet.integrated_bier_score" title="Link to this definition"></a></dt>
+<dd><p>Calculate Integrated Brier Score (IBS)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>pd.DataFrame</em>) – dataset</p></li>
+<li><p><strong>y</strong> (<em>pd.Series</em>) – survival status column</p></li>
+<li><p><strong>y_pred</strong> (<em>Optional</em><em>[</em><em>np.ndarray</em><em>]</em><em>, </em><em>optional</em>) – Model predictions. If not
+provided, this method will perform prediction on the provided dataset.
+Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Integrated Brier Score value</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.ruleset.SurvivalRuleSet.local_explainability">
+<span class="sig-name descname"><span class="pre">local_explainability</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#decision_rules.survival.prediction.SurvivalPrediction" title="decision_rules.survival.prediction.SurvivalPrediction"><span class="pre">SurvivalPrediction</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#decision_rules.survival.ruleset.SurvivalRuleSet.local_explainability" title="Link to this definition"></a></dt>
+<dd><p>Calculate local explainability of ruleset for given instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>pd.Series</em>) – Instance to explain</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of rules uuid’s covering instance
+SurvivalPrediction: Kaplan-Meier estimate of examples covered by rules</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="decision_rules.survival.ruleset.SurvivalRuleSet.prediction_strategies_choice">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">prediction_strategies_choice</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="decision_rules.core.html#decision_rules.core.prediction.PredictionStrategy" title="decision_rules.core.prediction.PredictionStrategy"><span class="pre">PredictionStrategy</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#decision_rules.survival.ruleset.SurvivalRuleSet.prediction_strategies_choice" title="Link to this definition"></a></dt>
+<dd><p>Specifies prediction strategies available for this model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>Dictionary containing available prediction</dt><dd><p>strategies. Keys are prediction strategies names and values are classes
+implementing PredictionStrategy interface for this model.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict[str, Type[<a class="reference internal" href="decision_rules.core.html#decision_rules.core.prediction.PredictionStrategy" title="decision_rules.core.prediction.PredictionStrategy">PredictionStrategy</a>]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.ruleset.SurvivalRuleSet.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_measure</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#decision_rules.survival.ruleset.SurvivalRuleSet.update" title="Link to this definition"></a></dt>
+<dd><p>Updates ruleset using training dataset. This method should be called
+both after creation of new ruleset or after manipulating any of its rules
+or internal conditions. This method recalculates rules coverages and voting
+weights making it ready for prediction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_train</strong> (<em>pd.DataFrame</em>)</p></li>
+<li><p><strong>y_train</strong> (<em>pd.Series</em>)</p></li>
+<li><p><strong>measure</strong> (<em>Callable</em><em>[</em><em>[</em><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><em>Coverage</em></a><em>]</em><em>, </em><em>float</em><em>]</em>) – voting measure function</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if called on empty ruleset with no rules</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.survival.ruleset.SurvivalRuleSet.update_using_coverages">
+<span class="sig-name descname"><span class="pre">update_using_coverages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coverages_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.SurvivalCoverageInfodict" title="decision_rules.core.coverage.SurvivalCoverageInfodict"><span class="pre">SurvivalCoverageInfodict</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.survival.ruleset.SurvivalRuleSet.update_using_coverages" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-decision_rules.survival">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-decision_rules.survival" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="decision_rules.similarity.html" class="btn btn-neutral float-left" title="decision_rules.similarity package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Cezary Maszczyk, Dawid Macha, Adam Grzelak.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

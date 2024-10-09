@@ -1,0 +1,326 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>decision_rules.helpers package &mdash; decision_rules 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=7ab3649f" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="decision_rules.importances package" href="decision_rules.importances.html" />
+    <link rel="prev" title="decision_rules.filtering package" href="decision_rules.filtering.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            decision_rules
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">API Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="decision_rules.html">decision_rules package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="decision_rules.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.classification.html">decision_rules.classification package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.core.html">decision_rules.core package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.filtering.html">decision_rules.filtering package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">decision_rules.helpers package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.importances.html">decision_rules.importances package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.regression.html">decision_rules.regression package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.serialization.html">decision_rules.serialization package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.similarity.html">decision_rules.similarity package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.survival.html">decision_rules.survival package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="decision_rules.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="decision_rules.html#module-decision_rules.conditions">decision_rules.conditions module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.conditions.AttributesCondition"><code class="docutils literal notranslate"><span class="pre">AttributesCondition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.conditions.CompoundCondition"><code class="docutils literal notranslate"><span class="pre">CompoundCondition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.conditions.ElementaryCondition"><code class="docutils literal notranslate"><span class="pre">ElementaryCondition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.conditions.LogicOperators"><code class="docutils literal notranslate"><span class="pre">LogicOperators</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.conditions.NominalCondition"><code class="docutils literal notranslate"><span class="pre">NominalCondition</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="decision_rules.html#module-decision_rules.histogram">decision_rules.histogram module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.histogram.Histograms"><code class="docutils literal notranslate"><span class="pre">Histograms</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.histogram.get_histograms"><code class="docutils literal notranslate"><span class="pre">get_histograms()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="decision_rules.html#module-decision_rules.measures">decision_rules.measures module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.accuracy"><code class="docutils literal notranslate"><span class="pre">accuracy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.c1"><code class="docutils literal notranslate"><span class="pre">c1()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.c2"><code class="docutils literal notranslate"><span class="pre">c2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.c_foil"><code class="docutils literal notranslate"><span class="pre">c_foil()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.cn2_significnce"><code class="docutils literal notranslate"><span class="pre">cn2_significnce()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.correlation"><code class="docutils literal notranslate"><span class="pre">correlation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.coverage"><code class="docutils literal notranslate"><span class="pre">coverage()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.f_bayesian_confirmation"><code class="docutils literal notranslate"><span class="pre">f_bayesian_confirmation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.f_measure"><code class="docutils literal notranslate"><span class="pre">f_measure()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.full_coverage"><code class="docutils literal notranslate"><span class="pre">full_coverage()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.g_measure"><code class="docutils literal notranslate"><span class="pre">g_measure()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.geo_rss"><code class="docutils literal notranslate"><span class="pre">geo_rss()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.information_gain"><code class="docutils literal notranslate"><span class="pre">information_gain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.j_measure"><code class="docutils literal notranslate"><span class="pre">j_measure()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.kappa"><code class="docutils literal notranslate"><span class="pre">kappa()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.klosgen"><code class="docutils literal notranslate"><span class="pre">klosgen()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.laplace"><code class="docutils literal notranslate"><span class="pre">laplace()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.lift"><code class="docutils literal notranslate"><span class="pre">lift()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.logical_sufficiency"><code class="docutils literal notranslate"><span class="pre">logical_sufficiency()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.m_estimate"><code class="docutils literal notranslate"><span class="pre">m_estimate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.mutual_support"><code class="docutils literal notranslate"><span class="pre">mutual_support()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.novelty"><code class="docutils literal notranslate"><span class="pre">novelty()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.odds_ratio"><code class="docutils literal notranslate"><span class="pre">odds_ratio()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.one_way_support"><code class="docutils literal notranslate"><span class="pre">one_way_support()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.pawlak_dependency_factor"><code class="docutils literal notranslate"><span class="pre">pawlak_dependency_factor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.precision"><code class="docutils literal notranslate"><span class="pre">precision()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.q2"><code class="docutils literal notranslate"><span class="pre">q2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.relative_risk"><code class="docutils literal notranslate"><span class="pre">relative_risk()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.ripper"><code class="docutils literal notranslate"><span class="pre">ripper()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.rss"><code class="docutils literal notranslate"><span class="pre">rss()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.rule_interest"><code class="docutils literal notranslate"><span class="pre">rule_interest()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.s_bayesian"><code class="docutils literal notranslate"><span class="pre">s_bayesian()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.sensitivity"><code class="docutils literal notranslate"><span class="pre">sensitivity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.specificity"><code class="docutils literal notranslate"><span class="pre">specificity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.two_way_support"><code class="docutils literal notranslate"><span class="pre">two_way_support()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.weighted_laplace"><code class="docutils literal notranslate"><span class="pre">weighted_laplace()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.weighted_relative_accuracy"><code class="docutils literal notranslate"><span class="pre">weighted_relative_accuracy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.measures.yails"><code class="docutils literal notranslate"><span class="pre">yails()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="decision_rules.html#module-decision_rules.problem">decision_rules.problem module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.problem.ProblemTypes"><code class="docutils literal notranslate"><span class="pre">ProblemTypes</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="decision_rules.html#module-decision_rules.settings">decision_rules.settings module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.settings.FLOAT_DISPLAY_PRECISION"><code class="docutils literal notranslate"><span class="pre">FLOAT_DISPLAY_PRECISION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="decision_rules.html#decision_rules.settings.CONCISE_NUMERICAL_CONDITIONS_FORM"><code class="docutils literal notranslate"><span class="pre">CONCISE_NUMERICAL_CONDITIONS_FORM</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="decision_rules.html#module-decision_rules">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">decision_rules</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">decision_rules</a></li>
+          <li class="breadcrumb-item"><a href="decision_rules.html">decision_rules package</a></li>
+      <li class="breadcrumb-item active">decision_rules.helpers package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/decision_rules.helpers.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="decision-rules-helpers-package">
+<h1>decision_rules.helpers package<a class="headerlink" href="#decision-rules-helpers-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-decision_rules.helpers.dataset_transformer">
+<span id="decision-rules-helpers-dataset-transformer-module"></span><h2>decision_rules.helpers.dataset_transformer module<a class="headerlink" href="#module-decision_rules.helpers.dataset_transformer" title="Link to this heading"></a></h2>
+<p>Contains helpers classes.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.helpers.dataset_transformer.</span></span><span class="sig-name descname"><span class="pre">ConditionalDatasetTransformer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conditions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="decision_rules.core.html#decision_rules.core.condition.AbstractCondition" title="decision_rules.core.condition.AbstractCondition"><span class="pre">AbstractCondition</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Helper class transforming dataset with given set of conditions. It produces
+binary dataset showing conditions coverage.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.Methods">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Methods</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.Methods" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Methods of how to extract conditions from rules.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Enum</strong> (<em>_type_</em>) – _description_</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.Methods.NESTED">
+<span class="sig-name descname"><span class="pre">NESTED</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'nested'</span></em><a class="headerlink" href="#decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.Methods.NESTED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.Methods.SPLIT">
+<span class="sig-name descname"><span class="pre">SPLIT</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'split'</span></em><a class="headerlink" href="#decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.Methods.SPLIT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.Methods.TOP_LEVEL">
+<span class="sig-name descname"><span class="pre">TOP_LEVEL</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'top_level'</span></em><a class="headerlink" href="#decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.Methods.TOP_LEVEL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.Methods" title="decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.Methods"><span class="pre">Methods</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'top_level'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.transform" title="Link to this definition"></a></dt>
+<dd><p>Transform dataset with set of conditions producing binary dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>np.ndarray</em>) – X</p></li>
+<li><p><strong>column_names</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – names of columns</p></li>
+<li><p><strong>method</strong> (<a class="reference internal" href="#decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.Methods" title="decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.Methods"><em>ConditionalDatasetTransformer.Methods</em></a>) – controls how to generate colums.
+“top_level”: passed conditions as columns,
+“split”: passed conditions and their subconditions as columns,
+“nested”: all passed conditions and their subconditions recursivly</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>transformed binary dataset</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-decision_rules.helpers.measures">
+<span id="decision-rules-helpers-measures-module"></span><h2>decision_rules.helpers.measures module<a class="headerlink" href="#module-decision_rules.helpers.measures" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.helpers.measures.get_measure_function_by_name">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.helpers.measures.</span></span><span class="sig-name descname"><span class="pre">get_measure_function_by_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measure_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#decision_rules.helpers.measures.get_measure_function_by_name" title="Link to this definition"></a></dt>
+<dd><p>Returns function that calculates quality measure for given measure name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>measure_name</strong> (<em>str</em>) – Name of the quality measure in snake case or
+camel case</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If measure is not supported by the package</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Quality measure funciton</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Callable[[<a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage">Coverage</a>], float]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-decision_rules.helpers.p_values">
+<span id="decision-rules-helpers-p-values-module"></span><h2>decision_rules.helpers.p_values module<a class="headerlink" href="#module-decision_rules.helpers.p_values" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.helpers.p_values.correct_p_values_fdr">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.helpers.p_values.</span></span><span class="sig-name descname"><span class="pre">correct_p_values_fdr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#decision_rules.helpers.p_values.correct_p_values_fdr" title="Link to this definition"></a></dt>
+<dd><p>Adjust p-values using the False Discovery Rate (FDR) method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>p_values</strong> (<em>list</em>) – List of p-values to be adjusted.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of adjusted p-values, maintaining the original order.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.helpers.p_values.get_significant_fraction">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.helpers.p_values.</span></span><span class="sig-name descname"><span class="pre">get_significant_fraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">significance_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.helpers.p_values.get_significant_fraction" title="Link to this definition"></a></dt>
+<dd><p>Calculates the fraction of significant rules based on the p-values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p_values</strong> (<em>list</em><em>[</em><em>float</em><em>]</em>) – List of p-values.</p></li>
+<li><p><strong>significance_level</strong> (<em>float</em>) – The significance level.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The fraction of significant rules.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-decision_rules.helpers">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-decision_rules.helpers" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="decision_rules.filtering.html" class="btn btn-neutral float-left" title="decision_rules.filtering package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="decision_rules.importances.html" class="btn btn-neutral float-right" title="decision_rules.importances package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Cezary Maszczyk, Dawid Macha, Adam Grzelak.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

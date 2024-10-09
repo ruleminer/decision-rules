@@ -14,11 +14,7 @@ from decision_rules.core.rule import AbstractRule
 
 
 class RegressionConclusion(AbstractConclusion):
-    """Conclusion part of the regression rule
-
-    Args:
-        AbstractConclusion (_type_):
-    """
+    """Conclusion part of the regression rule"""
 
     def __init__(  # pylint: disable=super-init-not-called
         self,
@@ -70,6 +66,7 @@ class RegressionConclusion(AbstractConclusion):
         """Automatically calculate low and high values based on
         standard deviation of covered examples label attribute
         where:
+        
             low = value - train_covered_y_std
             high = value + train_covered_y_std
 
