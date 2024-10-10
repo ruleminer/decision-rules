@@ -1,6 +1,8 @@
 # pylint: disable=missing-module-docstring,missing-class-docstring,missing-function-docstring
 import unittest
 
+import numpy as np
+
 from decision_rules import settings
 from decision_rules.conditions import ElementaryCondition
 
@@ -86,6 +88,24 @@ class TestNumericalCondition(unittest.TestCase):
         self.assertEqual(condition.to_string(columns), 'attr != (-inf, 1.00)')
 
         settings.CONCISE_NUMERICAL_CONDITIONS_FORM = True
+
+    def test_on_nan_values(self):
+        X = np.array([
+            np.nan,
+            1.0,
+        ]).reshape(2, 1)
+        condition = ElementaryCondition(
+            column_index=0,
+            left=float('-inf'),
+            right=13.1,
+            right_closed=True,
+            left_closed=False
+        )
+        condition.negated = True
+        self.assertFalse(
+            condition.covered_mask(X)[0],
+            'Empty values should not be covered'
+        )
 
 
 if __name__ == '__main__':
