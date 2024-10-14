@@ -1,3 +1,4 @@
+import math
 from typing import TypedDict
 
 import numpy as np
@@ -63,7 +64,7 @@ def calculate_for_regression(
     if calculate_only_for_covered_examples:
         y_true, y_pred = _drop_uncovered_examples(y_true, y_pred)
 
-    RMSE = mean_squared_error(y_true, y_pred, squared=False)
+    RMSE = math.sqrt(mean_squared_error(y_true, y_pred))
     MAE = mean_absolute_error(y_true, y_pred)
     MAPE = mean_absolute_percentage_error(y_true, y_pred)
     rRMSE = RMSE / np.mean(y_true)
