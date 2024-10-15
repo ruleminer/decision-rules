@@ -89,6 +89,4 @@ class _BaseRuleSerializer(JSONClassSerializer):
             conclusion=JSONSerializer.serialize(instance.conclusion),
             coverage=JSONSerializer.serialize(instance.coverage)
         )
-        del model.premise['attributes']
-        del model.premise['negated']
         return model
