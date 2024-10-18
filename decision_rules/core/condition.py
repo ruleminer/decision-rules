@@ -8,6 +8,7 @@ from abc import abstractmethod
 from contextlib import contextmanager
 
 import numpy as np
+import pandas as pd
 
 
 class AbstractCondition(ABC):
@@ -104,7 +105,11 @@ class AbstractCondition(ABC):
             np.ndarray: 1 dimensional numpy array of booleans specifying
                 whether given examples is covered by a condition or not.
         """
-        return np.logical_not(self._calculate_covered_mask(X))
+        valid_examples_mask = np.all(
+            pd.notnull(X[:, list(self.attributes)]),
+            axis=1
+        )
+        return np.logical_not(self._calculate_covered_mask(X)) & valid_examples_mask
 
     def covered_mask(self, X: np.ndarray) -> np.ndarray:
         """Calculates covered examples mask
