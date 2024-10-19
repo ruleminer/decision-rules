@@ -1,15 +1,10 @@
-decision\_rules package
+Documentation of decision\_rules
 =======================
-
-Subpackages
------------
-
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 2
 
    decision_rules.classification
    decision_rules.core
-   decision_rules.filtering
    decision_rules.helpers
    decision_rules.importances
    decision_rules.regression
@@ -17,10 +12,7 @@ Subpackages
    decision_rules.similarity
    decision_rules.survival
 
-Submodules
-----------
-
-decision\_rules.conditions module
+decision\_rules.conditions
 ---------------------------------
 
 .. automodule:: decision_rules.conditions
@@ -28,7 +20,7 @@ decision\_rules.conditions module
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.histogram module
+decision\_rules.histogram
 --------------------------------
 
 .. automodule:: decision_rules.histogram
@@ -36,7 +28,7 @@ decision\_rules.histogram module
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.measures module
+decision\_rules.measures
 -------------------------------
 
 .. automodule:: decision_rules.measures
@@ -44,7 +36,7 @@ decision\_rules.measures module
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.problem module
+decision\_rules.problem
 ------------------------------
 
 .. automodule:: decision_rules.problem
@@ -52,18 +44,10 @@ decision\_rules.problem module
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.settings module
+decision\_rules.settings
 -------------------------------
 
 .. automodule:: decision_rules.settings
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: decision_rules
    :members:
    :undoc-members:
    :show-inheritance:

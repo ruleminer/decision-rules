@@ -1,10 +1,7 @@
 decision\_rules.helpers package
 ===============================
 
-Submodules
-----------
-
-decision\_rules.helpers.dataset\_transformer module
+decision\_rules.helpers.dataset\_transformer
 ---------------------------------------------------
 
 .. automodule:: decision_rules.helpers.dataset_transformer
@@ -12,7 +9,7 @@ decision\_rules.helpers.dataset\_transformer module
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.helpers.measures module
+decision\_rules.helpers.measures
 ---------------------------------------
 
 .. automodule:: decision_rules.helpers.measures
@@ -20,7 +17,7 @@ decision\_rules.helpers.measures module
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.helpers.p\_values module
+decision\_rules.helpers.p\_values
 ----------------------------------------
 
 .. automodule:: decision_rules.helpers.p_values
@@ -28,10 +25,3 @@ decision\_rules.helpers.p\_values module
    :undoc-members:
    :show-inheritance:
 
-Module contents
----------------
-
-.. automodule:: decision_rules.helpers
-   :members:
-   :undoc-members:
-   :show-inheritance:

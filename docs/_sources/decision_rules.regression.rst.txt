@@ -1,10 +1,7 @@
-decision\_rules.regression package
+decision\_rules.regression
 ==================================
 
-Submodules
-----------
-
-decision\_rules.regression.metrics module
+decision\_rules.regression.metrics
 -----------------------------------------
 
 .. automodule:: decision_rules.regression.metrics
@@ -12,7 +9,7 @@ decision\_rules.regression.metrics module
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.regression.prediction module
+decision\_rules.regression.prediction
 --------------------------------------------
 
 .. automodule:: decision_rules.regression.prediction
@@ -20,7 +17,7 @@ decision\_rules.regression.prediction module
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.regression.prediction\_indicators module
+decision\_rules.regression.prediction\_indicators
 --------------------------------------------------------
 
 .. automodule:: decision_rules.regression.prediction_indicators
@@ -28,7 +25,7 @@ decision\_rules.regression.prediction\_indicators module
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.regression.rule module
+decision\_rules.regression.rule
 --------------------------------------
 
 .. automodule:: decision_rules.regression.rule
@@ -36,7 +33,7 @@ decision\_rules.regression.rule module
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.regression.ruleset module
+decision\_rules.regression.ruleset
 -----------------------------------------
 
 .. automodule:: decision_rules.regression.ruleset
@@ -44,10 +41,3 @@ decision\_rules.regression.ruleset module
    :undoc-members:
    :show-inheritance:
 
-Module contents
----------------
-
-.. automodule:: decision_rules.regression
-   :members:
-   :undoc-members:
-   :show-inheritance:

@@ -1,21 +1,10 @@
-decision\_rules.serialization package
+decision\_rules.serialization
 =====================================
 
-Submodules
-----------
-
-decision\_rules.serialization.utils module
+decision\_rules.serialization.utils
 ------------------------------------------
 
 .. automodule:: decision_rules.serialization.utils
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: decision_rules.serialization
    :members:
    :undoc-members:
    :show-inheritance:
