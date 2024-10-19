@@ -1,10 +1,7 @@
-decision\_rules.classification package
+decision\_rules.classification
 ======================================
 
-Submodules
-----------
-
-decision\_rules.classification.metrics module
+decision\_rules.classification.metrics
 ---------------------------------------------
 
 .. automodule:: decision_rules.classification.metrics
@@ -12,7 +9,7 @@ decision\_rules.classification.metrics module
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.classification.prediction module
+decision\_rules.classification.prediction
 ------------------------------------------------
 
 .. automodule:: decision_rules.classification.prediction
@@ -20,7 +17,7 @@ decision\_rules.classification.prediction module
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.classification.prediction\_indicators module
+decision\_rules.classification.prediction\_indicators
 ------------------------------------------------------------
 
 .. automodule:: decision_rules.classification.prediction_indicators
@@ -28,7 +25,7 @@ decision\_rules.classification.prediction\_indicators module
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.classification.rule module
+decision\_rules.classification.rule
 ------------------------------------------
 
 .. automodule:: decision_rules.classification.rule
@@ -36,18 +33,10 @@ decision\_rules.classification.rule module
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.classification.ruleset module
+decision\_rules.classification.ruleset
 ---------------------------------------------
 
 .. automodule:: decision_rules.classification.ruleset
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: decision_rules.classification
    :members:
    :undoc-members:
    :show-inheritance:

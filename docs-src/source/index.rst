@@ -25,8 +25,8 @@ Functionalities includes, but is not limited to:
 
 
 .. toctree::
-   :maxdepth: 3
-   :caption: Contents:
+   :maxdepth: 2
 
-   API Documentation <modules>
+   Tutorials <tutorials>
+   API Documentation <decision_rules>
 

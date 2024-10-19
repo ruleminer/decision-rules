@@ -1,0 +1,1122 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evaluate classification rules in decision-rules &mdash; decision_rules 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=7ab3649f" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Generating rules with RuleKit" href="generating_with_rulekit.html" />
+    <link rel="prev" title="Create and evaluate handcrafted classification rules in decision-rules" href="manual_rules_classification.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            decision_rules
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="manual_rules_classification.html">Define rules manually</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Evaluate regression rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generating_with_rulekit.html">Generate rules with RuleKit</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../decision_rules.html">API Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">decision_rules</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../tutorials.html">Tutorials</a></li>
+      <li class="breadcrumb-item active">Evaluate classification rules in decision-rules</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorials/rules_regression.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Evaluate-classification-rules-in-decision-rules">
+<h1>Evaluate classification rules in decision-rules<a class="headerlink" href="#Evaluate-classification-rules-in-decision-rules" title="Link to this heading"></a></h1>
+<p>In this tutorial we will evaluate decision rules for regression.</p>
+<p>First, we load the boston housing dataset. The column MEDV (median house price in $1000s) is our target variable <code class="docutils literal notranslate"><span class="pre">y</span></code>, the other ones are the predictors <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;resources/boston.csv&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;MEDV&#39;</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;MEDV&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CRIM</th>
+      <th>ZN</th>
+      <th>INDUS</th>
+      <th>CHAS</th>
+      <th>NOX</th>
+      <th>RM</th>
+      <th>AGE</th>
+      <th>DIS</th>
+      <th>RAD</th>
+      <th>TAX</th>
+      <th>PTRATIO</th>
+      <th>B</th>
+      <th>LSTAT</th>
+      <th>MEDV</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.00632</td>
+      <td>18</td>
+      <td>2.31</td>
+      <td>0</td>
+      <td>0.538</td>
+      <td>6.575</td>
+      <td>65.2</td>
+      <td>4.0900</td>
+      <td>1</td>
+      <td>296</td>
+      <td>15</td>
+      <td>396.90</td>
+      <td>4.98</td>
+      <td>24.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.02731</td>
+      <td>0</td>
+      <td>7.07</td>
+      <td>0</td>
+      <td>0.469</td>
+      <td>6.421</td>
+      <td>78.9</td>
+      <td>4.9671</td>
+      <td>2</td>
+      <td>242</td>
+      <td>17</td>
+      <td>396.90</td>
+      <td>9.14</td>
+      <td>21.6</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.02729</td>
+      <td>0</td>
+      <td>7.07</td>
+      <td>0</td>
+      <td>0.469</td>
+      <td>7.185</td>
+      <td>61.1</td>
+      <td>4.9671</td>
+      <td>2</td>
+      <td>242</td>
+      <td>17</td>
+      <td>392.83</td>
+      <td>4.03</td>
+      <td>34.7</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.03237</td>
+      <td>0</td>
+      <td>2.18</td>
+      <td>0</td>
+      <td>0.458</td>
+      <td>6.998</td>
+      <td>45.8</td>
+      <td>6.0622</td>
+      <td>3</td>
+      <td>222</td>
+      <td>18</td>
+      <td>394.63</td>
+      <td>2.94</td>
+      <td>33.4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.06905</td>
+      <td>0</td>
+      <td>2.18</td>
+      <td>0</td>
+      <td>0.458</td>
+      <td>7.147</td>
+      <td>54.2</td>
+      <td>6.0622</td>
+      <td>3</td>
+      <td>222</td>
+      <td>18</td>
+      <td>396.90</td>
+      <td>5.33</td>
+      <td>36.2</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>501</th>
+      <td>0.06263</td>
+      <td>0</td>
+      <td>11.93</td>
+      <td>0</td>
+      <td>0.573</td>
+      <td>6.593</td>
+      <td>69.1</td>
+      <td>2.4786</td>
+      <td>1</td>
+      <td>273</td>
+      <td>21</td>
+      <td>391.99</td>
+      <td>9.67</td>
+      <td>22.4</td>
+    </tr>
+    <tr>
+      <th>502</th>
+      <td>0.04527</td>
+      <td>0</td>
+      <td>11.93</td>
+      <td>0</td>
+      <td>0.573</td>
+      <td>6.120</td>
+      <td>76.7</td>
+      <td>2.2875</td>
+      <td>1</td>
+      <td>273</td>
+      <td>21</td>
+      <td>396.90</td>
+      <td>9.08</td>
+      <td>20.6</td>
+    </tr>
+    <tr>
+      <th>503</th>
+      <td>0.06076</td>
+      <td>0</td>
+      <td>11.93</td>
+      <td>0</td>
+      <td>0.573</td>
+      <td>6.976</td>
+      <td>91.0</td>
+      <td>2.1675</td>
+      <td>1</td>
+      <td>273</td>
+      <td>21</td>
+      <td>396.90</td>
+      <td>5.64</td>
+      <td>23.9</td>
+    </tr>
+    <tr>
+      <th>504</th>
+      <td>0.10959</td>
+      <td>0</td>
+      <td>11.93</td>
+      <td>0</td>
+      <td>0.573</td>
+      <td>6.794</td>
+      <td>89.3</td>
+      <td>2.3889</td>
+      <td>1</td>
+      <td>273</td>
+      <td>21</td>
+      <td>393.45</td>
+      <td>6.48</td>
+      <td>22.0</td>
+    </tr>
+    <tr>
+      <th>505</th>
+      <td>0.04741</td>
+      <td>0</td>
+      <td>11.93</td>
+      <td>0</td>
+      <td>0.573</td>
+      <td>6.030</td>
+      <td>80.8</td>
+      <td>2.5050</td>
+      <td>1</td>
+      <td>273</td>
+      <td>21</td>
+      <td>396.90</td>
+      <td>7.88</td>
+      <td>11.9</td>
+    </tr>
+  </tbody>
+</table>
+<p>506 rows × 14 columns</p>
+</div></div>
+</div>
+<p>We want to predict the values of <code class="docutils literal notranslate"><span class="pre">y</span></code> from <code class="docutils literal notranslate"><span class="pre">X</span></code> using a set of decision rules. The rules are already created, we will load them from a JSON file.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">from</span> <span class="nn">decision_rules</span> <span class="kn">import</span> <span class="n">measures</span>
+<span class="kn">from</span> <span class="nn">decision_rules.serialization</span> <span class="kn">import</span> <span class="n">JSONSerializer</span>
+<span class="kn">from</span> <span class="nn">decision_rules.regression.ruleset</span> <span class="kn">import</span> <span class="n">RegressionRuleSet</span>
+
+<span class="c1"># Read the JSON file.</span>
+<span class="n">ruleset_path</span> <span class="o">=</span> <span class="s1">&#39;resources/boston_ruleset.json&#39;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ruleset_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+    <span class="n">json_ruleset</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+
+<span class="c1"># Create a RegressionRuleSet object from the dict that was stored in JSON.</span>
+<span class="n">ruleset</span><span class="p">:</span> <span class="n">RegressionRuleSet</span> <span class="o">=</span> <span class="n">JSONSerializer</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">json_ruleset</span><span class="p">,</span> <span class="n">RegressionRuleSet</span><span class="p">)</span>
+<span class="n">ruleset</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">measure</span><span class="o">=</span><span class="n">measures</span><span class="o">.</span><span class="n">c2</span><span class="p">)</span>
+<span class="c1"># Print the rules in the rule set.</span>
+<span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">ruleset</span><span class="o">.</span><span class="n">rules</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+IF AGE &gt;= 16.35 AND PTRATIO &lt; 17.50 AND RM &gt;= 7.48 AND LSTAT &lt; 6.25 THEN MEDV = {47.78} [44.45, 51.11] (p=17, n=2, P=23, N=483)
+IF RM &lt; 8.35 AND ZN &lt; 92.50 AND CRIM &lt; 0.59 AND CRIM &gt;= 0.02 AND RM &gt;= 7.42 THEN MEDV = {43.01} [38.58, 47.43] (p=13, n=6, P=14, N=492)
+IF LSTAT &gt;= 3.15 AND RM &lt; 8.32 AND CRIM &gt;= 0.04 AND INDUS &lt; 18.84 AND AGE &gt;= 24.45 AND RM &gt;= 7.26 THEN MEDV = {36.57} [27.64, 45.49] (p=16, n=5, P=85, N=421)
+IF RM &lt; 7.28 AND PTRATIO &lt; 18.50 AND ZN &lt; 92.50 AND CRIM &gt;= 0.01 AND CHAS &lt; 0.50 AND B &gt;= 363.19 AND RM &gt;= 7.08 THEN MEDV = {35.09} [33.44, 36.74] (p=9, n=3, P=16, N=490)
+IF AGE &lt; 82.95 AND INDUS &gt;= 1.34 AND LSTAT &lt; 9.10 AND NOX &gt;= 0.40 AND DIS &lt; 9.06 THEN MEDV = {28.86} [21.29, 36.43] (p=110, n=31, P=211, N=295)
+IF DIS &lt; 1.89 AND DIS &gt;= 1.50 AND CRIM &gt;= 13.08 AND CRIM &lt; 43.64 AND NOX &gt;= 0.66 THEN MEDV = {9.09} [7.17, 11.02] (p=11, n=2, P=29, N=477)
+IF LSTAT &gt;= 20.70 AND LSTAT &lt; 33.01 AND CRIM &lt; 43.64 AND DIS &gt;= 1.37 AND CRIM &gt;= 11.34 AND NOX &gt;= 0.66 THEN MEDV = {9.02} [7.08, 10.96] (p=16, n=3, P=28, N=478)
+IF CRIM &lt; 32.15 AND CRIM &gt;= 6.99 AND NOX &gt;= 0.66 THEN MEDV = {12.23} [6.30, 18.16] (p=53, n=2, P=147, N=359)
+IF DIS &gt;= 1.18 AND NOX &lt; 0.72 AND DIS &lt; 2.76 AND RM &lt; 7.14 AND NOX &gt;= 0.66 AND CRIM &gt;= 6.60 THEN MEDV = {11.06} [6.95, 15.18] (p=39, n=7, P=94, N=412)
+IF RM &gt;= 4.33 AND CRIM &gt;= 6.84 AND CHAS &lt; 0.50 THEN MEDV = {13.06} [7.00, 19.12] (p=70, n=11, P=175, N=331)
+IF RM &lt; 7.17 AND TAX &gt;= 222.50 AND AGE &gt;= 28.25 AND LSTAT &lt; 7.96 THEN MEDV = {26.67} [20.21, 33.13] (p=61, n=5, P=225, N=281)
+IF RM &lt; 6.44 AND TAX &gt;= 223.50 AND CHAS &lt; 0.50 AND LSTAT &lt; 10.14 AND CRIM &lt; 30.18 THEN MEDV = {23.00} [18.05, 27.95] (p=75, n=4, P=253, N=253)
+IF CRIM &lt; 0.57 AND RM &gt;= 6.43 AND LSTAT &lt; 9.92 THEN MEDV = {31.93} [24.31, 39.55] (p=84, n=38, P=116, N=390)
+IF CRIM &lt; 7.53 AND LSTAT &gt;= 9.43 AND AGE &gt;= 28.00 AND B &gt;= 363.17 AND RM &lt; 6.95 THEN MEDV = {19.97} [16.57, 23.36] (p=128, n=41, P=211, N=295)
+IF B &lt; 396.55 AND CRIM &lt; 6.99 AND CHAS &lt; 0.50 AND B &gt;= 86.04 AND AGE &gt;= 84.50 AND LSTAT &gt;= 14.43 THEN MEDV = {16.22} [12.89, 19.55] (p=49, n=6, P=144, N=362)
+IF LSTAT &gt;= 10.54 AND CRIM &lt; 7.25 AND INDUS &gt;= 7.17 AND DIS &lt; 3.97 AND RM &lt; 6.43 AND CRIM &gt;= 0.13 AND INDUS &lt; 20.73 AND RM &gt;= 5.38 AND LSTAT &lt; 14.14 THEN MEDV = {20.65} [18.59, 22.70] (p=23, n=8, P=142, N=364)
+IF B &gt;= 6.50 AND B &lt; 368.37 AND CRIM &lt; 7.90 AND RM &gt;= 5.41 AND LSTAT &gt;= 14.40 THEN MEDV = {15.36} [12.41, 18.31] (p=27, n=7, P=109, N=397)
+</pre></div></div>
+</div>
+<p>The rule set is loaded and ready for prediction. Let’s generate predictions for the examples in the dataset.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">ruleset</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;MEDV_pred&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_pred</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CRIM</th>
+      <th>ZN</th>
+      <th>INDUS</th>
+      <th>CHAS</th>
+      <th>NOX</th>
+      <th>RM</th>
+      <th>AGE</th>
+      <th>DIS</th>
+      <th>RAD</th>
+      <th>TAX</th>
+      <th>PTRATIO</th>
+      <th>B</th>
+      <th>LSTAT</th>
+      <th>MEDV</th>
+      <th>MEDV_pred</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.00632</td>
+      <td>18</td>
+      <td>2.31</td>
+      <td>0</td>
+      <td>0.538</td>
+      <td>6.575</td>
+      <td>65.2</td>
+      <td>4.0900</td>
+      <td>1</td>
+      <td>296</td>
+      <td>15</td>
+      <td>396.90</td>
+      <td>4.98</td>
+      <td>24.0</td>
+      <td>29.104371</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.02731</td>
+      <td>0</td>
+      <td>7.07</td>
+      <td>0</td>
+      <td>0.469</td>
+      <td>6.421</td>
+      <td>78.9</td>
+      <td>4.9671</td>
+      <td>2</td>
+      <td>242</td>
+      <td>17</td>
+      <td>396.90</td>
+      <td>9.14</td>
+      <td>21.6</td>
+      <td>22.998734</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.02729</td>
+      <td>0</td>
+      <td>7.07</td>
+      <td>0</td>
+      <td>0.469</td>
+      <td>7.185</td>
+      <td>61.1</td>
+      <td>4.9671</td>
+      <td>2</td>
+      <td>242</td>
+      <td>17</td>
+      <td>392.83</td>
+      <td>4.03</td>
+      <td>34.7</td>
+      <td>32.171973</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.03237</td>
+      <td>0</td>
+      <td>2.18</td>
+      <td>0</td>
+      <td>0.458</td>
+      <td>6.998</td>
+      <td>45.8</td>
+      <td>6.0622</td>
+      <td>3</td>
+      <td>222</td>
+      <td>18</td>
+      <td>394.63</td>
+      <td>2.94</td>
+      <td>33.4</td>
+      <td>30.458412</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.06905</td>
+      <td>0</td>
+      <td>2.18</td>
+      <td>0</td>
+      <td>0.458</td>
+      <td>7.147</td>
+      <td>54.2</td>
+      <td>6.0622</td>
+      <td>3</td>
+      <td>222</td>
+      <td>18</td>
+      <td>396.90</td>
+      <td>5.33</td>
+      <td>36.2</td>
+      <td>32.171973</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>501</th>
+      <td>0.06263</td>
+      <td>0</td>
+      <td>11.93</td>
+      <td>0</td>
+      <td>0.573</td>
+      <td>6.593</td>
+      <td>69.1</td>
+      <td>2.4786</td>
+      <td>1</td>
+      <td>273</td>
+      <td>21</td>
+      <td>391.99</td>
+      <td>9.67</td>
+      <td>22.4</td>
+      <td>26.221980</td>
+    </tr>
+    <tr>
+      <th>502</th>
+      <td>0.04527</td>
+      <td>0</td>
+      <td>11.93</td>
+      <td>0</td>
+      <td>0.573</td>
+      <td>6.120</td>
+      <td>76.7</td>
+      <td>2.2875</td>
+      <td>1</td>
+      <td>273</td>
+      <td>21</td>
+      <td>396.90</td>
+      <td>9.08</td>
+      <td>20.6</td>
+      <td>25.626787</td>
+    </tr>
+    <tr>
+      <th>503</th>
+      <td>0.06076</td>
+      <td>0</td>
+      <td>11.93</td>
+      <td>0</td>
+      <td>0.573</td>
+      <td>6.976</td>
+      <td>91.0</td>
+      <td>2.1675</td>
+      <td>1</td>
+      <td>273</td>
+      <td>21</td>
+      <td>396.90</td>
+      <td>5.64</td>
+      <td>23.9</td>
+      <td>29.214162</td>
+    </tr>
+    <tr>
+      <th>504</th>
+      <td>0.10959</td>
+      <td>0</td>
+      <td>11.93</td>
+      <td>0</td>
+      <td>0.573</td>
+      <td>6.794</td>
+      <td>89.3</td>
+      <td>2.3889</td>
+      <td>1</td>
+      <td>273</td>
+      <td>21</td>
+      <td>393.45</td>
+      <td>6.48</td>
+      <td>22.0</td>
+      <td>29.214162</td>
+    </tr>
+    <tr>
+      <th>505</th>
+      <td>0.04741</td>
+      <td>0</td>
+      <td>11.93</td>
+      <td>0</td>
+      <td>0.573</td>
+      <td>6.030</td>
+      <td>80.8</td>
+      <td>2.5050</td>
+      <td>1</td>
+      <td>273</td>
+      <td>21</td>
+      <td>396.90</td>
+      <td>7.88</td>
+      <td>11.9</td>
+      <td>25.982855</td>
+    </tr>
+  </tbody>
+</table>
+<p>506 rows × 15 columns</p>
+</div></div>
+</div>
+<p>We can calculate the basic regression metrics using <code class="docutils literal notranslate"><span class="pre">calculate_for_regression</span></code>. The returned value is a dict with keys:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">general</span></code>: general metrics, such as RMSE.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">histogram</span></code>: a histogram of errors.</p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">decision_rules.regression.prediction_indicators</span> <span class="kn">import</span> <span class="n">calculate_for_regression</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;General metrics&#39;</span><span class="p">)</span>
+<span class="n">metrics</span> <span class="o">=</span> <span class="n">calculate_for_regression</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;general&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Histogram of errors&#39;</span><span class="p">)</span>
+<span class="n">bins</span> <span class="o">=</span> <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;histogram&#39;</span><span class="p">][</span><span class="s1">&#39;bin_edges&#39;</span><span class="p">]</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;histogram&#39;</span><span class="p">][</span><span class="s1">&#39;histogram&#39;</span><span class="p">]</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">stairs</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+General metrics
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;RMSE&#39;: 4.90202509087278,
+ &#39;MAE&#39;: 3.2308461981595062,
+ &#39;MAPE&#39;: 0.15617752551676722,
+ &#39;rRMSE&#39;: 0.21755058026782434,
+ &#39;rMAE&#39;: 0.14338410190400555,
+ &#39;maxError&#39;: 37.77272727272727,
+ &#39;R^2&#39;: 0.7153520927414723}
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Histogram of errors
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorials_rules_regression_8_3.png" src="../_images/tutorials_rules_regression_8_3.png" />
+</div>
+</div>
+<p>The coverage matrix shows which rules cover each of the examples. We can calculate it calling the <code class="docutils literal notranslate"><span class="pre">calculate_coverage_matrix</span></code> function of the ruleset object. It accepts one argument <code class="docutils literal notranslate"><span class="pre">X</span></code> which is a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> of examples to check.</p>
+<p>The function returns a 2D boolean numpy array. Number of rows is equal to the number of rows (examples) in <code class="docutils literal notranslate"><span class="pre">X</span></code> and number of columns is the same as the number of rules in the rule set. A <code class="docutils literal notranslate"><span class="pre">True</span></code> value means that the example is covered by the rule.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coverage_matrix</span> <span class="o">=</span> <span class="n">ruleset</span><span class="o">.</span><span class="n">calculate_coverage_matrix</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">coverage_matrix</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Number of examples: </span><span class="si">{</span><span class="n">coverage_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Number of rules: </span><span class="si">{</span><span class="n">coverage_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[False, False, False, False,  True, False, False, False, False,
+        False,  True, False,  True, False, False, False, False],
+       [False, False, False, False, False, False, False, False, False,
+        False, False,  True, False, False, False, False, False],
+       [False, False, False,  True,  True, False, False, False, False,
+        False, False, False,  True, False, False, False, False],
+       [False, False, False, False,  True, False, False, False, False,
+        False, False, False,  True, False, False, False, False],
+       [False, False, False,  True,  True, False, False, False, False,
+        False, False, False,  True, False, False, False, False]])
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Number of examples: 5
+Number of rules: 17
+</pre></div></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">calculate_rules_metrics</span></code> function of a ruleset object computes metrics describing each of the rules in the rule set. The explanations of the metrics can be found in the <a class="reference external" href="https://github.com/ruleminer/ruleminer/wiki/10-Description-of-the-results-obtained">documentation of ruleminer</a>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metrics</span> <span class="o">=</span> <span class="n">ruleset</span><span class="o">.</span><span class="n">calculate_rules_metrics</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">rule_id</span><span class="p">,</span> <span class="n">metrics</span> <span class="ow">in</span> <span class="n">metrics</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Rule&#39;</span><span class="p">,</span> <span class="n">rule_id</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Rule fc70c54b-02f9-4cd5-81d0-7f73d85dc367
+{&#39;p&#39;: 17, &#39;n&#39;: 2, &#39;P&#39;: 23, &#39;N&#39;: 483, &#39;p_unique&#39;: 17, &#39;n_unique&#39;: 17, &#39;support&#39;: 19, &#39;conditions_count&#39;: 4, &#39;y_covered_avg&#39;: 47.77894736842106, &#39;y_covered_median&#39;: 50.0, &#39;y_covered_min&#39;: 37.6, &#39;y_covered_max&#39;: 50.0, &#39;mae&#39;: 25.395548158934893, &#39;rmse&#39;: 26.8660974796374, &#39;mape&#39;: 1.5125990035583592, &#39;p-value&#39;: 4.231965993998835e-06}
+Rule 1634ea74-f2aa-400b-8ba4-1b658578b00a
+{&#39;p&#39;: 13, &#39;n&#39;: 6, &#39;P&#39;: 14, &#39;N&#39;: 492, &#39;p_unique&#39;: 13, &#39;n_unique&#39;: 13, &#39;support&#39;: 19, &#39;conditions_count&#39;: 5, &#39;y_covered_avg&#39;: 43.00526315789473, &#39;y_covered_median&#39;: 43.5, &#39;y_covered_min&#39;: 33.4, &#39;y_covered_max&#39;: 50.0, &#39;mae&#39;: 21.032764718119402, &#39;rmse&#39;: 22.439720251538724, &#39;mape&#39;: 1.2702153772414488, &#39;p-value&#39;: 0.00032332389088428164}
+Rule cdc83a4b-d169-4372-a508-af418d02b556
+{&#39;p&#39;: 16, &#39;n&#39;: 5, &#39;P&#39;: 85, &#39;N&#39;: 421, &#39;p_unique&#39;: 16, &#39;n_unique&#39;: 16, &#39;support&#39;: 21, &#39;conditions_count&#39;: 6, &#39;y_covered_avg&#39;: 36.56666666666666, &#39;y_covered_median&#39;: 35.2, &#39;y_covered_min&#39;: 15.0, &#39;y_covered_max&#39;: 50.0, &#39;mae&#39;: 15.40527009222661, &#39;rmse&#39;: 16.774051158576192, &#39;mape&#39;: 0.9493332806979319, &#39;p-value&#39;: 0.46645377271528804}
+Rule 6fb80d0a-b7ae-4325-8c5e-76226b8d2a03
+{&#39;p&#39;: 9, &#39;n&#39;: 3, &#39;P&#39;: 16, &#39;N&#39;: 490, &#39;p_unique&#39;: 9, &#39;n_unique&#39;: 9, &#39;support&#39;: 12, &#39;conditions_count&#39;: 7, &#39;y_covered_avg&#39;: 35.091666666666676, &#39;y_covered_median&#39;: 35.15, &#39;y_covered_min&#39;: 31.6, &#39;y_covered_max&#39;: 37.9, &#39;mae&#39;: 14.181785243741773, &#39;rmse&#39;: 15.560993839083396, &#39;mape&#39;: 0.8775897305716386, &#39;p-value&#39;: 2.1589703599932363e-07}
+Rule a6d5f154-e5d8-42a7-a7fb-7999ee8edfdc
+{&#39;p&#39;: 110, &#39;n&#39;: 31, &#39;P&#39;: 211, &#39;N&#39;: 295, &#39;p_unique&#39;: 110, &#39;n_unique&#39;: 110, &#39;support&#39;: 141, &#39;conditions_count&#39;: 5, &#39;y_covered_avg&#39;: 28.858156028368793, &#39;y_covered_median&#39;: 26.6, &#39;y_covered_min&#39;: 11.9, &#39;y_covered_max&#39;: 50.0, &#39;mae&#39;: 9.648011100832562, &#39;rmse&#39;: 11.154801882477512, &#39;mape&#39;: 0.5935712142448168, &#39;p-value&#39;: 0.00125917486075591}
+Rule 7666c01f-c21d-409b-9162-c1450927bfee
+{&#39;p&#39;: 11, &#39;n&#39;: 2, &#39;P&#39;: 29, &#39;N&#39;: 477, &#39;p_unique&#39;: 11, &#39;n_unique&#39;: 11, &#39;support&#39;: 13, &#39;conditions_count&#39;: 5, &#39;y_covered_avg&#39;: 9.092307692307696, &#39;y_covered_median&#39;: 8.5, &#39;y_covered_min&#39;: 5.6, &#39;y_covered_max&#39;: 12.7, &#39;mae&#39;: 13.573852234721796, &#39;rmse&#39;: 16.280864830458583, &#39;mape&#39;: 0.5432146614616068, &#39;p-value&#39;: 3.648142869045188e-07}
+Rule 13f4ff45-93e7-4bd3-b6bd-8658d2f00063
+{&#39;p&#39;: 16, &#39;n&#39;: 3, &#39;P&#39;: 28, &#39;N&#39;: 478, &#39;p_unique&#39;: 16, &#39;n_unique&#39;: 16, &#39;support&#39;: 19, &#39;conditions_count&#39;: 6, &#39;y_covered_avg&#39;: 9.021052631578947, &#39;y_covered_median&#39;: 8.8, &#39;y_covered_min&#39;: 5.0, &#39;y_covered_max&#39;: 13.1, &#39;mae&#39;: 13.639192843769504, &#39;rmse&#39;: 16.339738186513586, &#39;mape&#39;: 0.546143930494049, &#39;p-value&#39;: 4.972293644367493e-10}
+Rule 66b5f17f-130f-4758-bba2-d5773a8ae8d2
+{&#39;p&#39;: 53, &#39;n&#39;: 2, &#39;P&#39;: 147, &#39;N&#39;: 359, &#39;p_unique&#39;: 53, &#39;n_unique&#39;: 53, &#39;support&#39;: 55, &#39;conditions_count&#39;: 3, &#39;y_covered_avg&#39;: 12.227272727272727, &#39;y_covered_median&#39;: 11.7, &#39;y_covered_min&#39;: 5.6, &#39;y_covered_max&#39;: 50.0, &#39;mae&#39;: 10.821451670858785, &#39;rmse&#39;: 13.806649806224579, &#39;mape&#39;: 0.4261063230868248, &#39;p-value&#39;: 4.539164119741508e-05}
+Rule 2ef97491-a4fb-44ec-9f4b-5637da1fd9d5
+{&#39;p&#39;: 39, &#39;n&#39;: 7, &#39;P&#39;: 94, &#39;N&#39;: 412, &#39;p_unique&#39;: 39, &#39;n_unique&#39;: 39, &#39;support&#39;: 46, &#39;conditions_count&#39;: 6, &#39;y_covered_avg&#39;: 11.06304347826087, &#39;y_covered_median&#39;: 10.7, &#39;y_covered_min&#39;: 5.0, &#39;y_covered_max&#39;: 27.9, &#39;mae&#39;: 11.806547516755456, &#39;rmse&#39;: 14.696088455647036, &#39;mape&#39;: 0.46617491141164896, &#39;p-value&#39;: 1.2859048511740222e-09}
+Rule 3cffdf44-dc64-4044-b430-ec95e153c4ad
+{&#39;p&#39;: 70, &#39;n&#39;: 11, &#39;P&#39;: 175, &#39;N&#39;: 331, &#39;p_unique&#39;: 70, &#39;n_unique&#39;: 70, &#39;support&#39;: 81, &#39;conditions_count&#39;: 3, &#39;y_covered_avg&#39;: 13.058024691358028, &#39;y_covered_median&#39;: 12.3, &#39;y_covered_min&#39;: 5.0, &#39;y_covered_max&#39;: 50.0, &#39;mae&#39;: 10.150968623432389, &#39;rmse&#39;: 13.198145443376216, &#39;mape&#39;: 0.4001944889170244, &#39;p-value&#39;: 2.310205784360766e-06}
+Rule a974919d-9fbc-49f7-a34a-a23a024ac082
+{&#39;p&#39;: 61, &#39;n&#39;: 5, &#39;P&#39;: 225, &#39;N&#39;: 281, &#39;p_unique&#39;: 61, &#39;n_unique&#39;: 61, &#39;support&#39;: 66, &#39;conditions_count&#39;: 4, &#39;y_covered_avg&#39;: 26.668181818181818, &#39;y_covered_median&#39;: 24.65, &#39;y_covered_min&#39;: 11.9, &#39;y_covered_max&#39;: 50.0, &#39;mae&#39;: 8.369080129356808, &#39;rmse&#39;: 10.07575737268071, &#39;mape&#39;: 0.5042875491291532, &#39;p-value&#39;: 0.00019747617416798985}
+Rule 46605476-d4c6-42cc-8893-9ac43588fe71
+{&#39;p&#39;: 75, &#39;n&#39;: 4, &#39;P&#39;: 253, &#39;N&#39;: 253, &#39;p_unique&#39;: 75, &#39;n_unique&#39;: 75, &#39;support&#39;: 79, &#39;conditions_count&#39;: 5, &#39;y_covered_avg&#39;: 22.998734177215184, &#39;y_covered_median&#39;: 22.6, &#39;y_covered_min&#39;: 11.9, &#39;y_covered_max&#39;: 50.0, &#39;mae&#39;: 6.743183068994845, &#39;rmse&#39;: 9.199817656913865, &#39;mape&#39;: 0.3749461786251191, &#39;p-value&#39;: 1.0236828474464975e-10}
+Rule c5de0cc6-0031-490b-b622-4ea4c43e4690
+{&#39;p&#39;: 84, &#39;n&#39;: 38, &#39;P&#39;: 116, &#39;N&#39;: 390, &#39;p_unique&#39;: 84, &#39;n_unique&#39;: 84, &#39;support&#39;: 122, &#39;conditions_count&#39;: 3, &#39;y_covered_avg&#39;: 31.9344262295082, &#39;y_covered_median&#39;: 30.950000000000003, &#39;y_covered_min&#39;: 16.5, &#39;y_covered_max&#39;: 50.0, &#39;mae&#39;: 11.740452277586991, &#39;rmse&#39;: 13.145722232031703, &#39;mape&#39;: 0.7291748055269496, &#39;p-value&#39;: 0.0033602885206500148}
+Rule dd0ebdad-a5c9-468a-a20a-fb89653b8706
+{&#39;p&#39;: 128, &#39;n&#39;: 41, &#39;P&#39;: 211, &#39;N&#39;: 295, &#39;p_unique&#39;: 128, &#39;n_unique&#39;: 128, &#39;support&#39;: 169, &#39;conditions_count&#39;: 5, &#39;y_covered_avg&#39;: 19.96568047337278, &#39;y_covered_median&#39;: 19.9, &#39;y_covered_min&#39;: 11.8, &#39;y_covered_max&#39;: 36.2, &#39;mae&#39;: 6.62361952428842, &#39;rmse&#39;: 9.539899962247627, &#39;mape&#39;: 0.3215163752153801, &#39;p-value&#39;: 3.3630561612817378e-43}
+Rule 44f26c78-8a18-491b-b123-5062719056d8
+{&#39;p&#39;: 49, &#39;n&#39;: 6, &#39;P&#39;: 144, &#39;N&#39;: 362, &#39;p_unique&#39;: 49, &#39;n_unique&#39;: 49, &#39;support&#39;: 55, &#39;conditions_count&#39;: 6, &#39;y_covered_avg&#39;: 16.220000000000002, &#39;y_covered_median&#39;: 16.0, &#39;y_covered_min&#39;: 7.0, &#39;y_covered_max&#39;: 30.7, &#39;mae&#39;: 8.08403162055336, &#39;rmse&#39;: 11.147693924839217, &#39;mape&#39;: 0.3367071061321477, &#39;p-value&#39;: 1.9183487774190778e-15}
+Rule 2bb7b89b-b885-4944-b1b8-1648064d4f13
+{&#39;p&#39;: 23, &#39;n&#39;: 8, &#39;P&#39;: 142, &#39;N&#39;: 364, &#39;p_unique&#39;: 23, &#39;n_unique&#39;: 23, &#39;support&#39;: 31, &#39;conditions_count&#39;: 9, &#39;y_covered_avg&#39;: 20.64516129032258, &#39;y_covered_median&#39;: 20.6, &#39;y_covered_min&#39;: 16.1, &#39;y_covered_max&#39;: 24.5, &#39;mae&#39;: 6.547303327808237, &#39;rmse&#39;: 9.3799125758053, &#39;mape&#39;: 0.3286167130929514, &#39;p-value&#39;: 5.067990050751164e-15}
+Rule 2d879e71-b475-4cc4-9a5f-f525a2f927d9
+{&#39;p&#39;: 27, &#39;n&#39;: 7, &#39;P&#39;: 109, &#39;N&#39;: 397, &#39;p_unique&#39;: 27, &#39;n_unique&#39;: 27, &#39;support&#39;: 34, &#39;conditions_count&#39;: 5, &#39;y_covered_avg&#39;: 15.358823529411763, &#39;y_covered_median&#39;: 15.05, &#39;y_covered_min&#39;: 7.0, &#39;y_covered_max&#39;: 23.7, &#39;mae&#39;: 8.5747733085329, &#39;rmse&#39;: 11.656997267512827, &#39;mape&#39;: 0.3491076881259912, &#39;p-value&#39;: 1.4991455332547193e-11}
+</pre></div></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">calculate_ruleset_stats</span></code> function returns some general statistics regarding the rules present in the rule set.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">general_stats</span> <span class="o">=</span> <span class="n">ruleset</span><span class="o">.</span><span class="n">calculate_ruleset_stats</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">general_stats</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;rules_count&#39;: 17, &#39;avg_conditions_count&#39;: 5.12, &#39;avg_precision&#39;: 0.82, &#39;avg_coverage&#39;: 0.45, &#39;total_conditions_count&#39;: 87}
+</pre></div></div>
+</div>
+<p>We can use <code class="docutils literal notranslate"><span class="pre">calculate_condition_importances</span></code> and <code class="docutils literal notranslate"><span class="pre">calculate_attribute_importances</span></code> to find the importances of conditions in the rules and consequently the importances of attributes in the data set.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">condition_importances</span> <span class="o">=</span> <span class="n">ruleset</span><span class="o">.</span><span class="n">calculate_condition_importances</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">measure</span><span class="o">=</span><span class="n">measures</span><span class="o">.</span><span class="n">c2</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">condition_importances</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[{&#39;condition&#39;: &#39;NOX &gt;= 0.66&#39;,
+  &#39;attributes&#39;: [&#39;NOX&#39;],
+  &#39;importance&#39;: 0.41219564492890814},
+ {&#39;condition&#39;: &#39;CRIM &gt;= 6.84&#39;,
+  &#39;attributes&#39;: [&#39;CRIM&#39;],
+  &#39;importance&#39;: 0.3463070344654806},
+ {&#39;condition&#39;: &#39;RM &gt;= 7.48&#39;,
+  &#39;attributes&#39;: [&#39;RM&#39;],
+  &#39;importance&#39;: 0.28703662615958525},
+ {&#39;condition&#39;: &#39;CRIM &gt;= 6.99&#39;,
+  &#39;attributes&#39;: [&#39;CRIM&#39;],
+  &#39;importance&#39;: 0.2581918553894471},
+ {&#39;condition&#39;: &#39;RM &gt;= 7.42&#39;,
+  &#39;attributes&#39;: [&#39;RM&#39;],
+  &#39;importance&#39;: 0.21428470226221466},
+ {&#39;condition&#39;: &#39;LSTAT &lt; 7.96&#39;,
+  &#39;attributes&#39;: [&#39;LSTAT&#39;],
+  &#39;importance&#39;: 0.1841743175107864},
+ {&#39;condition&#39;: &#39;RM &gt;= 7.26&#39;,
+  &#39;attributes&#39;: [&#39;RM&#39;],
+  &#39;importance&#39;: 0.17189228602638446},
+ {&#39;condition&#39;: &#39;LSTAT &lt; 9.92&#39;,
+  &#39;attributes&#39;: [&#39;LSTAT&#39;],
+  &#39;importance&#39;: 0.1597209591117324},
+ {&#39;condition&#39;: &#39;LSTAT &lt; 10.14&#39;,
+  &#39;attributes&#39;: [&#39;LSTAT&#39;],
+  &#39;importance&#39;: 0.13977988686201942},
+ {&#39;condition&#39;: &#39;LSTAT &gt;= 14.43&#39;,
+  &#39;attributes&#39;: [&#39;LSTAT&#39;],
+  &#39;importance&#39;: 0.13474623065608687},
+ {&#39;condition&#39;: &#39;CRIM &lt; 0.57&#39;,
+  &#39;attributes&#39;: [&#39;CRIM&#39;],
+  &#39;importance&#39;: 0.13236275435336914},
+ {&#39;condition&#39;: &#39;CRIM &gt;= 13.08&#39;,
+  &#39;attributes&#39;: [&#39;CRIM&#39;],
+  &#39;importance&#39;: 0.12967575688395577},
+ {&#39;condition&#39;: &#39;LSTAT &gt;= 14.40&#39;,
+  &#39;attributes&#39;: [&#39;LSTAT&#39;],
+  &#39;importance&#39;: 0.12762735615087725},
+ {&#39;condition&#39;: &#39;RM &gt;= 7.08&#39;,
+  &#39;attributes&#39;: [&#39;RM&#39;],
+  &#39;importance&#39;: 0.11911032403269536},
+ {&#39;condition&#39;: &#39;LSTAT &lt; 9.10&#39;,
+  &#39;attributes&#39;: [&#39;LSTAT&#39;],
+  &#39;importance&#39;: 0.11608645865167616},
+ {&#39;condition&#39;: &#39;CRIM &gt;= 11.34&#39;,
+  &#39;attributes&#39;: [&#39;CRIM&#39;],
+  &#39;importance&#39;: 0.10957886720572627},
+ {&#39;condition&#39;: &#39;RM &lt; 6.44&#39;,
+  &#39;attributes&#39;: [&#39;RM&#39;],
+  &#39;importance&#39;: 0.10721755983765796},
+ {&#39;condition&#39;: &#39;CRIM &gt;= 6.60&#39;,
+  &#39;attributes&#39;: [&#39;CRIM&#39;],
+  &#39;importance&#39;: 0.107037596978978},
+ {&#39;condition&#39;: &#39;LSTAT &lt; 6.25&#39;,
+  &#39;attributes&#39;: [&#39;LSTAT&#39;],
+  &#39;importance&#39;: 0.09987681138116272},
+ {&#39;condition&#39;: &#39;CRIM &lt; 0.59&#39;,
+  &#39;attributes&#39;: [&#39;CRIM&#39;],
+  &#39;importance&#39;: 0.0972942505053715},
+ {&#39;condition&#39;: &#39;NOX &gt;= 0.66&#39;,
+  &#39;attributes&#39;: [&#39;NOX&#39;],
+  &#39;importance&#39;: 0.09443159057752622},
+ {&#39;condition&#39;: &#39;RM &lt; 7.17&#39;,
+  &#39;attributes&#39;: [&#39;RM&#39;],
+  &#39;importance&#39;: 0.08864968911934279},
+ {&#39;condition&#39;: &#39;LSTAT &gt;= 9.43&#39;,
+  &#39;attributes&#39;: [&#39;LSTAT&#39;],
+  &#39;importance&#39;: 0.08830877842262368},
+ {&#39;condition&#39;: &#39;LSTAT &gt;= 20.70&#39;,
+  &#39;attributes&#39;: [&#39;LSTAT&#39;],
+  &#39;importance&#39;: 0.08364177051884032},
+ {&#39;condition&#39;: &#39;PTRATIO &lt; 17.50&#39;,
+  &#39;attributes&#39;: [&#39;PTRATIO&#39;],
+  &#39;importance&#39;: 0.0812812354219555},
+ {&#39;condition&#39;: &#39;AGE &lt; 82.95&#39;,
+  &#39;attributes&#39;: [&#39;AGE&#39;],
+  &#39;importance&#39;: 0.07470814962300586},
+ {&#39;condition&#39;: &#39;RM &gt;= 6.43&#39;,
+  &#39;attributes&#39;: [&#39;RM&#39;],
+  &#39;importance&#39;: 0.07395685376026782},
+ {&#39;condition&#39;: &#39;CRIM &lt; 7.53&#39;,
+  &#39;attributes&#39;: [&#39;CRIM&#39;],
+  &#39;importance&#39;: 0.06852878406567027},
+ {&#39;condition&#39;: &#39;LSTAT &lt; 14.14&#39;,
+  &#39;attributes&#39;: [&#39;LSTAT&#39;],
+  &#39;importance&#39;: 0.06500338170219208},
+ {&#39;condition&#39;: &#39;CRIM &lt; 7.90&#39;,
+  &#39;attributes&#39;: [&#39;CRIM&#39;],
+  &#39;importance&#39;: 0.06484694679647318},
+ {&#39;condition&#39;: &#39;RM &lt; 6.95&#39;,
+  &#39;attributes&#39;: [&#39;RM&#39;],
+  &#39;importance&#39;: 0.06142012277300351},
+ {&#39;condition&#39;: &#39;CRIM &lt; 6.99&#39;,
+  &#39;attributes&#39;: [&#39;CRIM&#39;],
+  &#39;importance&#39;: 0.06072283131891407},
+ {&#39;condition&#39;: &#39;DIS &lt; 1.89&#39;,
+  &#39;attributes&#39;: [&#39;DIS&#39;],
+  &#39;importance&#39;: 0.05913420105949188},
+ {&#39;condition&#39;: &#39;CHAS &lt; 0.50&#39;,
+  &#39;attributes&#39;: [&#39;CHAS&#39;],
+  &#39;importance&#39;: 0.05575023428251599},
+ {&#39;condition&#39;: &#39;B &lt; 368.37&#39;,
+  &#39;attributes&#39;: [&#39;B&#39;],
+  &#39;importance&#39;: 0.052711629950983545},
+ {&#39;condition&#39;: &#39;LSTAT &gt;= 10.54&#39;,
+  &#39;attributes&#39;: [&#39;LSTAT&#39;],
+  &#39;importance&#39;: 0.052079922998162276},
+ {&#39;condition&#39;: &#39;RM &lt; 6.43&#39;,
+  &#39;attributes&#39;: [&#39;RM&#39;],
+  &#39;importance&#39;: 0.048826126018804365},
+ {&#39;condition&#39;: &#39;AGE &gt;= 84.50&#39;,
+  &#39;attributes&#39;: [&#39;AGE&#39;],
+  &#39;importance&#39;: 0.04776356065683929},
+ {&#39;condition&#39;: &#39;PTRATIO &lt; 18.50&#39;,
+  &#39;attributes&#39;: [&#39;PTRATIO&#39;],
+  &#39;importance&#39;: 0.046696713324452715},
+ {&#39;condition&#39;: &#39;DIS &gt;= 1.50&#39;,
+  &#39;attributes&#39;: [&#39;DIS&#39;],
+  &#39;importance&#39;: 0.043589660805792366},
+ {&#39;condition&#39;: &#39;B &gt;= 363.17&#39;,
+  &#39;attributes&#39;: [&#39;B&#39;],
+  &#39;importance&#39;: 0.0433463463241028},
+ {&#39;condition&#39;: &#39;ZN &lt; 92.50&#39;,
+  &#39;attributes&#39;: [&#39;ZN&#39;],
+  &#39;importance&#39;: 0.04309189275034518},
+ {&#39;condition&#39;: &#39;INDUS &gt;= 7.17&#39;,
+  &#39;attributes&#39;: [&#39;INDUS&#39;],
+  &#39;importance&#39;: 0.04185396665287753},
+ {&#39;condition&#39;: &#39;CRIM &lt; 43.64&#39;,
+  &#39;attributes&#39;: [&#39;CRIM&#39;],
+  &#39;importance&#39;: 0.04018867408245981},
+ {&#39;condition&#39;: &#39;RM &lt; 7.28&#39;,
+  &#39;attributes&#39;: [&#39;RM&#39;],
+  &#39;importance&#39;: 0.03903537520801033},
+ {&#39;condition&#39;: &#39;RM &lt; 7.14&#39;,
+  &#39;attributes&#39;: [&#39;RM&#39;],
+  &#39;importance&#39;: 0.038817813173326096},
+ {&#39;condition&#39;: &#39;TAX &gt;= 222.50&#39;,
+  &#39;attributes&#39;: [&#39;TAX&#39;],
+  &#39;importance&#39;: 0.03358080804623055},
+ {&#39;condition&#39;: &#39;CRIM &lt; 7.25&#39;,
+  &#39;attributes&#39;: [&#39;CRIM&#39;],
+  &#39;importance&#39;: 0.029954141206563537},
+ {&#39;condition&#39;: &#39;B &gt;= 363.19&#39;,
+  &#39;attributes&#39;: [&#39;B&#39;],
+  &#39;importance&#39;: 0.029321745968898253},
+ {&#39;condition&#39;: &#39;RM &lt; 8.35&#39;,
+  &#39;attributes&#39;: [&#39;RM&#39;],
+  &#39;importance&#39;: 0.026316696161776582},
+ {&#39;condition&#39;: &#39;CRIM &lt; 32.15&#39;,
+  &#39;attributes&#39;: [&#39;CRIM&#39;],
+  &#39;importance&#39;: 0.02330906239533667},
+ {&#39;condition&#39;: &#39;RM &lt; 8.32&#39;,
+  &#39;attributes&#39;: [&#39;RM&#39;],
+  &#39;importance&#39;: 0.018934742866803526},
+ {&#39;condition&#39;: &#39;RM &gt;= 5.41&#39;,
+  &#39;attributes&#39;: [&#39;RM&#39;],
+  &#39;importance&#39;: 0.018498186505621655},
+ {&#39;condition&#39;: &#39;CRIM &gt;= 0.02&#39;,
+  &#39;attributes&#39;: [&#39;CRIM&#39;],
+  &#39;importance&#39;: 0.017740808626785134},
+ {&#39;condition&#39;: &#39;B &gt;= 86.04&#39;,
+  &#39;attributes&#39;: [&#39;B&#39;],
+  &#39;importance&#39;: 0.01698260625974729},
+ {&#39;condition&#39;: &#39;TAX &gt;= 223.50&#39;,
+  &#39;attributes&#39;: [&#39;TAX&#39;],
+  &#39;importance&#39;: 0.015646623545917445},
+ {&#39;condition&#39;: &#39;DIS &gt;= 1.37&#39;,
+  &#39;attributes&#39;: [&#39;DIS&#39;],
+  &#39;importance&#39;: 0.014608935287077046},
+ {&#39;condition&#39;: &#39;NOX &lt; 0.72&#39;,
+  &#39;attributes&#39;: [&#39;NOX&#39;],
+  &#39;importance&#39;: 0.014313462697020378},
+ {&#39;condition&#39;: &#39;CRIM &gt;= 0.04&#39;,
+  &#39;attributes&#39;: [&#39;CRIM&#39;],
+  &#39;importance&#39;: 0.01426262284060611},
+ {&#39;condition&#39;: &#39;LSTAT &gt;= 3.15&#39;,
+  &#39;attributes&#39;: [&#39;LSTAT&#39;],
+  &#39;importance&#39;: 0.013348883895085673},
+ {&#39;condition&#39;: &#39;CRIM &gt;= 0.01&#39;,
+  &#39;attributes&#39;: [&#39;CRIM&#39;],
+  &#39;importance&#39;: 0.01306363096456618},
+ {&#39;condition&#39;: &#39;AGE &gt;= 28.25&#39;,
+  &#39;attributes&#39;: [&#39;AGE&#39;],
+  &#39;importance&#39;: 0.011369879785042732},
+ {&#39;condition&#39;: &#39;RM &gt;= 5.38&#39;,
+  &#39;attributes&#39;: [&#39;RM&#39;],
+  &#39;importance&#39;: 0.011358876636887215},
+ {&#39;condition&#39;: &#39;DIS &gt;= 1.18&#39;,
+  &#39;attributes&#39;: [&#39;DIS&#39;],
+  &#39;importance&#39;: 0.0110300559444215},
+ {&#39;condition&#39;: &#39;CRIM &lt; 30.18&#39;,
+  &#39;attributes&#39;: [&#39;CRIM&#39;],
+  &#39;importance&#39;: 0.010494744135007401},
+ {&#39;condition&#39;: &#39;AGE &gt;= 16.35&#39;,
+  &#39;attributes&#39;: [&#39;AGE&#39;],
+  &#39;importance&#39;: 0.009804987963755939},
+ {&#39;condition&#39;: &#39;CRIM &gt;= 0.13&#39;,
+  &#39;attributes&#39;: [&#39;CRIM&#39;],
+  &#39;importance&#39;: 0.00925020629003368},
+ {&#39;condition&#39;: &#39;DIS &lt; 2.76&#39;,
+  &#39;attributes&#39;: [&#39;DIS&#39;],
+  &#39;importance&#39;: 0.009243016697363543},
+ {&#39;condition&#39;: &#39;B &lt; 396.55&#39;,
+  &#39;attributes&#39;: [&#39;B&#39;],
+  &#39;importance&#39;: 0.008241849524085656},
+ {&#39;condition&#39;: &#39;AGE &gt;= 28.00&#39;,
+  &#39;attributes&#39;: [&#39;AGE&#39;],
+  &#39;importance&#39;: 0.007296220587578672},
+ {&#39;condition&#39;: &#39;RM &gt;= 4.33&#39;,
+  &#39;attributes&#39;: [&#39;RM&#39;],
+  &#39;importance&#39;: 0.005964485712736271},
+ {&#39;condition&#39;: &#39;INDUS &gt;= 1.34&#39;,
+  &#39;attributes&#39;: [&#39;INDUS&#39;],
+  &#39;importance&#39;: 0.0035914514368505924},
+ {&#39;condition&#39;: &#39;LSTAT &lt; 33.01&#39;,
+  &#39;attributes&#39;: [&#39;LSTAT&#39;],
+  &#39;importance&#39;: 0.003345159046207844},
+ {&#39;condition&#39;: &#39;DIS &lt; 9.06&#39;,
+  &#39;attributes&#39;: [&#39;DIS&#39;],
+  &#39;importance&#39;: 0.003239267344266099},
+ {&#39;condition&#39;: &#39;B &gt;= 6.50&#39;,
+  &#39;attributes&#39;: [&#39;B&#39;],
+  &#39;importance&#39;: 0.003128072049983466},
+ {&#39;condition&#39;: &#39;NOX &gt;= 0.40&#39;,
+  &#39;attributes&#39;: [&#39;NOX&#39;],
+  &#39;importance&#39;: 0.0006305615911450331},
+ {&#39;condition&#39;: &#39;INDUS &lt; 20.73&#39;,
+  &#39;attributes&#39;: [&#39;INDUS&#39;],
+  &#39;importance&#39;: 0.00029380923899731247},
+ {&#39;condition&#39;: &#39;AGE &gt;= 24.45&#39;,
+  &#39;attributes&#39;: [&#39;AGE&#39;],
+  &#39;importance&#39;: -0.0004797895116285027},
+ {&#39;condition&#39;: &#39;INDUS &lt; 18.84&#39;,
+  &#39;attributes&#39;: [&#39;INDUS&#39;],
+  &#39;importance&#39;: -0.0008170150896906769},
+ {&#39;condition&#39;: &#39;DIS &lt; 3.97&#39;,
+  &#39;attributes&#39;: [&#39;DIS&#39;],
+  &#39;importance&#39;: -0.0059103572995956415}]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">attribute_importances</span> <span class="o">=</span> <span class="n">ruleset</span><span class="o">.</span><span class="n">calculate_attribute_importances</span><span class="p">(</span><span class="n">condition_importances</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">attribute_importances</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;CRIM&#39;: 1.5328105685047448,
+ &#39;RM&#39;: 1.3313204662551184,
+ &#39;LSTAT&#39;: 1.2677399169074535,
+ &#39;NOX&#39;: 0.5215712597945998,
+ &#39;B&#39;: 0.15373225007780103,
+ &#39;AGE&#39;: 0.150463009104594,
+ &#39;DIS&#39;: 0.13493477983881683,
+ &#39;PTRATIO&#39;: 0.12797794874640822,
+ &#39;CHAS&#39;: 0.05575023428251599,
+ &#39;TAX&#39;: 0.049227431592148,
+ &#39;INDUS&#39;: 0.04492221223903476,
+ &#39;ZN&#39;: 0.04309189275034518}
+</pre></div></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="manual_rules_classification.html" class="btn btn-neutral float-left" title="Create and evaluate handcrafted classification rules in decision-rules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="generating_with_rulekit.html" class="btn btn-neutral float-right" title="Generating rules with RuleKit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Cezary Maszczyk, Dawid Macha, Adam Grzelak.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

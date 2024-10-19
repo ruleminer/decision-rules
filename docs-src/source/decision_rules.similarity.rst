@@ -1,10 +1,7 @@
-decision\_rules.similarity package
+decision\_rules.similarity
 ==================================
 
-Submodules
-----------
-
-decision\_rules.similarity.calculate module
+decision\_rules.similarity.calculate
 -------------------------------------------
 
 .. automodule:: decision_rules.similarity.calculate
@@ -12,7 +9,7 @@ decision\_rules.similarity.calculate module
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.similarity.common module
+decision\_rules.similarity.common
 ----------------------------------------
 
 .. automodule:: decision_rules.similarity.common
@@ -20,7 +17,7 @@ decision\_rules.similarity.common module
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.similarity.ruleset module
+decision\_rules.similarity.ruleset
 -----------------------------------------
 
 .. automodule:: decision_rules.similarity.ruleset
@@ -28,7 +25,7 @@ decision\_rules.similarity.ruleset module
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.similarity.semantic module
+decision\_rules.similarity.semantic
 ------------------------------------------
 
 .. automodule:: decision_rules.similarity.semantic
@@ -36,18 +33,10 @@ decision\_rules.similarity.semantic module
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.similarity.syntactic module
+decision\_rules.similarity.syntactic
 -------------------------------------------
 
 .. automodule:: decision_rules.similarity.syntactic
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: decision_rules.similarity
    :members:
    :undoc-members:
    :show-inheritance:

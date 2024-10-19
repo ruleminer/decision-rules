@@ -1,0 +1,997 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generating rules with RuleKit &mdash; decision_rules 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=7ab3649f" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Documentation of decision_rules" href="../decision_rules.html" />
+    <link rel="prev" title="Evaluate classification rules in decision-rules" href="rules_regression.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            decision_rules
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="manual_rules_classification.html">Define rules manually</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rules_regression.html">Evaluate regression rules</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Generate rules with RuleKit</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../decision_rules.html">API Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">decision_rules</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../tutorials.html">Tutorials</a></li>
+      <li class="breadcrumb-item active">Generating rules with RuleKit</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorials/generating_with_rulekit.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Generating-rules-with-RuleKit">
+<h1>Generating rules with RuleKit<a class="headerlink" href="#Generating-rules-with-RuleKit" title="Link to this heading"></a></h1>
+<p>Currently decision-rules does not generate rules. You can, however, generate rules using RuleKit and convert the model into decision-rules rule set.</p>
+<p>We will start by importing the RuleKit package.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">rulekit</span> <span class="kn">import</span> <span class="n">RuleKit</span>
+<span class="kn">from</span> <span class="nn">rulekit.classification</span> <span class="kn">import</span> <span class="n">RuleClassifier</span>
+<span class="kn">from</span> <span class="nn">rulekit.params</span> <span class="kn">import</span> <span class="n">Measures</span>
+
+<span class="n">RuleKit</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>We will use the following zoo dataset:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;resources/zoo.csv&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>hair</th>
+      <th>feathers</th>
+      <th>eggs</th>
+      <th>milk</th>
+      <th>airborne</th>
+      <th>aquatic</th>
+      <th>predator</th>
+      <th>toothed</th>
+      <th>backbone</th>
+      <th>breathes</th>
+      <th>venomous</th>
+      <th>fins</th>
+      <th>legs</th>
+      <th>tail</th>
+      <th>domestic</th>
+      <th>catsize</th>
+      <th>class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>4.0</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>mammal</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>4.0</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>mammal</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>0.0</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>fish</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>4.0</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>mammal</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>4.0</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>mammal</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>2.0</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>mammal</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>6.0</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>insect</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>4.0</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>mammal</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>invertebrate</td>
+    </tr>
+    <tr>
+      <th>100</th>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>2.0</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>bird</td>
+    </tr>
+  </tbody>
+</table>
+<p>101 rows × 17 columns</p>
+</div></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">class</span></code> column will be our target <code class="docutils literal notranslate"><span class="pre">y</span></code> and the other columns will be predictors <code class="docutils literal notranslate"><span class="pre">X</span></code>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>Now we will generate the rules using RuleKit. We just need to create a <code class="docutils literal notranslate"><span class="pre">RuleClassifier</span></code> object and train it using the <code class="docutils literal notranslate"><span class="pre">fit</span></code> function.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rulekit_model</span> <span class="o">=</span> <span class="n">RuleClassifier</span><span class="p">()</span>
+<span class="n">rulekit_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;rulekit.classification.RuleClassifier at 0x7f5dcda44490&gt;
+</pre></div></div>
+</div>
+<p>Let’s see the generated rules.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">rulekit_model</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">rules</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+IF aquatic = &lt;0.50, inf) AND legs = &lt;3, inf) AND toothed = &lt;0.50, inf) AND hair = (-inf, 0.50) THEN class = {amphibian}
+IF feathers = &lt;0.50, inf) THEN class = {bird}
+IF fins = &lt;0.50, inf) AND eggs = &lt;0.50, inf) THEN class = {fish}
+IF legs = &lt;5.50, inf) AND aquatic = (-inf, 0.50) AND eggs = &lt;0.50, inf) THEN class = {insect}
+IF backbone = (-inf, 0.50) AND airborne = (-inf, 0.50) THEN class = {invertebrate}
+IF milk = &lt;0.50, inf) THEN class = {mammal}
+IF toothed = &lt;0.50, inf) AND fins = (-inf, 0.50) AND legs = (-inf, 2) THEN class = {reptile}
+IF hair = (-inf, 0.50) AND toothed = &lt;0.50, inf) AND aquatic = (-inf, 0.50) THEN class = {reptile}
+IF hair = (-inf, 0.50) AND feathers = (-inf, 0.50) AND aquatic = (-inf, 0.50) AND backbone = &lt;0.50, inf) THEN class = {reptile}
+</pre></div></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">RuleKitRuleSetFactory</span></code> from <code class="docutils literal notranslate"><span class="pre">ruleset_factories</span></code> converts the RuleKit model to decision-rules rule set.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ruleset_factories._factories.classification</span> <span class="kn">import</span> <span class="n">RuleKitRuleSetFactory</span>
+<span class="n">factory</span> <span class="o">=</span> <span class="n">RuleKitRuleSetFactory</span><span class="p">()</span>
+<span class="n">decision_rules_ruleset</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="n">rulekit_model</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s check if the rules in <code class="docutils literal notranslate"><span class="pre">decision_rules_ruleset</span></code> are the same as in <code class="docutils literal notranslate"><span class="pre">rulekit_model</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">decision_rules_ruleset</span><span class="o">.</span><span class="n">rules</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+IF aquatic &gt;= 0.50 AND legs &gt;= 3.00 AND toothed &gt;= 0.50 AND hair &lt; 0.50 THEN class = amphibian (p=4, n=0, P=4, N=97)
+IF feathers &gt;= 0.50 THEN class = bird (p=20, n=0, P=20, N=81)
+IF fins &gt;= 0.50 AND eggs &gt;= 0.50 THEN class = fish (p=13, n=0, P=13, N=88)
+IF legs &gt;= 5.50 AND aquatic &lt; 0.50 AND eggs &gt;= 0.50 THEN class = insect (p=8, n=0, P=8, N=93)
+IF backbone &lt; 0.50 AND airborne &lt; 0.50 THEN class = invertebrate (p=10, n=2, P=10, N=91)
+IF milk &gt;= 0.50 THEN class = mammal (p=41, n=0, P=41, N=60)
+IF toothed &gt;= 0.50 AND fins &lt; 0.50 AND legs &lt; 2.00 THEN class = reptile (p=3, n=0, P=5, N=96)
+IF hair &lt; 0.50 AND toothed &gt;= 0.50 AND aquatic &lt; 0.50 THEN class = reptile (p=3, n=0, P=5, N=96)
+IF hair &lt; 0.50 AND feathers &lt; 0.50 AND aquatic &lt; 0.50 AND backbone &gt;= 0.50 THEN class = reptile (p=4, n=0, P=5, N=96)
+</pre></div></div>
+</div>
+<p>We can now predict values using <code class="docutils literal notranslate"><span class="pre">decision_rules_ruleset</span></code> and calculate various statistics describing the rules.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">decision_rules_ruleset</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([&#39;mammal&#39;, &#39;mammal&#39;, &#39;fish&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;mammal&#39;,
+       &#39;fish&#39;, &#39;fish&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;bird&#39;, &#39;fish&#39;, &#39;invertebrate&#39;,
+       &#39;invertebrate&#39;, &#39;invertebrate&#39;, &#39;bird&#39;, &#39;mammal&#39;, &#39;fish&#39;, &#39;mammal&#39;,
+       &#39;bird&#39;, &#39;bird&#39;, &#39;mammal&#39;, &#39;bird&#39;, &#39;insect&#39;, &#39;amphibian&#39;,
+       &#39;amphibian&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;insect&#39;, &#39;mammal&#39;,
+       &#39;mammal&#39;, &#39;bird&#39;, &#39;fish&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;bird&#39;, &#39;fish&#39;,
+       &#39;insect&#39;, &#39;insect&#39;, &#39;bird&#39;, &#39;insect&#39;, &#39;bird&#39;, &#39;mammal&#39;, &#39;mammal&#39;,
+       &#39;invertebrate&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;insect&#39;,
+       &#39;amphibian&#39;, &#39;invertebrate&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;bird&#39;, &#39;bird&#39;,
+       &#39;bird&#39;, &#39;bird&#39;, &#39;fish&#39;, &#39;fish&#39;, &#39;reptile&#39;, &#39;mammal&#39;, &#39;mammal&#39;,
+       &#39;mammal&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;bird&#39;,
+       &#39;invertebrate&#39;, &#39;fish&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;reptile&#39;,
+       &#39;invertebrate&#39;, &#39;bird&#39;, &#39;bird&#39;, &#39;reptile&#39;, &#39;invertebrate&#39;, &#39;fish&#39;,
+       &#39;bird&#39;, &#39;mammal&#39;, &#39;invertebrate&#39;, &#39;fish&#39;, &#39;bird&#39;, &#39;insect&#39;,
+       &#39;amphibian&#39;, &#39;reptile&#39;, &#39;reptile&#39;, &#39;fish&#39;, &#39;mammal&#39;, &#39;mammal&#39;,
+       &#39;bird&#39;, &#39;mammal&#39;, &#39;insect&#39;, &#39;mammal&#39;, &#39;invertebrate&#39;, &#39;bird&#39;],
+      dtype=&#39;&lt;U12&#39;)
+</pre></div></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">calculate_for_classification</span></code> function computes the usual classification metrics, such as accuracy or F1.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">decision_rules.classification.prediction_indicators</span> <span class="kn">import</span> <span class="n">calculate_for_classification</span>
+<span class="n">metrics</span> <span class="o">=</span> <span class="n">calculate_for_classification</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;type_of_problem&#39;: &#39;classification&#39;,
+ &#39;general&#39;: {&#39;Balanced_accuracy&#39;: 1.0,
+  &#39;Accuracy&#39;: 1.0,
+  &#39;Cohen_kappa&#39;: 1.0,
+  &#39;F1_micro&#39;: 1.0,
+  &#39;F1_macro&#39;: 1.0,
+  &#39;F1_weighted&#39;: 1.0,
+  &#39;G_mean_micro&#39;: 1.0,
+  &#39;G_mean_macro&#39;: 1.0,
+  &#39;G_mean_weighted&#39;: 1.0,
+  &#39;Recall_micro&#39;: 1.0,
+  &#39;Recall_macro&#39;: 1.0,
+  &#39;Recall_weighted&#39;: 1.0,
+  &#39;Specificity&#39;: 1.0,
+  &#39;Confusion_matrix&#39;: {&#39;classes&#39;: [&#39;amphibian&#39;,
+    &#39;bird&#39;,
+    &#39;fish&#39;,
+    &#39;insect&#39;,
+    &#39;invertebrate&#39;,
+    &#39;mammal&#39;,
+    &#39;reptile&#39;],
+   &#39;amphibian&#39;: [4, 0, 0, 0, 0, 0, 0],
+   &#39;bird&#39;: [0, 20, 0, 0, 0, 0, 0],
+   &#39;fish&#39;: [0, 0, 13, 0, 0, 0, 0],
+   &#39;insect&#39;: [0, 0, 0, 8, 0, 0, 0],
+   &#39;invertebrate&#39;: [0, 0, 0, 0, 10, 0, 0],
+   &#39;mammal&#39;: [0, 0, 0, 0, 0, 41, 0],
+   &#39;reptile&#39;: [0, 0, 0, 0, 0, 0, 5]}},
+ &#39;for_classes&#39;: {&#39;amphibian&#39;: {&#39;TP&#39;: 4,
+   &#39;FP&#39;: 0,
+   &#39;TN&#39;: 97,
+   &#39;FN&#39;: 0,
+   &#39;Recall&#39;: 1.0,
+   &#39;Specificity&#39;: 1.0,
+   &#39;F1_score&#39;: 1.0,
+   &#39;G_mean&#39;: 1.0,
+   &#39;MCC&#39;: 1.0,
+   &#39;PPV&#39;: 1.0,
+   &#39;NPV&#39;: 1.0,
+   &#39;LR_plus&#39;: 0,
+   &#39;LR_minus&#39;: 0.0,
+   &#39;Odd_ratio&#39;: 0,
+   &#39;Relative_risk&#39;: 0,
+   &#39;Confusion_matrix&#39;: {&#39;classes&#39;: [&#39;amphibian&#39;, &#39;other&#39;],
+    &#39;amphibian&#39;: [4, 0],
+    &#39;other&#39;: [0, 97]}},
+  &#39;bird&#39;: {&#39;TP&#39;: 20,
+   &#39;FP&#39;: 0,
+   &#39;TN&#39;: 81,
+   &#39;FN&#39;: 0,
+   &#39;Recall&#39;: 1.0,
+   &#39;Specificity&#39;: 1.0,
+   &#39;F1_score&#39;: 1.0,
+   &#39;G_mean&#39;: 1.0,
+   &#39;MCC&#39;: 1.0,
+   &#39;PPV&#39;: 1.0,
+   &#39;NPV&#39;: 1.0,
+   &#39;LR_plus&#39;: 0,
+   &#39;LR_minus&#39;: 0.0,
+   &#39;Odd_ratio&#39;: 0,
+   &#39;Relative_risk&#39;: 0,
+   &#39;Confusion_matrix&#39;: {&#39;classes&#39;: [&#39;bird&#39;, &#39;other&#39;],
+    &#39;bird&#39;: [20, 0],
+    &#39;other&#39;: [0, 81]}},
+  &#39;fish&#39;: {&#39;TP&#39;: 13,
+   &#39;FP&#39;: 0,
+   &#39;TN&#39;: 88,
+   &#39;FN&#39;: 0,
+   &#39;Recall&#39;: 1.0,
+   &#39;Specificity&#39;: 1.0,
+   &#39;F1_score&#39;: 1.0,
+   &#39;G_mean&#39;: 1.0,
+   &#39;MCC&#39;: 1.0,
+   &#39;PPV&#39;: 1.0,
+   &#39;NPV&#39;: 1.0,
+   &#39;LR_plus&#39;: 0,
+   &#39;LR_minus&#39;: 0.0,
+   &#39;Odd_ratio&#39;: 0,
+   &#39;Relative_risk&#39;: 0,
+   &#39;Confusion_matrix&#39;: {&#39;classes&#39;: [&#39;fish&#39;, &#39;other&#39;],
+    &#39;fish&#39;: [13, 0],
+    &#39;other&#39;: [0, 88]}},
+  &#39;insect&#39;: {&#39;TP&#39;: 8,
+   &#39;FP&#39;: 0,
+   &#39;TN&#39;: 93,
+   &#39;FN&#39;: 0,
+   &#39;Recall&#39;: 1.0,
+   &#39;Specificity&#39;: 1.0,
+   &#39;F1_score&#39;: 1.0,
+   &#39;G_mean&#39;: 1.0,
+   &#39;MCC&#39;: 1.0,
+   &#39;PPV&#39;: 1.0,
+   &#39;NPV&#39;: 1.0,
+   &#39;LR_plus&#39;: 0,
+   &#39;LR_minus&#39;: 0.0,
+   &#39;Odd_ratio&#39;: 0,
+   &#39;Relative_risk&#39;: 0,
+   &#39;Confusion_matrix&#39;: {&#39;classes&#39;: [&#39;insect&#39;, &#39;other&#39;],
+    &#39;insect&#39;: [8, 0],
+    &#39;other&#39;: [0, 93]}},
+  &#39;invertebrate&#39;: {&#39;TP&#39;: 10,
+   &#39;FP&#39;: 0,
+   &#39;TN&#39;: 91,
+   &#39;FN&#39;: 0,
+   &#39;Recall&#39;: 1.0,
+   &#39;Specificity&#39;: 1.0,
+   &#39;F1_score&#39;: 1.0,
+   &#39;G_mean&#39;: 1.0,
+   &#39;MCC&#39;: 1.0,
+   &#39;PPV&#39;: 1.0,
+   &#39;NPV&#39;: 1.0,
+   &#39;LR_plus&#39;: 0,
+   &#39;LR_minus&#39;: 0.0,
+   &#39;Odd_ratio&#39;: 0,
+   &#39;Relative_risk&#39;: 0,
+   &#39;Confusion_matrix&#39;: {&#39;classes&#39;: [&#39;invertebrate&#39;, &#39;other&#39;],
+    &#39;invertebrate&#39;: [10, 0],
+    &#39;other&#39;: [0, 91]}},
+  &#39;mammal&#39;: {&#39;TP&#39;: 41,
+   &#39;FP&#39;: 0,
+   &#39;TN&#39;: 60,
+   &#39;FN&#39;: 0,
+   &#39;Recall&#39;: 1.0,
+   &#39;Specificity&#39;: 1.0,
+   &#39;F1_score&#39;: 1.0,
+   &#39;G_mean&#39;: 1.0,
+   &#39;MCC&#39;: 1.0,
+   &#39;PPV&#39;: 1.0,
+   &#39;NPV&#39;: 1.0,
+   &#39;LR_plus&#39;: 0,
+   &#39;LR_minus&#39;: 0.0,
+   &#39;Odd_ratio&#39;: 0,
+   &#39;Relative_risk&#39;: 0,
+   &#39;Confusion_matrix&#39;: {&#39;classes&#39;: [&#39;mammal&#39;, &#39;other&#39;],
+    &#39;mammal&#39;: [41, 0],
+    &#39;other&#39;: [0, 60]}},
+  &#39;reptile&#39;: {&#39;TP&#39;: 5,
+   &#39;FP&#39;: 0,
+   &#39;TN&#39;: 96,
+   &#39;FN&#39;: 0,
+   &#39;Recall&#39;: 1.0,
+   &#39;Specificity&#39;: 1.0,
+   &#39;F1_score&#39;: 1.0,
+   &#39;G_mean&#39;: 1.0,
+   &#39;MCC&#39;: 1.0,
+   &#39;PPV&#39;: 1.0,
+   &#39;NPV&#39;: 1.0,
+   &#39;LR_plus&#39;: 0,
+   &#39;LR_minus&#39;: 0.0,
+   &#39;Odd_ratio&#39;: 0,
+   &#39;Relative_risk&#39;: 0,
+   &#39;Confusion_matrix&#39;: {&#39;classes&#39;: [&#39;reptile&#39;, &#39;other&#39;],
+    &#39;reptile&#39;: [5, 0],
+    &#39;other&#39;: [0, 96]}}}}
+</pre></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">calculate_ruleset_stats</span></code> shows some general information about the rule set.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">general_stats</span> <span class="o">=</span> <span class="n">decision_rules_ruleset</span><span class="o">.</span><span class="n">calculate_ruleset_stats</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">general_stats</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;rules_count&#39;: 9, &#39;avg_conditions_count&#39;: 2.56, &#39;avg_precision&#39;: 0.98, &#39;avg_coverage&#39;: 0.89, &#39;total_conditions_count&#39;: 23}
+</pre></div></div>
+</div>
+<p>You can compute metrics describing each rule using <code class="docutils literal notranslate"><span class="pre">calculate_rules_metrics</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metrics</span> <span class="o">=</span> <span class="n">decision_rules_ruleset</span><span class="o">.</span><span class="n">calculate_rules_metrics</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">rule_id</span><span class="p">,</span> <span class="n">metrics</span> <span class="ow">in</span> <span class="n">metrics</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Rule&#39;</span><span class="p">,</span> <span class="n">rule_id</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Rule 3357850a-4701-41ee-92f5-17d524564033
+{&#39;p&#39;: 4, &#39;n&#39;: 0, &#39;P&#39;: 4, &#39;N&#39;: 97, &#39;p_unique&#39;: 4, &#39;n_unique&#39;: 4, &#39;support&#39;: 4, &#39;conditions_count&#39;: 4, &#39;precision&#39;: 1.0, &#39;coverage&#39;: 1.0, &#39;C2&#39;: 1.0, &#39;RSS&#39;: 1.0, &#39;correlation&#39;: 1.0, &#39;lift&#39;: 25.25, &#39;p_value&#39;: 2.4492245142881635e-07, &#39;TP&#39;: 4, &#39;FP&#39;: 0, &#39;TN&#39;: 97, &#39;FN&#39;: 0, &#39;sensitivity&#39;: 1.0, &#39;specificity&#39;: 1.0, &#39;negative_predictive_value&#39;: 1.0, &#39;odds_ratio&#39;: inf, &#39;relative_risk&#39;: inf, &#39;lr+&#39;: inf, &#39;lr-&#39;: 0.0}
+Rule 0d28724c-56c4-47bb-847e-96fc60e191d9
+{&#39;p&#39;: 20, &#39;n&#39;: 0, &#39;P&#39;: 20, &#39;N&#39;: 81, &#39;p_unique&#39;: 20, &#39;n_unique&#39;: 20, &#39;support&#39;: 20, &#39;conditions_count&#39;: 1, &#39;precision&#39;: 1.0, &#39;coverage&#39;: 1.0, &#39;C2&#39;: 1.0, &#39;RSS&#39;: 1.0, &#39;correlation&#39;: 1.0, &#39;lift&#39;: 5.05, &#39;p_value&#39;: 1.4962781353003363e-21, &#39;TP&#39;: 20, &#39;FP&#39;: 0, &#39;TN&#39;: 81, &#39;FN&#39;: 0, &#39;sensitivity&#39;: 1.0, &#39;specificity&#39;: 1.0, &#39;negative_predictive_value&#39;: 1.0, &#39;odds_ratio&#39;: inf, &#39;relative_risk&#39;: inf, &#39;lr+&#39;: inf, &#39;lr-&#39;: 0.0}
+Rule 9804e9ab-07d5-4954-8a32-22cb0033196a
+{&#39;p&#39;: 13, &#39;n&#39;: 0, &#39;P&#39;: 13, &#39;N&#39;: 88, &#39;p_unique&#39;: 13, &#39;n_unique&#39;: 13, &#39;support&#39;: 13, &#39;conditions_count&#39;: 2, &#39;precision&#39;: 1.0, &#39;coverage&#39;: 1.0, &#39;C2&#39;: 1.0, &#39;RSS&#39;: 1.0, &#39;correlation&#39;: 1.0, &#39;lift&#39;: 7.769230769230769, &#39;p_value&#39;: 1.225345504562382e-16, &#39;TP&#39;: 13, &#39;FP&#39;: 0, &#39;TN&#39;: 88, &#39;FN&#39;: 0, &#39;sensitivity&#39;: 1.0, &#39;specificity&#39;: 1.0, &#39;negative_predictive_value&#39;: 1.0, &#39;odds_ratio&#39;: inf, &#39;relative_risk&#39;: inf, &#39;lr+&#39;: inf, &#39;lr-&#39;: 0.0}
+Rule d7aa0f70-1492-4114-99f7-2a26a000c366
+{&#39;p&#39;: 8, &#39;n&#39;: 0, &#39;P&#39;: 8, &#39;N&#39;: 93, &#39;p_unique&#39;: 8, &#39;n_unique&#39;: 8, &#39;support&#39;: 8, &#39;conditions_count&#39;: 3, &#39;precision&#39;: 1.0, &#39;coverage&#39;: 1.0, &#39;C2&#39;: 1.0, &#39;RSS&#39;: 1.0, &#39;correlation&#39;: 1.0, &#39;lift&#39;: 12.625, &#39;p_value&#39;: 4.948156798010051e-12, &#39;TP&#39;: 8, &#39;FP&#39;: 0, &#39;TN&#39;: 93, &#39;FN&#39;: 0, &#39;sensitivity&#39;: 1.0, &#39;specificity&#39;: 1.0, &#39;negative_predictive_value&#39;: 1.0, &#39;odds_ratio&#39;: inf, &#39;relative_risk&#39;: inf, &#39;lr+&#39;: inf, &#39;lr-&#39;: 0.0}
+Rule 787b7170-b084-4830-a995-dd39cfe2ca15
+{&#39;p&#39;: 10, &#39;n&#39;: 2, &#39;P&#39;: 10, &#39;N&#39;: 91, &#39;p_unique&#39;: 10, &#39;n_unique&#39;: 10, &#39;support&#39;: 12, &#39;conditions_count&#39;: 2, &#39;precision&#39;: 0.8333333333333334, &#39;coverage&#39;: 1.0, &#39;C2&#39;: 0.8150183150183151, &#39;RSS&#39;: 0.978021978021978, &#39;correlation&#39;: 0.9027836479568707, &#39;lift&#39;: 8.416666666666666, &#39;p_value&#39;: 3.4352561220406376e-12, &#39;TP&#39;: 10, &#39;FP&#39;: 2, &#39;TN&#39;: 89, &#39;FN&#39;: 0, &#39;sensitivity&#39;: 1.0, &#39;specificity&#39;: 0.978021978021978, &#39;negative_predictive_value&#39;: 1.0, &#39;odds_ratio&#39;: inf, &#39;relative_risk&#39;: inf, &#39;lr+&#39;: 45.49999999999993, &#39;lr-&#39;: 0.0}
+Rule 67f18dcb-1a70-43ad-9e16-713daedc5eca
+{&#39;p&#39;: 41, &#39;n&#39;: 0, &#39;P&#39;: 41, &#39;N&#39;: 60, &#39;p_unique&#39;: 41, &#39;n_unique&#39;: 41, &#39;support&#39;: 41, &#39;conditions_count&#39;: 1, &#39;precision&#39;: 1.0, &#39;coverage&#39;: 1.0, &#39;C2&#39;: 1.0, &#39;RSS&#39;: 1.0, &#39;correlation&#39;: 1.0, &#39;lift&#39;: 2.4634146341463414, &#39;p_value&#39;: 2.95310402655518e-29, &#39;TP&#39;: 41, &#39;FP&#39;: 0, &#39;TN&#39;: 60, &#39;FN&#39;: 0, &#39;sensitivity&#39;: 1.0, &#39;specificity&#39;: 1.0, &#39;negative_predictive_value&#39;: 1.0, &#39;odds_ratio&#39;: inf, &#39;relative_risk&#39;: inf, &#39;lr+&#39;: inf, &#39;lr-&#39;: 0.0}
+Rule d122f503-9a1c-40b4-a879-a8452235ef9f
+{&#39;p&#39;: 3, &#39;n&#39;: 0, &#39;P&#39;: 5, &#39;N&#39;: 96, &#39;p_unique&#39;: 3, &#39;n_unique&#39;: 3, &#39;support&#39;: 3, &#39;conditions_count&#39;: 3, &#39;precision&#39;: 1.0, &#39;coverage&#39;: 0.6, &#39;C2&#39;: 0.8, &#39;RSS&#39;: 0.6, &#39;correlation&#39;: 0.766651877999928, &#39;lift&#39;: 20.2, &#39;p_value&#39;: 6.000600060006002e-05, &#39;TP&#39;: 3, &#39;FP&#39;: 0, &#39;TN&#39;: 96, &#39;FN&#39;: 2, &#39;sensitivity&#39;: 0.6, &#39;specificity&#39;: 1.0, &#39;negative_predictive_value&#39;: 0.9795918367346939, &#39;odds_ratio&#39;: inf, &#39;relative_risk&#39;: 49.0, &#39;lr+&#39;: inf, &#39;lr-&#39;: 0.4}
+Rule cce9a48a-ffd9-4636-9330-c9c991d0a15d
+{&#39;p&#39;: 3, &#39;n&#39;: 0, &#39;P&#39;: 5, &#39;N&#39;: 96, &#39;p_unique&#39;: 3, &#39;n_unique&#39;: 3, &#39;support&#39;: 3, &#39;conditions_count&#39;: 3, &#39;precision&#39;: 1.0, &#39;coverage&#39;: 0.6, &#39;C2&#39;: 0.8, &#39;RSS&#39;: 0.6, &#39;correlation&#39;: 0.766651877999928, &#39;lift&#39;: 20.2, &#39;p_value&#39;: 6.000600060006002e-05, &#39;TP&#39;: 3, &#39;FP&#39;: 0, &#39;TN&#39;: 96, &#39;FN&#39;: 2, &#39;sensitivity&#39;: 0.6, &#39;specificity&#39;: 1.0, &#39;negative_predictive_value&#39;: 0.9795918367346939, &#39;odds_ratio&#39;: inf, &#39;relative_risk&#39;: 49.0, &#39;lr+&#39;: inf, &#39;lr-&#39;: 0.4}
+Rule 0485665e-f92e-42f5-86e5-d05625076cd8
+{&#39;p&#39;: 4, &#39;n&#39;: 0, &#39;P&#39;: 5, &#39;N&#39;: 96, &#39;p_unique&#39;: 4, &#39;n_unique&#39;: 4, &#39;support&#39;: 4, &#39;conditions_count&#39;: 4, &#39;precision&#39;: 1.0, &#39;coverage&#39;: 0.8, &#39;C2&#39;: 0.9, &#39;RSS&#39;: 0.8, &#39;correlation&#39;: 0.8898047973120777, &#39;lift&#39;: 20.2, &#39;p_value&#39;: 1.2246122571440818e-06, &#39;TP&#39;: 4, &#39;FP&#39;: 0, &#39;TN&#39;: 96, &#39;FN&#39;: 1, &#39;sensitivity&#39;: 0.8, &#39;specificity&#39;: 1.0, &#39;negative_predictive_value&#39;: 0.9896907216494846, &#39;odds_ratio&#39;: inf, &#39;relative_risk&#39;: 97.0, &#39;lr+&#39;: inf, &#39;lr-&#39;: 0.19999999999999996}
+</pre></div></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">calculate_condition_importances</span></code> finds the importance of each condition from the rule set. Similarily, <code class="docutils literal notranslate"><span class="pre">calculate_attribute_importances</span></code> calculates the importance of attributes.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">decision_rules.measures</span> <span class="kn">import</span> <span class="n">c2</span>
+<span class="n">condition_importances</span> <span class="o">=</span> <span class="n">decision_rules_ruleset</span><span class="o">.</span><span class="n">calculate_condition_importances</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">measure</span><span class="o">=</span><span class="n">c2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Condition importances:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">condition_importances</span><span class="p">)</span>
+<span class="n">attribute_importances</span> <span class="o">=</span> <span class="n">decision_rules_ruleset</span><span class="o">.</span><span class="n">calculate_attribute_importances</span><span class="p">(</span><span class="n">condition_importances</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Attribute importances:&#39;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">attribute_importances</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Condition importances:
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;amphibian&#39;: [{&#39;condition&#39;: &#39;legs &gt;= 3.00&#39;,
+   &#39;attributes&#39;: [&#39;legs&#39;],
+   &#39;importance&#39;: 0.21835455831817263},
+  {&#39;condition&#39;: &#39;toothed &gt;= 0.50&#39;,
+   &#39;attributes&#39;: [&#39;toothed&#39;],
+   &#39;importance&#39;: 0.15137644827521457},
+  {&#39;condition&#39;: &#39;aquatic &gt;= 0.50&#39;,
+   &#39;attributes&#39;: [&#39;aquatic&#39;],
+   &#39;importance&#39;: 0.0706758304696449},
+  {&#39;condition&#39;: &#39;hair &lt; 0.50&#39;,
+   &#39;attributes&#39;: [&#39;hair&#39;],
+   &#39;importance&#39;: 0.05970494134376112}],
+ &#39;bird&#39;: [{&#39;condition&#39;: &#39;feathers &gt;= 0.50&#39;,
+   &#39;attributes&#39;: [&#39;feathers&#39;],
+   &#39;importance&#39;: 1.0}],
+ &#39;fish&#39;: [{&#39;condition&#39;: &#39;fins &gt;= 0.50&#39;,
+   &#39;attributes&#39;: [&#39;fins&#39;],
+   &#39;importance&#39;: 0.812392368349497},
+  {&#39;condition&#39;: &#39;eggs &gt;= 0.50&#39;,
+   &#39;attributes&#39;: [&#39;eggs&#39;],
+   &#39;importance&#39;: 0.187607631650503}],
+ &#39;insect&#39;: [{&#39;condition&#39;: &#39;legs &gt;= 5.50&#39;,
+   &#39;attributes&#39;: [&#39;legs&#39;],
+   &#39;importance&#39;: 0.47480739916779957},
+  {&#39;condition&#39;: &#39;aquatic &lt; 0.50&#39;,
+   &#39;attributes&#39;: [&#39;aquatic&#39;],
+   &#39;importance&#39;: 0.11461012106173396},
+  {&#39;condition&#39;: &#39;eggs &gt;= 0.50&#39;,
+   &#39;attributes&#39;: [&#39;eggs&#39;],
+   &#39;importance&#39;: 0.060634901349317274}],
+ &#39;invertebrate&#39;: [{&#39;condition&#39;: &#39;backbone &lt; 0.50&#39;,
+   &#39;attributes&#39;: [&#39;backbone&#39;],
+   &#39;importance&#39;: 0.6437411794554653},
+  {&#39;condition&#39;: &#39;airborne &lt; 0.50&#39;,
+   &#39;attributes&#39;: [&#39;airborne&#39;],
+   &#39;importance&#39;: 0.17127713556284985}],
+ &#39;mammal&#39;: [{&#39;condition&#39;: &#39;milk &gt;= 0.50&#39;,
+   &#39;attributes&#39;: [&#39;milk&#39;],
+   &#39;importance&#39;: 1.0}],
+ &#39;reptile&#39;: [{&#39;condition&#39;: &#39;hair &lt; 0.50&#39;,
+   &#39;attributes&#39;: [&#39;hair&#39;],
+   &#39;importance&#39;: 0.49337088161384896},
+  {&#39;condition&#39;: &#39;aquatic &lt; 0.50&#39;,
+   &#39;attributes&#39;: [&#39;aquatic&#39;],
+   &#39;importance&#39;: 0.4172718233231141},
+  {&#39;condition&#39;: &#39;toothed &gt;= 0.50&#39;,
+   &#39;attributes&#39;: [&#39;toothed&#39;],
+   &#39;importance&#39;: 0.4041948772993855},
+  {&#39;condition&#39;: &#39;legs &lt; 2.00&#39;,
+   &#39;attributes&#39;: [&#39;legs&#39;],
+   &#39;importance&#39;: 0.2763037988581467},
+  {&#39;condition&#39;: &#39;fins &lt; 0.50&#39;,
+   &#39;attributes&#39;: [&#39;fins&#39;],
+   &#39;importance&#39;: 0.23977086814257867},
+  {&#39;condition&#39;: &#39;feathers &lt; 0.50&#39;,
+   &#39;attributes&#39;: [&#39;feathers&#39;],
+   &#39;importance&#39;: 0.18732960390946504},
+  {&#39;condition&#39;: &#39;backbone &gt;= 0.50&#39;,
+   &#39;attributes&#39;: [&#39;backbone&#39;],
+   &#39;importance&#39;: 0.16063629518072292}]}
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Attribute importances:
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;amphibian&#39;: {&#39;legs&#39;: 0.21835455831817263,
+  &#39;toothed&#39;: 0.15137644827521457,
+  &#39;aquatic&#39;: 0.0706758304696449,
+  &#39;hair&#39;: 0.05970494134376112},
+ &#39;bird&#39;: {&#39;feathers&#39;: 1.0},
+ &#39;fish&#39;: {&#39;fins&#39;: 0.812392368349497, &#39;eggs&#39;: 0.187607631650503},
+ &#39;insect&#39;: {&#39;legs&#39;: 0.47480739916779957,
+  &#39;aquatic&#39;: 0.11461012106173396,
+  &#39;eggs&#39;: 0.060634901349317274},
+ &#39;invertebrate&#39;: {&#39;backbone&#39;: 0.6437411794554653,
+  &#39;airborne&#39;: 0.17127713556284985},
+ &#39;mammal&#39;: {&#39;milk&#39;: 1.0},
+ &#39;reptile&#39;: {&#39;hair&#39;: 0.49337088161384896,
+  &#39;aquatic&#39;: 0.4172718233231141,
+  &#39;toothed&#39;: 0.4041948772993855,
+  &#39;legs&#39;: 0.2763037988581467,
+  &#39;fins&#39;: 0.23977086814257867,
+  &#39;feathers&#39;: 0.18732960390946504,
+  &#39;backbone&#39;: 0.16063629518072292}}
+</pre></div></div>
+</div>
+<p>We can serialize the decision-rules rule set to Python dict which can be later stored in JSON format. We do it using <code class="docutils literal notranslate"><span class="pre">JSONSerializer.serialize</span></code>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">decision_rules.serialization.utils</span> <span class="kn">import</span> <span class="n">JSONSerializer</span>
+<span class="kn">from</span> <span class="nn">decision_rules.classification.ruleset</span> <span class="kn">import</span> <span class="n">ClassificationRuleSet</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ruleset_json</span> <span class="o">=</span> <span class="n">JSONSerializer</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="n">decision_rules_ruleset</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ruleset_json</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;meta&#39;: {&#39;attributes&#39;: [&#39;hair&#39;, &#39;feathers&#39;, &#39;eggs&#39;, &#39;milk&#39;, &#39;airborne&#39;, &#39;aquatic&#39;, &#39;predator&#39;, &#39;toothed&#39;, &#39;backbone&#39;, &#39;breathes&#39;, &#39;venomous&#39;, &#39;fins&#39;, &#39;legs&#39;, &#39;tail&#39;, &#39;domestic&#39;, &#39;catsize&#39;], &#39;decision_attribute&#39;: &#39;class&#39;, &#39;decision_attribute_distribution&#39;: {&#39;amphibian&#39;: 4, &#39;bird&#39;: 20, &#39;fish&#39;: 13, &#39;insect&#39;: 8, &#39;invertebrate&#39;: 10, &#39;mammal&#39;: 41, &#39;reptile&#39;: 5}}, &#39;rules&#39;: [{&#39;uuid&#39;: &#39;3357850a-4701-41ee-92f5-17d524564033&#39;, &#39;string&#39;: &#39;IF aquatic &gt;= 0.50 AND legs &gt;= 3.00 AND toothed &gt;= 0.50 AND hair &lt; 0.50 THEN class = amphibian&#39;, &#39;premise&#39;: {&#39;type&#39;: &#39;compound&#39;, &#39;operator&#39;: &#39;CONJUNCTION&#39;, &#39;subconditions&#39;: [{&#39;type&#39;: &#39;elementary_numerical&#39;, &#39;attributes&#39;: [5], &#39;negated&#39;: False, &#39;left&#39;: 0.5, &#39;right&#39;: None, &#39;left_closed&#39;: True, &#39;right_closed&#39;: False}, {&#39;type&#39;: &#39;elementary_numerical&#39;, &#39;attributes&#39;: [12], &#39;negated&#39;: False, &#39;left&#39;: 3.0, &#39;right&#39;: None, &#39;left_closed&#39;: True, &#39;right_closed&#39;: False}, {&#39;type&#39;: &#39;elementary_numerical&#39;, &#39;attributes&#39;: [7], &#39;negated&#39;: False, &#39;left&#39;: 0.5, &#39;right&#39;: None, &#39;left_closed&#39;: True, &#39;right_closed&#39;: False}, {&#39;type&#39;: &#39;elementary_numerical&#39;, &#39;attributes&#39;: [0], &#39;negated&#39;: False, &#39;left&#39;: None, &#39;right&#39;: 0.5, &#39;left_closed&#39;: False, &#39;right_closed&#39;: False}]}, &#39;conclusion&#39;: {&#39;value&#39;: &#39;amphibian&#39;}, &#39;coverage&#39;: {&#39;p&#39;: 4, &#39;n&#39;: 0, &#39;P&#39;: 4, &#39;N&#39;: 97}}, {&#39;uuid&#39;: &#39;0d28724c-56c4-47bb-847e-96fc60e191d9&#39;, &#39;string&#39;: &#39;IF feathers &gt;= 0.50 THEN class = bird&#39;, &#39;premise&#39;: {&#39;type&#39;: &#39;compound&#39;, &#39;operator&#39;: &#39;CONJUNCTION&#39;, &#39;subconditions&#39;: [{&#39;type&#39;: &#39;elementary_numerical&#39;, &#39;attributes&#39;: [1], &#39;negated&#39;: False, &#39;left&#39;: 0.5, &#39;right&#39;: None, &#39;left_closed&#39;: True, &#39;right_closed&#39;: False}]}, &#39;conclusion&#39;: {&#39;value&#39;: &#39;bird&#39;}, &#39;coverage&#39;: {&#39;p&#39;: 20, &#39;n&#39;: 0, &#39;P&#39;: 20, &#39;N&#39;: 81}}, {&#39;uuid&#39;: &#39;9804e9ab-07d5-4954-8a32-22cb0033196a&#39;, &#39;string&#39;: &#39;IF fins &gt;= 0.50 AND eggs &gt;= 0.50 THEN class = fish&#39;, &#39;premise&#39;: {&#39;type&#39;: &#39;compound&#39;, &#39;operator&#39;: &#39;CONJUNCTION&#39;, &#39;subconditions&#39;: [{&#39;type&#39;: &#39;elementary_numerical&#39;, &#39;attributes&#39;: [11], &#39;negated&#39;: False, &#39;left&#39;: 0.5, &#39;right&#39;: None, &#39;left_closed&#39;: True, &#39;right_closed&#39;: False}, {&#39;type&#39;: &#39;elementary_numerical&#39;, &#39;attributes&#39;: [2], &#39;negated&#39;: False, &#39;left&#39;: 0.5, &#39;right&#39;: None, &#39;left_closed&#39;: True, &#39;right_closed&#39;: False}]}, &#39;conclusion&#39;: {&#39;value&#39;: &#39;fish&#39;}, &#39;coverage&#39;: {&#39;p&#39;: 13, &#39;n&#39;: 0, &#39;P&#39;: 13, &#39;N&#39;: 88}}, {&#39;uuid&#39;: &#39;d7aa0f70-1492-4114-99f7-2a26a000c366&#39;, &#39;string&#39;: &#39;IF legs &gt;= 5.50 AND aquatic &lt; 0.50 AND eggs &gt;= 0.50 THEN class = insect&#39;, &#39;premise&#39;: {&#39;type&#39;: &#39;compound&#39;, &#39;operator&#39;: &#39;CONJUNCTION&#39;, &#39;subconditions&#39;: [{&#39;type&#39;: &#39;elementary_numerical&#39;, &#39;attributes&#39;: [12], &#39;negated&#39;: False, &#39;left&#39;: 5.5, &#39;right&#39;: None, &#39;left_closed&#39;: True, &#39;right_closed&#39;: False}, {&#39;type&#39;: &#39;elementary_numerical&#39;, &#39;attributes&#39;: [5], &#39;negated&#39;: False, &#39;left&#39;: None, &#39;right&#39;: 0.5, &#39;left_closed&#39;: False, &#39;right_closed&#39;: False}, {&#39;type&#39;: &#39;elementary_numerical&#39;, &#39;attributes&#39;: [2], &#39;negated&#39;: False, &#39;left&#39;: 0.5, &#39;right&#39;: None, &#39;left_closed&#39;: True, &#39;right_closed&#39;: False}]}, &#39;conclusion&#39;: {&#39;value&#39;: &#39;insect&#39;}, &#39;coverage&#39;: {&#39;p&#39;: 8, &#39;n&#39;: 0, &#39;P&#39;: 8, &#39;N&#39;: 93}}, {&#39;uuid&#39;: &#39;787b7170-b084-4830-a995-dd39cfe2ca15&#39;, &#39;string&#39;: &#39;IF backbone &lt; 0.50 AND airborne &lt; 0.50 THEN class = invertebrate&#39;, &#39;premise&#39;: {&#39;type&#39;: &#39;compound&#39;, &#39;operator&#39;: &#39;CONJUNCTION&#39;, &#39;subconditions&#39;: [{&#39;type&#39;: &#39;elementary_numerical&#39;, &#39;attributes&#39;: [8], &#39;negated&#39;: False, &#39;left&#39;: None, &#39;right&#39;: 0.5, &#39;left_closed&#39;: False, &#39;right_closed&#39;: False}, {&#39;type&#39;: &#39;elementary_numerical&#39;, &#39;attributes&#39;: [4], &#39;negated&#39;: False, &#39;left&#39;: None, &#39;right&#39;: 0.5, &#39;left_closed&#39;: False, &#39;right_closed&#39;: False}]}, &#39;conclusion&#39;: {&#39;value&#39;: &#39;invertebrate&#39;}, &#39;coverage&#39;: {&#39;p&#39;: 10, &#39;n&#39;: 2, &#39;P&#39;: 10, &#39;N&#39;: 91}}, {&#39;uuid&#39;: &#39;67f18dcb-1a70-43ad-9e16-713daedc5eca&#39;, &#39;string&#39;: &#39;IF milk &gt;= 0.50 THEN class = mammal&#39;, &#39;premise&#39;: {&#39;type&#39;: &#39;compound&#39;, &#39;operator&#39;: &#39;CONJUNCTION&#39;, &#39;subconditions&#39;: [{&#39;type&#39;: &#39;elementary_numerical&#39;, &#39;attributes&#39;: [3], &#39;negated&#39;: False, &#39;left&#39;: 0.5, &#39;right&#39;: None, &#39;left_closed&#39;: True, &#39;right_closed&#39;: False}]}, &#39;conclusion&#39;: {&#39;value&#39;: &#39;mammal&#39;}, &#39;coverage&#39;: {&#39;p&#39;: 41, &#39;n&#39;: 0, &#39;P&#39;: 41, &#39;N&#39;: 60}}, {&#39;uuid&#39;: &#39;d122f503-9a1c-40b4-a879-a8452235ef9f&#39;, &#39;string&#39;: &#39;IF toothed &gt;= 0.50 AND fins &lt; 0.50 AND legs &lt; 2.00 THEN class = reptile&#39;, &#39;premise&#39;: {&#39;type&#39;: &#39;compound&#39;, &#39;operator&#39;: &#39;CONJUNCTION&#39;, &#39;subconditions&#39;: [{&#39;type&#39;: &#39;elementary_numerical&#39;, &#39;attributes&#39;: [7], &#39;negated&#39;: False, &#39;left&#39;: 0.5, &#39;right&#39;: None, &#39;left_closed&#39;: True, &#39;right_closed&#39;: False}, {&#39;type&#39;: &#39;elementary_numerical&#39;, &#39;attributes&#39;: [11], &#39;negated&#39;: False, &#39;left&#39;: None, &#39;right&#39;: 0.5, &#39;left_closed&#39;: False, &#39;right_closed&#39;: False}, {&#39;type&#39;: &#39;elementary_numerical&#39;, &#39;attributes&#39;: [12], &#39;negated&#39;: False, &#39;left&#39;: None, &#39;right&#39;: 2.0, &#39;left_closed&#39;: False, &#39;right_closed&#39;: False}]}, &#39;conclusion&#39;: {&#39;value&#39;: &#39;reptile&#39;}, &#39;coverage&#39;: {&#39;p&#39;: 3, &#39;n&#39;: 0, &#39;P&#39;: 5, &#39;N&#39;: 96}}, {&#39;uuid&#39;: &#39;cce9a48a-ffd9-4636-9330-c9c991d0a15d&#39;, &#39;string&#39;: &#39;IF hair &lt; 0.50 AND toothed &gt;= 0.50 AND aquatic &lt; 0.50 THEN class = reptile&#39;, &#39;premise&#39;: {&#39;type&#39;: &#39;compound&#39;, &#39;operator&#39;: &#39;CONJUNCTION&#39;, &#39;subconditions&#39;: [{&#39;type&#39;: &#39;elementary_numerical&#39;, &#39;attributes&#39;: [0], &#39;negated&#39;: False, &#39;left&#39;: None, &#39;right&#39;: 0.5, &#39;left_closed&#39;: False, &#39;right_closed&#39;: False}, {&#39;type&#39;: &#39;elementary_numerical&#39;, &#39;attributes&#39;: [7], &#39;negated&#39;: False, &#39;left&#39;: 0.5, &#39;right&#39;: None, &#39;left_closed&#39;: True, &#39;right_closed&#39;: False}, {&#39;type&#39;: &#39;elementary_numerical&#39;, &#39;attributes&#39;: [5], &#39;negated&#39;: False, &#39;left&#39;: None, &#39;right&#39;: 0.5, &#39;left_closed&#39;: False, &#39;right_closed&#39;: False}]}, &#39;conclusion&#39;: {&#39;value&#39;: &#39;reptile&#39;}, &#39;coverage&#39;: {&#39;p&#39;: 3, &#39;n&#39;: 0, &#39;P&#39;: 5, &#39;N&#39;: 96}}, {&#39;uuid&#39;: &#39;0485665e-f92e-42f5-86e5-d05625076cd8&#39;, &#39;string&#39;: &#39;IF hair &lt; 0.50 AND feathers &lt; 0.50 AND aquatic &lt; 0.50 AND backbone &gt;= 0.50 THEN class = reptile&#39;, &#39;premise&#39;: {&#39;type&#39;: &#39;compound&#39;, &#39;operator&#39;: &#39;CONJUNCTION&#39;, &#39;subconditions&#39;: [{&#39;type&#39;: &#39;elementary_numerical&#39;, &#39;attributes&#39;: [0], &#39;negated&#39;: False, &#39;left&#39;: None, &#39;right&#39;: 0.5, &#39;left_closed&#39;: False, &#39;right_closed&#39;: False}, {&#39;type&#39;: &#39;elementary_numerical&#39;, &#39;attributes&#39;: [1], &#39;negated&#39;: False, &#39;left&#39;: None, &#39;right&#39;: 0.5, &#39;left_closed&#39;: False, &#39;right_closed&#39;: False}, {&#39;type&#39;: &#39;elementary_numerical&#39;, &#39;attributes&#39;: [5], &#39;negated&#39;: False, &#39;left&#39;: None, &#39;right&#39;: 0.5, &#39;left_closed&#39;: False, &#39;right_closed&#39;: False}, {&#39;type&#39;: &#39;elementary_numerical&#39;, &#39;attributes&#39;: [8], &#39;negated&#39;: False, &#39;left&#39;: 0.5, &#39;right&#39;: None, &#39;left_closed&#39;: True, &#39;right_closed&#39;: False}]}, &#39;conclusion&#39;: {&#39;value&#39;: &#39;reptile&#39;}, &#39;coverage&#39;: {&#39;p&#39;: 4, &#39;n&#39;: 0, &#39;P&#39;: 5, &#39;N&#39;: 96}}]}
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;output/zoo.json&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">ruleset_json</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>The serialized ruleset can be reloaded using <code class="docutils literal notranslate"><span class="pre">JSONSerializer.deserialize</span></code>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;output/zoo.json&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">deserialized_ruleset_json</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">deserialized_ruleset</span> <span class="o">=</span> <span class="n">JSONSerializer</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">deserialized_ruleset_json</span><span class="p">,</span> <span class="n">target_class</span><span class="o">=</span><span class="n">ClassificationRuleSet</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s check if the rules are the same.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">deserialized_ruleset</span><span class="o">.</span><span class="n">rules</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+IF aquatic &gt;= 0.50 AND legs &gt;= 3.00 AND toothed &gt;= 0.50 AND hair &lt; 0.50 THEN class = amphibian (p=4, n=0, P=4, N=97)
+IF feathers &gt;= 0.50 THEN class = bird (p=20, n=0, P=20, N=81)
+IF fins &gt;= 0.50 AND eggs &gt;= 0.50 THEN class = fish (p=13, n=0, P=13, N=88)
+IF legs &gt;= 5.50 AND aquatic &lt; 0.50 AND eggs &gt;= 0.50 THEN class = insect (p=8, n=0, P=8, N=93)
+IF backbone &lt; 0.50 AND airborne &lt; 0.50 THEN class = invertebrate (p=10, n=2, P=10, N=91)
+IF milk &gt;= 0.50 THEN class = mammal (p=41, n=0, P=41, N=60)
+IF toothed &gt;= 0.50 AND fins &lt; 0.50 AND legs &lt; 2.00 THEN class = reptile (p=3, n=0, P=5, N=96)
+IF hair &lt; 0.50 AND toothed &gt;= 0.50 AND aquatic &lt; 0.50 THEN class = reptile (p=3, n=0, P=5, N=96)
+IF hair &lt; 0.50 AND feathers &lt; 0.50 AND aquatic &lt; 0.50 AND backbone &gt;= 0.50 THEN class = reptile (p=4, n=0, P=5, N=96)
+</pre></div></div>
+</div>
+<p>Before using some of the functions of the deserialized ruleset, it may be necessary to call the <code class="docutils literal notranslate"><span class="pre">update</span></code> function. After that the object will be ready for prediction.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">deserialized_ruleset</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c2</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">deserialized_ruleset</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([&#39;mammal&#39;, &#39;mammal&#39;, &#39;fish&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;mammal&#39;,
+       &#39;fish&#39;, &#39;fish&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;bird&#39;, &#39;fish&#39;, &#39;invertebrate&#39;,
+       &#39;invertebrate&#39;, &#39;invertebrate&#39;, &#39;bird&#39;, &#39;mammal&#39;, &#39;fish&#39;, &#39;mammal&#39;,
+       &#39;bird&#39;, &#39;bird&#39;, &#39;mammal&#39;, &#39;bird&#39;, &#39;insect&#39;, &#39;amphibian&#39;,
+       &#39;amphibian&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;insect&#39;, &#39;mammal&#39;,
+       &#39;mammal&#39;, &#39;bird&#39;, &#39;fish&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;bird&#39;, &#39;fish&#39;,
+       &#39;insect&#39;, &#39;insect&#39;, &#39;bird&#39;, &#39;insect&#39;, &#39;bird&#39;, &#39;mammal&#39;, &#39;mammal&#39;,
+       &#39;invertebrate&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;insect&#39;,
+       &#39;amphibian&#39;, &#39;invertebrate&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;bird&#39;, &#39;bird&#39;,
+       &#39;bird&#39;, &#39;bird&#39;, &#39;fish&#39;, &#39;fish&#39;, &#39;reptile&#39;, &#39;mammal&#39;, &#39;mammal&#39;,
+       &#39;mammal&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;bird&#39;,
+       &#39;invertebrate&#39;, &#39;fish&#39;, &#39;mammal&#39;, &#39;mammal&#39;, &#39;reptile&#39;,
+       &#39;invertebrate&#39;, &#39;bird&#39;, &#39;bird&#39;, &#39;reptile&#39;, &#39;invertebrate&#39;, &#39;fish&#39;,
+       &#39;bird&#39;, &#39;mammal&#39;, &#39;invertebrate&#39;, &#39;fish&#39;, &#39;bird&#39;, &#39;insect&#39;,
+       &#39;amphibian&#39;, &#39;reptile&#39;, &#39;reptile&#39;, &#39;fish&#39;, &#39;mammal&#39;, &#39;mammal&#39;,
+       &#39;bird&#39;, &#39;mammal&#39;, &#39;insect&#39;, &#39;mammal&#39;, &#39;invertebrate&#39;, &#39;bird&#39;],
+      dtype=&#39;&lt;U12&#39;)
+</pre></div></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="rules_regression.html" class="btn btn-neutral float-left" title="Evaluate classification rules in decision-rules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../decision_rules.html" class="btn btn-neutral float-right" title="Documentation of decision_rules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Cezary Maszczyk, Dawid Macha, Adam Grzelak.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

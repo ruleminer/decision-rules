@@ -1,10 +1,7 @@
-decision\_rules.core package
+decision\_rules.core
 ============================
 
-Submodules
-----------
-
-decision\_rules.core.condition module
+decision\_rules.core.condition
 -------------------------------------
 
 .. automodule:: decision_rules.core.condition
@@ -12,7 +9,7 @@ decision\_rules.core.condition module
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.core.coverage module
+decision\_rules.core.coverage
 ------------------------------------
 
 .. automodule:: decision_rules.core.coverage
@@ -20,7 +17,7 @@ decision\_rules.core.coverage module
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.core.exceptions module
+decision\_rules.core.exceptions
 --------------------------------------
 
 .. automodule:: decision_rules.core.exceptions
@@ -28,7 +25,7 @@ decision\_rules.core.exceptions module
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.core.metrics module
+decision\_rules.core.metrics
 -----------------------------------
 
 .. automodule:: decision_rules.core.metrics
@@ -36,7 +33,7 @@ decision\_rules.core.metrics module
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.core.prediction module
+decision\_rules.core.prediction
 --------------------------------------
 
 .. automodule:: decision_rules.core.prediction
@@ -44,7 +41,7 @@ decision\_rules.core.prediction module
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.core.rule module
+decision\_rules.core.rule
 --------------------------------
 
 .. automodule:: decision_rules.core.rule
@@ -52,7 +49,7 @@ decision\_rules.core.rule module
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.core.ruleset module
+decision\_rules.core.ruleset
 -----------------------------------
 
 .. automodule:: decision_rules.core.ruleset
@@ -60,7 +57,7 @@ decision\_rules.core.ruleset module
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.core.simplifier module
+decision\_rules.core.simplifier
 --------------------------------------
 
 .. automodule:: decision_rules.core.simplifier
@@ -68,18 +65,10 @@ decision\_rules.core.simplifier module
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.core.test\_measures module
+decision\_rules.core.test\_measures
 ------------------------------------------
 
 .. automodule:: decision_rules.core.test_measures
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: decision_rules.core
    :members:
    :undoc-members:
    :show-inheritance:
