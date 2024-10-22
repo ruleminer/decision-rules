@@ -1,5 +1,6 @@
 import json
 import os
+from typing import Tuple, Optional
 
 import pandas as pd
 from decision_rules.classification.ruleset import ClassificationRuleSet
@@ -23,9 +24,7 @@ def deserialize_ruleset(ruleset: dict, problem_type: ProblemTypes) -> Classifica
 
 
 def load_ruleset(path: str, problem_type: ProblemTypes) -> AbstractRuleSet:
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    ruleset_file_path: str = os.path.join(
-        dir_path, 'resources', path)
+    ruleset_file_path: str = os.path.join(load_resources_path(), path)
     with open(ruleset_file_path, 'r', encoding='utf-8') as file:
         return deserialize_ruleset(json.load(file), problem_type)
 
@@ -47,10 +46,17 @@ def load_survival_ruleset() -> SurvivalRuleSet:
 
 
 def load_dataset(path: str) -> pd.DataFrame:
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    dataset_file_path: str = os.path.join(
-        dir_path, 'resources', path)
+    dataset_file_path: str = os.path.join(load_resources_path(), path)
     return pd.read_csv(dataset_file_path)
+
+
+def load_dataset_to_x_y(path: str, y_col: str = "class") -> Tuple[pd.DataFrame, pd.Series]:
+    """Read dataset from path relative to tests/resources and return X and y based 
+    on y_col column name."""
+    dataset = load_dataset(path)
+    y = dataset[y_col]
+    X = dataset.drop(y_col, axis=1)
+    return X, y
 
 
 def load_classification_dataset():
@@ -70,3 +76,14 @@ def load_survival_dataset():
     dataset["survival_status"] = dataset["survival_status"].astype(
         "int").astype("str")
     return dataset
+
+
+def load_resources_path() -> str:
+    """Return path to resources directory"""
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    return os.path.join(dir_path, 'resources')
+
+
+def load_ruleset_factories_resources_path() -> str:
+    """Return path to resources directory for ruleset_factories extra."""
+    return os.path.join(load_resources_path(), 'ruleset_factories')
