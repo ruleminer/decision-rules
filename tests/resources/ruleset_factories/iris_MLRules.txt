@@ -1,0 +1,572 @@
+Maximum Likelihood Rule Ensembles (MLRules)...
+
+100 rules generated.
+Default rule:
+vote for class Iris-setosa with weight -2.725228070699505E-16
+vote for class Iris-versicolor with weight -2.725228070699505E-16
+vote for class Iris-virginica with weight 5.45045614139901E-16
+
+
+List of rules:
+
+Rule: 
+  petallength <= 2.35
+=> vote for class Iris-setosa with weight 0.6666466672666483
+
+Rule: 
+  petallength >= 4.75
+=> vote for class Iris-virginica with weight 0.5804016813187785
+
+Rule: 
+  petallength in [2.35,5.35]
+  petalwidth <= 1.75
+=> vote for class Iris-versicolor with weight 0.6365916352584721
+
+Rule: 
+  petalwidth >= 1.65
+=> vote for class Iris-virginica with weight 0.39013105087974953
+
+Rule: 
+  petallength in [2.35,5.35]
+  petalwidth <= 1.75
+  sepallength >= 4.95
+=> vote for class Iris-versicolor with weight 0.38381607318694605
+
+Rule: 
+  petallength <= 2.35
+=> vote for class Iris-setosa with weight 0.39765128646754605
+
+Rule: 
+  petallength >= 4.85
+=> vote for class Iris-virginica with weight 0.2874937503658896
+
+Rule: 
+  petallength in [2.35,4.95]
+  petalwidth <= 1.65
+=> vote for class Iris-versicolor with weight 0.3155137461523034
+
+Rule: 
+  petallength <= 2.35
+=> vote for class Iris-setosa with weight 0.3038685856788477
+
+Rule: 
+  petalwidth >= 1.65
+=> vote for class Iris-virginica with weight 0.2331732820919328
+
+Rule: 
+  petallength in [2.35,5.05]
+  petalwidth <= 1.85
+  sepallength >= 4.95
+  sepalwidth >= 2.25
+=> vote for class Iris-versicolor with weight 0.26357013615449837
+
+Rule: 
+  petallength <= 2.35
+=> vote for class Iris-setosa with weight 0.24888699407785653
+
+Rule: 
+  petallength >= 4.85
+=> vote for class Iris-virginica with weight 0.1928033087187334
+
+Rule: 
+  petallength in [2.35,5.05]
+  petalwidth <= 1.85
+  sepallength >= 4.95
+  sepalwidth >= 2.25
+=> vote for class Iris-versicolor with weight 0.2201193838317355
+
+Rule: 
+  petallength <= 2.35
+=> vote for class Iris-setosa with weight 0.20975347644458067
+
+Rule: 
+  petalwidth >= 1.65
+=> vote for class Iris-virginica with weight 0.169949168152298
+
+Rule: 
+  petallength in [2.35,5.05]
+  petalwidth <= 1.85
+  sepallength >= 4.95
+  sepalwidth >= 2.25
+=> vote for class Iris-versicolor with weight 0.18839797160534696
+
+Rule: 
+  petallength >= 4.85
+  petalwidth >= 1.75
+=> vote for class Iris-virginica with weight 0.16625004897552587
+
+Rule: 
+  petallength <= 2.35
+=> vote for class Iris-setosa with weight 0.17946056124330412
+
+Rule: 
+  petallength in [2.35,5.35]
+  petalwidth <= 1.75
+  sepallength >= 4.95
+  sepalwidth >= 2.25
+=> vote for class Iris-versicolor with weight 0.16337536785818615
+
+Rule: 
+  petalwidth >= 1.35
+  petallength >= 4.45
+=> vote for class Iris-virginica with weight 0.11741284543674868
+
+Rule: 
+  petallength in [2.35,5.05]
+  petalwidth <= 1.85
+  sepallength >= 4.95
+=> vote for class Iris-versicolor with weight 0.13885581505486608
+
+Rule: 
+  petallength <= 2.35
+=> vote for class Iris-setosa with weight 0.1551946739218401
+
+Rule: 
+  petallength >= 4.85
+=> vote for class Iris-virginica with weight 0.11385097565123292
+
+Rule: 
+  petallength in [2.35,5.35]
+  petalwidth <= 1.75
+  sepalwidth >= 2.25
+  sepallength >= 4.95
+=> vote for class Iris-versicolor with weight 0.13589490767166745
+
+Rule: 
+  petalwidth >= 1.35
+  sepalwidth <= 3.05
+  petallength >= 4.2
+=> vote for class Iris-virginica with weight 0.10867371290990858
+
+Rule: 
+  petallength <= 2.35
+=> vote for class Iris-setosa with weight 0.13547859007885282
+
+Rule: 
+  petallength in [2.35,5.05]
+  petalwidth <= 1.85
+  sepalwidth >= 2.25
+=> vote for class Iris-versicolor with weight 0.1150272396093711
+
+Rule: 
+  petalwidth >= 1.35
+  petallength >= 4.45
+  sepalwidth <= 3.05
+=> vote for class Iris-virginica with weight 0.09641718364829915
+
+Rule: 
+  petallength in [2.35,5.35]
+  petalwidth <= 1.75
+  sepallength >= 4.95
+=> vote for class Iris-versicolor with weight 0.10963251634942517
+
+Rule: 
+  petallength <= 2.35
+=> vote for class Iris-setosa with weight 0.1193319374165603
+
+Rule: 
+  petalwidth >= 1.35
+  petallength >= 4.45
+=> vote for class Iris-virginica with weight 0.07635935573277775
+
+Rule: 
+  petallength in [2.35,5.15]
+  petalwidth <= 1.85
+  sepalwidth >= 2.25
+  sepallength >= 4.95
+=> vote for class Iris-versicolor with weight 0.10472504425374814
+
+Rule: 
+  petalwidth >= 1.35
+  sepalwidth <= 3.05
+  sepallength <= 6.6
+  petallength >= 4.2
+=> vote for class Iris-virginica with weight 0.09238755560966362
+
+Rule: 
+  petallength in [2.35,5.35]
+  petalwidth <= 1.75
+  sepalwidth >= 2.25
+=> vote for class Iris-versicolor with weight 0.0940441863720946
+
+Rule: 
+  petallength <= 2.35
+=> vote for class Iris-setosa with weight 0.10601684388605039
+
+Rule: 
+  petallength >= 4.85
+  petalwidth >= 1.75
+=> vote for class Iris-virginica with weight 0.09377451449199413
+
+Rule: 
+  petallength in [2.35,5.05]
+  sepallength >= 4.95
+  petalwidth <= 1.85
+  sepalwidth >= 2.25
+=> vote for class Iris-versicolor with weight 0.0886533890676232
+
+Rule: 
+  petalwidth >= 1.35
+  sepalwidth <= 3.05
+  sepallength <= 6.6
+  petallength >= 4.2
+=> vote for class Iris-virginica with weight 0.0853823915082716
+
+Rule: 
+  petallength <= 2.35
+=> vote for class Iris-setosa with weight 0.09495511975179283
+
+Rule: 
+  petallength in [2.35,5.15]
+  petalwidth <= 1.85
+  sepallength >= 4.95
+=> vote for class Iris-versicolor with weight 0.07570337492293654
+
+Rule: 
+  petalwidth >= 1.75
+  sepallength >= 5.95
+=> vote for class Iris-virginica with weight 0.09859257973052425
+
+Rule: 
+  petalwidth >= 1.35
+  sepalwidth <= 3.05
+  sepallength <= 6.6
+  petallength >= 4.2
+=> vote for class Iris-virginica with weight 0.07567798047785797
+
+Rule: 
+  petallength in [2.35,5.15]
+  petalwidth <= 1.85
+  sepalwidth >= 2.25
+  sepallength >= 4.95
+=> vote for class Iris-versicolor with weight 0.07784823120356095
+
+Rule: 
+  petallength <= 2.35
+=> vote for class Iris-setosa with weight 0.08569150310971063
+
+Rule: 
+  sepallength >= 6.05
+  petallength >= 5.05
+=> vote for class Iris-virginica with weight 0.0875785927057698
+
+Rule: 
+  petallength in [2.35,5.35]
+  petalwidth <= 1.75
+  sepalwidth >= 2.25
+  sepallength >= 4.95
+=> vote for class Iris-versicolor with weight 0.07203675214436213
+
+Rule: 
+  sepallength >= 5.95
+  petalwidth >= 1.75
+=> vote for class Iris-virginica with weight 0.08301133587568155
+
+Rule: 
+  petallength <= 2.35
+=> vote for class Iris-setosa with weight 0.07786881378454262
+
+Rule: 
+  petallength in [2.35,4.95]
+  petalwidth <= 1.65
+=> vote for class Iris-versicolor with weight 0.07630818093646556
+
+Rule: 
+  sepallength >= 5.95
+  petalwidth >= 1.75
+=> vote for class Iris-virginica with weight 0.07583682742175435
+
+Rule: 
+  petallength in [2.35,4.95]
+  petalwidth <= 1.65
+=> vote for class Iris-versicolor with weight 0.07010190204979332
+
+Rule: 
+  petallength <= 2.35
+=> vote for class Iris-setosa with weight 0.07120758512852868
+
+Rule: 
+  sepallength >= 6.05
+  petallength >= 5.05
+=> vote for class Iris-virginica with weight 0.07339334015409461
+
+Rule: 
+  petallength >= 2.35
+  sepallength in [4.95,6.05]
+  sepalwidth >= 2.25
+  petalwidth <= 1.85
+=> vote for class Iris-versicolor with weight 0.07149420166509111
+
+Rule: 
+  petalwidth >= 1.35
+  sepalwidth <= 3.05
+  sepallength <= 6.6
+  petallength >= 4.2
+=> vote for class Iris-virginica with weight 0.06903669878406875
+
+Rule: 
+  petallength in [2.35,5.3]
+  petalwidth <= 1.85
+  sepalwidth >= 2.25
+  sepallength >= 4.95
+=> vote for class Iris-versicolor with weight 0.060299676620647384
+
+Rule: 
+  petallength <= 2.35
+=> vote for class Iris-setosa with weight 0.065489105242651
+
+Rule: 
+  sepallength >= 5.95
+  petalwidth >= 1.75
+=> vote for class Iris-virginica with weight 0.06612424309260671
+
+Rule: 
+  petallength >= 2.35
+  sepallength in [4.95,6.05]
+  petalwidth <= 1.85
+  sepalwidth >= 2.25
+=> vote for class Iris-versicolor with weight 0.06471336299346372
+
+Rule: 
+  petalwidth >= 1.35
+  sepalwidth <= 3.05
+  sepallength <= 6.6
+  petallength >= 4.2
+=> vote for class Iris-virginica with weight 0.06450270993605316
+
+Rule: 
+  petallength in [2.35,5.05]
+  sepalwidth >= 2.25
+  petalwidth <= 1.85
+  sepallength >= 4.95
+=> vote for class Iris-versicolor with weight 0.05655347909582418
+
+Rule: 
+  petallength <= 2.35
+=> vote for class Iris-setosa with weight 0.060541700680616435
+
+Rule: 
+  petallength >= 2.35
+  sepallength in [4.95,6.05]
+  petalwidth <= 1.85
+  sepalwidth >= 2.25
+=> vote for class Iris-versicolor with weight 0.059260810872294296
+
+Rule: 
+  petalwidth >= 1.35
+  sepalwidth <= 3.05
+  sepallength <= 6.6
+  petallength >= 4.2
+=> vote for class Iris-virginica with weight 0.060514372094704734
+
+Rule: 
+  petallength >= 2.35
+  sepallength <= 6.05
+  petalwidth <= 1.85
+  sepalwidth >= 2.25
+=> vote for class Iris-versicolor with weight 0.05408976549403533
+
+Rule: 
+  petallength in [2.35,5.35]
+  petalwidth <= 1.75
+  sepallength >= 4.95
+  sepalwidth >= 2.25
+=> vote for class Iris-versicolor with weight 0.04956498995668635
+
+Rule: 
+  petalwidth >= 1.35
+  sepalwidth <= 3.05
+  sepallength <= 6.6
+  petallength >= 4.2
+=> vote for class Iris-virginica with weight 0.05783766206092176
+
+Rule: 
+  petallength >= 2.35
+  sepallength in [4.95,6.05]
+  petalwidth <= 1.85
+  sepalwidth >= 2.25
+=> vote for class Iris-versicolor with weight 0.05369152555154195
+
+Rule: 
+  petallength <= 2.35
+=> vote for class Iris-setosa with weight 0.05622994875177839
+
+Rule: 
+  petallength in [2.35,5.05]
+  petalwidth <= 1.85
+  sepallength >= 4.95
+  sepalwidth >= 2.25
+=> vote for class Iris-versicolor with weight 0.04534346561482716
+
+Rule: 
+  petalwidth >= 1.35
+  sepalwidth <= 3.05
+  sepallength <= 6.6
+  petallength >= 4.2
+=> vote for class Iris-virginica with weight 0.05433336546289418
+
+Rule: 
+  sepalwidth <= 2.75
+  petalwidth <= 1.65
+  petallength <= 5.35
+  sepallength >= 4.7
+=> vote for class Iris-versicolor with weight 0.048773736234220814
+
+Rule: 
+  sepallength >= 6.05
+  petallength >= 5.05
+=> vote for class Iris-virginica with weight 0.05821965219568103
+
+Rule: 
+  petallength in [2.35,5.35]
+  petalwidth <= 1.75
+  sepalwidth >= 2.25
+  sepallength >= 4.95
+=> vote for class Iris-versicolor with weight 0.04622487236260395
+
+Rule: 
+  petallength <= 2.35
+=> vote for class Iris-setosa with weight 0.05244635140247991
+
+Rule: 
+  petalwidth >= 1.35
+  sepalwidth <= 3.05
+  sepallength <= 6.6
+  petallength >= 4.2
+=> vote for class Iris-virginica with weight 0.05051469703427058
+
+Rule: 
+  petallength in [2.35,5.35]
+  sepallength in [4.95,6.15]
+  petalwidth <= 1.85
+  sepalwidth >= 2.25
+=> vote for class Iris-versicolor with weight 0.049645527574007274
+
+Rule: 
+  sepalwidth in [2.25,2.75]
+  petalwidth <= 1.65
+  petallength <= 5.35
+  sepallength >= 4.7
+=> vote for class Iris-versicolor with weight 0.047727609001757744
+
+Rule: 
+  petalwidth >= 1.35
+  sepalwidth <= 3.05
+  sepallength <= 6.6
+  petallength >= 4.2
+=> vote for class Iris-virginica with weight 0.047735183365122134
+
+Rule: 
+  petallength in [2.35,5.3]
+  petalwidth <= 1.85
+  sepallength >= 4.95
+=> vote for class Iris-versicolor with weight 0.03995447636983012
+
+Rule: 
+  petallength <= 2.35
+=> vote for class Iris-setosa with weight 0.04910497632481762
+
+Rule: 
+  sepallength >= 6.05
+  petallength >= 5.05
+=> vote for class Iris-virginica with weight 0.05360791501646666
+
+Rule: 
+  sepalwidth in [2.25,2.75]
+  petalwidth <= 1.65
+  petallength <= 5.35
+  sepallength >= 4.7
+=> vote for class Iris-versicolor with weight 0.04546635426760943
+
+Rule: 
+  petallength <= 2.35
+=> vote for class Iris-setosa with weight 0.0461366219814189
+
+Rule: 
+  sepalwidth in [2.25,2.75]
+  petalwidth <= 1.65
+  petallength <= 5.35
+  sepallength >= 4.7
+=> vote for class Iris-versicolor with weight 0.043415917671943215
+
+Rule: 
+  sepallength >= 5.95
+  petalwidth >= 1.75
+=> vote for class Iris-virginica with weight 0.05279053363573821
+
+Rule: 
+  petallength in [2.35,5.35]
+  sepallength <= 6.15
+  petalwidth <= 1.65
+  sepalwidth >= 2.25
+=> vote for class Iris-versicolor with weight 0.044007924711548185
+
+Rule: 
+  sepallength >= 5.95
+  petalwidth >= 1.75
+=> vote for class Iris-virginica with weight 0.04955195145334058
+
+Rule: 
+  petallength in [2.35,4.95]
+  petalwidth <= 1.65
+=> vote for class Iris-versicolor with weight 0.045188969897600635
+
+Rule: 
+  petallength <= 2.35
+=> vote for class Iris-setosa with weight 0.04348514222196898
+
+Rule: 
+  petallength in [2.35,4.95]
+  petalwidth <= 1.65
+=> vote for class Iris-versicolor with weight 0.04274066637678834
+
+Rule: 
+  sepallength >= 5.95
+  petalwidth >= 1.75
+=> vote for class Iris-virginica with weight 0.0466575365750915
+
+Rule: 
+  petallength >= 2.35
+  sepallength <= 6.05
+  sepalwidth >= 2.55
+  petalwidth <= 1.85
+=> vote for class Iris-versicolor with weight 0.04010869010651718
+
+Rule: 
+  petalwidth >= 1.35
+  sepalwidth <= 3.05
+  sepallength <= 6.45
+  petallength >= 4.2
+=> vote for class Iris-virginica with weight 0.04665355262684159
+
+Rule: 
+  petallength in [2.35,5.05]
+  sepalwidth >= 2.85
+=> vote for class Iris-versicolor with weight 0.037319292972881085
+
+Rule: 
+  petallength <= 2.35
+=> vote for class Iris-setosa with weight 0.04110464524096809
+
+Rule: 
+  petallength >= 2.35
+  sepallength <= 6.05
+  sepalwidth >= 2.55
+  petalwidth <= 1.85
+=> vote for class Iris-versicolor with weight 0.0378925301667983
+
+Rule: 
+  petalwidth >= 1.35
+  sepalwidth <= 3.05
+  sepallength <= 6.45
+  petallength >= 4.2
+=> vote for class Iris-virginica with weight 0.043590505553040955
+
+Rule: 
+  petallength in [2.35,5.3]
+  petalwidth <= 1.85
+  sepallength >= 4.95
+  sepalwidth >= 2.25
+=> vote for class Iris-versicolor with weight 0.03549799699516102
+
+

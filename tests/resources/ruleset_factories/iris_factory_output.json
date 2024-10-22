@@ -1,0 +1,5207 @@
+{
+  "meta": {
+    "attributes": [
+      "sepallength",
+      "sepalwidth",
+      "petallength",
+      "petalwidth"
+    ],
+    "decision_attribute": "class",
+    "decision_attribute_distribution": {
+      "Iris-setosa": 50,
+      "Iris-virginica": 50,
+      "Iris-versicolor": 50
+    }
+  },
+  "rules": [
+    {
+      "uuid": "65b0b087-ffe2-47f4-bd2b-bd9916e3d11e",
+      "string": "IF petallength <= 2.35 THEN class = Iris-setosa",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.35,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-setosa"
+      },
+      "coverage": {
+        "p": 50,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "5140feb5-5942-42e9-a85c-d3e13aff4251",
+      "string": "IF petallength >= 4.75 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 4.75,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 49,
+        "n": 6,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "91e9cad4-cd17-4fcb-9eac-8fea59c2ed8d",
+      "string": "IF petallength >= 2.35 AND petallength <= 5.35 AND petalwidth <= 1.75 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.35,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.75,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 49,
+        "n": 3,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "a8ece642-d41e-4c5d-b21b-fbeb73a86bbf",
+      "string": "IF petalwidth >= 1.65 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.65,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 46,
+        "n": 2,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "b5ecf42a-62fd-4a3e-9cf5-d3278b2e347c",
+      "string": "IF petallength >= 2.35 AND petallength <= 5.35 AND petalwidth <= 1.75 AND sepallength >= 4.95 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.35,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.75,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 48,
+        "n": 2,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "6747745d-1403-4f8a-abe4-5f3c71fa2b68",
+      "string": "IF petallength <= 2.35 THEN class = Iris-setosa",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.35,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-setosa"
+      },
+      "coverage": {
+        "p": 50,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "b665c7af-3d9a-40c9-9d5e-cebb213f8733",
+      "string": "IF petallength >= 4.85 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 4.85,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 47,
+        "n": 4,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "fe4218b3-8706-49ac-9d40-fac615a8d09c",
+      "string": "IF petallength >= 2.35 AND petallength <= 4.95 AND petalwidth <= 1.65 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 4.95,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.65,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 47,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "2fee922c-2e76-40db-b6b1-1f0245dc76d3",
+      "string": "IF petallength <= 2.35 THEN class = Iris-setosa",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.35,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-setosa"
+      },
+      "coverage": {
+        "p": 50,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "37144b01-4e4d-4bda-849b-fda94a26f2c2",
+      "string": "IF petalwidth >= 1.65 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.65,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 46,
+        "n": 2,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "6603e438-d935-46e5-bc36-f9fc1fbcdbb9",
+      "string": "IF petallength >= 2.35 AND petallength <= 5.05 AND petalwidth <= 1.85 AND sepallength >= 4.95 AND sepalwidth >= 2.25 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.85,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 45,
+        "n": 4,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "2e797975-d895-4a93-ac78-1ec5dd0bea68",
+      "string": "IF petallength <= 2.35 THEN class = Iris-setosa",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.35,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-setosa"
+      },
+      "coverage": {
+        "p": 50,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "002e4c06-6827-4960-9960-9946e357d8b1",
+      "string": "IF petallength >= 4.85 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 4.85,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 47,
+        "n": 4,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "dbc6dbb5-9804-4636-943d-ed6829027d41",
+      "string": "IF petallength >= 2.35 AND petallength <= 5.05 AND petalwidth <= 1.85 AND sepallength >= 4.95 AND sepalwidth >= 2.25 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.85,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 45,
+        "n": 4,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "39b254a3-a41a-4f14-ace9-694cf0482efb",
+      "string": "IF petallength <= 2.35 THEN class = Iris-setosa",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.35,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-setosa"
+      },
+      "coverage": {
+        "p": 50,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "c04d4006-6c52-42f9-a003-e882ac294b84",
+      "string": "IF petalwidth >= 1.65 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.65,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 46,
+        "n": 2,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "c3701b2a-fbb6-4cb5-bd78-0dd40ab9236b",
+      "string": "IF petallength >= 2.35 AND petallength <= 5.05 AND petalwidth <= 1.85 AND sepallength >= 4.95 AND sepalwidth >= 2.25 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.85,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 45,
+        "n": 4,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "820cdbda-978f-4dad-9caf-10681c687fdb",
+      "string": "IF petallength >= 4.85 AND petalwidth >= 1.75 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 4.85,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.75,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 43,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "1e66d3ca-7fb1-4513-8c91-3f6cbad697cc",
+      "string": "IF petallength <= 2.35 THEN class = Iris-setosa",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.35,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-setosa"
+      },
+      "coverage": {
+        "p": 50,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "1a5608ef-93f9-45a9-ad67-bbf445d7c3e2",
+      "string": "IF petallength >= 2.35 AND petallength <= 5.35 AND petalwidth <= 1.75 AND sepallength >= 4.95 AND sepalwidth >= 2.25 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.35,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.75,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 45,
+        "n": 1,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "98a563e7-a16e-4f20-98f8-e725f4c3081f",
+      "string": "IF petalwidth >= 1.35 AND petallength >= 4.45 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 4.45,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 50,
+        "n": 18,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "8d49272d-4f26-42ac-ae47-e94ead46df65",
+      "string": "IF petallength >= 2.35 AND petallength <= 5.05 AND petalwidth <= 1.85 AND sepallength >= 4.95 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.85,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 48,
+        "n": 5,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "0784b185-de12-428d-8318-1ce0580aa776",
+      "string": "IF petallength <= 2.35 THEN class = Iris-setosa",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.35,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-setosa"
+      },
+      "coverage": {
+        "p": 50,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "58a93b8a-c5f8-4ac6-9e02-5a8f87bac782",
+      "string": "IF petallength >= 4.85 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 4.85,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 47,
+        "n": 4,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "995e109e-d3ef-4b05-9c6c-cd38601dfb7b",
+      "string": "IF petallength >= 2.35 AND petallength <= 5.35 AND petalwidth <= 1.75 AND sepalwidth >= 2.25 AND sepallength >= 4.95 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.35,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.75,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 45,
+        "n": 1,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "f098e4b3-cb1a-4108-a4b0-a57f5deb47fb",
+      "string": "IF petalwidth >= 1.35 AND sepalwidth <= 3.05 AND petallength >= 4.20 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": null,
+            "right": 3.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 4.2,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 33,
+        "n": 13,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "7bb5588b-2171-48e1-b8af-b64b8f688e04",
+      "string": "IF petallength <= 2.35 THEN class = Iris-setosa",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.35,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-setosa"
+      },
+      "coverage": {
+        "p": 50,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "542e9921-aab6-417d-b11e-b2f5a21fe781",
+      "string": "IF petallength >= 2.35 AND petallength <= 5.05 AND petalwidth <= 1.85 AND sepalwidth >= 2.25 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.85,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 46,
+        "n": 5,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "d3fa0c30-0883-4e19-9f6f-cb89e63effbc",
+      "string": "IF petalwidth >= 1.35 AND petallength >= 4.45 AND sepalwidth <= 3.05 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 4.45,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": null,
+            "right": 3.05,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 33,
+        "n": 11,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "dd6878f4-366a-4701-b0fc-466a59d05e42",
+      "string": "IF petallength >= 2.35 AND petallength <= 5.35 AND petalwidth <= 1.75 AND sepallength >= 4.95 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.35,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.75,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 48,
+        "n": 2,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "3082bb58-5c5a-4779-a2f1-d82e2b651e86",
+      "string": "IF petallength <= 2.35 THEN class = Iris-setosa",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.35,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-setosa"
+      },
+      "coverage": {
+        "p": 50,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "4ff7f7ef-0921-4a8f-9aaa-848670d78cce",
+      "string": "IF petalwidth >= 1.35 AND petallength >= 4.45 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 4.45,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 50,
+        "n": 18,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "3a5c376b-bf19-4927-9cfb-92ac24934919",
+      "string": "IF petallength >= 2.35 AND petallength <= 5.15 AND petalwidth <= 1.85 AND sepalwidth >= 2.25 AND sepallength >= 4.95 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.15,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.85,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 46,
+        "n": 6,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "f3c03831-625d-45c1-98bb-49f36e3d1219",
+      "string": "IF petalwidth >= 1.35 AND sepalwidth <= 3.05 AND sepallength <= 6.60 AND petallength >= 4.20 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": null,
+            "right": 3.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 6.6,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 4.2,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 22,
+        "n": 11,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "93ca78e4-448a-4557-a3d5-1012b4bf5a99",
+      "string": "IF petallength >= 2.35 AND petallength <= 5.35 AND petalwidth <= 1.75 AND sepalwidth >= 2.25 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.35,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.75,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 46,
+        "n": 2,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "3d6871c8-066d-4350-a4f3-b8b538c6a072",
+      "string": "IF petallength <= 2.35 THEN class = Iris-setosa",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.35,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-setosa"
+      },
+      "coverage": {
+        "p": 50,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "f5a07e56-0561-4688-8838-bc6401b7a914",
+      "string": "IF petallength >= 4.85 AND petalwidth >= 1.75 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 4.85,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.75,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 43,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "8ba7d1ee-ce9b-4daa-8d62-d44314c05a54",
+      "string": "IF petallength >= 2.35 AND petallength <= 5.05 AND sepallength >= 4.95 AND petalwidth <= 1.85 AND sepalwidth >= 2.25 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.85,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 45,
+        "n": 4,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "c83b16da-008b-4b13-a62c-5d1daaa5319b",
+      "string": "IF petalwidth >= 1.35 AND sepalwidth <= 3.05 AND sepallength <= 6.60 AND petallength >= 4.20 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": null,
+            "right": 3.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 6.6,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 4.2,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 22,
+        "n": 11,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "015d19e2-69ee-4d3c-bcd9-326bff4b53d6",
+      "string": "IF petallength <= 2.35 THEN class = Iris-setosa",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.35,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-setosa"
+      },
+      "coverage": {
+        "p": 50,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "09b89098-6e92-417e-b1ac-f3888d566adb",
+      "string": "IF petallength >= 2.35 AND petallength <= 5.15 AND petalwidth <= 1.85 AND sepallength >= 4.95 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.15,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.85,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 49,
+        "n": 7,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "cb426f0f-5f20-4884-a139-4d2153634b24",
+      "string": "IF petalwidth >= 1.75 AND sepallength >= 5.95 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.75,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 5.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 39,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "2e538569-3f9e-47c1-9087-928efebfa037",
+      "string": "IF petalwidth >= 1.35 AND sepalwidth <= 3.05 AND sepallength <= 6.60 AND petallength >= 4.20 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": null,
+            "right": 3.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 6.6,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 4.2,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 22,
+        "n": 11,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "0f5a4b5d-2dc4-4fde-811e-57b10d4dbb55",
+      "string": "IF petallength >= 2.35 AND petallength <= 5.15 AND petalwidth <= 1.85 AND sepalwidth >= 2.25 AND sepallength >= 4.95 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.15,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.85,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 46,
+        "n": 6,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "bb45d926-2b17-4add-8f23-3fcaff979097",
+      "string": "IF petallength <= 2.35 THEN class = Iris-setosa",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.35,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-setosa"
+      },
+      "coverage": {
+        "p": 50,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "6128a6ba-999c-4076-84b8-8e79d3558448",
+      "string": "IF sepallength >= 6.05 AND petallength >= 5.05 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 6.05,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 5.05,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 37,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "894b0cf5-9654-4368-a38c-6ffd2fdf9f7b",
+      "string": "IF petallength >= 2.35 AND petallength <= 5.35 AND petalwidth <= 1.75 AND sepalwidth >= 2.25 AND sepallength >= 4.95 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.35,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.75,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 45,
+        "n": 1,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "aab91781-d19d-41ac-991c-a723743ae4aa",
+      "string": "IF sepallength >= 5.95 AND petalwidth >= 1.75 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 5.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.75,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 39,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "850f71cb-efdf-412f-bcc8-c5052466c1d9",
+      "string": "IF petallength <= 2.35 THEN class = Iris-setosa",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.35,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-setosa"
+      },
+      "coverage": {
+        "p": 50,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "f0bb05ad-432d-4853-97df-33c5960322ef",
+      "string": "IF petallength >= 2.35 AND petallength <= 4.95 AND petalwidth <= 1.65 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 4.95,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.65,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 47,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "267dd9df-030d-4de7-b5d2-807556d23b96",
+      "string": "IF sepallength >= 5.95 AND petalwidth >= 1.75 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 5.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.75,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 39,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "e4837c45-f307-472f-a2bf-912f431275a4",
+      "string": "IF petallength >= 2.35 AND petallength <= 4.95 AND petalwidth <= 1.65 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 4.95,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.65,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 47,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "a3f71c60-6ae7-4135-8c01-38605ee6521a",
+      "string": "IF petallength <= 2.35 THEN class = Iris-setosa",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.35,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-setosa"
+      },
+      "coverage": {
+        "p": 50,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "7a7fe43d-ca55-4c7d-a1d8-6a3720515836",
+      "string": "IF sepallength >= 6.05 AND petallength >= 5.05 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 6.05,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 5.05,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 37,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "331f77fb-cd59-43b8-b122-46859716907e",
+      "string": "IF petallength >= 2.35 AND sepallength >= 4.95 AND sepallength <= 6.05 AND sepalwidth >= 2.25 AND petalwidth <= 1.85 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 6.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.85,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 27,
+        "n": 2,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "71d34b28-8a9a-412d-8d8e-b6a1f81bbfc1",
+      "string": "IF petalwidth >= 1.35 AND sepalwidth <= 3.05 AND sepallength <= 6.60 AND petallength >= 4.20 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": null,
+            "right": 3.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 6.6,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 4.2,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 22,
+        "n": 11,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "4cd959bc-a600-4304-9659-2323a00b918d",
+      "string": "IF petallength >= 2.35 AND petallength <= 5.30 AND petalwidth <= 1.85 AND sepalwidth >= 2.25 AND sepallength >= 4.95 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.3,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.85,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 46,
+        "n": 6,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "a9864255-c42a-4ee9-811f-64b2abd1b934",
+      "string": "IF petallength <= 2.35 THEN class = Iris-setosa",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.35,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-setosa"
+      },
+      "coverage": {
+        "p": 50,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "ddcad247-e7c5-457f-a858-536120e33f1b",
+      "string": "IF sepallength >= 5.95 AND petalwidth >= 1.75 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 5.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.75,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 39,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "dbdc7794-8da4-4e29-a807-f6da1b5a7670",
+      "string": "IF petallength >= 2.35 AND sepallength >= 4.95 AND sepallength <= 6.05 AND petalwidth <= 1.85 AND sepalwidth >= 2.25 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 6.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.85,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 27,
+        "n": 2,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "9678e962-e23f-44c8-8f2b-12ca13321e59",
+      "string": "IF petalwidth >= 1.35 AND sepalwidth <= 3.05 AND sepallength <= 6.60 AND petallength >= 4.20 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": null,
+            "right": 3.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 6.6,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 4.2,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 22,
+        "n": 11,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "8bb93512-5a47-489d-ac81-3aa3f122c5e2",
+      "string": "IF petallength >= 2.35 AND petallength <= 5.05 AND sepalwidth >= 2.25 AND petalwidth <= 1.85 AND sepallength >= 4.95 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.85,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 45,
+        "n": 4,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "df4426d1-7fd5-4011-b495-c36839c18fe0",
+      "string": "IF petallength <= 2.35 THEN class = Iris-setosa",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.35,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-setosa"
+      },
+      "coverage": {
+        "p": 50,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "e74296ac-c58d-4d39-8a45-9297a9046bf9",
+      "string": "IF petallength >= 2.35 AND sepallength >= 4.95 AND sepallength <= 6.05 AND petalwidth <= 1.85 AND sepalwidth >= 2.25 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 6.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.85,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 27,
+        "n": 2,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "6667b829-5460-4235-bb88-83a4c28ad9ba",
+      "string": "IF petalwidth >= 1.35 AND sepalwidth <= 3.05 AND sepallength <= 6.60 AND petallength >= 4.20 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": null,
+            "right": 3.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 6.6,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 4.2,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 22,
+        "n": 11,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "9dd58fa7-8815-4549-9f6e-f52fd7653c40",
+      "string": "IF petallength >= 2.35 AND sepallength <= 6.05 AND petalwidth <= 1.85 AND sepalwidth >= 2.25 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 6.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.85,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 28,
+        "n": 3,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "8bd9d634-cfec-4118-907f-be15e89904a2",
+      "string": "IF petallength >= 2.35 AND petallength <= 5.35 AND petalwidth <= 1.75 AND sepallength >= 4.95 AND sepalwidth >= 2.25 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.35,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.75,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 45,
+        "n": 1,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "e0102cd1-e1b8-488a-95da-8f0733c4ea06",
+      "string": "IF petalwidth >= 1.35 AND sepalwidth <= 3.05 AND sepallength <= 6.60 AND petallength >= 4.20 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": null,
+            "right": 3.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 6.6,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 4.2,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 22,
+        "n": 11,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "233b34ab-8b98-4231-8a55-a66e1d20e609",
+      "string": "IF petallength >= 2.35 AND sepallength >= 4.95 AND sepallength <= 6.05 AND petalwidth <= 1.85 AND sepalwidth >= 2.25 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 6.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.85,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 27,
+        "n": 2,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "666a8075-8246-44a8-87f3-5fc4a5161c44",
+      "string": "IF petallength <= 2.35 THEN class = Iris-setosa",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.35,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-setosa"
+      },
+      "coverage": {
+        "p": 50,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "71699cd2-2972-423d-96c3-39c8d8de906b",
+      "string": "IF petallength >= 2.35 AND petallength <= 5.05 AND petalwidth <= 1.85 AND sepallength >= 4.95 AND sepalwidth >= 2.25 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.85,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 45,
+        "n": 4,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "9195dadd-ad16-4f05-9f4c-4f065ec9f876",
+      "string": "IF petalwidth >= 1.35 AND sepalwidth <= 3.05 AND sepallength <= 6.60 AND petallength >= 4.20 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": null,
+            "right": 3.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 6.6,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 4.2,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 22,
+        "n": 11,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "083a8010-dd1d-402c-87bd-4f3c9e43fb52",
+      "string": "IF sepalwidth <= 2.75 AND petalwidth <= 1.65 AND petallength <= 5.35 AND sepallength >= 4.70 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.75,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.65,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.35,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.7,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 21,
+        "n": 1,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "44cc5a97-2272-4d97-9b82-a95e07ec6eb3",
+      "string": "IF sepallength >= 6.05 AND petallength >= 5.05 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 6.05,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 5.05,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 37,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "337e944e-edbf-48e7-82a0-d50dd35da4fd",
+      "string": "IF petallength >= 2.35 AND petallength <= 5.35 AND petalwidth <= 1.75 AND sepalwidth >= 2.25 AND sepallength >= 4.95 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.35,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.75,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 45,
+        "n": 1,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "9e007621-ac78-4d3f-8d11-4b91019b2705",
+      "string": "IF petallength <= 2.35 THEN class = Iris-setosa",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.35,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-setosa"
+      },
+      "coverage": {
+        "p": 50,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "a1b20264-687e-42dd-a41a-6e6df32b8da0",
+      "string": "IF petalwidth >= 1.35 AND sepalwidth <= 3.05 AND sepallength <= 6.60 AND petallength >= 4.20 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": null,
+            "right": 3.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 6.6,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 4.2,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 22,
+        "n": 11,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "26eafd32-d9cd-4f18-8461-0f50d008ad82",
+      "string": "IF petallength >= 2.35 AND petallength <= 5.35 AND sepallength >= 4.95 AND sepallength <= 6.15 AND petalwidth <= 1.85 AND sepalwidth >= 2.25 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.35,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 6.15,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.85,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 31,
+        "n": 3,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "fcb74ad7-58d6-40de-a9ba-7d043f7c514c",
+      "string": "IF sepalwidth >= 2.25 AND sepalwidth <= 2.75 AND petalwidth <= 1.65 AND petallength <= 5.35 AND sepallength >= 4.70 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.75,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.65,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.35,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.7,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 18,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "0af500d3-7efb-4c4f-a98f-6cf1b83154b5",
+      "string": "IF petalwidth >= 1.35 AND sepalwidth <= 3.05 AND sepallength <= 6.60 AND petallength >= 4.20 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": null,
+            "right": 3.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 6.6,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 4.2,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 22,
+        "n": 11,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "e00fe8aa-c974-45ad-a0b1-b4a257c5d8d5",
+      "string": "IF petallength >= 2.35 AND petallength <= 5.30 AND petalwidth <= 1.85 AND sepallength >= 4.95 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.3,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.85,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 49,
+        "n": 7,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "cf7033e6-dc24-48fd-948b-7d0fdf659a96",
+      "string": "IF petallength <= 2.35 THEN class = Iris-setosa",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.35,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-setosa"
+      },
+      "coverage": {
+        "p": 50,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "40a33a3e-9bcf-4f19-856d-04590b6dfa59",
+      "string": "IF sepallength >= 6.05 AND petallength >= 5.05 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 6.05,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 5.05,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 37,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "0dcb6eee-0eff-4e49-9725-17a379f6bc53",
+      "string": "IF sepalwidth >= 2.25 AND sepalwidth <= 2.75 AND petalwidth <= 1.65 AND petallength <= 5.35 AND sepallength >= 4.70 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.75,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.65,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.35,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.7,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 18,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "7ee10c0e-f029-4dd5-a6b0-3a1f8d255976",
+      "string": "IF petallength <= 2.35 THEN class = Iris-setosa",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.35,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-setosa"
+      },
+      "coverage": {
+        "p": 50,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "ae7d1411-3ae6-431c-8d1c-819051b18e25",
+      "string": "IF sepalwidth >= 2.25 AND sepalwidth <= 2.75 AND petalwidth <= 1.65 AND petallength <= 5.35 AND sepallength >= 4.70 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.75,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.65,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.35,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.7,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 18,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "4e24b557-f48c-4ef1-a5c3-52fb11042d09",
+      "string": "IF sepallength >= 5.95 AND petalwidth >= 1.75 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 5.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.75,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 39,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "18ab0547-ee65-4a89-aab8-b8d9f053be6b",
+      "string": "IF petallength >= 2.35 AND petallength <= 5.35 AND sepallength <= 6.15 AND petalwidth <= 1.65 AND sepalwidth >= 2.25 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.35,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 6.15,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.65,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 31,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "080f4658-552f-4f32-a29f-feeb1a5436fd",
+      "string": "IF sepallength >= 5.95 AND petalwidth >= 1.75 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 5.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.75,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 39,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "ad363b9a-231a-4835-bc5d-81ff9f2933b1",
+      "string": "IF petallength >= 2.35 AND petallength <= 4.95 AND petalwidth <= 1.65 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 4.95,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.65,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 47,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "738deaf7-904d-44f6-a92f-cc9ede1283ad",
+      "string": "IF petallength <= 2.35 THEN class = Iris-setosa",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.35,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-setosa"
+      },
+      "coverage": {
+        "p": 50,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "f80edf82-ef71-497b-b75a-332b8cf1ec38",
+      "string": "IF petallength >= 2.35 AND petallength <= 4.95 AND petalwidth <= 1.65 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 4.95,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.65,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 47,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "89390d47-8dc0-4ef1-9cad-7b8c07e7fc09",
+      "string": "IF sepallength >= 5.95 AND petalwidth >= 1.75 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 5.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.75,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 39,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "8596ec55-92e2-4dcb-8417-f3cb5901f3d5",
+      "string": "IF petallength >= 2.35 AND sepallength <= 6.05 AND sepalwidth >= 2.55 AND petalwidth <= 1.85 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 6.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.55,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.85,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 20,
+        "n": 2,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "586a3a65-eb49-4654-8c2c-cf3fadeb19c2",
+      "string": "IF petalwidth >= 1.35 AND sepalwidth <= 3.05 AND sepallength <= 6.45 AND petallength >= 4.20 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": null,
+            "right": 3.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 6.45,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 4.2,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 19,
+        "n": 9,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "dcd166f8-e664-46c1-bc8f-d7c5e59ead56",
+      "string": "IF petallength >= 2.35 AND petallength <= 5.05 AND sepalwidth >= 2.85 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.85,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 23,
+        "n": 2,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "14555c0d-b7e4-4cd7-8604-4075b3fa8761",
+      "string": "IF petallength <= 2.35 THEN class = Iris-setosa",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.35,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-setosa"
+      },
+      "coverage": {
+        "p": 50,
+        "n": 0,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "a1bad61d-7b7f-4e93-a0f8-6ae447cbc44b",
+      "string": "IF petallength >= 2.35 AND sepallength <= 6.05 AND sepalwidth >= 2.55 AND petalwidth <= 1.85 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 6.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.55,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.85,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 20,
+        "n": 2,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "6c73bc5f-c8d5-4067-a71f-8652ae99ef45",
+      "string": "IF petalwidth >= 1.35 AND sepalwidth <= 3.05 AND sepallength <= 6.45 AND petallength >= 4.20 THEN class = Iris-virginica",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 1.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": null,
+            "right": 3.05,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 6.45,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 4.2,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-virginica"
+      },
+      "coverage": {
+        "p": 19,
+        "n": 9,
+        "P": 50,
+        "N": 100
+      }
+    },
+    {
+      "uuid": "bcd384f6-bad1-4e4d-a4b8-b62c6decb72f",
+      "string": "IF petallength >= 2.35 AND petallength <= 5.30 AND petalwidth <= 1.85 AND sepallength >= 4.95 AND sepalwidth >= 2.25 THEN class = Iris-versicolor",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": 2.35,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              2
+            ],
+            "negated": false,
+            "left": null,
+            "right": 5.3,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 1.85,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 4.95,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "left": 2.25,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "Iris-versicolor"
+      },
+      "coverage": {
+        "p": 46,
+        "n": 6,
+        "P": 50,
+        "N": 100
+      }
+    }
+  ]
+}
