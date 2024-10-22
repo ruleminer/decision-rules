@@ -10,21 +10,20 @@ from decision_rules.serialization.utils import JSONSerializer
 from decision_rules.survival.ruleset import SurvivalConclusion
 from decision_rules.survival.ruleset import SurvivalRuleSet
 from tests.helpers import compare_survival_prediction
-
-dir_path = os.path.dirname(os.path.realpath(__file__))
+from tests.loaders import load_resources_path
 
 
 class TestSurvivalRuleSet(unittest.TestCase):
 
     def setUp(self) -> None:
         self.df = pd.read_csv(os.path.join(
-            dir_path, '..', 'resources', 'survival', 'BHS.csv'
+            load_resources_path(), 'survival', 'BHS.csv'
         ))
         self.X = self.df.drop('survival_status', axis=1)
         self.y = self.df['survival_status'].astype(int).astype(str)
 
         ruleset_file_path: str = os.path.join(
-            dir_path, '..', 'resources', 'survival', 'BHS_ruleset.json'
+            load_resources_path(), 'survival', 'BHS_ruleset.json'
         )
         with open(ruleset_file_path, 'r', encoding='utf-8') as file:
             self.ruleset: SurvivalRuleSet = JSONSerializer.deserialize(
@@ -44,13 +43,13 @@ class TestSurvivalRuleSet(unittest.TestCase):
 
     def test_prediction(self):
         df = pd.read_csv(os.path.join(
-            dir_path, '..', 'resources', 'survival', 'bone-marrow.csv'
+            load_resources_path(), 'survival', 'bone-marrow.csv'
         ))
         X = df.drop('survival_status', axis=1)
         y = df['survival_status'].astype(int).astype(str)
 
         ruleset_file_path: str = os.path.join(
-            dir_path, '..', 'resources', 'survival', 'bone-marrow-survival-ruleset.json')
+            load_resources_path(), 'survival', 'bone-marrow-survival-ruleset.json')
         with open(ruleset_file_path, 'r', encoding='utf-8') as file:
             ruleset: SurvivalRuleSet = JSONSerializer.deserialize(
                 json.load(file),
@@ -61,7 +60,7 @@ class TestSurvivalRuleSet(unittest.TestCase):
         prediction = ruleset.predict(X)
 
         with open(os.path.join(
-            dir_path, '..', 'resources', 'survival', 'rulekit-bone-marrow-prediction.json'
+            load_resources_path(), 'survival', 'rulekit-bone-marrow-prediction.json'
         ), 'r', encoding='utf-8') as file:
             rulekit_prediction = np.array(json.load(file))
 
@@ -101,12 +100,12 @@ class TestSurvivalRuleSet(unittest.TestCase):
                 condition_importances)
 
             condition_importances_file_path: str = os.path.join(
-                dir_path, '..', 'resources', 'survival', 'BHS_condition_importances.json')
+                load_resources_path(), 'survival', 'BHS_condition_importances.json')
             with open(condition_importances_file_path, 'r', encoding='utf-8') as file:
                 condition_importances_readed = json.load(file)
 
             attribute_importances_file_path: str = os.path.join(
-                dir_path, '..', 'resources', 'survival', 'BHS_attribute_importances.json')
+                load_resources_path(), 'survival', 'BHS_attribute_importances.json')
             with open(attribute_importances_file_path, 'r', encoding='utf-8') as file:
                 attribute_importances_readed = json.load(file)
 

@@ -13,8 +13,7 @@ from decision_rules.conditions import CompoundCondition
 from decision_rules.conditions import NominalCondition
 from decision_rules.core.exceptions import InvalidStateError
 from decision_rules.serialization.utils import JSONSerializer
-
-dir_path = os.path.dirname(os.path.realpath(__file__))
+from tests.loaders import load_resources_path
 
 
 class TestClassificationRuleSet(unittest.TestCase):
@@ -298,16 +297,21 @@ class TestClassificationRuleSet(unittest.TestCase):
             )
 
     def test_condition_importances(self):
-        df = pd.read_csv(
-            f'{dir_path}/../resources/importances/car.csv', sep=";")
+        importances_path = os.path.join(load_resources_path(), "importances")
+        df = pd.read_csv(os.path.join(importances_path, "car.csv"), sep=";")
         y = df['class']
         X = df.drop('class', axis=1)
 
         ruleXAI_condition_importances = pd.read_csv(
-            f'{dir_path}/../resources/importances/rulexai_condition_importances_for_car_measure_C2.csv', sep=";")
+            os.path.join(
+                importances_path,
+                "rulexai_condition_importances_for_car_measure_C2.csv"
+            ),
+            sep=";"
+        )
         ruleXAI_condition_importances["acc | importances"] = ruleXAI_condition_importances["acc | importances"].astype(
             str)
-        with open(f'{dir_path}/../resources/importances/car_ruleset.json', 'r') as fp:
+        with open(os.path.join(importances_path, "car_ruleset.json"), "r") as fp:
             ruleset_json = json.load(fp)
 
         ruleset: ClassificationRuleSet = JSONSerializer.deserialize(

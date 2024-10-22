@@ -8,7 +8,7 @@ from decision_rules.survival.metrics import SurvivalRulesMetrics
 from decision_rules.survival.rule import SurvivalConclusion
 from decision_rules.survival.rule import SurvivalRule
 from decision_rules.survival.ruleset import SurvivalRuleSet
-from tests.core.test_rules_metrics import BaseRulesMetricsTestCase
+from tests.base_tests.core.test_rules_metrics import BaseRulesMetricsTestCase
 
 
 class TestSurvivalRulesMetrics(BaseRulesMetricsTestCase):

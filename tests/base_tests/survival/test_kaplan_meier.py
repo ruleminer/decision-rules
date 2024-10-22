@@ -5,20 +5,15 @@ import unittest
 
 import numpy as np
 import pandas as pd
-from decision_rules import measures
-from decision_rules.conditions import CompoundCondition
-from decision_rules.conditions import NominalCondition
-from decision_rules.serialization.utils import JSONSerializer
 from decision_rules.survival.kaplan_meier import KaplanMeierEstimator
-
-dir_path = os.path.dirname(os.path.realpath(__file__))
+from tests.loaders import load_resources_path
 
 
 class TestKaplanMeierRuleSet(unittest.TestCase):
 
     def test_calculating_indicators(self):
         df = pd.read_csv(os.path.join(
-            dir_path, '..', 'resources', 'survival', 'waltons.csv'
+            load_resources_path(), 'survival', 'waltons.csv'
         ))
 
         survival_time = df['T']
@@ -55,7 +50,7 @@ class TestKaplanMeierRuleSet(unittest.TestCase):
 
     def test_estimator_fit(self):
         df = pd.read_csv(os.path.join(
-            dir_path, '..', 'resources', 'survival', 'BHS.csv'
+            load_resources_path(), 'survival', 'BHS.csv'
         ))
 
         survival_time = df['survival_time'].to_numpy()

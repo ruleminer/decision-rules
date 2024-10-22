@@ -5,14 +5,12 @@ import unittest
 import numpy as np
 import pandas as pd
 from decision_rules import measures
-from decision_rules.classification import ClassificationConclusion
-from decision_rules.classification import ClassificationRuleSet
+from decision_rules.classification.ruleset import ClassificationRuleSet
 from decision_rules.classification.prediction_indicators import \
     calculate_for_classification
 from tests.loaders import load_classification_dataset
 from tests.loaders import load_classification_ruleset
-
-dir_path = os.path.dirname(os.path.realpath(__file__))
+from tests.loaders import load_resources_path
 
 
 class TestClassificationPredictionIndicators(unittest.TestCase):

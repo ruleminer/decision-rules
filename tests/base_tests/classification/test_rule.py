@@ -5,7 +5,7 @@ import numpy as np
 from decision_rules.classification.rule import ClassificationConclusion
 from decision_rules.classification.rule import ClassificationRule
 from decision_rules.core.coverage import Coverage
-from tests.core.test_abstract_condition import TestingCondition
+from tests.base_tests.core.test_abstract_condition import TestingCondition
 
 
 class TestClassificationRule(unittest.TestCase):

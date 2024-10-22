@@ -4,14 +4,11 @@ import unittest
 
 import numpy as np
 import pandas as pd
-from decision_rules.survival import SurvivalConclusion
 from decision_rules.survival import SurvivalRuleSet
 from decision_rules.survival.prediction_indicators import \
     calculate_for_survival
 from tests.loaders import load_survival_dataset
 from tests.loaders import load_survival_ruleset
-
-dir_path = os.path.dirname(os.path.realpath(__file__))
 
 
 class TestSurvivalPredictionIndicators(unittest.TestCase):

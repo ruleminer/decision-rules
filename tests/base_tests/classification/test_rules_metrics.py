@@ -8,7 +8,7 @@ from decision_rules.classification.rule import ClassificationRule
 from decision_rules.classification.ruleset import ClassificationRuleSet
 from decision_rules.conditions import CompoundCondition
 from decision_rules.conditions import NominalCondition
-from tests.core.test_rules_metrics import BaseRulesMetricsTestCase
+from tests.base_tests.core.test_rules_metrics import BaseRulesMetricsTestCase
 
 
 class TestClassificationRulesMetrics(BaseRulesMetricsTestCase):

@@ -11,8 +11,7 @@ from decision_rules.regression.rule import RegressionConclusion
 from decision_rules.regression.rule import RegressionRule
 from decision_rules.regression.ruleset import RegressionRuleSet
 from decision_rules.serialization.utils import JSONSerializer
-
-dir_path = os.path.dirname(os.path.realpath(__file__))
+from tests.loaders import load_resources_path
 
 
 class TestRegressionRuleSet(unittest.TestCase):
@@ -24,13 +23,13 @@ class TestRegressionRuleSet(unittest.TestCase):
     def setUp(self) -> None:
         super().setUp()
         df = pd.read_csv(os.path.join(
-            dir_path, '..', 'resources', 'regression', 'diabetes.csv'
+            load_resources_path(), 'regression', 'diabetes.csv'
         ))
         self.X = df.drop('label', axis=1)
         self.y = df['label']
 
         ruleset_file_path: str = os.path.join(
-            dir_path, '..', 'resources', 'regression', 'diabetes_ruleset.json')
+            load_resources_path(), 'regression', 'diabetes_ruleset.json')
         with open(ruleset_file_path, 'r', encoding='utf-8') as file:
             self.ruleset: RegressionRuleSet = JSONSerializer.deserialize(
                 json.load(file),

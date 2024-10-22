@@ -8,22 +8,20 @@ import pandas as pd
 from decision_rules import measures
 from decision_rules.regression.ruleset import RegressionRuleSet
 from decision_rules.serialization.utils import JSONSerializer
-
-dir_path = os.path.dirname(os.path.realpath(__file__))
-
+from tests.loaders import load_resources_path
 
 class TestRegressionRuleSetImportanceCalculation(unittest.TestCase):
 
     def setUp(self) -> None:
         super().setUp()
         df = pd.read_csv(os.path.join(
-            dir_path, '..', 'resources', 'regression', 'bolts.csv'
+            load_resources_path(), 'regression', 'bolts.csv'
         ))
         self.X = df.drop('class', axis=1)
         self.y = df['class'].replace('?', np.nan).astype(float)
 
         ruleset_file_path: str = os.path.join(
-            dir_path, '..', 'resources', 'regression', 'bolts_ruleset.json'
+            load_resources_path(), 'regression', 'bolts_ruleset.json'
         )
         with open(ruleset_file_path, 'r', encoding='utf-8') as file:
             self.ruleset: RegressionRuleSet = JSONSerializer.deserialize(

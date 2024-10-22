@@ -8,7 +8,7 @@ from decision_rules.regression.metrics import RegressionRulesMetrics
 from decision_rules.regression.rule import RegressionConclusion
 from decision_rules.regression.rule import RegressionRule
 from decision_rules.regression.ruleset import RegressionRuleSet
-from tests.core.test_rules_metrics import BaseRulesMetricsTestCase
+from tests.base_tests.core.test_rules_metrics import BaseRulesMetricsTestCase
 
 
 class TestRegressionRulesMetrics(BaseRulesMetricsTestCase):

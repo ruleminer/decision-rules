@@ -12,8 +12,6 @@ from decision_rules.regression.prediction_indicators import \
 from tests.loaders import load_regression_dataset
 from tests.loaders import load_regression_ruleset
 
-dir_path = os.path.dirname(os.path.realpath(__file__))
-
 
 class TestRegressionPredictionIndicators(unittest.TestCase):
 
