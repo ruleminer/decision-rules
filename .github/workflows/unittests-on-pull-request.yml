@@ -26,6 +26,14 @@ jobs:
         python -m pip install --upgrade pip
         pip install .
 
-    - name: Run tests
+    - name: Run tests for the base package
       run: |
-        python -m unittest discover ./tests
+        python -m unittest discover ./tests/base_tests
+
+    - name: Install extras dependencies
+      run: |
+        pip install .[ruleset_factories]
+
+    - name: Run tests for the extras
+      run: |
+        python -m unittest discover ./tests/extras
