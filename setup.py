@@ -11,7 +11,7 @@ setup(
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     version='1.1.0',
-    author='Cezary Maszczyk, Dawid Macha, Adam Grzelak',
+    author='Cezary Maszczyk, Dawid Macha, Adam Grzelak, Bartosz Piguła',
     author_email='cezary.maszczyk@emag.lukasiewicz.gov.pl',
     readme='README.md',
     packages=find_packages(),
