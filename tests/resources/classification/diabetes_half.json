@@ -1,0 +1,4016 @@
+{
+  "meta": {
+    "attributes": [
+      "insu",
+      "mass",
+      "pedi",
+      "age"
+    ],
+    "decision_attribute": "class",
+    "decision_attribute_distribution": {
+      "tested_negative": 500,
+      "tested_positive": 268
+    }
+  },
+  "rules": [
+    {
+      "uuid": "962c3939-4e4b-46a4-8c1b-887664b5f92f",
+      "string": "IF mass < 22.80 AND mass >= 9.10 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 22.799999999999997,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 9.1,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 0,
+        "p": 48
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "e890b4a0-45f3-47f6-b9dd-0223bcba80cd",
+      "string": "IF mass < 25.45 AND age < 29.50 AND pedi < 0.67 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 25.45,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 29.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 0.672,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 0,
+        "p": 82
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "2c9b6c73-39c3-4194-b2b2-ebf90e9467cf",
+      "string": "IF mass < 25.45 AND age < 31.50 AND mass >= 9.10 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 25.45,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 31.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 9.1,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 1,
+        "p": 87
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "e843f528-53c8-4004-94d3-1c72d41021a6",
+      "string": "IF mass < 25.45 AND age < 49.00 AND mass >= 9.10 AND insu < 142.00 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 25.45,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 49.0,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 9.1,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 142.0,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 2,
+        "p": 97
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "2fae9c09-bed5-4e8c-98d4-0b309cdf7d03",
+      "string": "IF mass < 25.45 AND pedi >= 0.13 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 25.45,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 0.1325,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 9,
+        "p": 123
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "442f1ab7-1c42-4214-8869-8ac4cd766466",
+      "string": "IF mass < 26.35 AND age < 29.50 AND pedi < 0.67 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 26.35,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 29.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 0.672,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 1,
+        "p": 95
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "5179405e-3342-4aa8-8e97-796f4a3b4f37",
+      "string": "IF mass < 26.35 AND age < 52.00 AND pedi < 1.16 AND mass >= 9.10 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 26.35,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 52.0,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 1.1644999999999999,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 9.1,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 7,
+        "p": 126
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "c59e4f91-e714-45a5-9f8b-1c1feb7c4bb0",
+      "string": "IF mass < 26.75 AND mass >= 9.10 AND pedi < 1.16 AND pedi >= 0.13 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 26.75,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 9.1,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 1.1644999999999999,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 0.131,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 13,
+        "p": 143
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "fe3c46ca-3cde-44eb-b654-1ddec6a9f4ef",
+      "string": "IF mass < 27.35 AND age < 38.00 AND insu < 95.50 AND mass >= 9.10 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 27.35,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 38.0,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 95.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 9.1,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 4,
+        "p": 109
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "d7f1a923-dc0c-453e-ad93-f034210a8574",
+      "string": "IF mass < 27.85 AND age < 26.50 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 27.85,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 26.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 2,
+        "p": 109
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "deeb040d-92e2-4b02-a549-d8d5e5b29167",
+      "string": "IF mass < 27.85 AND pedi < 0.67 AND mass >= 9.10 AND insu < 113.50 AND pedi >= 0.14 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 27.85,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 0.669,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 9.1,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 113.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 0.1415,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 11,
+        "p": 129
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "8324ceb1-cc3b-46d2-a8b7-6006fb2762e2",
+      "string": "IF mass < 28.25 AND insu < 343.00 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 28.25,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 343.0,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 30,
+        "p": 199
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "188b6c3f-bd4a-406b-bb62-530f0e4700ac",
+      "string": "IF age < 21.50 AND mass < 33.40 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 21.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 33.400000000000006,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 0,
+        "p": 47
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "5d662c12-e4a6-42b3-af7d-efed7e4bf400",
+      "string": "IF age < 21.50 AND pedi < 0.69 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 21.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 0.6924999999999999,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 3,
+        "p": 52
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "d0b0b126-527d-4fa1-84be-6fdf167e7ce3",
+      "string": "IF mass < 28.85 AND age < 29.50 AND insu < 325.50 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 28.85,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 29.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 325.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 8,
+        "p": 143
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "90fad9a4-a9eb-42c8-940d-0eb2e74e6e83",
+      "string": "IF age < 24.50 AND mass < 31.10 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 24.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 31.1,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 4,
+        "p": 122
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "c80d163d-0749-4bff-a2f5-0f8bbe81b62e",
+      "string": "IF age < 24.50 AND mass < 32.85 AND pedi < 0.67 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 24.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 32.849999999999994,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 0.6665000000000001,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 4,
+        "p": 119
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "d333014b-c015-4db3-abd4-16f8bad0813a",
+      "string": "IF age < 24.50 AND mass < 34.55 AND pedi < 0.50 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 24.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 34.55,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 0.5035000000000001,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 7,
+        "p": 112
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "6ff8397e-bde7-4d9c-a2d0-62b8259a57fc",
+      "string": "IF age < 24.50 AND mass < 37.30 AND insu < 444.50 AND insu >= 7.50 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 24.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 37.3,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 444.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 7.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 5,
+        "p": 101
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "e6eb2183-4476-434c-b83f-69b76eecae05",
+      "string": "IF age < 24.50 AND insu < 232.50 AND mass < 45.35 AND pedi < 0.51 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 24.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 232.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 45.35,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 0.5095000000000001,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 11,
+        "p": 129
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "20f8f08c-c1a4-4013-a41e-3e4f2851c404",
+      "string": "IF mass < 29.55 AND age < 38.00 AND pedi < 1.18 AND insu < 325.50 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 29.55,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 38.0,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 1.181,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 325.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 18,
+        "p": 184
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "bf7e4190-8bd1-4741-b943-a5a6004feae6",
+      "string": "IF mass < 29.85 AND pedi < 1.14 AND insu < 343.00 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 29.85,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 1.141,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 343.0,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 40,
+        "p": 235
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "7e022d5e-e00f-4c7e-a5af-f0604faee29b",
+      "string": "IF age < 25.50 AND mass < 35.60 AND pedi < 1.02 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 25.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 35.6,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 1.02,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 17,
+        "p": 177
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "92acd125-6351-4af3-834f-859cf9d65820",
+      "string": "IF age < 25.50 AND mass < 41.75 AND pedi < 1.14 AND insu < 512.50 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 25.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 41.75,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 1.1415,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 512.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 28,
+        "p": 207
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "57806e42-f87d-4f24-b5dd-6a6ee71f6e3a",
+      "string": "IF age < 26.50 AND mass < 37.70 AND pedi < 0.90 AND insu < 444.50 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 26.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 37.7,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 0.8985000000000001,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 444.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 23,
+        "p": 207
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "1a5a24c8-375d-432d-92c6-98329c03b46f",
+      "string": "IF age < 26.50 AND pedi < 0.90 AND mass < 62.20 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 26.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 0.9045000000000001,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 62.199999999999996,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 42,
+        "p": 237
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "94c20e7f-78e7-46b7-933a-238cbfbb9494",
+      "string": "IF age < 27.50 AND pedi < 0.93 AND mass < 48.60 AND insu < 444.50 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 27.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 0.9315,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 48.599999999999994,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 444.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 43,
+        "p": 257
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "b9081589-2d25-46e1-a562-5a1612d6da4f",
+      "string": "IF age < 28.50 AND mass < 37.05 AND pedi < 0.84 AND insu < 444.50 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 28.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 37.05,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 0.842,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 444.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 28,
+        "p": 233
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "27551776-fbf7-4c19-9fa3-6c21533d6baa",
+      "string": "IF mass < 30.95 AND insu < 142.00 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 30.95,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 142.0,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 53,
+        "p": 246
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "c89768b5-1488-4d1b-aa5c-b814a4a04fc3",
+      "string": "IF age < 29.50 AND mass < 41.75 AND pedi < 0.75 AND insu < 128.50 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 29.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 41.75,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 0.7525,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 128.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 27,
+        "p": 221
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "b5cb12bd-4b0a-4900-9496-9d6a25c5a174",
+      "string": "IF age < 30.50 AND mass < 41.75 AND pedi < 0.93 AND insu < 457.00 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 30.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 41.75,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 0.9315,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 457.0,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 56,
+        "p": 296
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "74967340-c670-4f23-b7e8-1379687c17e2",
+      "string": "IF mass < 32.25 AND age < 42.50 AND pedi < 1.16 AND insu < 238.00 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 32.25,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 42.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 1.16,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 238.0,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 47,
+        "p": 246
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "d130d25b-b04b-4ff0-94d6-635b73c2b151",
+      "string": "IF pedi < 0.21 AND pedi >= 0.17 AND insu < 110.00 AND mass >= 32.00 AND age >= 29.50 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 0.208,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 0.1655,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 110.0,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 32.0,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 29.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 0,
+        "p": 11
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "9b08b5ee-1c77-489e-a60e-b0b33795c3b0",
+      "string": "IF pedi < 0.22 AND insu < 223.00 AND mass < 47.05 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 0.2185,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 223.0,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 47.05,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 27,
+        "p": 115
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "98c5efdb-d28b-4a46-a8ed-cde33a9a924f",
+      "string": "IF age < 34.50 AND mass < 43.00 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 34.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 43.0,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 104,
+        "p": 347
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "4a1a1989-ef3c-4bea-b2c6-7b204f1726a5",
+      "string": "IF mass < 33.55 AND insu < 155.50 AND pedi < 0.74 AND age < 69.50 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 33.55,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 155.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 0.7395,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 69.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 72,
+        "p": 271
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "35c027a8-93f8-4350-8239-bcc5776dfe18",
+      "string": "IF pedi < 0.32 AND mass < 42.25 AND age < 48.50 AND insu < 229.50 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 0.3185,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 42.25,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 48.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 229.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 50,
+        "p": 203
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "fbef8707-1517-45fe-b4dc-34e5f2d11f7b",
+      "string": "IF mass < 35.45 AND pedi < 1.05 AND insu < 351.00 AND age < 52.50 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 35.45,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 1.0470000000000002,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 351.0,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 52.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 117,
+        "p": 335
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "f11d2283-c3c3-4278-bf53-ac5b026a2540",
+      "string": "IF insu < 121.00 AND mass < 40.85 AND age < 69.50 THEN class = tested_negative",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 121.0,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 40.849999999999994,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 69.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 268,
+        "P": 500,
+        "n": 130,
+        "p": 378
+      },
+      "conclusion": {
+        "value": "tested_negative"
+      }
+    },
+    {
+      "uuid": "47ca3a04-fe4a-400d-94f7-2be305653a47",
+      "string": "IF mass >= 48.10 AND insu < 230.00 THEN class = tested_positive",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 48.099999999999994,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 230.0,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 500,
+        "P": 268,
+        "n": 0,
+        "p": 12
+      },
+      "conclusion": {
+        "value": "tested_positive"
+      }
+    },
+    {
+      "uuid": "be311f19-0e4e-4456-aa22-58c233ebe584",
+      "string": "IF mass >= 45.35 AND insu < 525.00 AND pedi >= 0.13 AND age >= 22.50 AND age < 56.00 THEN class = tested_positive",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 45.349999999999994,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 525.0,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 0.1265,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 22.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 56.0,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 500,
+        "P": 268,
+        "n": 5,
+        "p": 22
+      },
+      "conclusion": {
+        "value": "tested_positive"
+      }
+    },
+    {
+      "uuid": "8691bee7-e94f-4715-8751-9983b4cbbefe",
+      "string": "IF insu >= 452.50 AND mass < 39.65 AND pedi < 2.23 THEN class = tested_positive",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 452.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 39.650000000000006,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 2.233,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 500,
+        "P": 268,
+        "n": 1,
+        "p": 10
+      },
+      "conclusion": {
+        "value": "tested_positive"
+      }
+    },
+    {
+      "uuid": "9dda5131-deca-4111-8b08-45d966c719c1",
+      "string": "IF insu < 31.00 AND mass >= 42.85 AND mass < 44.35 THEN class = tested_positive",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 31.0,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 42.849999999999994,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 44.35,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 500,
+        "P": 268,
+        "n": 0,
+        "p": 11
+      },
+      "conclusion": {
+        "value": "tested_positive"
+      }
+    },
+    {
+      "uuid": "87507af0-fb72-4550-a3c5-b5f72d95f171",
+      "string": "IF mass >= 41.65 AND age >= 24.50 AND pedi >= 0.20 AND age < 53.50 AND mass < 44.35 THEN class = tested_positive",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 41.65,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 24.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 0.1995,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 53.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 44.35,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 500,
+        "P": 268,
+        "n": 4,
+        "p": 18
+      },
+      "conclusion": {
+        "value": "tested_positive"
+      }
+    },
+    {
+      "uuid": "a82cf92c-8e7f-4c8e-add6-8604dbf9c55b",
+      "string": "IF pedi >= 1.18 AND pedi < 1.40 AND age >= 26.00 THEN class = tested_positive",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 1.178,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 1.3969999999999998,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 26.0,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 500,
+        "P": 268,
+        "n": 0,
+        "p": 12
+      },
+      "conclusion": {
+        "value": "tested_positive"
+      }
+    },
+    {
+      "uuid": "cab312d8-36fc-4bd9-8bc8-4c81495fb1cd",
+      "string": "IF mass >= 40.35 AND pedi < 0.88 AND insu < 425.00 AND age < 51.00 AND pedi >= 0.30 THEN class = tested_positive",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 40.35,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 0.8755,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 425.0,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 51.0,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 0.3015,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 500,
+        "P": 268,
+        "n": 13,
+        "p": 32
+      },
+      "conclusion": {
+        "value": "tested_positive"
+      }
+    },
+    {
+      "uuid": "167cd146-fbb9-47f0-9ae1-7a8d8779311e",
+      "string": "IF age >= 30.50 AND insu >= 142.00 AND insu < 166.50 THEN class = tested_positive",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 30.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 142.0,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 166.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 500,
+        "P": 268,
+        "n": 1,
+        "p": 13
+      },
+      "conclusion": {
+        "value": "tested_positive"
+      }
+    },
+    {
+      "uuid": "357b17c0-1c2d-48d3-a5d7-7f745785e5f9",
+      "string": "IF age >= 30.50 AND insu >= 142.00 AND mass >= 34.05 AND insu < 335.00 AND mass < 37.65 THEN class = tested_positive",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 30.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 142.0,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 34.05,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 335.0,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 37.650000000000006,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 500,
+        "P": 268,
+        "n": 0,
+        "p": 20
+      },
+      "conclusion": {
+        "value": "tested_positive"
+      }
+    },
+    {
+      "uuid": "8182f386-f5f6-4cda-88e2-1d3e7163dcea",
+      "string": "IF age >= 30.50 AND insu >= 142.00 AND mass >= 29.50 AND insu < 544.00 AND pedi >= 0.32 AND mass < 46.30 THEN class = tested_positive",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 30.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 142.0,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 29.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 544.0,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 0.3245,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 46.3,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 500,
+        "P": 268,
+        "n": 7,
+        "p": 39
+      },
+      "conclusion": {
+        "value": "tested_positive"
+      }
+    },
+    {
+      "uuid": "df4d7c81-e640-4ba1-b235-35c16deaa4ac",
+      "string": "IF insu >= 123.50 AND age >= 39.50 AND age < 59.50 AND pedi < 1.16 AND pedi >= 0.11 THEN class = tested_positive",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 123.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 39.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 59.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 1.1564999999999999,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 0.10650000000000001,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 500,
+        "P": 268,
+        "n": 7,
+        "p": 38
+      },
+      "conclusion": {
+        "value": "tested_positive"
+      }
+    },
+    {
+      "uuid": "4db422a0-8404-4f60-a56c-b9450bc059ea",
+      "string": "IF mass >= 29.85 AND pedi >= 0.39 AND age >= 44.50 AND mass < 35.40 AND insu < 52.50 THEN class = tested_positive",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 29.85,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 0.3945,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 44.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 35.400000000000006,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 52.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 500,
+        "P": 268,
+        "n": 0,
+        "p": 11
+      },
+      "conclusion": {
+        "value": "tested_positive"
+      }
+    },
+    {
+      "uuid": "9fb062ba-e30f-490e-8608-63df55229196",
+      "string": "IF age >= 30.50 AND mass >= 29.85 AND pedi < 1.40 AND pedi >= 0.74 AND mass < 39.85 AND insu < 192.50 AND age < 43.50 THEN class = tested_positive",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 30.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 29.85,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 1.395,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 0.74,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 39.85,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 192.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 43.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 500,
+        "P": 268,
+        "n": 1,
+        "p": 16
+      },
+      "conclusion": {
+        "value": "tested_positive"
+      }
+    },
+    {
+      "uuid": "b051538b-ecbd-4f58-982d-6edf3a7d0b77",
+      "string": "IF age >= 30.50 AND pedi >= 0.39 AND pedi < 1.40 AND mass < 46.05 AND age < 67.50 AND mass >= 30.45 AND insu < 333.50 THEN class = tested_positive",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 30.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 0.3945,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 1.395,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 46.05,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 67.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 30.45,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 333.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 500,
+        "P": 268,
+        "n": 20,
+        "p": 73
+      },
+      "conclusion": {
+        "value": "tested_positive"
+      }
+    },
+    {
+      "uuid": "01541fed-0dbc-4ebc-9b63-962d3a6bd836",
+      "string": "IF age >= 30.50 AND mass >= 29.85 AND pedi >= 0.31 AND pedi < 1.40 AND age < 67.50 AND mass < 46.20 AND insu < 520.00 THEN class = tested_positive",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 30.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 29.85,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 0.3095,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 1.395,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 67.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 46.2,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 520.0,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 500,
+        "P": 268,
+        "n": 36,
+        "p": 93
+      },
+      "conclusion": {
+        "value": "tested_positive"
+      }
+    },
+    {
+      "uuid": "3431fdc2-cb3d-4bd1-9081-aef37df7dff9",
+      "string": "IF age >= 30.50 AND mass >= 29.85 AND pedi < 1.40 AND insu < 520.00 AND age < 67.50 AND mass < 46.25 AND pedi >= 0.25 THEN class = tested_positive",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 30.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 29.85,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 1.395,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 520.0,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 67.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 46.25,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 0.2525,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 500,
+        "P": 268,
+        "n": 55,
+        "p": 110
+      },
+      "conclusion": {
+        "value": "tested_positive"
+      }
+    },
+    {
+      "uuid": "b12fff4e-1a89-4040-9b73-cb0c3f7be0ae",
+      "string": "IF age >= 30.50 AND mass >= 29.85 AND pedi >= 0.13 AND pedi < 1.40 AND age < 62.50 AND insu < 544.00 THEN class = tested_positive",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 30.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 29.85,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 0.127,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 1.395,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 62.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 544.0,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 500,
+        "P": 268,
+        "n": 79,
+        "p": 136
+      },
+      "conclusion": {
+        "value": "tested_positive"
+      }
+    },
+    {
+      "uuid": "16e87aea-d83b-4432-9aca-019caf27640e",
+      "string": "IF age >= 30.50 AND mass >= 28.10 AND pedi < 1.40 AND pedi >= 0.09 THEN class = tested_positive",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 30.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 28.1,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 1.395,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 0.0865,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 500,
+        "P": 268,
+        "n": 105,
+        "p": 156
+      },
+      "conclusion": {
+        "value": "tested_positive"
+      }
+    },
+    {
+      "uuid": "db62042c-1be1-471c-ba34-850ef6c3fd45",
+      "string": "IF age >= 30.50 AND mass >= 24.25 AND age < 62.50 AND pedi < 1.40 AND pedi >= 0.13 THEN class = tested_positive",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 30.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 24.25,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 62.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 1.395,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 0.127,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 500,
+        "P": 268,
+        "n": 123,
+        "p": 166
+      },
+      "conclusion": {
+        "value": "tested_positive"
+      }
+    },
+    {
+      "uuid": "df99e850-b1b3-4bfc-b658-7c7a94a1e7df",
+      "string": "IF age >= 28.50 AND insu >= 126.50 AND mass >= 27.55 AND pedi < 1.16 AND pedi >= 0.14 AND age < 33.50 AND mass < 41.15 THEN class = tested_positive",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 28.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 126.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 27.55,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 1.1564999999999999,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 0.14200000000000002,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 33.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 41.15,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 500,
+        "P": 268,
+        "n": 2,
+        "p": 16
+      },
+      "conclusion": {
+        "value": "tested_positive"
+      }
+    },
+    {
+      "uuid": "c98a2d54-2cec-4bb9-b18d-622fc2020f4e",
+      "string": "IF age >= 28.50 AND pedi >= 0.22 AND age < 62.50 AND pedi < 1.40 THEN class = tested_positive",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 28.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 0.219,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 62.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 1.395,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 500,
+        "P": 268,
+        "n": 134,
+        "p": 166
+      },
+      "conclusion": {
+        "value": "tested_positive"
+      }
+    },
+    {
+      "uuid": "a606e0e7-91ac-4a71-99fa-1c0441b86af1",
+      "string": "IF insu >= 143.00 AND mass >= 29.50 AND insu < 329.00 AND mass < 46.30 AND pedi >= 0.33 THEN class = tested_positive",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 143.0,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 29.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 329.0,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 46.3,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 0.332,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 500,
+        "P": 268,
+        "n": 25,
+        "p": 56
+      },
+      "conclusion": {
+        "value": "tested_positive"
+      }
+    },
+    {
+      "uuid": "8a869dc8-614c-4779-ab3c-6056fcbf3737",
+      "string": "IF pedi >= 0.51 AND mass < 38.60 AND mass >= 31.10 AND insu < 619.50 AND age < 67.50 THEN class = tested_positive",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 0.5095000000000001,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 38.6,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": 31.1,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 619.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 67.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 500,
+        "P": 268,
+        "n": 32,
+        "p": 66
+      },
+      "conclusion": {
+        "value": "tested_positive"
+      }
+    },
+    {
+      "uuid": "8291c41c-1253-449c-b63b-d1579b700e9b",
+      "string": "IF mass >= 30.25 AND age >= 23.50 AND pedi >= 0.13 AND insu < 661.50 AND age < 62.50 THEN class = tested_positive",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 30.25,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 23.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 0.1265,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 661.5,
+            "negated": false,
+            "attributes": [
+              0
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 62.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 500,
+        "P": 268,
+        "n": 178,
+        "p": 187
+      },
+      "conclusion": {
+        "value": "tested_positive"
+      }
+    },
+    {
+      "uuid": "e20f1dbc-68c7-4dc6-9cdd-8dd270116169",
+      "string": "IF mass >= 25.45 AND pedi >= 0.20 AND age >= 21.50 AND age < 62.50 AND pedi < 1.40 THEN class = tested_positive",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 25.45,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              1
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 0.195,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": 21.5,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 62.5,
+            "negated": false,
+            "attributes": [
+              3
+            ],
+            "left_closed": false,
+            "right_closed": false
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 1.3969999999999998,
+            "negated": false,
+            "attributes": [
+              2
+            ],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "coverage": {
+        "N": 500,
+        "P": 268,
+        "n": 261,
+        "p": 224
+      },
+      "conclusion": {
+        "value": "tested_positive"
+      }
+    }
+  ]
+}

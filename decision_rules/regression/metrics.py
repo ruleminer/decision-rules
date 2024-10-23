@@ -3,16 +3,17 @@
 import math
 from typing import Any
 from typing import Callable
+from typing import Optional
 
 import numpy as np
+from decision_rules.core.coverage import Coverage
 from decision_rules.core.metrics import AbstractRulesMetrics
 from decision_rules.regression.rule import RegressionRule
 from scipy.stats import chi2
 from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import mean_absolute_percentage_error
-from sklearn.metrics import mean_squared_error
-from decision_rules.core.coverage import Coverage
-from typing import Optional
+from sklearn.metrics import root_mean_squared_error
+
 
 class RegressionRulesMetrics(AbstractRulesMetrics):
     """
@@ -59,7 +60,7 @@ class RegressionRulesMetrics(AbstractRulesMetrics):
             'y_covered_min': lambda: float(rule_covered_examples.min()),
             'y_covered_max': lambda: float(rule_covered_examples.max()),
             'mae': lambda: float(mean_absolute_error(y, rule_prediction)),
-            'rmse': lambda: math.sqrt(mean_squared_error(y, rule_prediction)),
+            'rmse': lambda: float(root_mean_squared_error(y, rule_prediction)),
             'mape': lambda: float(mean_absolute_percentage_error(y, rule_prediction)),
             'p-value': lambda: float(self.calculate_p_value(rule=rule, y=y)),
         }

@@ -101,10 +101,10 @@ class SurvivalRuleSet(AbstractRuleSet):
                 '"update" cannot be called on empty ruleset with no rules.'
             )
 
-        self.column_names = X_train.columns.tolist()
-
+        if self.column_names is None:
+            self.column_names = X_train.columns.tolist()
         # sort data by survival time
-        survival_time_attr_index = X_train.columns.get_loc(
+        survival_time_attr_index = self.column_names.index(
             self.survival_time_attr_name)
         X_train, y_train = self._sanitize_dataset(X_train, y_train)
         survival_time = X_train[:, survival_time_attr_index]
