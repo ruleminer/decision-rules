@@ -12,6 +12,8 @@ from typing import Union
 
 import numpy as np
 import pandas as pd
+from decision_rules.conditions import AttributesCondition
+from decision_rules.conditions import CompoundCondition
 from decision_rules.core.coverage import ClassificationCoverageInfodict
 from decision_rules.core.coverage import Coverage
 from decision_rules.core.exceptions import InvalidStateError
@@ -319,7 +321,8 @@ class AbstractRuleSet(_PredictionModel, ABC):
             raise ValueError(
                 '"update" cannot be called on empty ruleset with no rules.'
             )
-        self.column_names = X_train.columns.tolist()
+        if self.column_names is None:
+            self.column_names = X_train.columns.tolist()
         X_train, y_train = self._sanitize_dataset(X_train, y_train)
         y_uniques, y_values_count = np.unique(y_train, return_counts=True)
         coverage_matrix: np.ndarray = self.calculate_rules_coverages(
@@ -484,3 +487,26 @@ class AbstractRuleSet(_PredictionModel, ABC):
             rule.uuid: rule.get_coverage_dict()
             for rule in self.rules
         }
+
+    def update_meta(self, new_attributes: list[str]):
+        if set(self.column_names).difference(set(new_attributes)):
+            raise ValueError(
+                "New attributes do not contain all of the old attributes.")
+        old_to_new_attr_mapping = {
+            i: new_attributes.index(attr) for i, attr in enumerate(self.column_names)
+        }
+        for rule in self.rules:
+            self._update_condition(rule.premise, old_to_new_attr_mapping)
+            rule.column_names = new_attributes
+        self.column_names = new_attributes
+
+    def _update_condition(self, premise, old_to_new_attr_mapping):
+        if isinstance(premise, CompoundCondition):
+            for condition in premise.subconditions:
+                self._update_condition(condition, old_to_new_attr_mapping)
+            return
+        if isinstance(premise, AttributesCondition):
+            premise.column_left = old_to_new_attr_mapping[premise.column_left]
+            premise.column_right = old_to_new_attr_mapping[premise.column_right]
+            return
+        premise.column_index = old_to_new_attr_mapping[premise.column_index]

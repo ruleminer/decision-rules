@@ -28,7 +28,7 @@ Besides the base package, additional dependencies are required to use the `rules
 pip install decision-rules[ruleset_factories]
 ```
 
-You can also just clone the repository and install the pacakage locally:
+You can also just clone the repository and install the package locally:
 ```
 pip install .
 ```

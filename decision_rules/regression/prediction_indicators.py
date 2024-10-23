@@ -6,8 +6,8 @@ from decision_rules.problem import ProblemTypes
 from sklearn.metrics import max_error
 from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import mean_absolute_percentage_error
-from sklearn.metrics import mean_squared_error
 from sklearn.metrics import r2_score
+from sklearn.metrics import mean_squared_error
 
 # funky definition because of the field with invalid identifier name "R^2"
 RegressionGeneralPredictionIndicators = TypedDict(

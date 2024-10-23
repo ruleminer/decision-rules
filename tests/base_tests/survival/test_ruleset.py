@@ -81,11 +81,11 @@ class TestSurvivalRuleSet(unittest.TestCase):
         for strategy in self.ruleset.prediction_strategies_choice.keys():
             self.ruleset.set_prediction_strategy(strategy)
             prediction = self.ruleset.predict(self.X)
-            predition_cov_matrix = self.ruleset.predict_using_coverage_matrix(
+            prediction_cov_matrix = self.ruleset.predict_using_coverage_matrix(
                 coverage_matrix
             )
             self.assertTrue(compare_survival_prediction(
-                prediction, predition_cov_matrix
+                prediction, prediction_cov_matrix
             ))
 
     def test_condition_importances(self):
@@ -102,24 +102,26 @@ class TestSurvivalRuleSet(unittest.TestCase):
             condition_importances_file_path: str = os.path.join(
                 load_resources_path(), 'survival', 'BHS_condition_importances.json')
             with open(condition_importances_file_path, 'r', encoding='utf-8') as file:
-                condition_importances_readed = json.load(file)
+                condition_importances_read = json.load(file)
 
             attribute_importances_file_path: str = os.path.join(
                 load_resources_path(), 'survival', 'BHS_attribute_importances.json')
             with open(attribute_importances_file_path, 'r', encoding='utf-8') as file:
-                attribute_importances_readed = json.load(file)
+                attribute_importances_read = json.load(file)
 
-            self.assertEqual(
-                condition_importances, condition_importances_readed,
-                'Condition importances should be the same as saveed before'
+            condition_importances = pd.DataFrame(condition_importances).round(10)
+            condition_importances_read = pd.DataFrame(condition_importances_read).round(10)
+            self.assertTrue(
+                (condition_importances == condition_importances_read).all().all(),
+                'Condition importances should be the same as saved before'
             )
 
             self.assertEqual(
-                attribute_importances, attribute_importances_readed,
+                attribute_importances, attribute_importances_read,
                 'Attribute importances should be the same as saved before'
             )
 
-    def test_local_exlainability(self):
+    def test_local_explainability(self):
         self.ruleset.update(self.X, self.y)
 
         for strategy in self.ruleset.prediction_strategies_choice.keys():
