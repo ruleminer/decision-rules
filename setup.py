@@ -24,5 +24,10 @@ setup(
         'imbalanced-learn>=0.10',
         'typeguard>=4.3',
     ],
+    extras_require={
+        "ruleset_factories": [
+            "rulekit>=2.1.18"
+        ]
+    },
     python_requires='>=3.9',
 )

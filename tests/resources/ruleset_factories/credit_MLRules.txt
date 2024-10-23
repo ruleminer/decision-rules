@@ -1,0 +1,1009 @@
+Maximum Likelihood Rule Ensembles (MLRules)...
+
+100 rules generated.
+Default rule:
+vote for class + with weight -0.05312294148601689
+vote for class - with weight 0.05312294148601689
+
+
+List of rules:
+
+Rule: 
+  A9 is f
+  A4=l is f
+=> vote for class - with weight 0.39232365272956776
+
+Rule: 
+  A9 is t
+  A2 <= 76.835
+  A3 <= 25.168
+=> vote for class + with weight 0.3125452503819565
+
+Rule: 
+  A9 is f
+  A4=l is f
+  A3 >= 0.168
+=> vote for class - with weight 0.2855362290650744
+
+Rule: 
+  A9 is t
+  A10 is t
+  A6=k is f
+=> vote for class + with weight 0.2834388852074171
+
+Rule: 
+  A9 is f
+  A6=x is f
+  A4=l is f
+  A7=n is f
+=> vote for class - with weight 0.21451207600319344
+
+Rule: 
+  A8 >= 1.02
+  A9 is t
+  A14 <= 521.5
+  A4=u is t
+  A13=g is t
+=> vote for class + with weight 0.23061326217213868
+
+Rule: 
+  A15 <= 215.5
+  A3 >= 0.395
+  A11 <= 3.5
+  A6=x is f
+  A8 <= 14.938
+  A7=dd is f
+  A7=z is f
+=> vote for class - with weight 0.19270561854282028
+
+Rule: 
+  A9 is t
+  A14 <= 521.5
+  A6=ff is f
+  A2 <= 61.71
+  A7=z is f
+  A6=aa is f
+  A13=g is t
+=> vote for class + with weight 0.156688165485219
+
+Rule: 
+  A8 <= 1.313
+  A15 <= 520.5
+  A3 >= 0.27
+  A11 <= 3.5
+  A6=cc is f
+  A7=dd is f
+  A6=x is f
+=> vote for class - with weight 0.2179196866559763
+
+Rule: 
+  A9 is t
+  A14 <= 111.0
+  A7=j is f
+=> vote for class + with weight 0.21116790320634102
+
+Rule: 
+  A15 <= 148.5
+  A14 >= 71.5
+  A3 >= 0.23
+  A6=x is f
+  A6=cc is f
+  A8 <= 14.938
+=> vote for class - with weight 0.15995702024629202
+
+Rule: 
+  A9 is t
+  A7=bb is f
+  A3 <= 15.25
+  A8 <= 9.23
+  A2 <= 61.71
+  A6=ff is f
+=> vote for class + with weight 0.12797808984012693
+
+Rule: 
+  A8 >= 1.395
+  A6=k is f
+  A4=y is f
+  A6=d is f
+  A14 <= 324.5
+=> vote for class + with weight 0.16980979928274811
+
+Rule: 
+  A15 <= 538.5
+  A3 >= 0.395
+  A11 <= 3.5
+  A6=x is f
+  A8 <= 14.938
+  A6=w is f
+  A7=z is f
+=> vote for class - with weight 0.13155609932463705
+
+Rule: 
+  A9 is t
+  A15 >= 148.5
+  A7=dd is f
+  A2 >= 18.46
+=> vote for class + with weight 0.15798739392423783
+
+Rule: 
+  A8 in [1.395,7.458]
+  A1 is b
+  A6=k is f
+  A2 <= 50.205
+  A6=e is f
+  A3 <= 16.333
+  A6=ff is f
+=> vote for class + with weight 0.16152733467710947
+
+Rule: 
+  A14 in [111.0,214.0]
+  A15 <= 1300.5
+  A7=n is f
+  A6=cc is f
+  A6=m is f
+  A3 <= 20.293
+=> vote for class - with weight 0.1875897833200772
+
+Rule: 
+  A9 is t
+  A14 <= 111.0
+  A6=i is f
+  A3 <= 18.75
+  A7=j is f
+  A2 >= 16.705
+=> vote for class + with weight 0.1639825337818802
+
+Rule: 
+  A3 >= 0.56
+  A11 <= 2.5
+  A6=x is f
+  A6=w is f
+  A15 <= 1324.5
+  A8 <= 14.938
+  A7=h is f
+=> vote for class - with weight 0.12010285080352193
+
+Rule: 
+  A9 is t
+  A14 <= 521.5
+  A4=u is t
+  A7=z is f
+  A7=j is f
+  A8 <= 11.25
+  A3 <= 18.375
+  A6=d is f
+=> vote for class + with weight 0.08819958389039843
+
+Rule: 
+  A3 in [0.395,15.75]
+  A15 in [0.5,538.5]
+  A14 <= 376.0
+  A8 <= 14.145
+=> vote for class - with weight 0.14913934767448744
+
+Rule: 
+  A6=ff is f
+  A6=aa is f
+  A3 <= 12.418
+  A8 <= 8.145
+  A2 in [15.5,61.21]
+  A6=i is f
+  A6=k is f
+  A7=ff is f
+  A7=dd is f
+=> vote for class + with weight 0.09467060969822623
+
+Rule: 
+  A3 >= 0.52
+  A11 <= 3.5
+  A6=x is f
+  A8 in [0.063,14.938]
+  A15 <= 8056.5
+  A7=z is f
+=> vote for class - with weight 0.0809438481244442
+
+Rule: 
+  A8 in [1.395,9.063]
+  A14 <= 264.0
+  A2 in [18.21,55.165]
+  A15 <= 315.0
+  A3 <= 15.645
+  A6=ff is f
+  A6=e is f
+=> vote for class + with weight 0.16759636639501227
+
+Rule: 
+  A3 <= 0.395
+  A2 >= 17.835
+=> vote for class + with weight 0.10140135401554491
+
+Rule: 
+  A15 <= 538.5
+  A6=x is f
+  A6=cc is f
+  A3 >= 0.23
+  A14 >= 111.0
+  A6=d is f
+  A2 <= 47.67
+  A8 >= 0.063
+  A11 <= 7.5
+  A6=i is f
+=> vote for class - with weight 0.1337031091884681
+
+Rule: 
+  A9 is t
+  A3 in [2.27,15.25]
+  A14 <= 415.0
+  A6=i is f
+  A2 in [18.75,61.71]
+  A6=k is f
+  A8 <= 11.25
+  A11 <= 9.5
+=> vote for class + with weight 0.15903248242528287
+
+Rule: 
+  A14 <= 214.0
+  A3 <= 5.458
+  A15 <= 884.5
+  A8 <= 1.438
+  A2 >= 16.21
+  A7=n is f
+=> vote for class - with weight 0.16830275043569523
+
+Rule: 
+  A4=y is f
+  A12 is f
+  A6=ff is f
+  A6=m is f
+  A11 <= 9.5
+  A3 <= 12.478
+  A6=d is f
+  A7=z is f
+  A7=ff is f
+  A7=o is f
+=> vote for class + with weight 0.14833487092989225
+
+Rule: 
+  A14 <= 214.0
+  A3 <= 5.583
+  A15 <= 884.5
+  A11 <= 6.5
+  A2 >= 16.21
+  A8 <= 10.5
+=> vote for class - with weight 0.10155134493225987
+
+Rule: 
+  A3 <= 1.02
+  A2 >= 21.705
+  A11 <= 5.5
+  A15 <= 1002.0
+=> vote for class + with weight 0.10951296850926936
+
+Rule: 
+  A15 <= 538.5
+  A2 in [23.375,56.125]
+  A3 >= 0.397
+  A14 <= 348.5
+  A8 <= 12.25
+=> vote for class - with weight 0.09407761472541554
+
+Rule: 
+  A9 is t
+  A14 <= 521.5
+  A6=q is f
+  A2 in [15.955,55.165]
+  A3 <= 15.25
+  A6=ff is f
+  A8 <= 9.063
+  A13=g is t
+  A6=i is f
+  A6=w is f
+=> vote for class + with weight 0.11074042489314681
+
+Rule: 
+  A14 >= 61.0
+  A3 >= 0.563
+  A6=x is f
+  A6=cc is f
+  A6=d is f
+  A15 <= 1975.0
+  A8 <= 12.0
+  A6=w is f
+  A11 <= 21.5
+  A2 in [18.96,56.25]
+  A7=bb is f
+=> vote for class - with weight 0.11615162809070488
+
+Rule: 
+  A2 in [20.04,61.5]
+  A6=ff is f
+  A3 in [0.02,6.875]
+  A6=aa is f
+  A8 in [0.02,7.895]
+  A6=m is f
+  A6=w is f
+  A6=j is f
+  A7=dd is f
+  A6=i is f
+  A7=n is f
+=> vote for class + with weight 0.13356766274451035
+
+Rule: 
+  A14 >= 129.5
+  A15 <= 5.5
+  A4=u is t
+  A2 <= 40.96
+  A6=x is f
+  A11 <= 8.0
+  A3 <= 14.228
+=> vote for class - with weight 0.1449421046915242
+
+Rule: 
+  A4=y is f
+  A14 <= 316.0
+  A6=d is f
+  A11 <= 4.5
+  A6=ff is f
+  A6=m is f
+  A3 in [0.02,11.023]
+  A2 in [16.085,41.54]
+  A15 <= 308.0
+  A6=j is f
+=> vote for class + with weight 0.14760799140942438
+
+Rule: 
+  A8 <= 1.395
+  A14 <= 230.0
+  A15 <= 2142.0
+  A2 in [18.125,64.25]
+=> vote for class - with weight 0.09847396674996257
+
+Rule: 
+  A9 is t
+  A14 <= 521.5
+  A2 >= 25.71
+  A7=bb is f
+  A7=z is f
+  A8 <= 9.23
+  A3 <= 25.73
+  A6=c is f
+  A7=j is f
+=> vote for class + with weight 0.11077674360084777
+
+Rule: 
+  A8 in [0.105,14.938]
+  A11 <= 2.5
+  A3 >= 1.145
+  A6=x is f
+  A6=w is f
+  A7=z is f
+  A15 <= 8056.5
+=> vote for class - with weight 0.09864080380455656
+
+Rule: 
+  A2 in [17.96,61.21]
+  A6=ff is f
+  A14 <= 715.5
+  A6=aa is f
+  A3 in [0.02,12.418]
+  A11 <= 1.5
+  A6=i is f
+  A6=m is f
+  A8 <= 2.48
+  A6=j is f
+  A7=ff is f
+  A6=r is f
+  A7=dd is f
+=> vote for class + with weight 0.11351936950297814
+
+Rule: 
+  A14 in [129.5,348.5]
+  A3 in [0.188,3.895]
+  A8 <= 3.375
+  A15 <= 2901.5
+  A6=cc is f
+=> vote for class - with weight 0.12753488616320516
+
+Rule: 
+  A9 is t
+  A14 <= 399.5
+  A3 in [1.52,15.145]
+  A6=ff is f
+  A2 in [18.75,61.71]
+  A11 <= 9.5
+  A8 <= 9.5
+  A6=k is f
+=> vote for class + with weight 0.1033620370718144
+
+Rule: 
+  A14 in [73.0,467.5]
+  A6=cc is f
+  A6=d is f
+  A6=x is f
+  A3 in [0.23,22.043]
+  A8 <= 12.0
+  A7=bb is f
+  A2 in [18.96,59.125]
+  A15 <= 4407.5
+  A11 <= 21.5
+=> vote for class - with weight 0.07971770689347533
+
+Rule: 
+  A2 in [20.79,75.915]
+  A3 <= 6.875
+  A8 <= 2.27
+  A15 <= 2767.5
+=> vote for class + with weight 0.06453223661342954
+
+Rule: 
+  A8 >= 1.395
+  A14 <= 264.0
+  A4=u is t
+  A6=q is f
+  A6=k is f
+=> vote for class + with weight 0.11990316634254437
+
+Rule: 
+  A15 <= 487.5
+  A2 in [24.46,71.46]
+  A3 >= 0.52
+  A11 <= 3.5
+  A8 <= 10.5
+  A6=m is f
+  A6=d is f
+  A14 <= 635.5
+  A6=q is f
+=> vote for class - with weight 0.11788299240901454
+
+Rule: 
+  A9 is t
+  A6=q is f
+  A2 <= 33.665
+  A3 >= 0.71
+  A6=i is f
+  A6=ff is f
+  A14 <= 505.0
+=> vote for class + with weight 0.10780809947395192
+
+Rule: 
+  A2 <= 36.625
+  A7=v is t
+  A6=x is f
+  A8 in [0.063,4.563]
+  A6=cc is f
+  A15 <= 5664.5
+  A11 <= 11.5
+  A14 <= 660.0
+=> vote for class - with weight 0.09237854787788366
+
+Rule: 
+  A2 <= 61.5
+  A6=ff is f
+  A14 <= 715.5
+  A6=aa is f
+  A3 <= 6.875
+  A6=w is f
+  A6=j is f
+  A7=dd is f
+  A7=o is f
+=> vote for class + with weight 0.06214247456676412
+
+Rule: 
+  A8 in [0.063,0.688]
+  A11 <= 2.5
+=> vote for class - with weight 0.08891613539976292
+
+Rule: 
+  A2 <= 28.46
+  A15 <= 0.5
+  A3 in [0.02,9.645]
+  A6=q is f
+  A14 <= 316.0
+  A6=m is f
+  A6=e is f
+  A6=ff is f
+  A6=j is f
+=> vote for class + with weight 0.17251231263795117
+
+Rule: 
+  A15 <= 357.0
+  A3 in [0.313,8.002]
+  A8 >= 0.27
+  A9 is t
+  A11 <= 7.5
+=> vote for class - with weight 0.08152661453277722
+
+Rule: 
+  A9 is t
+  A14 <= 521.5
+  A2 >= 25.71
+  A7=bb is f
+  A7=z is f
+  A8 <= 9.23
+  A3 <= 25.73
+  A7=j is f
+=> vote for class + with weight 0.09063243759130281
+
+Rule: 
+  A4=y is t
+  A14 <= 369.5
+  A11 <= 4.5
+  A6=w is f
+  A13=g is t
+=> vote for class - with weight 0.10953351634640647
+
+Rule: 
+  A2 >= 36.625
+  A7=v is t
+  A6=c is f
+  A6=cc is f
+  A6=m is f
+  A6=i is f
+=> vote for class + with weight 0.1330392955533833
+
+Rule: 
+  A2 in [16.085,24.54]
+  A11 <= 1.5
+  A3 <= 9.563
+  A6=i is f
+  A6=ff is f
+  A6=j is f
+  A6=e is f
+  A15 <= 912.0
+  A6=r is f
+=> vote for class + with weight 0.11680811422910295
+
+Rule: 
+  A15 <= 395.0
+  A6=x is f
+  A8 <= 14.145
+  A6=cc is f
+  A7=n is f
+  A7=bb is f
+  A6=e is f
+  A11 <= 7.5
+=> vote for class - with weight 0.054953776031720816
+
+Rule: 
+  A8 in [0.688,8.98]
+  A2 in [18.5,57.665]
+  A6=q is f
+  A14 in [142.5,715.5]
+  A6=e is f
+  A3 in [0.48,12.415]
+  A6=aa is f
+  A6=ff is f
+=> vote for class + with weight 0.11762132738215314
+
+Rule: 
+  A14 >= 129.5
+  A15 <= 5.5
+  A4=u is t
+  A2 <= 40.96
+  A6=x is f
+  A11 <= 8.0
+  A3 <= 14.228
+=> vote for class - with weight 0.12051488173700578
+
+Rule: 
+  A9 is t
+  A14 <= 521.5
+  A8 <= 1.708
+  A6=i is f
+  A3 <= 18.375
+  A2 >= 18.75
+  A11 <= 17.5
+=> vote for class + with weight 0.08778907325912184
+
+Rule: 
+  A8 in [0.063,1.395]
+  A1 is b
+  A15 <= 5664.5
+  A7=n is f
+=> vote for class - with weight 0.08130282094754523
+
+Rule: 
+  A15 <= 0.5
+  A2 <= 28.54
+  A3 in [0.355,10.75]
+  A6=aa is f
+  A8 >= 0.145
+  A6=e is f
+  A6=ff is f
+  A6=m is f
+=> vote for class + with weight 0.13627491327623548
+
+Rule: 
+  A14 <= 214.0
+  A3 in [0.02,5.793]
+  A2 >= 24.205
+  A8 <= 3.855
+  A15 <= 538.5
+  A11 <= 10.5
+=> vote for class - with weight 0.13533183249310754
+
+Rule: 
+  A2 >= 35.085
+  A6=c is f
+  A8 <= 6.625
+  A6=ff is f
+  A11 <= 17.5
+  A6=m is f
+  A14 <= 735.5
+  A6=w is f
+  A7=o is f
+  A7=j is f
+=> vote for class + with weight 0.1298331596720458
+
+Rule: 
+  A3 in [1.563,20.793]
+  A11 <= 3.5
+  A6=x is f
+  A8 >= 0.105
+  A6=m is f
+  A15 <= 231.0
+  A7=z is f
+=> vote for class - with weight 0.08325844211893763
+
+Rule: 
+  A2 in [21.79,41.54]
+  A15 <= 0.5
+  A3 in [0.355,12.418]
+  A8 in [0.145,9.333]
+  A13=s is f
+  A6=aa is f
+  A6=w is f
+  A14 <= 435.5
+  A6=ff is f
+=> vote for class + with weight 0.17434033743905406
+
+Rule: 
+  A2 in [36.625,62.125]
+  A7=v is t
+  A6=cc is f
+  A6=i is f
+=> vote for class + with weight 0.08487625647448781
+
+Rule: 
+  A14 >= 129.5
+  A15 <= 5.5
+  A4=u is t
+  A8 <= 4.082
+  A3 in [0.083,12.52]
+  A6=i is f
+  A11 <= 7.0
+=> vote for class - with weight 0.09993558751093809
+
+Rule: 
+  A9 is t
+  A6=q is f
+  A2 <= 33.665
+  A3 >= 0.71
+  A6=i is f
+  A6=k is f
+  A6=ff is f
+=> vote for class + with weight 0.09426559638280528
+
+Rule: 
+  A3 in [0.563,15.75]
+  A15 in [0.5,1063.5]
+  A6=w is f
+  A8 <= 14.145
+  A14 <= 485.0
+  A7=dd is f
+=> vote for class - with weight 0.104485957552534
+
+Rule: 
+  A4=y is f
+  A14 <= 316.0
+  A11 <= 9.5
+  A6=d is f
+  A6=ff is f
+  A6=m is f
+  A8 <= 4.875
+  A6=e is f
+  A7=ff is f
+  A15 <= 5425.0
+  A2 in [16.085,62.125]
+  A7=o is f
+  A3 >= 0.02
+=> vote for class + with weight 0.08198265515683027
+
+Rule: 
+  A14 in [73.0,329.5]
+  A3 in [0.44,22.043]
+  A2 in [24.54,56.25]
+  A15 <= 148.0
+  A6=i is f
+  A8 <= 13.75
+=> vote for class - with weight 0.11628454303761994
+
+Rule: 
+  A2 in [23.125,75.915]
+  A8 <= 1.938
+  A3 <= 12.418
+  A15 <= 2767.5
+=> vote for class + with weight 0.05236207866908542
+
+Rule: 
+  A8 <= 1.395
+  A14 in [104.0,230.0]
+  A7=n is f
+  A6=m is f
+  A6=w is f
+  A15 <= 3938.5
+  A6=d is f
+=> vote for class - with weight 0.12135961535501791
+
+Rule: 
+  A9 is t
+  A3 in [2.27,18.75]
+  A14 <= 255.0
+  A6=k is f
+  A2 >= 18.75
+  A15 <= 975.0
+  A6=i is f
+  A7=z is f
+=> vote for class + with weight 0.10746603153471826
+
+Rule: 
+  A3 >= 1.563
+  A11 <= 2.5
+  A6=x is f
+  A6=k is f
+  A6=m is f
+  A7=j is f
+  A6=w is f
+  A7=z is f
+  A15 <= 8056.5
+=> vote for class - with weight 0.08872151055738517
+
+Rule: 
+  A2 in [23.125,28.46]
+  A8 <= 1.708
+  A15 <= 1087.5
+  A3 <= 12.418
+=> vote for class + with weight 0.0976902837010651
+
+Rule: 
+  A2 >= 36.625
+  A3 <= 1.583
+  A13=s is f
+  A8 <= 7.293
+=> vote for class + with weight 0.0839011389767018
+
+Rule: 
+  A8 <= 4.082
+  A2 in [19.375,36.625]
+  A14 in [165.5,475.5]
+  A3 >= 0.145
+  A6=cc is f
+  A11 <= 6.5
+  A15 <= 6250.0
+=> vote for class - with weight 0.09459058261695662
+
+Rule: 
+  A9 is t
+  A14 <= 521.5
+  A6=q is f
+  A3 >= 2.293
+  A6=e is f
+=> vote for class + with weight 0.06938750718795568
+
+Rule: 
+  A14 <= 201.0
+  A15 <= 538.5
+  A2 in [24.875,71.46]
+  A8 <= 10.5
+  A11 <= 3.5
+=> vote for class - with weight 0.09632402379832683
+
+Rule: 
+  A2 in [25.71,74.125]
+  A9 is t
+  A14 <= 521.5
+  A13=g is t
+  A7=j is f
+  A7=z is f
+=> vote for class + with weight 0.0681625634667542
+
+Rule: 
+  A8 <= 1.395
+  A14 <= 294.0
+  A15 <= 520.5
+  A2 in [18.125,55.665]
+  A6=w is f
+=> vote for class - with weight 0.08338871060462957
+
+Rule: 
+  A2 in [17.96,61.5]
+  A6=ff is f
+  A3 <= 6.875
+  A8 <= 2.208
+  A6=i is f
+  A6=aa is f
+  A6=x is f
+  A14 >= 45.0
+  A6=k is f
+  A7=dd is f
+  A6=j is f
+  A6=r is f
+=> vote for class + with weight 0.10085064339006378
+
+Rule: 
+  A14 >= 61.0
+  A3 in [0.23,22.043]
+  A6=x is f
+  A6=d is f
+  A6=cc is f
+  A8 <= 5.625
+  A7=h is f
+  A6=aa is f
+  A15 <= 4600.0
+=> vote for class - with weight 0.07149574826817583
+
+Rule: 
+  A2 in [17.96,43.125]
+  A6=ff is f
+  A14 in [10.0,715.5]
+  A11 <= 2.5
+  A8 in [0.145,9.5]
+  A6=k is f
+  A6=e is f
+  A6=aa is f
+  A3 in [0.063,12.418]
+  A6=m is f
+  A15 <= 1137.5
+  A6=r is f
+  A6=j is f
+=> vote for class + with weight 0.09416400467628158
+
+Rule: 
+  A8 >= 0.063
+  A3 in [0.168,8.543]
+  A15 <= 995.0
+  A11 <= 10.5
+  A4=l is f
+=> vote for class - with weight 0.04235854976964578
+
+Rule: 
+  A2 in [37.415,74.125]
+  A8 <= 6.625
+  A3 in [0.185,18.375]
+  A6=c is f
+  A14 <= 460.0
+  A11 <= 17.5
+  A6=m is f
+  A7=o is f
+=> vote for class + with weight 0.09801500465987968
+
+Rule: 
+  A9 is f
+  A8 <= 1.375
+  A3 >= 0.145
+  A7=n is f
+  A6=c is f
+  A6=k is f
+=> vote for class - with weight 0.09947957103142203
+
+Rule: 
+  A4=y is f
+  A14 <= 316.0
+  A11 <= 6.5
+  A6=d is f
+  A6=ff is f
+  A6=m is f
+  A2 <= 50.165
+  A6=j is f
+  A15 <= 5425.0
+  A7=o is f
+=> vote for class + with weight 0.06475536273422106
+
+Rule: 
+  A14 <= 329.5
+  A15 <= 1063.5
+  A8 <= 4.75
+  A2 in [21.375,55.875]
+  A3 >= 0.833
+  A11 <= 10.5
+  A13=g is t
+  A7=bb is f
+  A6=x is f
+  A7=h is f
+  A6=m is f
+  A7=dd is f
+=> vote for class - with weight 0.11633089116471525
+
+Rule: 
+  A2 in [20.71,44.75]
+  A3 <= 2.063
+  A13=s is f
+  A15 <= 202.0
+  A11 <= 9.0
+  A1 is b
+  A6=cc is f
+  A8 >= 0.145
+  A6=aa is f
+  A6=r is f
+=> vote for class + with weight 0.1355646074354992
+
+Rule: 
+  A8 in [0.063,13.938]
+  A3 <= 8.543
+  A15 <= 2142.0
+  A11 <= 10.5
+  A4=l is f
+  A6=x is f
+  A7=n is f
+  A7=j is f
+  A7=z is f
+=> vote for class - with weight 0.04387851546047356
+
+Rule: 
+  A9 is t
+  A14 <= 399.5
+  A6=c is f
+  A11 <= 9.5
+  A8 <= 6.625
+  A3 <= 18.375
+  A6=w is f
+  A13=g is t
+  A7=bb is f
+=> vote for class + with weight 0.0788026788898772
+
+Rule: 
+  A14 <= 348.5
+  A4=y is t
+  A11 <= 6.5
+  A15 <= 4888.5
+  A6=w is f
+  A13=g is t
+  A6=x is f
+=> vote for class - with weight 0.080401929158642
+
+Rule: 
+  A2 in [23.125,61.5]
+  A8 <= 2.043
+  A7=v is t
+  A6=m is f
+  A3 <= 12.25
+  A6=x is f
+  A6=aa is f
+  A15 <= 2767.5
+  A6=i is f
+=> vote for class + with weight 0.07651562236238792
+
+Rule: 
+  A8 in [0.063,3.02]
+  A11 <= 10.5
+  A3 in [0.168,11.563]
+  A15 <= 4600.0
+  A14 <= 1044.0
+=> vote for class - with weight 0.0392590209087297
+
+Rule: 
+  A2 in [17.96,28.46]
+  A15 <= 768.5
+  A3 <= 9.563
+  A11 <= 4.5
+  A14 >= 52.5
+  A7=h is f
+  A6=ff is f
+  A6=e is f
+  A6=d is f
+  A6=j is f
+  A6=r is f
+=> vote for class + with weight 0.09223836776687325
+
+Rule: 
+  A14 in [99.5,329.5]
+  A12 is t
+  A15 <= 613.0
+  A11 <= 7.5
+  A3 in [0.145,12.52]
+  A4=l is f
+  A6=cc is f
+  A8 >= 0.27
+=> vote for class - with weight 0.10117244450822108
+
+

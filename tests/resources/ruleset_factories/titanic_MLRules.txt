@@ -1,0 +1,538 @@
+Maximum Likelihood Rule Ensembles (MLRules)...
+
+100 rules generated.
+Default rule:
+vote for class yes with weight -0.17515548259848787
+vote for class no with weight 0.17515548259848787
+
+
+List of rules:
+
+Rule: 
+  sex is male
+  age is adult
+=> vote for class no with weight 0.21543289089449902
+
+Rule: 
+  sex is male
+  pclass=1st is f
+  age is adult
+=> vote for class no with weight 0.14713657394787058
+
+Rule: 
+  sex is female
+=> vote for class yes with weight 0.3158044073136035
+
+Rule: 
+  sex is male
+  pclass=1st is f
+  age is adult
+=> vote for class no with weight 0.08956976186860725
+
+Rule: 
+  pclass=3rd is f
+  sex is female
+=> vote for class yes with weight 0.3361831590866192
+
+Rule: 
+  pclass=3rd is t
+=> vote for class no with weight 0.09540897785514922
+
+Rule: 
+  sex is female
+  pclass=3rd is f
+=> vote for class yes with weight 0.23175250726849975
+
+Rule: 
+  pclass=1st is f
+  age is adult
+=> vote for class no with weight 0.03314317832723625
+
+Rule: 
+  pclass=3rd is f
+  pclass=2nd is f
+=> vote for class yes with weight 0.047393192188748434
+
+Rule: 
+  pclass=1st is f
+  sex is male
+  age is adult
+=> vote for class no with weight 0.03805451395757376
+
+Rule: 
+  pclass=3rd is f
+  sex is female
+=> vote for class yes with weight 0.16830023126812652
+
+Rule: 
+  pclass=1st is f
+  pclass=crew is f
+  age is adult
+=> vote for class no with weight 0.04757670621859156
+
+Rule: 
+  pclass=1st is t
+=> vote for class yes with weight 0.07537818978979688
+
+Rule: 
+  sex is female
+  pclass=3rd is f
+=> vote for class yes with weight 0.11863430283404591
+
+Rule: 
+  pclass=1st is f
+  pclass=crew is f
+  age is adult
+  pclass=2nd is t
+  sex is male
+=> vote for class no with weight 0.15129056968711116
+
+Rule: 
+  pclass=3rd is f
+  age is child
+=> vote for class yes with weight 0.25843348677782196
+
+Rule: 
+  pclass=1st is f
+  pclass=crew is f
+=> vote for class no with weight 0.018388958016622096
+
+Rule: 
+  pclass=2nd is f
+  age is adult
+=> vote for class yes with weight 0.010491520718507176
+
+Rule: 
+  sex is male
+  age is adult
+  pclass=3rd is f
+  pclass=crew is f
+=> vote for class no with weight 0.06365902898203998
+
+Rule: 
+  pclass=3rd is f
+  pclass=2nd is f
+=> vote for class yes with weight 0.014251556158678567
+
+Rule: 
+  pclass=1st is t
+=> vote for class yes with weight 0.037621388185742885
+
+Rule: 
+  sex is male
+  age is adult
+  pclass=3rd is f
+=> vote for class no with weight 0.01863611071056593
+
+Rule: 
+  pclass=3rd is f
+  sex is female
+  pclass=crew is f
+=> vote for class yes with weight 0.08399880732333048
+
+Rule: 
+  pclass=3rd is f
+  age is child
+=> vote for class yes with weight 0.20228045334314912
+
+Rule: 
+  pclass=1st is f
+  pclass=crew is f
+=> vote for class no with weight 0.013724842336907166
+
+Rule: 
+  pclass=2nd is f
+  age is adult
+=> vote for class yes with weight 0.00820684662579373
+
+Rule: 
+  pclass=1st is f
+  pclass=crew is f
+=> vote for class no with weight 0.009802506113195457
+
+Rule: 
+  sex is female
+  pclass=1st is t
+=> vote for class yes with weight 0.09818263376245895
+
+Rule: 
+  sex is male
+  age is adult
+  pclass=3rd is f
+  pclass=crew is f
+=> vote for class no with weight 0.044472236582194596
+
+Rule: 
+  pclass=1st is t
+=> vote for class yes with weight 0.023507900463103484
+
+Rule: 
+  pclass=1st is t
+  sex is female
+=> vote for class yes with weight 0.07207696651468339
+
+Rule: 
+  pclass=1st is t
+  sex is female
+=> vote for class yes with weight 0.05627128424601024
+
+Rule: 
+  pclass=1st is f
+  sex is female
+  pclass=2nd is f
+=> vote for class no with weight 0.010588992021278205
+
+Rule: 
+  pclass=2nd is f
+  age is adult
+  pclass=1st is f
+=> vote for class yes with weight 0.0061070301324287046
+
+Rule: 
+  pclass=1st is f
+=> vote for class no with weight 0.002812992957591742
+
+Rule: 
+  age is adult
+  pclass=3rd is f
+  sex is male
+=> vote for class no with weight 0.00982575354535387
+
+Rule: 
+  pclass=3rd is f
+  age is child
+=> vote for class yes with weight 0.16823659400966987
+
+Rule: 
+  pclass=2nd is f
+  age is adult
+=> vote for class yes with weight 0.006468295550200773
+
+Rule: 
+  pclass=1st is f
+  pclass=crew is f
+=> vote for class no with weight 0.005110251578323037
+
+Rule: 
+  pclass=1st is f
+  pclass=crew is f
+=> vote for class no with weight 0.002661035810307972
+
+Rule: 
+  pclass=2nd is f
+  age is adult
+  pclass=1st is f
+=> vote for class yes with weight 0.005686810455533467
+
+Rule: 
+  pclass=1st is f
+=> vote for class no with weight 0.0028166055117106836
+
+Rule: 
+  pclass=1st is f
+=> vote for class no with weight 0.0014393078767455224
+
+Rule: 
+  pclass=1st is f
+  sex is female
+  pclass=2nd is f
+  age is child
+=> vote for class no with weight 0.03522948275497736
+
+Rule: 
+  sex is female
+  age is adult
+  pclass=crew is f
+  pclass=2nd is f
+=> vote for class yes with weight 0.013994519623692385
+
+Rule: 
+  age is adult
+  pclass=3rd is f
+  sex is male
+  pclass=crew is f
+=> vote for class no with weight 0.028950663844094563
+
+Rule: 
+  pclass=1st is t
+=> vote for class yes with weight 0.014518750851589735
+
+Rule: 
+  pclass=1st is t
+=> vote for class yes with weight 0.007991305975467707
+
+Rule: 
+  pclass=1st is t
+  sex is female
+=> vote for class yes with weight 0.03427578705538367
+
+Rule: 
+  age is adult
+  pclass=3rd is f
+  sex is male
+  pclass=crew is f
+=> vote for class no with weight 0.023624012861526412
+
+Rule: 
+  pclass=3rd is f
+  age is child
+=> vote for class yes with weight 0.14207463329973447
+
+Rule: 
+  pclass=1st is t
+=> vote for class yes with weight 0.010670950380352793
+
+Rule: 
+  sex is male
+  pclass=2nd is f
+  age is adult
+  pclass=1st is f
+=> vote for class yes with weight 0.005467161376539994
+
+Rule: 
+  pclass=1st is f
+  pclass=2nd is f
+  age is child
+=> vote for class no with weight 0.04849192168625856
+
+Rule: 
+  pclass=crew is t
+=> vote for class no with weight 0.002851700890109221
+
+Rule: 
+  pclass=crew is f
+=> vote for class yes with weight 0.0022480641481847064
+
+Rule: 
+  age is adult
+  pclass=3rd is f
+  sex is male
+=> vote for class no with weight 0.005599767495197825
+
+Rule: 
+  sex is male
+  pclass=2nd is f
+  age is adult
+  pclass=1st is f
+=> vote for class yes with weight 0.005432812331004456
+
+Rule: 
+  pclass=1st is f
+  age is adult
+  pclass=3rd is f
+=> vote for class no with weight 0.005925059662089582
+
+Rule: 
+  pclass=3rd is f
+  age is child
+=> vote for class yes with weight 0.12103682690468753
+
+Rule: 
+  pclass=3rd is f
+  age is child
+=> vote for class yes with weight 0.10518434855100627
+
+Rule: 
+  pclass=2nd is f
+  age is adult
+=> vote for class yes with weight 0.003187957753121917
+
+Rule: 
+  pclass=1st is f
+=> vote for class no with weight 0.0016944900319175512
+
+Rule: 
+  pclass=1st is f
+  pclass=crew is f
+=> vote for class no with weight 0.002480383853759409
+
+Rule: 
+  pclass=2nd is f
+  age is adult
+=> vote for class yes with weight 0.002740324444998603
+
+Rule: 
+  pclass=1st is f
+=> vote for class no with weight 0.001406906924996763
+
+Rule: 
+  pclass=1st is f
+  sex is female
+  pclass=2nd is f
+=> vote for class no with weight 0.006202809555279108
+
+Rule: 
+  pclass=2nd is f
+  age is adult
+=> vote for class yes with weight 0.0024251666079667185
+
+Rule: 
+  pclass=1st is f
+=> vote for class no with weight 0.0012001817261647623
+
+Rule: 
+  pclass=1st is f
+=> vote for class no with weight 6.121205894558929E-4
+
+Rule: 
+  pclass=1st is t
+  sex is female
+=> vote for class yes with weight 0.02194107218834852
+
+Rule: 
+  age is adult
+  pclass=3rd is f
+  sex is male
+  pclass=crew is f
+=> vote for class no with weight 0.016572107996440554
+
+Rule: 
+  pclass=crew is f
+=> vote for class yes with weight 0.0021395461448044275
+
+Rule: 
+  pclass=1st is t
+=> vote for class yes with weight 0.006473458204764492
+
+Rule: 
+  pclass=1st is t
+=> vote for class yes with weight 0.003581682452185799
+
+Rule: 
+  pclass=1st is f
+  sex is female
+  pclass=2nd is f
+=> vote for class no with weight 0.004434740299381686
+
+Rule: 
+  pclass=1st is t
+  sex is female
+=> vote for class yes with weight 0.014383906923175156
+
+Rule: 
+  age is child
+  pclass=3rd is f
+=> vote for class yes with weight 0.09268099639050907
+
+Rule: 
+  pclass=1st is f
+  age is child
+  pclass=2nd is f
+=> vote for class no with weight 0.02770283396396183
+
+Rule: 
+  pclass=2nd is f
+  age is adult
+  pclass=3rd is t
+=> vote for class yes with weight 0.0061589136488269065
+
+Rule: 
+  age is adult
+  pclass=3rd is f
+  sex is male
+  pclass=crew is f
+=> vote for class no with weight 0.013547966460974862
+
+Rule: 
+  pclass=1st is t
+=> vote for class yes with weight 0.0062175281288126116
+
+Rule: 
+  age is child
+  pclass=3rd is f
+=> vote for class yes with weight 0.08215029106304196
+
+Rule: 
+  pclass=1st is t
+=> vote for class yes with weight 0.0031050290908130845
+
+Rule: 
+  age is adult
+  pclass=3rd is f
+=> vote for class no with weight 0.0024608627666704865
+
+Rule: 
+  pclass=3rd is f
+  age is child
+=> vote for class yes with weight 0.07351877561137089
+
+Rule: 
+  pclass=2nd is f
+  age is adult
+  sex is male
+  pclass=1st is f
+=> vote for class yes with weight 0.0031757275454243113
+
+Rule: 
+  pclass=1st is f
+=> vote for class no with weight 0.0010715893223142627
+
+Rule: 
+  pclass=1st is f
+  pclass=crew is f
+  sex is male
+=> vote for class no with weight 0.002226203577018169
+
+Rule: 
+  pclass=1st is t
+=> vote for class yes with weight 0.0025444437512269717
+
+Rule: 
+  age is child
+  pclass=3rd is f
+=> vote for class yes with weight 0.06655288232292986
+
+Rule: 
+  pclass=1st is f
+  pclass=crew is f
+  sex is male
+  pclass=2nd is t
+  age is adult
+=> vote for class no with weight 0.02562066914437714
+
+Rule: 
+  pclass=3rd is f
+  age is child
+=> vote for class yes with weight 0.06048181765443123
+
+Rule: 
+  pclass=3rd is f
+  age is child
+=> vote for class yes with weight 0.055308629142223883
+
+Rule: 
+  age is adult
+  pclass=3rd is t
+  sex is male
+=> vote for class yes with weight 0.0062369194053840905
+
+Rule: 
+  pclass=1st is f
+  pclass=crew is f
+  sex is male
+=> vote for class no with weight 0.0026051977381405357
+
+Rule: 
+  pclass=3rd is t
+  age is child
+  sex is male
+=> vote for class no with weight 0.024582178102693628
+
+Rule: 
+  age is child
+  pclass=3rd is f
+=> vote for class yes with weight 0.05101312741149451
+
+Rule: 
+  age is child
+  pclass=3rd is f
+=> vote for class yes with weight 0.04714331921944785
+
+Rule: 
+  pclass=2nd is f
+  age is adult
+  sex is male
+  pclass=1st is f
+=> vote for class yes with weight 0.0019444769954018622
+
+
