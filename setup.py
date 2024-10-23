@@ -18,9 +18,9 @@ setup(
     install_requires=[
         'numpy==1.26.4',
         'pandas==2.0.3',
-        'pydantic==2.9.2',
+        'pydantic>=2',
         'scipy==1.13.1',
-        'scikit-learn==1.5.2',
+        'scikit-learn<1.4',
         'imbalanced-learn==0.12.3',
         'typeguard==4.3.0',
     ],

@@ -1,3 +1,4 @@
+import math
 from typing import TypedDict
 
 import numpy as np
@@ -6,7 +7,7 @@ from sklearn.metrics import max_error
 from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import mean_absolute_percentage_error
 from sklearn.metrics import r2_score
-from sklearn.metrics import root_mean_squared_error
+from sklearn.metrics import mean_squared_error
 
 # funky definition because of the field with invalid identifier name "R^2"
 RegressionGeneralPredictionIndicators = TypedDict(
@@ -63,7 +64,7 @@ def calculate_for_regression(
     if calculate_only_for_covered_examples:
         y_true, y_pred = _drop_uncovered_examples(y_true, y_pred)
 
-    RMSE = root_mean_squared_error(y_true, y_pred)
+    RMSE = math.sqrt(mean_squared_error(y_true, y_pred))
     MAE = mean_absolute_error(y_true, y_pred)
     MAPE = mean_absolute_percentage_error(y_true, y_pred)
     rRMSE = RMSE / np.mean(y_true)

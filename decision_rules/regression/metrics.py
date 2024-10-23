@@ -12,7 +12,7 @@ from decision_rules.regression.rule import RegressionRule
 from scipy.stats import chi2
 from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import mean_absolute_percentage_error
-from sklearn.metrics import root_mean_squared_error
+from sklearn.metrics import mean_squared_error
 
 
 class RegressionRulesMetrics(AbstractRulesMetrics):
@@ -60,7 +60,7 @@ class RegressionRulesMetrics(AbstractRulesMetrics):
             'y_covered_min': lambda: float(rule_covered_examples.min()),
             'y_covered_max': lambda: float(rule_covered_examples.max()),
             'mae': lambda: float(mean_absolute_error(y, rule_prediction)),
-            'rmse': lambda: float(root_mean_squared_error(y, rule_prediction)),
+            'rmse': lambda: float(math.sqrt(mean_squared_error(y, rule_prediction))),
             'mape': lambda: float(mean_absolute_percentage_error(y, rule_prediction)),
             'p-value': lambda: float(self.calculate_p_value(rule=rule, y=y)),
         }
