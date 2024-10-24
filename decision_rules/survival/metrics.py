@@ -30,6 +30,9 @@ class SurvivalRulesMetrics(AbstractRulesMetrics):
             'n': lambda: int(rule.coverage.n),
             'P': lambda: int(rule.coverage.P),
             'N': lambda: int(rule.coverage.N),
+            'unique': lambda: self._calculate_uniquely_covered_examples(
+                rule, X, y, covered_type='all'
+            ),
             "median_survival_time": lambda: float(rule.conclusion.value),
             "median_survival_time_ci_lower": lambda: float(rule.conclusion.median_survival_time_ci_lower),
             "median_survival_time_ci_upper": lambda: float(rule.conclusion.median_survival_time_ci_upper),

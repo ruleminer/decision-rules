@@ -77,7 +77,7 @@ class AbstractRulesMetrics(ABC):
             list[str]: list of names of all supported metrics
         """
 
-    def _calculate_uniquely_covered_examples(
+    def _calculate_uniquely_covered_examples_in_pos_and_neg(
         self,
         rule: AbstractRule,
         X: pd.DataFrame,  # pylint: disable=invalid-name
@@ -102,34 +102,88 @@ class AbstractRulesMetrics(ABC):
             int: Number of uniquely covered examples
         """
         other_rules: list[AbstractRule] = [
-            other_rule for other_rule in self.rules if rule.uuid != rule.uuid
+            other_rule for other_rule in self.rules if other_rule.uuid != rule.uuid
         ]
         if covered_type == 'positive':
             rules_covered_masks: dict[str, np.ndarray] = {
-                rule.uuid: rule.positive_covered_mask(X, y)
-                for rule in other_rules
+                other_rule.uuid: other_rule.positive_covered_mask(X, y)
+                for other_rule in other_rules
             }
         elif covered_type == 'negative':
             rules_covered_masks: dict[str, np.ndarray] = {
-                rule.uuid: rule.negative_covered_mask(X, y)
-                for rule in other_rules
+                other_rule.uuid: other_rule.negative_covered_mask(X, y)
+                for other_rule in other_rules
             }
         else:
             raise ValueError(
                 '"covered_type" parameter should be either "positive" or "negative"')
 
-        others_rules_covered_mask = np.zeros(shape=y.shape)
-        for other_rule_uuid, other_rule_covered_mask in rules_covered_masks.items():
-            if other_rule_uuid == rule.uuid:
-                continue
-            elif others_rules_covered_mask is None:
-                others_rules_covered_mask = other_rule_covered_mask
-            else:
-                others_rules_covered_mask |= other_rule_covered_mask
-        return int(np.count_nonzero(
-            rule.positive_covered_mask(
-                X, y)[np.logical_not(others_rules_covered_mask)]
-        ))
+        if rules_covered_masks:
+            others_rules_covered_mask = np.logical_or.reduce(
+                list(rules_covered_masks.values()))
+        else:
+            others_rules_covered_mask = np.zeros(shape=y.shape, dtype=bool)
+
+        if covered_type == 'positive':
+            current_rule_mask = rule.positive_covered_mask(X, y)
+        else:
+            current_rule_mask = rule.negative_covered_mask(X, y)
+
+        unique_mask = current_rule_mask & ~others_rules_covered_mask
+
+        return int(np.count_nonzero(unique_mask))
+
+    def _calculate_uniquely_covered_examples(
+        self,
+        rule: AbstractRule,
+        X: pd.DataFrame,
+        y: pd.Series,
+        covered_type: str
+    ) -> int:
+        """Calculates the number of uniquely covered examples for a given rule,
+        where uniqueness means that no other rule covers the example,
+        regardless of the predicted class.
+
+        Args:
+            rule (AbstractRule): The rule for which to calculate uniquely covered examples.
+            X (pd.DataFrame): The dataset features.
+            y (pd.Series): The dataset labels.
+            covered_type (str): 'positive' or 'negative'
+
+        Returns:
+            int: Number of uniquely covered examples of the specified type.
+        """
+        other_rules: list[AbstractRule] = [
+            other_rule for other_rule in self.rules if other_rule.uuid != rule.uuid
+        ]
+
+        # Other rules' total coverage masks
+        rules_covered_masks = [
+            other_rule.premise.covered_mask(X)
+            for other_rule in other_rules
+        ]
+
+        if rules_covered_masks:
+            others_rules_covered_mask = np.logical_or.reduce(
+                rules_covered_masks)
+        else:
+            others_rules_covered_mask = np.zeros(shape=y.shape, dtype=bool)
+
+        # Current rule's positive or negative or all covered mask
+        if covered_type == 'positive':
+            current_rule_mask = rule.positive_covered_mask(X, y)
+        elif covered_type == 'negative':
+            current_rule_mask = rule.negative_covered_mask(X, y)
+        elif covered_type == 'all':
+            current_rule_mask = rule.premise.covered_mask(X)
+        else:
+            raise ValueError(
+                '"covered_type" parameter should be either "positive" or "negative"')
+
+        # Uniquely covered examples
+        unique_mask = current_rule_mask & ~others_rules_covered_mask
+
+        return int(np.count_nonzero(unique_mask))
 
     def _calculate_conditions_count(self, rule: AbstractRule) -> int:
         def calculate_conditions_count_recursive(condition: AbstractCondition) -> int:

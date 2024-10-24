@@ -47,13 +47,22 @@ class RegressionRulesMetrics(AbstractRulesMetrics):
             'n': lambda: int(rule.coverage.n),
             'P': lambda: int(rule.coverage.P),
             'N': lambda: int(rule.coverage.N),
+            'unique_in_pos': lambda: self._calculate_uniquely_covered_examples_in_pos_and_neg(
+                rule, X, y, covered_type='positive'
+            ),
+            'unique_in_neg': lambda: self._calculate_uniquely_covered_examples_in_pos_and_neg(
+                rule, X, y, covered_type='negative'
+            ),
             'p_unique': lambda: self._calculate_uniquely_covered_examples(
                 rule, X, y, covered_type='positive'
             ),
             'n_unique': lambda: self._calculate_uniquely_covered_examples(
                 rule, X, y, covered_type='negative'
             ),
-            'support': lambda: int(rule.coverage.p + rule.coverage.n),
+            'all_unique': lambda: self._calculate_uniquely_covered_examples(
+                rule, X, y, covered_type='all'
+            ),
+            'support': lambda: float((rule.coverage.p + rule.coverage.n) / (rule.coverage.P + rule.coverage.N)),
             'conditions_count': lambda: int(self._calculate_conditions_count(rule)),
             'y_covered_avg': lambda: float(rule_covered_examples.mean()),
             'y_covered_median': lambda: float(np.median(rule_covered_examples)),
