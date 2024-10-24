@@ -3,6 +3,7 @@ from typing import TypedDict
 import warnings
 
 import numpy as np
+import math
 from decision_rules.problem import ProblemTypes
 from imblearn.metrics import geometric_mean_score
 from sklearn.metrics import accuracy_score
@@ -181,17 +182,17 @@ def calculate_class_indicators_classification(
         ClassificationPredictionIndicatorsForClass: A dictionary representing
         the calculated prediction indicators for the class.
     """
-    TP: int = np.count_nonzero(np.logical_and(y_true == cls, y_pred == cls))
-    FN: int = np.count_nonzero(np.logical_and(y_true == cls, y_pred != cls))
-    FP: int = np.count_nonzero(np.logical_and(y_true != cls, y_pred == cls))
-    TN: int = np.count_nonzero(np.logical_and(y_true != cls, y_pred != cls))
+    TP: int = int(np.count_nonzero(np.logical_and(y_true == cls, y_pred == cls)))
+    FN: int = int(np.count_nonzero(np.logical_and(y_true == cls, y_pred != cls)))
+    FP: int = int(np.count_nonzero(np.logical_and(y_true != cls, y_pred == cls)))
+    TN: int = int(np.count_nonzero(np.logical_and(y_true != cls, y_pred != cls)))
     Precision: float = TP / (TP + FP) if (TP + FP) != 0 else 0
     Recall: float = TP / (TP + FN) if (TP + FN) != 0 else 0
     Specificity: float = TN / (TN + FP) if (TN + FP) != 0 else 0
     F1_score: float = 2 * (Precision * Recall) / \
         (Precision + Recall) if (Precision + Recall) != 0 else 0
-    G_mean: float = np.sqrt(Recall * Specificity)
-    MCC: float = (TP * TN - FP * FN) / np.sqrt((TP + FP) * (TP + FN) * (TN + FP) * (TN + FN)) if (TP + FP) * (TP + FN) * (
+    G_mean: float = math.sqrt(Recall * Specificity)
+    MCC: float = (TP * TN - FP * FN) / math.sqrt((TP + FP) * (TP + FN) * (TN + FP) * (TN + FN)) if (TP + FP) * (TP + FN) * (
         TN + FP) * (TN + FN) != 0 else 0
     PPV: float = TP / (TP + FP) if (TP + FP) != 0 else 0
     NPV: float = TN / (TN + FN) if (TN + FN) != 0 else 0

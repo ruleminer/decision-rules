@@ -236,8 +236,8 @@ class AbstractRule(ABC):
 
     def get_coverage_dict(self) -> dict:
         return {
-            "p": int(self.coverage.p),
-            "n": int(self.coverage.n),
-            "P": int(self.coverage.P),
-            "N": int(self.coverage.N)
+            "p": self.coverage.p,
+            "n": self.coverage.n,
+            "P": self.coverage.P,
+            "N": self.coverage.N
         }
