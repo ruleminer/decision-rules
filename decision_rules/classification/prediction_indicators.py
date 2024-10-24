@@ -28,6 +28,8 @@ class ClassificationGeneralPredictionIndicators(TypedDict):
     Recall_weighted: float
     Specificity: float
     Confusion_matrix: dict
+    Covered_by_prediction: int
+    Not_covered_by_prediction: int
 
 
 class ClassificationPredictionIndicatorsForClass(TypedDict):
@@ -80,8 +82,11 @@ def calculate_for_classification(
         ClassificationPredictionIndicators: A dictionary containing various
         prediction indicators, including indicators for individual classes.
     """
+    all_examples = len(y_true)
     if calculate_only_for_covered_examples:
         y_true, y_pred = _drop_uncovered_examples(y_true, y_pred)
+    covered_by_prediction = len(y_true)
+    not_covered_by_prediction = all_examples - covered_by_prediction
 
     with warnings.catch_warnings(record=True) as caught_warnings:
         warnings.filterwarnings(
@@ -155,7 +160,9 @@ def calculate_for_classification(
             Recall_macro=Recall_macro,
             Recall_weighted=Recall_weighted,
             Specificity=specificity,
-            Confusion_matrix=general_confusion_matrix_dict
+            Confusion_matrix=general_confusion_matrix_dict,
+            Covered_by_prediction=covered_by_prediction,
+            Not_covered_by_prediction=not_covered_by_prediction,
         ),
         for_classes={
             cls: {key: value if isinstance(
