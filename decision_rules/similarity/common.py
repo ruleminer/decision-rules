@@ -1,9 +1,10 @@
 import numpy as np
 import pandas as pd
+
 from decision_rules.core.ruleset import AbstractRuleSet
-from rolap_data_storage.abstract.reader import FilterList
-from rolap_data_storage.implementations.aws.reader import FilterToMaskProcessor
-from rolap_data_storage.parsers.ruleset import RuleToFilterParser
+from decision_rules.parsers import FilterList
+from decision_rules.parsers import FilterToMaskProcessor
+from decision_rules.parsers import RuleToFilterParser
 
 
 def _get_covered_index_matrix(dataset: pd.DataFrame, ruleset: AbstractRuleSet) -> np.array:
