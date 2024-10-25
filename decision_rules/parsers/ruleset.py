@@ -9,9 +9,9 @@ class RuleToFilterParser:
     Class for converting ruleset JSON/dictionary to filtering info.
     """
 
-    def __init__(self, ruleset: AbstractRuleSet, operator: str = "OR"):
+    def __init__(self, ruleset: AbstractRuleSet, connector: FilterConnector = FilterConnector.OR):
         self.ruleset = ruleset
-        self.operator = operator
+        self.connector = connector
         self.parsed_rules_ids: list[str] = []
         self.condition_parser = ConditionToFilterParser(
             column_names=ruleset.column_names)
@@ -24,7 +24,7 @@ class RuleToFilterParser:
                 raw_rule.premise)
             rules_list.append(parsed_rule)
         ruleset_filter_list: FilterList = FilterList(
-            connector=FilterConnector[self.operator],
+            connector=self.connector,
             filters=rules_list
         )
         return ruleset_filter_list
