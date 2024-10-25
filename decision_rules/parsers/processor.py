@@ -35,7 +35,7 @@ class FilterToMaskProcessor:
                     )
                 }
                 submask = submask_mapping[filter_['operator']]()
-            if filter_list.connector == FilterConnector.AND:
+            if filter_list.connector.value == FilterConnector.AND.value:
                 mask = submask if mask is None else mask & submask
             else:
                 mask = submask if mask is None else mask | submask
