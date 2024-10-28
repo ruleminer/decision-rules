@@ -106,11 +106,9 @@ def rss(c: Cov) -> float:  # pylint: disable=missing-function-docstring
 
 
 def odds_ratio(c: Cov) -> float:  # pylint: disable=missing-function-docstring
-    if c.n == 0.0 or c.p == c.P:
-        return float('inf')
     return (
         (c.p * (c.N - c.n)) /
-        (c.n * (c.P - c.p))
+        (c.n * (c.P - c.p)+1)
     )
 
 
@@ -252,11 +250,9 @@ def q2(c: Cov) -> float:  # pylint: disable=missing-function-docstring
 
 
 def relative_risk(c: Cov) -> float:  # pylint: disable=missing-function-docstring
-    if c.p == c.P:
-        return float('inf')
     if c.p == 0 and c.n == 0:
         return 0.0
-    return (c.p / (c.p + c.n)) * ((c.P + c.N - c.p - c.n) / (c.P - c.p))
+    return (c.p / (c.p + c.n)) * ((c.P + c.N - c.p - c.n) / (c.P - c.p + 1))
 
 
 def ripper(c: Cov) -> float:  # pylint: disable=missing-function-docstring
