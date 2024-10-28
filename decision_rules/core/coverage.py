@@ -24,10 +24,12 @@ class Coverage:
     N: int
 
     def __init__(self, p: int, n: int, P: int, N: int):
-        self.p = p
-        self.n = n
-        self.P = P
-        self.N = N
+        # input values may actually come from numpy calculations,
+        # so we need to coerce them to python integers in order to avoid overflow
+        self.p = int(p) if p is not None else None
+        self.n = int(n) if n is not None else None
+        self.P = int(P) if P is not None else None
+        self.N = int(N) if N is not None else None
         self._validate()
 
     def _validate(self):
