@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
+
 from decision_rules.core.ruleset import AbstractRuleSet
-from decision_rules.similarity.common import _get_covered_index_matrix
 
 
 def calculate_ruleset_similarity(
@@ -17,8 +17,8 @@ def calculate_ruleset_similarity(
     :return: similarity between the rulesets
     """
     # calculate covered indices matrices for both rulesets
-    matrix1 = _get_covered_index_matrix(dataset, ruleset1)
-    matrix2 = _get_covered_index_matrix(dataset, ruleset2)
+    matrix1 = ruleset1.calculate_coverage_matrix(dataset).T
+    matrix2 = ruleset2.calculate_coverage_matrix(dataset).T
     # Make sure they have the same number of examples
     if matrix1.shape[1] != matrix2.shape[1]:
         raise ValueError("Wrong dimensions of the matrices")
