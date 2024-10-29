@@ -29,7 +29,6 @@ def calculate_semantic_similarity_matrix(
     Returns:
         np.ndarray:  The similarity matrix.
     """
-
     matrix1 = ruleset1.calculate_coverage_matrix(dataset).T
     matrix2 = ruleset2.calculate_coverage_matrix(dataset).T
     if measure == SimilarityMeasure.JACCARD:

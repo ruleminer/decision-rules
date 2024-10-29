@@ -12,6 +12,7 @@ from typing import Union
 
 import numpy as np
 import pandas as pd
+
 from decision_rules.conditions import AttributesCondition
 from decision_rules.conditions import CompoundCondition
 from decision_rules.core.coverage import ClassificationCoverageInfodict
@@ -174,7 +175,6 @@ class AbstractRuleSet(_PredictionModel, ABC):
         Args:
             X (Union[np.ndarray, pd.DataFrame]): dataset
         """
-        self._validate__object_state_before_prediction()
         X: np.ndarray = self._sanitize_dataset(X)
         if len(self.rules) == 0:
             return np.empty(shape=(X.shape[0], 0), dtype=bool)
@@ -348,6 +348,7 @@ class AbstractRuleSet(_PredictionModel, ABC):
         """
         X: np.ndarray = self._sanitize_dataset(X)
         coverage_matrix: np.ndarray = self.calculate_coverage_matrix(X)
+        self._validate__object_state_before_prediction()
         return self.predict_using_coverage_matrix(coverage_matrix)
 
     def calculate_rules_metrics(
