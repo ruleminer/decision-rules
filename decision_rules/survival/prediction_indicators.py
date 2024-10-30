@@ -57,7 +57,7 @@ def calculate_for_survival(
         type_of_problem=ProblemTypes.SURVIVAL.value,
         general=SurvivalGeneralPredictionIndicators(
             ibs=ruleset.integrated_bier_score(X, y_true, y_pred),
-            covered_by_prediction=covered_by_prediction,
-            not_covered_by_prediction=not_covered_by_prediction,
+            Covered_by_prediction=covered_by_prediction,
+            Not_covered_by_prediction=not_covered_by_prediction,
         )
     )
