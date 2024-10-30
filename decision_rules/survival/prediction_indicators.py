@@ -2,14 +2,15 @@ from typing import TypedDict
 
 import numpy as np
 import pandas as pd
+
 from decision_rules.problem import ProblemTypes
 from decision_rules.survival import SurvivalRuleSet
 
 
 class SurvivalGeneralPredictionIndicators(TypedDict):
     ibs: float
-    covered_by_prediction: int
-    not_covered_by_prediction: int
+    Covered_by_prediction: int
+    Not_covered_by_prediction: int
 
 
 class SurvivalPredictionIndicators(TypedDict):
