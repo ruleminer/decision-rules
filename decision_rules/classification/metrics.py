@@ -6,12 +6,13 @@ from typing import Optional
 
 import numpy as np
 import pandas as pd
+from scipy.stats import fisher_exact
+from scipy.stats import hypergeom
+
 from decision_rules import measures
 from decision_rules.classification.rule import ClassificationRule
 from decision_rules.core.coverage import Coverage
 from decision_rules.core.metrics import AbstractRulesMetrics
-from scipy.stats import fisher_exact
-from scipy.stats import hypergeom
 
 
 class ClassificationRulesMetrics(AbstractRulesMetrics):
@@ -111,6 +112,8 @@ class ClassificationRulesMetrics(AbstractRulesMetrics):
         coverage: Coverage = rule.coverage
         tn: int = coverage.N - coverage.n
         fn: int = coverage.P - coverage.p
+        if (fn + tn) == 0:
+            return float('nan')
         return tn / (fn + tn)
 
     def calculate_p_value(self, coverage: Optional[Coverage] = None, rule: Optional[ClassificationRule] = None, y: Optional[np.ndarray] = None) -> float:
