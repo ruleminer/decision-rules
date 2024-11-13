@@ -10,7 +10,7 @@ setup(
     ),
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    version='1.1.0',
+    version='1.2.0',
     author='Cezary Maszczyk, Dawid Macha, Adam Grzelak, Bartosz Piguła',
     author_email='cezary.maszczyk@emag.lukasiewicz.gov.pl',
     readme='README.md',
@@ -26,7 +26,7 @@ setup(
     ],
     extras_require={
         "ruleset_factories": [
-            "rulekit>=2.1.18"
+            "rulekit==2.1.21"
         ]
     },
     python_requires='>=3.9',

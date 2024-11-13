@@ -1,14 +1,15 @@
 # pylint: disable=protected-access
 from typing import List
 
+from pandas import DataFrame
+from pandas import Series
+from rulekit.regression import RuleRegressor
+from rulekit.rules import BaseRule as RuleKitRule
+
 from decision_rules.core.ruleset import AbstractRuleSet
 from decision_rules.regression.rule import RegressionConclusion
 from decision_rules.regression.rule import RegressionRule
 from decision_rules.regression.ruleset import RegressionRuleSet
-from pandas import DataFrame
-from pandas import Series
-from rulekit.regression import RuleRegressor
-from rulekit.rules import Rule as RuleKitRule
 from decision_rules.ruleset_factories.utils.abstract_rulekit_factory import AbstractRuleKitRuleSetFactory
 
 
