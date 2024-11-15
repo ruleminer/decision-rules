@@ -2,15 +2,14 @@
 import unittest
 
 import pandas as pd
+
 from decision_rules import measures
-from decision_rules.classification.rule import ClassificationConclusion
-from decision_rules.classification.rule import ClassificationRule
+from decision_rules.classification.rule import (ClassificationConclusion,
+                                                ClassificationRule)
 from decision_rules.classification.ruleset import ClassificationRuleSet
-from decision_rules.conditions import AttributesCondition
-from decision_rules.conditions import CompoundCondition
-from decision_rules.conditions import ElementaryCondition
-from decision_rules.conditions import LogicOperators
-from decision_rules.conditions import NominalCondition
+from decision_rules.conditions import (AttributesCondition, CompoundCondition,
+                                       ElementaryCondition, LogicOperators,
+                                       NominalCondition)
 from decision_rules.core.coverage import Coverage
 from decision_rules.serialization import JSONSerializer
 
@@ -62,7 +61,7 @@ class TestClassificationRuleSetSerializer(unittest.TestCase):
             column_names=list(range(4))
         )
         rule2.coverage = Coverage(p=19, n=1, P=20, N=12)
-        return ClassificationRuleSet([rule1, rule2])
+        return ClassificationRuleSet([rule1, rule2]) # pylint: disable=abstract-class-instantiated
 
     def _prepare_dataset(self) -> tuple[pd.DataFrame, pd.Series]:
         X: pd.DataFrame = pd.DataFrame({
@@ -135,6 +134,39 @@ class TestClassificationRuleSetSerializer(unittest.TestCase):
         self.assertEqual(
             ruleset, deserializer_ruleset,
             'Serializing and deserializing should lead to the the same object'
+        )
+
+    def test_prediction_after_deserializing_without_update(self):
+        ruleset: ClassificationRuleSet = self._prepare_ruleset()
+        X, y = self._prepare_dataset()
+        ruleset.update(X, y, measure=measures.accuracy)
+                # change conclusion value so it will be different than the default one
+        ruleset.default_conclusion.value = 1
+
+        serialized_ruleset: dict = JSONSerializer.serialize(ruleset)
+        deserializer_ruleset: ClassificationRuleSet = JSONSerializer.deserialize(
+            serialized_ruleset, ClassificationRuleSet
+        )
+
+        self.assertEqual(
+            ruleset.default_conclusion.value,
+            deserializer_ruleset.default_conclusion.value,
+            'Default conclusion after deserializing should be the same'
+        )
+        self.assertEqual(
+            [r.coverage for r in ruleset.rules],
+            [r.coverage for r in deserializer_ruleset.rules],
+            'Coverages after deserializing should be the same'
+        )
+        self.assertEqual(
+            [r.voting_weight for r in ruleset.rules],
+            [r.voting_weight for r in deserializer_ruleset.rules],
+            'Voting weights after deserializing should be the same'
+        )
+        self.assertEqual(
+            ruleset.predict(X).tolist(),
+            deserializer_ruleset.predict(X).tolist(),
+            'Prediction after deserializing should be the same'
         )
 
 

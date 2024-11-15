@@ -3,12 +3,11 @@ Contains survival ruleset class.
 """
 from __future__ import annotations
 
-from typing import Optional
-from typing import Type
-from typing import Union
+from typing import Optional, Type, Union
 
 import numpy as np
 import pandas as pd
+
 from decision_rules.core.coverage import SurvivalCoverageInfodict
 from decision_rules.core.exceptions import InvalidStateError
 from decision_rules.core.metrics import AbstractRulesMetrics
@@ -20,11 +19,10 @@ from decision_rules.importances._survival.conditions import \
     SurvivalRuleSetConditionImportances
 from decision_rules.survival.kaplan_meier import KaplanMeierEstimator
 from decision_rules.survival.metrics import SurvivalRulesMetrics
-from decision_rules.survival.prediction import BestRulePredictionStrategy
-from decision_rules.survival.prediction import SurvivalPrediction
-from decision_rules.survival.prediction import VotingPredictionStrategy
-from decision_rules.survival.rule import SurvivalConclusion
-from decision_rules.survival.rule import SurvivalRule
+from decision_rules.survival.prediction import (BestRulePredictionStrategy,
+                                                SurvivalPrediction,
+                                                VotingPredictionStrategy)
+from decision_rules.survival.rule import SurvivalConclusion, SurvivalRule
 
 
 class SurvivalRuleSet(AbstractRuleSet):
@@ -124,6 +122,7 @@ class SurvivalRuleSet(AbstractRuleSet):
             y_train_sorted,
             skip_sorting=True  # skip sorting (dataset is already sorted)
         )
+        self.default_conclusion.value = self.default_conclusion.estimator.median_survival_time
         self._stored_default_conclusion = self.default_conclusion
 
         for rule in self.rules:

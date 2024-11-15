@@ -3,16 +3,16 @@ Contains common classes for rules JSON serialization.
 """
 from __future__ import annotations
 
-from typing import Any
-from typing import Optional
+from typing import Any, Optional
+
+from pydantic import BaseModel
 
 from decision_rules.core.coverage import Coverage
 from decision_rules.core.rule import AbstractRule
 from decision_rules.serialization._core.conditions import _ConditionSerializer
-from decision_rules.serialization.utils import JSONClassSerializer
-from decision_rules.serialization.utils import JSONSerializer
-from decision_rules.serialization.utils import register_serializer
-from pydantic import BaseModel
+from decision_rules.serialization.utils import (JSONClassSerializer,
+                                                JSONSerializer,
+                                                register_serializer)
 
 
 @register_serializer(Coverage)
@@ -57,10 +57,11 @@ class _BaseRuleSerializer(JSONClassSerializer):
         premise: Any
         conclusion: Any
         coverage: Optional[_CoverageSerializer._Model] = None
+        voting_weight: Optional[float] = None
 
     @classmethod
     def _from_pydantic_model(cls: type, model: _Model) -> AbstractRule:
-        rule = cls.rule_class(
+        rule: AbstractRule = cls.rule_class(
             premise=_ConditionSerializer.deserialize(
                 model.premise),
             conclusion=JSONSerializer.deserialize(
@@ -75,6 +76,8 @@ class _BaseRuleSerializer(JSONClassSerializer):
                 model.coverage,
                 Coverage
             )
+        if model.voting_weight is not None:
+            rule.voting_weight = model.voting_weight
         return rule
 
     @classmethod
@@ -87,6 +90,7 @@ class _BaseRuleSerializer(JSONClassSerializer):
             premise=JSONSerializer.serialize(
                 instance.premise),  # pylint: disable=duplicate-code
             conclusion=JSONSerializer.serialize(instance.conclusion),
-            coverage=JSONSerializer.serialize(instance.coverage)
+            coverage=JSONSerializer.serialize(instance.coverage),
+            voting_weight=instance.voting_weight,
         )
         return model

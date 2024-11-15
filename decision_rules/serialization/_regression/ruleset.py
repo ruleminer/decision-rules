@@ -5,34 +5,35 @@ from __future__ import annotations
 
 from typing import Optional
 
-from decision_rules.core.coverage import Coverage
-from decision_rules.regression.rule import RegressionConclusion
-from decision_rules.regression.rule import RegressionRule
-from decision_rules.regression.ruleset import RegressionRuleSet
-from decision_rules.serialization._regression.rule import \
-    _RegressionRuleSerializer
-from decision_rules.serialization.utils import JSONClassSerializer
-from decision_rules.serialization.utils import JSONSerializer
-from decision_rules.serialization.utils import register_serializer
 from pydantic import BaseModel
+
+from decision_rules.core.coverage import Coverage
+from decision_rules.regression.rule import RegressionConclusion, RegressionRule
+from decision_rules.regression.ruleset import RegressionRuleSet
+from decision_rules.serialization._regression.rule import (
+    _RegressionRuleConclusionSerializer, _RegressionRuleSerializer)
+from decision_rules.serialization.utils import (JSONClassSerializer,
+                                                JSONSerializer,
+                                                register_serializer)
 
 
 class _RegressionMetaDataModel(BaseModel):
     attributes: list[str]
     decision_attribute: str
     y_train_median: float
+    default_conclusion: Optional[_RegressionRuleConclusionSerializer._Model]
 
 
 @register_serializer(RegressionRuleSet)
 class _RegressionRuleSetSerializer(JSONClassSerializer):
 
     class _Model(BaseModel):
-        meta: Optional[_RegressionMetaDataModel]
+        meta: _RegressionMetaDataModel
         rules: list[_RegressionRuleSerializer._Model]
 
     @classmethod
     def _from_pydantic_model(cls: type, model: _Model) -> RegressionRuleSet:
-        ruleset = RegressionRuleSet(
+        ruleset = RegressionRuleSet(  # pylint: disable=abstract-class-instantiated
             rules=[
                 JSONSerializer.deserialize(
                     rule,
@@ -54,24 +55,48 @@ class _RegressionRuleSetSerializer(JSONClassSerializer):
                 rule.coverage = Coverage(
                     **model.rules[i].coverage.model_dump())
         ruleset._y_train_median = model.meta.y_train_median  # pylint: disable=protected-access
-        ruleset.default_conclusion = RegressionConclusion(
-            value=model.meta.y_train_median,
-            low=model.meta.y_train_median,
-            high=model.meta.y_train_median,
-            column_name=model.meta.decision_attribute,
+
+        _RegressionRuleSetSerializer._set_default_conclusion(
+            ruleset, model
         )
         return ruleset
+
+    @classmethod
+    def _set_default_conclusion(
+        cls: type,
+        ruleset: RegressionRuleSet,
+        model: _Model
+    ):
+        if model.meta.default_conclusion is not None:
+            default_conclusion = _RegressionRuleConclusionSerializer._from_pydantic_model(  # pylint: disable=protected-access
+                model.meta.default_conclusion
+            )
+            ruleset.default_conclusion = default_conclusion
+        else:
+            ruleset.default_conclusion = RegressionConclusion(
+                value=model.meta.y_train_median,
+                low=model.meta.y_train_median,
+                high=model.meta.y_train_median,
+                column_name=model.meta.decision_attribute,
+            )
 
     @classmethod
     def _to_pydantic_model(cls: type, instance: RegressionRuleSet) -> _Model:
         if len(instance.rules) == 0:
             raise ValueError('Cannot serialize empty ruleset.')
+        if instance.default_conclusion is None:
+            default_conclusion = None
+        else:
+            default_conclusion = JSONSerializer.serialize(
+                instance.default_conclusion
+            )
         return _RegressionRuleSetSerializer._Model(
             meta=_RegressionMetaDataModel(
                 attributes=instance.column_names,
                 decision_attribute=instance.rules[0].conclusion.column_name,
                 y_train_median=instance.y_train_median
             ),
+            default_conclusion=default_conclusion,
             rules=[
                 JSONSerializer.serialize(rule) for rule in instance.rules
             ]

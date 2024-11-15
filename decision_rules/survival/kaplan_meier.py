@@ -1,14 +1,11 @@
 from __future__ import annotations
 
 from bisect import bisect_left
-from typing import Optional
-from typing import TypedDict
-from typing import Union
+from typing import Optional, TypedDict, Union
 
 import numpy as np
 import pandas as pd
-from scipy.stats import chi2
-from scipy.stats import norm
+from scipy.stats import chi2, norm
 
 
 class KaplanMeierEstimatorDict(TypedDict):
@@ -86,7 +83,11 @@ class KaplanMeierEstimator():
         self.events_count_sum = np.sum(surv_info.events_count)
         self.censored_count_sum = np.sum(surv_info.censored_count)
 
-    def update(self, kaplan_meier_estimator_dict: dict[str, list[float]], update_additional_indicators: bool = False) -> KaplanMeierEstimator:
+    def update(
+        self,
+        kaplan_meier_estimator_dict: KaplanMeierEstimatorDict,
+        update_additional_indicators: bool = False
+    ) -> KaplanMeierEstimator:
         kaplan_meier_estimator_dict: KaplanMeierEstimatorDict = {
             k: np.array(v)
             for k, v in kaplan_meier_estimator_dict.items()

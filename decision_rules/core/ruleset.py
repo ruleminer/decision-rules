@@ -3,28 +3,20 @@ Contains abstract ruleset class.
 """
 from __future__ import annotations
 
-from abc import ABC
-from abc import abstractmethod
-from typing import Any
-from typing import Callable
-from typing import Optional
-from typing import Union
+from abc import ABC, abstractmethod
+from typing import Any, Callable, Optional, Union
 
 import numpy as np
 import pandas as pd
 
-from decision_rules.conditions import AttributesCondition
-from decision_rules.conditions import CompoundCondition
-from decision_rules.core.coverage import ClassificationCoverageInfodict
-from decision_rules.core.coverage import Coverage
+from decision_rules.conditions import AttributesCondition, CompoundCondition
+from decision_rules.core.coverage import (ClassificationCoverageInfodict,
+                                          Coverage)
 from decision_rules.core.exceptions import InvalidStateError
 from decision_rules.core.metrics import AbstractRulesMetrics
-from decision_rules.core.prediction import _PredictionModel
-from decision_rules.core.prediction import PredictionStrategy
-from decision_rules.core.rule import AbstractConclusion
-from decision_rules.core.rule import AbstractRule
-from decision_rules.measures import coverage
-from decision_rules.measures import precision
+from decision_rules.core.prediction import PredictionStrategy, _PredictionModel
+from decision_rules.core.rule import AbstractConclusion, AbstractRule
+from decision_rules.measures import coverage, precision
 
 
 class AbstractRuleSet(_PredictionModel, ABC):
@@ -52,7 +44,6 @@ class AbstractRuleSet(_PredictionModel, ABC):
         self._stored_default_conclusion: AbstractConclusion = None
         self._prediction_strategy: Optional[PredictionStrategy] = None
         self.decision_attribute: Optional[str] = None
-        self._voting_weights_calculated: bool = False
 
     @abstractmethod
     def get_metrics_object_instance(self) -> AbstractRulesMetrics:
@@ -60,7 +51,10 @@ class AbstractRuleSet(_PredictionModel, ABC):
         return None
 
     def _validate__object_state_before_prediction(self):
-        if not self._voting_weights_calculated:
+        voting_weights_calculated: bool = all([
+            rule.coverage is not None for rule in self.rules
+        ])
+        if not voting_weights_calculated:
             raise InvalidStateError(
                 'Rules coverages must have been calculated before prediction.' +
                 'Did you forget to call update(...) method?'

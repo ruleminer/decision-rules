@@ -3,37 +3,38 @@ Contains classes for classification ruleset JSON serialization.
 """
 from __future__ import annotations
 
-from typing import Any
-from typing import Optional
+from typing import Any, Optional
 
 import numpy as np
+from pydantic import BaseModel
+
 from decision_rules.classification.rule import ClassificationRule
 from decision_rules.classification.ruleset import ClassificationRuleSet
 from decision_rules.core.coverage import Coverage
-from decision_rules.serialization._classification.rule import \
-    _ClassificationRuleSerializer
-from decision_rules.serialization.utils import JSONClassSerializer
-from decision_rules.serialization.utils import JSONSerializer
-from decision_rules.serialization.utils import register_serializer
-from pydantic import BaseModel
+from decision_rules.serialization._classification.rule import (
+    _ClassificationRuleConclusionSerializer, _ClassificationRuleSerializer)
+from decision_rules.serialization.utils import (JSONClassSerializer,
+                                                JSONSerializer,
+                                                register_serializer)
 
 
 class _ClassificationMetaDataModel(BaseModel):
     attributes: list[str]
     decision_attribute: str
     decision_attribute_distribution: dict[Any, int]
+    default_conclusion: Optional[_ClassificationRuleConclusionSerializer._Model]
 
 
 @register_serializer(ClassificationRuleSet)
 class _ClassificationRuleSetSerializer(JSONClassSerializer):
 
     class _Model(BaseModel):
-        meta: Optional[_ClassificationMetaDataModel]
+        meta: _ClassificationMetaDataModel
         rules: list[_ClassificationRuleSerializer._Model]
 
     @classmethod
     def _from_pydantic_model(cls: type, model: _Model) -> ClassificationRuleSet:
-        ruleset = ClassificationRuleSet(
+        ruleset = ClassificationRuleSet(  # pylint: disable=abstract-class-instantiated
             rules=[
                 JSONSerializer.deserialize(
                     rule,
@@ -48,7 +49,9 @@ class _ClassificationRuleSetSerializer(JSONClassSerializer):
         ruleset.column_names = model.meta.attributes
         ruleset.decision_attribute = model.meta.decision_attribute
         _ClassificationRuleSetSerializer._calculate_P_N(model, ruleset)
-        ruleset._update_majority_class()  # pylint: disable=protected-access
+        _ClassificationRuleSetSerializer._set_default_conclusion(
+            ruleset, model.meta.default_conclusion
+        )
         return ruleset
 
     @classmethod
@@ -73,15 +76,36 @@ class _ClassificationRuleSetSerializer(JSONClassSerializer):
             rule.conclusion.column_name = model.meta.decision_attribute
 
     @classmethod
+    def _set_default_conclusion(
+        cls: type,
+        ruleset: ClassificationRuleSet,
+        default_conclusion_serialized: _ClassificationRuleConclusionSerializer
+    ):
+        if default_conclusion_serialized is not None:
+            default_conclusion = _ClassificationRuleConclusionSerializer._from_pydantic_model(  # pylint: disable=protected-access
+                default_conclusion_serialized
+            )
+            ruleset.default_conclusion = default_conclusion
+        else:
+            ruleset._update_majority_class()  # pylint: disable=protected-access
+
+    @classmethod
     def _to_pydantic_model(cls: type, instance: ClassificationRuleSet) -> _Model:
         if len(instance.rules) == 0:
             raise ValueError('Cannot serialize empty ruleset.')
+        if instance.default_conclusion is None:
+            default_conclusion = None
+        else:
+            default_conclusion = JSONSerializer.serialize(
+                instance.default_conclusion
+            )
         return _ClassificationRuleSetSerializer._Model(
             meta=_ClassificationMetaDataModel(
                 attributes=instance.column_names,
                 decision_attribute=instance.rules[0].conclusion.column_name,
                 decision_attribute_distribution=dict(instance.train_P.items())
             ),
+            default_conclusion=default_conclusion,
             rules=[
                 JSONSerializer.serialize(rule) for rule in instance.rules
             ]

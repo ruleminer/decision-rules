@@ -42,6 +42,11 @@ class Coverage:
 
     def as_tuple(self) -> tuple[int, int, int, int]:
         return (self.p, self.n, self.P, self.N)
+    
+    def __eq__(self, value: object) -> bool:
+        if not isinstance(value, Coverage):
+            return False
+        return self.as_tuple() == value.as_tuple()
 
     def __str__(self) -> str:
         return f'(p={self.p}, n={self.n}, P={self.P}, N={self.N})'
