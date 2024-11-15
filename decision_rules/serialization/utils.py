@@ -72,8 +72,7 @@ class JSONSerializer:
             raise ValueError(
                 'Trying to register multiple serializer classes for type: ' +
                 f'"{serializable_class}"' +
-                f' ({
-                    cls._serializers_dict[serializable_class], serializer_class})'
+                f'({cls._serializers_dict[serializable_class], serializer_class})'
             )
         cls._serializers_dict[serializable_class] = serializer_class
 
