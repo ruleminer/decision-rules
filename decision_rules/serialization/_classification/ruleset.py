@@ -1,6 +1,7 @@
 """
 Contains classes for classification ruleset JSON serialization.
 """
+
 from __future__ import annotations
 
 from typing import Any, Optional
@@ -37,12 +38,9 @@ class _ClassificationRuleSetSerializer(JSONClassSerializer):
     def _from_pydantic_model(cls: type, model: _Model) -> ClassificationRuleSet:
         ruleset = ClassificationRuleSet(  # pylint: disable=abstract-class-instantiated
             rules=[
-                JSONSerializer.deserialize(
-                    rule,
-                    ClassificationRule
-                ) for rule in model.rules
+                JSONSerializer.deserialize(rule, ClassificationRule)
+                for rule in model.rules
             ],
-
         )
         ruleset.y_values = np.array(
             list(model.meta.decision_attribute_distribution.keys())
@@ -57,12 +55,9 @@ class _ClassificationRuleSetSerializer(JSONClassSerializer):
 
     @classmethod
     def _calculate_P_N(
-        cls: type,
-        model: _Model,
-        ruleset: ClassificationRuleSet
+        cls: type, model: _Model, ruleset: ClassificationRuleSet
     ):  # pylint: disable=invalid-name
-        all_example_count = sum(
-            model.meta.decision_attribute_distribution.values())
+        all_example_count = sum(model.meta.decision_attribute_distribution.values())
         ruleset.train_P = {}
         ruleset.train_N = {}
         for y_value, count in model.meta.decision_attribute_distribution.items():
@@ -79,7 +74,7 @@ class _ClassificationRuleSetSerializer(JSONClassSerializer):
     def _set_default_conclusion(
         cls: type,
         ruleset: ClassificationRuleSet,
-        default_conclusion_serialized: _ClassificationRuleConclusionSerializer
+        default_conclusion_serialized: _ClassificationRuleConclusionSerializer,
     ):
         if default_conclusion_serialized is not None:
             default_conclusion = _ClassificationRuleConclusionSerializer._from_pydantic_model(  # pylint: disable=protected-access
@@ -91,12 +86,10 @@ class _ClassificationRuleSetSerializer(JSONClassSerializer):
 
     @classmethod
     def _to_pydantic_model(
-        cls: type,
-        instance: ClassificationRuleSet,
-        mode: SerializationModes
+        cls: type, instance: ClassificationRuleSet, mode: SerializationModes
     ) -> _Model:
         if len(instance.rules) == 0:
-            raise ValueError('Cannot serialize empty ruleset.')
+            raise ValueError("Cannot serialize empty ruleset.")
         if mode == SerializationModes.MINIMAL:
             default_conclusion = None
         else:
@@ -110,8 +103,5 @@ class _ClassificationRuleSetSerializer(JSONClassSerializer):
                 decision_attribute_distribution=dict(instance.train_P.items()),
                 default_conclusion=default_conclusion,
             ),
-            rules=[
-                JSONSerializer.serialize(rule, mode)
-                for rule in instance.rules
-            ]
+            rules=[JSONSerializer.serialize(rule, mode) for rule in instance.rules],
         )

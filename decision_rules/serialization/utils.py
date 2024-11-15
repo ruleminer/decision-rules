@@ -1,6 +1,7 @@
 """
 Contains classed useful for serializing and deserializing objects.
 """
+
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
@@ -14,12 +15,13 @@ class SerializationModes(Enum):
     """
     Specifies possible serialization modes choice.
     """
-    FULL: str = 'full'
+
+    FULL: str = "full"
     """In this mode all important information is serialized. After 
     deserialization of the rulesets you can use it as it is without calling `update` 
     method.
     """
-    MINIMAL: str = 'minimal'
+    MINIMAL: str = "minimal"
     """In this mode only minimal, necessary information is serialized. After 
     deserialization of the rulesets you'll have to call `update` method to use it.
     """
@@ -44,7 +46,7 @@ class SerializationModes(Enum):
         except ValueError as error:
             raise ValueError(
                 f'Unknown serialization mode: "{value}", '
-                f'expected one of: {list(cls._value2member_map_.keys())}'
+                f"expected one of: {list(cls._value2member_map_.keys())}"
             ) from error
 
 
@@ -67,27 +69,26 @@ class JSONSerializer:
         Raises:
             ValueError: when try to register multiple serializers for the same type
         """
-        if (serializable_class in cls._serializers_dict) and \
-                (serializer_class != cls._serializers_dict[serializable_class]):
+        if (serializable_class in cls._serializers_dict) and (
+            serializer_class != cls._serializers_dict[serializable_class]
+        ):
             raise ValueError(
-                'Trying to register multiple serializer classes for type: ' +
-                f'"{serializable_class}"' +
-                f'({cls._serializers_dict[serializable_class], serializer_class})'
+                "Trying to register multiple serializer classes for type: "
+                + f'"{serializable_class}"'
+                + f"({cls._serializers_dict[serializable_class], serializer_class})"
             )
         cls._serializers_dict[serializable_class] = serializer_class
 
     @classmethod
     def serialize(
-        cls,
-        value: Any,
-        mode: Union[str, SerializationModes] = SerializationModes.FULL
+        cls, value: Any, mode: Union[str, SerializationModes] = SerializationModes.FULL
     ) -> dict:
         """Serializes given object to json dictionary
 
         Args:
             value (Any): value
-            mode (Union[str, SerializationModes], optional): Controls serialization mode. 
-                In minimal mode only minimal information is serialized. After deserialization 
+            mode (Union[str, SerializationModes], optional): Controls serialization mode.
+                In minimal mode only minimal information is serialized. After deserialization
                 of the rulesets you'll have to call update method to use it. In full mode all
                 important information is serialized and after ruleset deserialization and
                 you can use it further without calling update. Defaults to SerializationModes.FULL
@@ -103,7 +104,8 @@ class JSONSerializer:
         value_class = value.__class__
         if value_class not in cls._serializers_dict:
             raise ValueError(
-                f'There is no registered JSONClassSerializer for class: "{value_class}"')
+                f'There is no registered JSONClassSerializer for class: "{value_class}"'
+            )
         return cls._serializers_dict[value_class].serialize(value, mode)
 
     @classmethod
@@ -122,7 +124,8 @@ class JSONSerializer:
         """
         if target_class not in cls._serializers_dict:
             raise ValueError(
-                f'There is no registered JSONClassSerializer for class: "{target_class}"')
+                f'There is no registered JSONClassSerializer for class: "{target_class}"'
+            )
         return cls._serializers_dict[target_class].deserialize(data)
 
 
@@ -150,15 +153,13 @@ class JSONClassSerializer(ABC):
     @classmethod
     @abstractmethod
     def _to_pydantic_model(
-        cls: type,
-        instance: Any,
-        mode: SerializationModes
+        cls: type, instance: Any, mode: SerializationModes
     ) -> BaseModel:
         """Creates pydantic model from object instance
 
         Args:
             instance (Any): object instance
-            mode (SerializationModes): Controls serialization mode. 
+            mode (SerializationModes): Controls serialization mode.
                 In minimal mode only minimal information is serialized. In full mode all
                 important information is serialized and object should be ready to use without
                 calling any additional methods.
@@ -171,13 +172,13 @@ class JSONClassSerializer(ABC):
     def serialize(
         cls,
         instance: Any,
-        mode: Union[str, SerializationModes] = SerializationModes.FULL
+        mode: Union[str, SerializationModes] = SerializationModes.FULL,
     ) -> dict:
         """
         Args:
             instance (Any): object instance
-            mode (Union[str, SerializationModes], optional): Controls serialization mode. 
-                In minimal mode only minimal information is serialized. After deserialization 
+            mode (Union[str, SerializationModes], optional): Controls serialization mode.
+                In minimal mode only minimal information is serialized. After deserialization
                 of the rulesets you'll have to call update method to use it. In full mode all
                 important information is serialized and after ruleset deserialization and
                 you can use it further without calling update. Defaults to SerializationModes.FULL
@@ -186,8 +187,7 @@ class JSONClassSerializer(ABC):
             dict: json dictionary
         """
         return cls._to_pydantic_model(
-            instance, 
-            mode=SerializationModes.instantiate(mode)
+            instance, mode=SerializationModes.instantiate(mode)
         ).model_dump()
 
     @classmethod
@@ -202,13 +202,11 @@ class JSONClassSerializer(ABC):
         if data is None:
             return None
         if not issubclass(data.__class__, BaseModel):
-            data = getattr(cls, '_Model')(**data)
+            data = getattr(cls, "_Model")(**data)
         return cls._from_pydantic_model(data)
 
 
-def register_serializer(
-    registered_type: type
-):
+def register_serializer(registered_type: type):
     """Register decorated class to be used as serializer for given type.
 
     Example
@@ -224,7 +222,9 @@ def register_serializer(
     Args:
         type (type): type of objects to be serialized
     """
+
     def wrapper(serializer_class):
         JSONSerializer.register_serializer(registered_type, serializer_class)
         return serializer_class
+
     return wrapper

@@ -1,6 +1,7 @@
 """
 Contains classes for survival rule's JSON serialization.
 """
+
 from __future__ import annotations
 
 from typing import Any, Optional
@@ -28,10 +29,7 @@ class _SurvivalRuleConclusionSerializer(JSONClassSerializer):
 
     @classmethod
     def _from_pydantic_model(cls: type, model: _Model) -> SurvivalConclusion:
-        conclusion = SurvivalConclusion(
-            value=model.value,
-            column_name=None
-        )
+        conclusion = SurvivalConclusion(value=model.value, column_name=None)
         conclusion.median_survival_time_ci_lower = model.median_survival_time_ci_lower
         conclusion.median_survival_time_ci_upper = model.median_survival_time_ci_upper
         if model.estimator is not None:
@@ -41,13 +39,11 @@ class _SurvivalRuleConclusionSerializer(JSONClassSerializer):
 
     @classmethod
     def _to_pydantic_model(
-        cls: type,
-        instance: SurvivalConclusion,
-        mode: SerializationModes
+        cls: type, instance: SurvivalConclusion, mode: SerializationModes
     ) -> _Model:
         if mode == SerializationModes.FULL:
-            estimator: KaplanMeierEstimator = _KaplanMeierEstimatorModel.from_conclusion(
-                instance
+            estimator: KaplanMeierEstimator = (
+                _KaplanMeierEstimatorModel.from_conclusion(instance)
             )
         else:
             estimator = None
@@ -56,7 +52,7 @@ class _SurvivalRuleConclusionSerializer(JSONClassSerializer):
             median_survival_time_ci_lower=instance.median_survival_time_ci_lower,
             median_survival_time_ci_upper=instance.median_survival_time_ci_upper,
             column_name=instance.column_name,
-            estimator=estimator
+            estimator=estimator,
         )
 
 

@@ -1,6 +1,7 @@
 """
 Contains classes for regression ruleset JSON serialization.
 """
+
 from __future__ import annotations
 
 from typing import Optional
@@ -36,12 +37,8 @@ class _RegressionRuleSetSerializer(JSONClassSerializer):
     def _from_pydantic_model(cls: type, model: _Model) -> RegressionRuleSet:
         ruleset = RegressionRuleSet(  # pylint: disable=abstract-class-instantiated
             rules=[
-                JSONSerializer.deserialize(
-                    rule,
-                    RegressionRule
-                ) for rule in model.rules
+                JSONSerializer.deserialize(rule, RegressionRule) for rule in model.rules
             ],
-
         )
         ruleset.column_names = model.meta.attributes
         ruleset.decision_attribute = model.meta.decision_attribute
@@ -51,26 +48,19 @@ class _RegressionRuleSetSerializer(JSONClassSerializer):
             rule.conclusion.column_name = model.meta.decision_attribute
             rule.train_covered_y_mean = rule.conclusion.train_covered_y_mean
             if model.rules[i].coverage is not None:
-                rule.coverage = Coverage(
-                    **model.rules[i].coverage.model_dump()
-                )
-        ruleset._y_train_median = model.meta.y_train_median  # pylint: disable=protected-access
+                rule.coverage = Coverage(**model.rules[i].coverage.model_dump())
+        ruleset._y_train_median = (
+            model.meta.y_train_median
+        )  # pylint: disable=protected-access
 
-        _RegressionRuleSetSerializer._set_default_conclusion(
-            ruleset, model
-        )
+        _RegressionRuleSetSerializer._set_default_conclusion(ruleset, model)
         return ruleset
 
     @classmethod
-    def _set_default_conclusion(
-        cls: type,
-        ruleset: RegressionRuleSet,
-        model: _Model
-    ):
+    def _set_default_conclusion(cls: type, ruleset: RegressionRuleSet, model: _Model):
         if model.meta.default_conclusion is not None:
             default_conclusion: RegressionConclusion = JSONSerializer.deserialize(
-                model.meta.default_conclusion,
-                target_class=RegressionConclusion
+                model.meta.default_conclusion, target_class=RegressionConclusion
             )
             ruleset.default_conclusion = default_conclusion
         else:
@@ -83,12 +73,10 @@ class _RegressionRuleSetSerializer(JSONClassSerializer):
 
     @classmethod
     def _to_pydantic_model(
-        cls: type,
-        instance: RegressionRuleSet,
-        mode: SerializationModes
+        cls: type, instance: RegressionRuleSet, mode: SerializationModes
     ) -> _Model:
         if len(instance.rules) == 0:
-            raise ValueError('Cannot serialize empty ruleset.')
+            raise ValueError("Cannot serialize empty ruleset.")
         if mode == SerializationModes.FULL:
             default_conclusion = JSONSerializer.serialize(
                 instance.default_conclusion, mode
@@ -102,8 +90,5 @@ class _RegressionRuleSetSerializer(JSONClassSerializer):
                 y_train_median=instance.y_train_median,
                 default_conclusion=default_conclusion,
             ),
-            rules=[
-                JSONSerializer.serialize(rule, mode)
-                for rule in instance.rules
-            ]
+            rules=[JSONSerializer.serialize(rule, mode) for rule in instance.rules],
         )

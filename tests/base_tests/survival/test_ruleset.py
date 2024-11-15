@@ -5,9 +5,8 @@ import unittest
 
 import numpy as np
 import pandas as pd
-from decision_rules.core.ruleset import InvalidStateError
+
 from decision_rules.serialization.utils import JSONSerializer
-from decision_rules.survival.ruleset import SurvivalConclusion
 from decision_rules.survival.ruleset import SurvivalRuleSet
 from tests.helpers import compare_survival_prediction
 from tests.loaders import load_resources_path
@@ -16,19 +15,18 @@ from tests.loaders import load_resources_path
 class TestSurvivalRuleSet(unittest.TestCase):
 
     def setUp(self) -> None:
-        self.df = pd.read_csv(os.path.join(
-            load_resources_path(), 'survival', 'BHS.csv'
-        ))
-        self.X = self.df.drop('survival_status', axis=1)
-        self.y = self.df['survival_status'].astype(int).astype(str)
+        self.df = pd.read_csv(
+            os.path.join(load_resources_path(), "survival", "BHS.csv")
+        )
+        self.X = self.df.drop("survival_status", axis=1)
+        self.y = self.df["survival_status"].astype(int).astype(str)
 
         ruleset_file_path: str = os.path.join(
-            load_resources_path(), 'survival', 'BHS_ruleset.json'
+            load_resources_path(), "survival", "BHS_ruleset.json"
         )
-        with open(ruleset_file_path, 'r', encoding='utf-8') as file:
+        with open(ruleset_file_path, "r", encoding="utf-8") as file:
             self.ruleset: SurvivalRuleSet = JSONSerializer.deserialize(
-                json.load(file),
-                SurvivalRuleSet
+                json.load(file), SurvivalRuleSet
             )
 
     def test_calculating_ibs(self):
@@ -37,43 +35,49 @@ class TestSurvivalRuleSet(unittest.TestCase):
         ibs_rulekit = 0.08616902098503432
 
         self.assertEqual(
-            ibs_calculated, ibs_rulekit,
-            'Should calculate integrated_bier_score correctly'
+            ibs_calculated,
+            ibs_rulekit,
+            "Should calculate integrated_bier_score correctly",
         )
 
     def test_prediction(self):
-        df = pd.read_csv(os.path.join(
-            load_resources_path(), 'survival', 'bone-marrow.csv'
-        ))
-        X = df.drop('survival_status', axis=1)
-        y = df['survival_status'].astype(int).astype(str)
+        df = pd.read_csv(
+            os.path.join(load_resources_path(), "survival", "bone-marrow.csv")
+        )
+        X = df.drop("survival_status", axis=1)
+        y = df["survival_status"].astype(int).astype(str)
 
         ruleset_file_path: str = os.path.join(
-            load_resources_path(), 'survival', 'bone-marrow-survival-ruleset.json')
-        with open(ruleset_file_path, 'r', encoding='utf-8') as file:
+            load_resources_path(), "survival", "bone-marrow-survival-ruleset.json"
+        )
+        with open(ruleset_file_path, "r", encoding="utf-8") as file:
             ruleset: SurvivalRuleSet = JSONSerializer.deserialize(
-                json.load(file),
-                SurvivalRuleSet
+                json.load(file), SurvivalRuleSet
             )
         coverage_matrix: np.ndarray = ruleset.update(X, y)
 
         prediction = ruleset.predict(X)
 
-        with open(os.path.join(
-            load_resources_path(), 'survival', 'rulekit-bone-marrow-prediction.json'
-        ), 'r', encoding='utf-8') as file:
+        with open(
+            os.path.join(
+                load_resources_path(), "survival", "rulekit-bone-marrow-prediction.json"
+            ),
+            "r",
+            encoding="utf-8",
+        ) as file:
             rulekit_prediction = np.array(json.load(file))
 
-        self.assertTrue(compare_survival_prediction(
-            prediction, rulekit_prediction
-        ),  'Prediction should be the same as rulekit prediction')
+        self.assertTrue(
+            compare_survival_prediction(prediction, rulekit_prediction),
+            "Prediction should be the same as rulekit prediction",
+        )
 
-        prediction = ruleset.predict_using_coverage_matrix(
-            coverage_matrix)
+        prediction = ruleset.predict_using_coverage_matrix(coverage_matrix)
 
-        self.assertTrue(compare_survival_prediction(
-            prediction, rulekit_prediction
-        ),  'Prediction should be the same as rulekit prediction')
+        self.assertTrue(
+            compare_survival_prediction(prediction, rulekit_prediction),
+            "Prediction should be the same as rulekit prediction",
+        )
 
     def test_different_prediction_strategies(self):
         coverage_matrix: np.ndarray = self.ruleset.update(self.X, self.y)
@@ -84,9 +88,9 @@ class TestSurvivalRuleSet(unittest.TestCase):
             prediction_cov_matrix = self.ruleset.predict_using_coverage_matrix(
                 coverage_matrix
             )
-            self.assertTrue(compare_survival_prediction(
-                prediction, prediction_cov_matrix
-            ))
+            self.assertTrue(
+                compare_survival_prediction(prediction, prediction_cov_matrix)
+            )
 
     def test_condition_importances(self):
         self.ruleset.update(self.X, self.y)
@@ -95,30 +99,37 @@ class TestSurvivalRuleSet(unittest.TestCase):
             self.ruleset.set_prediction_strategy(strategy)
 
             condition_importances = self.ruleset.calculate_condition_importances(
-                self.X, self.y)
+                self.X, self.y
+            )
             attribute_importances = self.ruleset.calculate_attribute_importances(
-                condition_importances)
+                condition_importances
+            )
 
             condition_importances_file_path: str = os.path.join(
-                load_resources_path(), 'survival', 'BHS_condition_importances.json')
-            with open(condition_importances_file_path, 'r', encoding='utf-8') as file:
+                load_resources_path(), "survival", "BHS_condition_importances.json"
+            )
+            with open(condition_importances_file_path, "r", encoding="utf-8") as file:
                 condition_importances_read = json.load(file)
 
             attribute_importances_file_path: str = os.path.join(
-                load_resources_path(), 'survival', 'BHS_attribute_importances.json')
-            with open(attribute_importances_file_path, 'r', encoding='utf-8') as file:
+                load_resources_path(), "survival", "BHS_attribute_importances.json"
+            )
+            with open(attribute_importances_file_path, "r", encoding="utf-8") as file:
                 attribute_importances_read = json.load(file)
 
             condition_importances = pd.DataFrame(condition_importances).round(10)
-            condition_importances_read = pd.DataFrame(condition_importances_read).round(10)
+            condition_importances_read = pd.DataFrame(condition_importances_read).round(
+                10
+            )
             self.assertTrue(
                 (condition_importances == condition_importances_read).all().all(),
-                'Condition importances should be the same as saved before'
+                "Condition importances should be the same as saved before",
             )
 
             self.assertEqual(
-                attribute_importances, attribute_importances_read,
-                'Attribute importances should be the same as saved before'
+                attribute_importances,
+                attribute_importances_read,
+                "Attribute importances should be the same as saved before",
             )
 
     def test_local_explainability(self):
@@ -130,19 +141,28 @@ class TestSurvivalRuleSet(unittest.TestCase):
             rules_covering = res[0]
             kaplan_meier = res[1]
 
-            self.assertEqual(len(rules_covering), 2,
-                             'There should be 2 rules covering instance')
-            self.assertTrue(all(kaplan_meier['probabilities']) >= 0 and all(
-                kaplan_meier['probabilities']) <= 1)
+            self.assertEqual(
+                len(rules_covering), 2, "There should be 2 rules covering instance"
+            )
+            self.assertTrue(
+                all(kaplan_meier["probabilities"]) >= 0
+                and all(kaplan_meier["probabilities"]) <= 1
+            )
 
     def test_survival_status_validation(self):
         self.y = self.y.astype(int)
-        with self.assertRaises(ValueError, msg='Should fail for survival status of type different than string'):
+        with self.assertRaises(
+            ValueError,
+            msg="Should fail for survival status of type different than string",
+        ):
             self.ruleset.update(self.X, self.y)
 
         self.y = self.y.astype(str)
-        self.y.iloc[0] = '-1'
-        with self.assertRaises(ValueError, msg='Should fail for survival status with values different than 0 and 1'):
+        self.y.iloc[0] = "-1"
+        with self.assertRaises(
+            ValueError,
+            msg="Should fail for survival status with values different than 0 and 1",
+        ):
             self.ruleset.update(self.X, self.y)
 
     def test_prediction_with_empty_default_conclusion(self):
@@ -154,9 +174,9 @@ class TestSurvivalRuleSet(unittest.TestCase):
         prediction: np.ndarray = self.ruleset.predict(self.X)
         self.assertTrue(
             any(e is None for e in prediction),
-            'Prediction for some examples should be empty'
+            "Prediction for some examples should be empty",
         )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

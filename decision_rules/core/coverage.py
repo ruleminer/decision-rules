@@ -1,6 +1,7 @@
 """
 Contains rule coverage class
 """
+
 from typing import TypedDict
 
 
@@ -36,20 +37,20 @@ class Coverage:
         if any(e is None for e in self.as_tuple()):
             return
         if self.p > self.P:
-            raise InvalidCoverageError('Invalid coverage: p is greater than P')
+            raise InvalidCoverageError("Invalid coverage: p is greater than P")
         if self.n > self.N:
-            raise InvalidCoverageError('Invalid coverage: n is greater than N')
+            raise InvalidCoverageError("Invalid coverage: n is greater than N")
 
     def as_tuple(self) -> tuple[int, int, int, int]:
         return (self.p, self.n, self.P, self.N)
-    
+
     def __eq__(self, value: object) -> bool:
         if not isinstance(value, Coverage):
             return False
         return self.as_tuple() == value.as_tuple()
 
     def __str__(self) -> str:
-        return f'(p={self.p}, n={self.n}, P={self.P}, N={self.N})'
+        return f"(p={self.p}, n={self.n}, P={self.P}, N={self.N})"
 
 
 class ClassificationCoverageInfodict(TypedDict):

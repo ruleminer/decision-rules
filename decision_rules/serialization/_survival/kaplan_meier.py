@@ -1,6 +1,7 @@
 """
 Contains classes for Kaplan-Meier JSON serialization.
 """
+
 from __future__ import annotations
 
 from typing import Optional, Union
@@ -22,7 +23,9 @@ class _KaplanMeierEstimatorModel(BaseModel):
     value: Optional[float] = None
 
     @staticmethod
-    def from_conclusion(conclusion: SurvivalConclusion) -> Optional[_KaplanMeierEstimatorModel]:
+    def from_conclusion(
+        conclusion: SurvivalConclusion,
+    ) -> Optional[_KaplanMeierEstimatorModel]:
         """Build pydantic model from SurvivalConclusion
 
         Args:
@@ -34,8 +37,7 @@ class _KaplanMeierEstimatorModel(BaseModel):
         """
         return (
             _KaplanMeierEstimatorModel(
-                **conclusion.estimator.get_dict(),
-                value=conclusion.value
+                **conclusion.estimator.get_dict(), value=conclusion.value
             )
             if conclusion.estimator is not None
             else None
@@ -49,7 +51,7 @@ class _KaplanMeierEstimatorModel(BaseModel):
         """
         return KaplanMeierEstimator().update(
             self._to_kaplan_meier_estimator_dict(),
-            update_additional_indicators=len(self.times) > 0
+            update_additional_indicators=len(self.times) > 0,
         )
 
     def _to_kaplan_meier_estimator_dict(self) -> KaplanMeierEstimatorDict:
