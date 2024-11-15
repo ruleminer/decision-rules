@@ -15,6 +15,7 @@ from decision_rules.serialization._classification.rule import (
     _ClassificationRuleConclusionSerializer, _ClassificationRuleSerializer)
 from decision_rules.serialization.utils import (JSONClassSerializer,
                                                 JSONSerializer,
+                                                SerializationModes,
                                                 register_serializer)
 
 
@@ -22,7 +23,7 @@ class _ClassificationMetaDataModel(BaseModel):
     attributes: list[str]
     decision_attribute: str
     decision_attribute_distribution: dict[Any, int]
-    default_conclusion: Optional[_ClassificationRuleConclusionSerializer._Model]
+    default_conclusion: Optional[_ClassificationRuleConclusionSerializer._Model] = None
 
 
 @register_serializer(ClassificationRuleSet)
@@ -69,10 +70,9 @@ class _ClassificationRuleSetSerializer(JSONClassSerializer):
             ruleset.train_N[y_value] = all_example_count - count
         for rule in ruleset.rules:
             rule.column_names = ruleset.column_names
-            if rule.coverage is None:
-                rule.coverage = Coverage(None, None, None, None)
-            rule.coverage.P = ruleset.train_P[rule.conclusion.value]
-            rule.coverage.N = ruleset.train_N[rule.conclusion.value]
+            if rule.coverage is not None:
+                rule.coverage.P = ruleset.train_P[rule.conclusion.value]
+                rule.coverage.N = ruleset.train_N[rule.conclusion.value]
             rule.conclusion.column_name = model.meta.decision_attribute
 
     @classmethod
@@ -90,23 +90,28 @@ class _ClassificationRuleSetSerializer(JSONClassSerializer):
             ruleset._update_majority_class()  # pylint: disable=protected-access
 
     @classmethod
-    def _to_pydantic_model(cls: type, instance: ClassificationRuleSet) -> _Model:
+    def _to_pydantic_model(
+        cls: type,
+        instance: ClassificationRuleSet,
+        mode: SerializationModes
+    ) -> _Model:
         if len(instance.rules) == 0:
             raise ValueError('Cannot serialize empty ruleset.')
-        if instance.default_conclusion is None:
+        if mode == SerializationModes.MINIMAL:
             default_conclusion = None
         else:
             default_conclusion = JSONSerializer.serialize(
-                instance.default_conclusion
+                instance.default_conclusion, mode
             )
         return _ClassificationRuleSetSerializer._Model(
             meta=_ClassificationMetaDataModel(
                 attributes=instance.column_names,
                 decision_attribute=instance.rules[0].conclusion.column_name,
-                decision_attribute_distribution=dict(instance.train_P.items())
+                decision_attribute_distribution=dict(instance.train_P.items()),
+                default_conclusion=default_conclusion,
             ),
-            default_conclusion=default_conclusion,
             rules=[
-                JSONSerializer.serialize(rule) for rule in instance.rules
+                JSONSerializer.serialize(rule, mode)
+                for rule in instance.rules
             ]
         )

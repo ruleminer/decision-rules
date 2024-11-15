@@ -19,10 +19,10 @@ class _KaplanMeierEstimatorModel(BaseModel):
     at_risk_count: list[int]
     probabilities: list[float]
 
-    value: Optional[float]
+    value: Optional[float] = None
 
     @staticmethod
-    def from_rule_conclusion(conclusion: SurvivalConclusion) -> Optional[_KaplanMeierEstimatorModel]:
+    def from_conclusion(conclusion: SurvivalConclusion) -> Optional[_KaplanMeierEstimatorModel]:
         """Build pydantic model from SurvivalConclusion
 
         Args:
@@ -49,7 +49,7 @@ class _KaplanMeierEstimatorModel(BaseModel):
         """
         return KaplanMeierEstimator().update(
             self._to_kaplan_meier_estimator_dict(),
-            update_additional_indicators=True
+            update_additional_indicators=len(self.times) > 0
         )
 
     def _to_kaplan_meier_estimator_dict(self) -> KaplanMeierEstimatorDict:

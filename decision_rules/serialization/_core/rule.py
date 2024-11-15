@@ -12,6 +12,7 @@ from decision_rules.core.rule import AbstractRule
 from decision_rules.serialization._core.conditions import _ConditionSerializer
 from decision_rules.serialization.utils import (JSONClassSerializer,
                                                 JSONSerializer,
+                                                SerializationModes,
                                                 register_serializer)
 
 
@@ -36,7 +37,8 @@ class _CoverageSerializer(JSONClassSerializer):
     @classmethod
     def _to_pydantic_model(
         cls: type,
-        instance: Coverage
+        instance: Coverage,
+        mode: SerializationModes # pylint: disable=unused-argument
     ) -> _Model:
         return _CoverageSerializer._Model(
             p=int(instance.p) if instance.p is not None else None,
@@ -71,26 +73,35 @@ class _BaseRuleSerializer(JSONClassSerializer):
             column_names=[],  # must be populated when deserializing ruleset!
         )
         rule._uuid = model.uuid  # pylint: disable=protected-access
-        if model.coverage is not None:
-            rule.coverage = JSONSerializer.deserialize(
-                model.coverage,
-                Coverage
-            )
+        rule.coverage = JSONSerializer.deserialize(
+            model.coverage,
+            Coverage
+        )
         if model.voting_weight is not None:
             rule.voting_weight = model.voting_weight
         return rule
 
     @classmethod
-    def _to_pydantic_model(cls: type, instance: AbstractRule) -> _Model:
+    def _to_pydantic_model(
+        cls: type,
+        instance: AbstractRule,
+        mode: SerializationModes  # pylint: disable=unused-argument
+    ) -> _Model:
+        if mode == SerializationModes.FULL:
+            coverage: Coverage = instance.coverage
+            voting_weight: float = instance.voting_weight
+        else:
+            coverage = voting_weight = None
+
         model = _BaseRuleSerializer._Model(
             uuid=instance.uuid,
             string=instance.__str__(  # pylint: disable=unnecessary-dunder-call
                 show_coverage=False
             ),
             premise=JSONSerializer.serialize(
-                instance.premise),  # pylint: disable=duplicate-code
-            conclusion=JSONSerializer.serialize(instance.conclusion),
-            coverage=JSONSerializer.serialize(instance.coverage),
-            voting_weight=instance.voting_weight,
+                instance.premise, mode),  # pylint: disable=duplicate-code
+            conclusion=JSONSerializer.serialize(instance.conclusion, mode),
+            coverage=JSONSerializer.serialize(coverage, mode),
+            voting_weight=voting_weight,
         )
         return model

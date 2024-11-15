@@ -50,7 +50,7 @@ class AbstractRuleSet(_PredictionModel, ABC):
         """Returns metrics object instance."""
         return None
 
-    def _validate__object_state_before_prediction(self):
+    def _validate_object_state_before_prediction(self):
         voting_weights_calculated: bool = all([
             rule.coverage is not None for rule in self.rules
         ])
@@ -342,7 +342,7 @@ class AbstractRuleSet(_PredictionModel, ABC):
         """
         X: np.ndarray = self._sanitize_dataset(X)
         coverage_matrix: np.ndarray = self.calculate_coverage_matrix(X)
-        self._validate__object_state_before_prediction()
+        self._validate_object_state_before_prediction()
         return self.predict_using_coverage_matrix(coverage_matrix)
 
     def calculate_rules_metrics(

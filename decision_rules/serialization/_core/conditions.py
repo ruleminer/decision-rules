@@ -4,20 +4,17 @@ Contains condition's classes JSON serializers.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any
-from typing import Optional
-from typing import Union
+from typing import Any, Optional, Union
 
-from decision_rules.conditions import AbstractCondition
-from decision_rules.conditions import AttributesCondition
-from decision_rules.conditions import CompoundCondition
-from decision_rules.conditions import ElementaryCondition
-from decision_rules.conditions import LogicOperators
-from decision_rules.conditions import NominalCondition
-from decision_rules.serialization.utils import JSONClassSerializer
-from decision_rules.serialization.utils import JSONSerializer
-from decision_rules.serialization.utils import register_serializer
 from pydantic import BaseModel
+
+from decision_rules.conditions import (AbstractCondition, AttributesCondition,
+                                       CompoundCondition, ElementaryCondition,
+                                       LogicOperators, NominalCondition)
+from decision_rules.serialization.utils import (JSONClassSerializer,
+                                                JSONSerializer,
+                                                SerializationModes,
+                                                register_serializer)
 
 
 class _BaseConditionModel(BaseModel):
@@ -50,7 +47,10 @@ class _NominalConditionSerializer(_BaseConditionSerializer, JSONClassSerializer)
         return condition
 
     @staticmethod
-    def _to_pydantic_model(instance: NominalCondition) -> _NominalConditionSerializer._Model:
+    def _to_pydantic_model(
+        instance: NominalCondition,
+        mode: SerializationModes  # pylint: disable=unused-argument
+    ) -> _NominalConditionSerializer._Model:
         return _NominalConditionSerializer._Model(
             type=_NominalConditionSerializer.condition_type,
             attributes=[instance.column_index],
@@ -85,7 +85,10 @@ class _ElementaryConditionSerializer(_BaseConditionSerializer, JSONClassSerializ
         return condition
 
     @staticmethod
-    def _to_pydantic_model(instance: ElementaryCondition) -> _ElementaryConditionSerializer._Model:
+    def _to_pydantic_model(
+        instance: ElementaryCondition,
+        mode: SerializationModes  # pylint: disable=unused-argument
+    ) -> _ElementaryConditionSerializer._Model:
         left = instance.left if instance.left != float('-inf') else None
         right = instance.right if instance.right != float('inf') else None
         return _ElementaryConditionSerializer._Model(
@@ -118,7 +121,10 @@ class _AttributesConditionSerializer(_BaseConditionSerializer, JSONClassSerializ
         return condition
 
     @staticmethod
-    def _to_pydantic_model(instance: AttributesCondition) -> _AttributesConditionSerializer._Model:
+    def _to_pydantic_model(
+        instance: AttributesCondition,
+        mode: SerializationModes  # pylint: disable=unused-argument
+    ) -> _AttributesConditionSerializer._Model:
         return _AttributesConditionSerializer._Model(
             type=_AttributesConditionSerializer.condition_type,
             attributes=[instance.column_left, instance.column_right],
@@ -152,11 +158,14 @@ class _CompoundConditionSerializer(_BaseConditionSerializer, JSONClassSerializer
         return condition
 
     @staticmethod
-    def _to_pydantic_model(instance: CompoundCondition) -> _CompoundConditionSerializer._Model:
+    def _to_pydantic_model(
+        instance: CompoundCondition,
+        mode: SerializationModes
+    ) -> _CompoundConditionSerializer._Model:
         subconditions: list[dict] = []
         attributes = set()
         for subcondition in instance.subconditions:
-            subconditions.append(JSONSerializer.serialize(subcondition))
+            subconditions.append(JSONSerializer.serialize(subcondition, mode))
             attributes = attributes.union(subcondition.attributes)
         return _CompoundConditionSerializer._Model(
             type=_CompoundConditionSerializer.condition_type,
@@ -190,8 +199,13 @@ class _ConditionSerializer(JSONClassSerializer):
     }
 
     @classmethod
-    def serialize(cls, instance: AbstractCondition) -> dict:
-        return cls._conditions_serializers_map[instance.__class__].serialize(instance)
+    def serialize(
+        cls,
+        instance: AbstractCondition,
+        mode: Union[str, SerializationModes] = SerializationModes.FULL
+    ) -> dict:
+        return cls._conditions_serializers_map[instance.__class__] \
+            .serialize(instance, SerializationModes.instantiate(mode))
 
     @classmethod
     def deserialize(cls, data: Union[dict, BaseModel]) -> Any:

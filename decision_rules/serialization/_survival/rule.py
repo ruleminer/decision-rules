@@ -11,7 +11,9 @@ from decision_rules.serialization._core.rule import _BaseRuleSerializer
 from decision_rules.serialization._survival.kaplan_meier import \
     _KaplanMeierEstimatorModel
 from decision_rules.serialization.utils import (JSONClassSerializer,
+                                                SerializationModes,
                                                 register_serializer)
+from decision_rules.survival.kaplan_meier import KaplanMeierEstimator
 from decision_rules.survival.rule import SurvivalConclusion, SurvivalRule
 
 
@@ -22,7 +24,7 @@ class _SurvivalRuleConclusionSerializer(JSONClassSerializer):
         value: Any
         median_survival_time_ci_lower: Any
         median_survival_time_ci_upper: Any
-        estimator: Optional[_KaplanMeierEstimatorModel]
+        estimator: Optional[_KaplanMeierEstimatorModel] = None
 
     @classmethod
     def _from_pydantic_model(cls: type, model: _Model) -> SurvivalConclusion:
@@ -40,16 +42,21 @@ class _SurvivalRuleConclusionSerializer(JSONClassSerializer):
     @classmethod
     def _to_pydantic_model(
         cls: type,
-        instance: SurvivalConclusion
+        instance: SurvivalConclusion,
+        mode: SerializationModes
     ) -> _Model:
+        if mode == SerializationModes.FULL:
+            estimator: KaplanMeierEstimator = _KaplanMeierEstimatorModel.from_conclusion(
+                instance
+            )
+        else:
+            estimator = None
         return _SurvivalRuleConclusionSerializer._Model(
             value=instance.value,
             median_survival_time_ci_lower=instance.median_survival_time_ci_lower,
             median_survival_time_ci_upper=instance.median_survival_time_ci_upper,
             column_name=instance.column_name,
-            estimator=_KaplanMeierEstimatorModel.from_rule_conclusion(
-                instance
-            )
+            estimator=estimator
         )
 
 

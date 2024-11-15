@@ -7,7 +7,8 @@ from decision_rules.conditions import (AttributesCondition, CompoundCondition,
                                        ElementaryCondition, LogicOperators,
                                        NominalCondition)
 from decision_rules.core.coverage import Coverage
-from decision_rules.serialization import JSONSerializer
+from decision_rules.core.exceptions import InvalidStateError
+from decision_rules.serialization import JSONSerializer, SerializationModes
 from decision_rules.survival.kaplan_meier import KaplanMeierEstimator
 from decision_rules.survival.rule import SurvivalConclusion, SurvivalRule
 from decision_rules.survival.ruleset import SurvivalRuleSet
@@ -75,28 +76,30 @@ class TestSurvivalRuleSetSerializer(unittest.TestCase):
             'probabilities': [0.98, 0.92, 0.76, 0.52, 0.31]
         }
         ruleset.default_conclusion = SurvivalConclusion(
-            value=None,
+            value=0.0,
             column_name=ruleset.rules[0].conclusion.column_name
         )
         ruleset.default_conclusion.estimator = KaplanMeierEstimator().update(
-            conclusion_estimator_dict)
+            conclusion_estimator_dict, update_additional_indicators=True
+        )
         ruleset.column_names = ['col_1', 'col_2',
                                 'col_3', 'col_4', 'survival_time']
         return ruleset
 
     def _prepare_dataset(self) -> tuple[pd.DataFrame, pd.Series]:
         X: pd.DataFrame = pd.DataFrame({
-            'col_1': range(6),
-            'col_2': range(6),
-            'col_3': range(6),
-            'col_4': range(6),
-            'survival_time': range(6),
+            'col_1': range(5),
+            'col_2': range(5),
+            'col_3': range(5),
+            'col_4': range(5),
+            'survival_time': range(5),
         })
-        y: pd.Series = pd.Series(['0', '1', '0', '1', '0', '1'])
+        y: pd.Series = pd.Series(['0', '1', '0', '1', '0'])
         return X, y
 
     def test_serializing_deserializing(self):
         ruleset: SurvivalRuleSet = self._prepare_ruleset()
+        ruleset.update(*self._prepare_dataset())
         serialized_ruleset = JSONSerializer.serialize(ruleset)
         deserializer_ruleset: SurvivalRuleSet = JSONSerializer.deserialize(
             serialized_ruleset, SurvivalRuleSet
@@ -109,34 +112,45 @@ class TestSurvivalRuleSetSerializer(unittest.TestCase):
 
     def test_prediction_after_deserializing_without_update(self):
         ruleset: SurvivalRuleSet = self._prepare_ruleset()
+        ruleset.update(*self._prepare_dataset())
         X, y = self._prepare_dataset()
         ruleset.update(X, y)
         # change conclusion value so it will be different than the default one
-        ruleset.default_conclusion.value += 1.
+        ruleset.default_conclusion.value += 1
 
-        serialized_ruleset: dict = JSONSerializer.serialize(ruleset)
-        deserializer_ruleset: SurvivalRuleSet = JSONSerializer.deserialize(
-            serialized_ruleset, SurvivalRuleSet
+        serialized_ruleset_min: dict = JSONSerializer.serialize(
+            ruleset, mode=SerializationModes.MINIMAL
         )
+        serialized_ruleset_full: dict = JSONSerializer.serialize(
+            ruleset, mode=SerializationModes.FULL
+        )
+        deserializer_ruleset_min: SurvivalRuleSet = JSONSerializer.deserialize(
+            serialized_ruleset_min, SurvivalRuleSet
+        )
+        deserialized_ruleset_full: SurvivalRuleSet = JSONSerializer.deserialize(
+            serialized_ruleset_full, SurvivalRuleSet
+        )
+        with self.assertRaises(InvalidStateError):
+            deserializer_ruleset_min.predict(X)
 
         self.assertEqual(
             ruleset.default_conclusion.value,
-            deserializer_ruleset.default_conclusion.value,
+            deserialized_ruleset_full.default_conclusion.value,
             'Default conclusion after deserializing should be the same'
         )
         self.assertEqual(
             [r.coverage for r in ruleset.rules],
-            [r.coverage for r in deserializer_ruleset.rules],
+            [r.coverage for r in deserialized_ruleset_full.rules],
             'Coverages after deserializing should be the same'
         )
         self.assertEqual(
             [r.voting_weight for r in ruleset.rules],
-            [r.voting_weight for r in deserializer_ruleset.rules],
+            [r.voting_weight for r in deserialized_ruleset_full.rules],
             'Voting weights after deserializing should be the same'
         )
         self.assertTrue(
             compare_survival_prediction(
-                deserializer_ruleset.predict(X).tolist(),
+                deserialized_ruleset_full.predict(X).tolist(),
                 ruleset.predict(X).tolist(),
             ),
             'Prediction after deserializing should be the same'

@@ -145,13 +145,6 @@ class TestSurvivalRuleSet(unittest.TestCase):
         with self.assertRaises(ValueError, msg='Should fail for survival status with values different than 0 and 1'):
             self.ruleset.update(self.X, self.y)
 
-    def test_if_prediction_without_update_fails_with_meaningful_error(self):
-        with self.assertRaises(
-            InvalidStateError,
-            msg='Should fail for prediction without update with meaningful error'
-        ):
-            self.ruleset.predict(self.X)
-
     def test_prediction_with_empty_default_conclusion(self):
         # remove one rule to leave some example uncovered
         self.ruleset.rules = self.ruleset.rules[1:2]

@@ -13,6 +13,7 @@ from decision_rules.serialization._survival.kaplan_meier import \
 from decision_rules.serialization._survival.rule import _SurvivalRuleSerializer
 from decision_rules.serialization.utils import (JSONClassSerializer,
                                                 JSONSerializer,
+                                                SerializationModes,
                                                 register_serializer)
 from decision_rules.survival.kaplan_meier import KaplanMeierEstimator
 from decision_rules.survival.rule import SurvivalRule
@@ -60,8 +61,6 @@ class _SurvivalRuleSetSerializer(JSONClassSerializer):
                 rule.coverage = Coverage(
                     **model.rules[i].coverage.model_dump()
                 )
-            else:
-                rule.coverage = Coverage(None, None, None, None)
         return ruleset
 
     @classmethod
@@ -80,13 +79,17 @@ class _SurvivalRuleSetSerializer(JSONClassSerializer):
         )
 
     @classmethod
-    def _to_pydantic_model(cls: type, instance: SurvivalRuleSet) -> _Model:
+    def _to_pydantic_model(
+        cls: type,
+        instance: SurvivalRuleSet,
+        mode: SerializationModes  # pylint: disable=unused-argument
+    ) -> _Model:
         if len(instance.rules) == 0:
             raise ValueError('Cannot serialize empty ruleset.')
         if instance.default_conclusion is None:
             default_conclusion = None
         else:
-            default_conclusion = _KaplanMeierEstimatorModel.from_rule_conclusion(
+            default_conclusion = _KaplanMeierEstimatorModel.from_conclusion(
                 instance.default_conclusion
             )
         return _SurvivalRuleSetSerializer._Model(
@@ -97,6 +100,7 @@ class _SurvivalRuleSetSerializer(JSONClassSerializer):
                 default_conclusion=default_conclusion
             ),
             rules=[
-                JSONSerializer.serialize(rule) for rule in instance.rules
+                JSONSerializer.serialize(rule, mode)
+                for rule in instance.rules
             ]
         )

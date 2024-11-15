@@ -3,12 +3,12 @@ Contains abstract rule and conclusion classes.
 """
 from __future__ import annotations
 
-from abc import ABC
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 from typing import Any
 from uuid import uuid4
 
 import numpy as np
+
 from decision_rules.core.condition import AbstractCondition
 from decision_rules.core.coverage import Coverage
 
@@ -109,7 +109,7 @@ class AbstractRule(ABC):
         self.conclusion: AbstractConclusion = conclusion
         self.premise: AbstractCondition = premise
         self.coverage: Coverage = None
-        self.voting_weight: float = 1.0
+        self.voting_weight: float = None
 
     @property
     def uuid(self) -> str:

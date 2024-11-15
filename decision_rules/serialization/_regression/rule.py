@@ -3,15 +3,15 @@ Contains classes for regression rule's JSON serialization.
 """
 from __future__ import annotations
 
-from typing import Any
-from typing import Optional
+from typing import Any, Optional
 
-from decision_rules.regression.rule import RegressionConclusion
-from decision_rules.regression.rule import RegressionRule
-from decision_rules.serialization._core.rule import _BaseRuleSerializer
-from decision_rules.serialization.utils import JSONClassSerializer
-from decision_rules.serialization.utils import register_serializer
 from pydantic import BaseModel
+
+from decision_rules.regression.rule import RegressionConclusion, RegressionRule
+from decision_rules.serialization._core.rule import _BaseRuleSerializer
+from decision_rules.serialization.utils import (JSONClassSerializer,
+                                                SerializationModes,
+                                                register_serializer)
 
 
 @register_serializer(RegressionConclusion)
@@ -45,17 +45,26 @@ class _RegressionRuleConclusionSerializer(JSONClassSerializer):
     @classmethod
     def _to_pydantic_model(
         cls: type,
-        instance: RegressionConclusion
+        instance: RegressionConclusion,
+        mode: SerializationModes
     ) -> _Model:
+        if mode == SerializationModes.FULL:
+            train_covered_y_mean = instance.train_covered_y_mean
+            train_covered_y_std = instance.train_covered_y_std
+            train_covered_y_min = instance.train_covered_y_min
+            train_covered_y_max = instance.train_covered_y_max
+        else:
+            train_covered_y_mean = train_covered_y_std = train_covered_y_min = \
+                train_covered_y_max = None
         return _RegressionRuleConclusionSerializer._Model(
             value=instance.value,
             low=instance.low,
             high=instance.high,
             fixed=instance.fixed,
-            train_covered_y_mean=instance.train_covered_y_mean,
-            train_covered_y_std=instance.train_covered_y_std,
-            train_covered_y_min=instance.train_covered_y_min,
-            train_covered_y_max=instance.train_covered_y_max,
+            train_covered_y_mean=train_covered_y_mean,
+            train_covered_y_std=train_covered_y_std,
+            train_covered_y_min=train_covered_y_min,
+            train_covered_y_max=train_covered_y_max,
         )
 
 
