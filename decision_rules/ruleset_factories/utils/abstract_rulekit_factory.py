@@ -5,6 +5,9 @@ from typing import Iterable
 from typing import Optional
 
 import pandas as pd
+from rulekit.params import Measures
+from rulekit.rules import BaseRule as RuleKitRule
+
 from decision_rules.conditions import AbstractCondition
 from decision_rules.conditions import CompoundCondition
 from decision_rules.conditions import ElementaryCondition
@@ -15,8 +18,6 @@ from decision_rules.core.rule import AbstractConclusion
 from decision_rules.core.rule import AbstractRule
 from decision_rules.core.ruleset import AbstractRuleSet
 from decision_rules.helpers import get_measure_function_by_name
-from rulekit.params import Measures
-from rulekit.rules import Rule as RuleKitRule
 from decision_rules.ruleset_factories._factories.abstract_factory import AbstractFactory
 
 
