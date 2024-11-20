@@ -6,12 +6,14 @@ from typing import Tuple
 
 import numpy as np
 import pandas as pd
+from rulekit.survival import SurvivalRules
+
 from decision_rules.ruleset_factories import ruleset_factory
 from decision_rules.serialization import JSONSerializer
 from decision_rules.survival.ruleset import SurvivalRuleSet
-from rulekit.survival import SurvivalRules
+from tests.loaders import (load_dataset_to_x_y,
+                           load_ruleset_factories_resources_path)
 
-from tests.loaders import load_dataset_to_x_y, load_ruleset_factories_resources_path
 from .helpers import compare_survival_prediction
 
 
