@@ -11,7 +11,8 @@ import numpy as np
 import pandas as pd
 
 from decision_rules.conditions import AttributesCondition, CompoundCondition
-from decision_rules.core.coverage import ClassificationCoverageInfodict, Coverage
+from decision_rules.core.coverage import (ClassificationCoverageInfodict,
+                                          Coverage)
 from decision_rules.core.exceptions import InvalidStateError
 from decision_rules.core.metrics import AbstractRulesMetrics
 from decision_rules.core.prediction import PredictionStrategy, _PredictionModel
@@ -52,7 +53,7 @@ class AbstractRuleSet(_PredictionModel, ABC):
         )
         if not voting_weights_calculated:
             raise InvalidStateError(
-                "Rules coverages must have been calculated before prediction."
+                "Rule coverages have to be calculated before performing prediction."
                 + "Did you forget to call update(...) method?"
             )
 
@@ -71,7 +72,7 @@ class AbstractRuleSet(_PredictionModel, ABC):
         if self._stored_default_conclusion is None:
             raise InvalidStateError(
                 "Default conclusion was never configured."
-                + "Call update(...) method to calculated automatic default conclusion "
+                + "Call update(...) method to calculate automatic default conclusion "
                 + "or set it manually."
             )
         self._use_default_conclusion = enabled
