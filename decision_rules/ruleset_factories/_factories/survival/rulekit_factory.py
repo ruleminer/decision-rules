@@ -3,15 +3,16 @@ from typing import List
 
 import numpy as np
 import pandas as pd
+from rulekit.rules import BaseRule as RuleKitRule
+from rulekit.survival import SurvivalRules
+
+from decision_rules.ruleset_factories.utils.abstract_rulekit_factory import \
+    AbstractRuleKitRuleSetFactory
 from decision_rules.survival.kaplan_meier import KaplanMeierEstimator
 from decision_rules.survival.kaplan_meier import SurvInfo
 from decision_rules.survival.rule import SurvivalConclusion
 from decision_rules.survival.rule import SurvivalRule
 from decision_rules.survival.ruleset import SurvivalRuleSet
-from rulekit.rules import Rule as RuleKitRule
-from rulekit.survival import SurvivalRules
-from decision_rules.ruleset_factories.utils.abstract_rulekit_factory import \
-    AbstractRuleKitRuleSetFactory
 
 
 class RuleKitRuleSetFactory(AbstractRuleKitRuleSetFactory):

@@ -2,11 +2,12 @@
 from typing import List
 
 import pandas as pd
+from rulekit.classification import RuleClassifier
+from rulekit.rules import BaseRule as RuleKitRule
+
 from decision_rules.classification.rule import ClassificationConclusion
 from decision_rules.classification.rule import ClassificationRule
 from decision_rules.classification.ruleset import ClassificationRuleSet
-from rulekit.classification import RuleClassifier
-from rulekit.rules import Rule as RuleKitRule
 from decision_rules.ruleset_factories.utils.abstract_rulekit_factory import AbstractRuleKitRuleSetFactory
 
 

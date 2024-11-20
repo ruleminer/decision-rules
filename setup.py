@@ -25,7 +25,7 @@ setup(
     ],
     extras_require={
         "ruleset_factories": [
-            "rulekit>=2.1.18"
+            "rulekit==2.1.21"
         ]
     },
     python_requires='>=3.9',
