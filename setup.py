@@ -1,6 +1,5 @@
 # pylint: disable=missing-module-docstring
-from setuptools import find_packages
-from setuptools import setup
+from setuptools import find_packages, setup
 
 setup(
     name='decision_rules',
@@ -8,7 +7,7 @@ setup(
         "Package implementing decision rules. Includes tools for calculations of various measures "
         "and indicators, as well as algorithms for filtering rulesets."
     ),
-    long_description=open("README.md").read(),
+    long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
     version='1.2.0',
     author='Cezary Maszczyk, Dawid Macha, Adam Grzelak, Bartosz Piguła',
@@ -26,7 +25,7 @@ setup(
     ],
     extras_require={
         "ruleset_factories": [
-            "rulekit==2.1.21"
+            "rulekit>=2.1.21"
         ]
     },
     python_requires='>=3.9',
