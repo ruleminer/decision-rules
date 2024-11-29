@@ -1,14 +1,11 @@
 from __future__ import annotations
 
 from bisect import bisect_left
-from typing import Optional
-from typing import TypedDict
-from typing import Union
+from typing import Optional, TypedDict, Union
 
 import numpy as np
 import pandas as pd
-from scipy.stats import chi2
-from scipy.stats import norm
+from scipy.stats import chi2, norm
 
 
 class KaplanMeierEstimatorDict(TypedDict):
@@ -36,12 +33,9 @@ class SurvInfo:
         self.sq: np.ndarray = np.zeros(shape=len(time))
 
 
-class KaplanMeierEstimator():
+class KaplanMeierEstimator:
 
-    def __init__(
-        self,
-        surv_info: Optional[SurvInfo] = None
-    ) -> None:
+    def __init__(self, surv_info: Optional[SurvInfo] = None) -> None:
         self.median_survival_time: float = None
         self.median_survival_time_cli: float = None
         self.restricted_mean_survival_time: float = None
@@ -59,7 +53,7 @@ class KaplanMeierEstimator():
                 events_count=np.array([]),
                 censored_count=np.array([]),
                 at_risk_count=np.array([]),
-                probability=np.array([])
+                probability=np.array([]),
             )
         else:
             self._surv_info: SurvInfo = surv_info
@@ -86,10 +80,13 @@ class KaplanMeierEstimator():
         self.events_count_sum = np.sum(surv_info.events_count)
         self.censored_count_sum = np.sum(surv_info.censored_count)
 
-    def update(self, kaplan_meier_estimator_dict: dict[str, list[float]], update_additional_indicators: bool = False) -> KaplanMeierEstimator:
+    def update(
+        self,
+        kaplan_meier_estimator_dict: KaplanMeierEstimatorDict,
+        update_additional_indicators: bool = False,
+    ) -> KaplanMeierEstimator:
         kaplan_meier_estimator_dict: KaplanMeierEstimatorDict = {
-            k: np.array(v)
-            for k, v in kaplan_meier_estimator_dict.items()
+            k: np.array(v) for k, v in kaplan_meier_estimator_dict.items()
         }
         self.surv_info = SurvInfo(
             time=kaplan_meier_estimator_dict["times"],
@@ -105,9 +102,16 @@ class KaplanMeierEstimator():
 
     def _update_additional_indicators(self):
         self.interval = self.calculate_interval()
-        self.median_survival_time, self.median_survival_time_cli = self.calcualte_indicators()
+        self.median_survival_time, self.median_survival_time_cli = (
+            self.calcualte_indicators()
+        )
 
-    def fit(self, survival_time: np.ndarray, survival_status:  np.ndarray, skip_sorting: bool = False) -> KaplanMeierEstimator:
+    def fit(
+        self,
+        survival_time: np.ndarray,
+        survival_status: np.ndarray,
+        skip_sorting: bool = False,
+    ) -> KaplanMeierEstimator:
         """Fit Kaplan Meier estimator on given data
 
         Args:
@@ -130,7 +134,7 @@ class KaplanMeierEstimator():
             survival_time = survival_time[sorted_indices]
             survival_status = survival_status[sorted_indices]
 
-        events_ocurences: np.ndarray = survival_status == '1'
+        events_ocurences: np.ndarray = survival_status == "1"
         censored_ocurences = np.logical_not(events_ocurences).astype(int)
         events_ocurences = events_ocurences.astype(int)
 
@@ -140,31 +144,32 @@ class KaplanMeierEstimator():
 
         at_risk_count = survival_time.shape[0]
         grouped_data = {
-            'events_count': {},
-            'censored_count': {},
-            'at_risk_count': {},
+            "events_count": {},
+            "censored_count": {},
+            "at_risk_count": {},
         }
         time_point_prev = survival_time[0]
-        for (time_point, event_count, censored_count) in zip(survival_time, events_counts, censored_counts):
+        for time_point, event_count, censored_count in zip(
+            survival_time, events_counts, censored_counts
+        ):
             if time_point != time_point_prev:
-                grouped_data['at_risk_count'][time_point_prev] = at_risk_count
-                at_risk_count -= grouped_data['events_count'][time_point_prev]
-                at_risk_count -= grouped_data['censored_count'][time_point_prev]
+                grouped_data["at_risk_count"][time_point_prev] = at_risk_count
+                at_risk_count -= grouped_data["events_count"][time_point_prev]
+                at_risk_count -= grouped_data["censored_count"][time_point_prev]
                 time_point_prev = time_point
-            if time_point in grouped_data['events_count']:
-                grouped_data['events_count'][time_point] += event_count
-                grouped_data['censored_count'][time_point] += censored_count
+            if time_point in grouped_data["events_count"]:
+                grouped_data["events_count"][time_point] += event_count
+                grouped_data["censored_count"][time_point] += censored_count
             else:
-                grouped_data['events_count'][time_point] = event_count
-                grouped_data['censored_count'][time_point] = censored_count
+                grouped_data["events_count"][time_point] = event_count
+                grouped_data["censored_count"][time_point] = censored_count
 
-        grouped_data['at_risk_count'][time_point] = at_risk_count
+        grouped_data["at_risk_count"][time_point] = at_risk_count
 
-        unique_times = np.array(list(grouped_data['events_count'].keys()))
-        events_count = np.array(list(grouped_data['events_count'].values()))
-        censored_count = np.array(
-            list(grouped_data['censored_count'].values()))
-        at_risk_count = np.array(list(grouped_data['at_risk_count'].values()))
+        unique_times = np.array(list(grouped_data["events_count"].keys()))
+        events_count = np.array(list(grouped_data["events_count"].values()))
+        censored_count = np.array(list(grouped_data["censored_count"].values()))
+        at_risk_count = np.array(list(grouped_data["at_risk_count"].values()))
 
         surv_info = SurvInfo(
             time=unique_times,
@@ -181,37 +186,40 @@ class KaplanMeierEstimator():
 
     def calculate_probabilities(self, surv_info: SurvInfo) -> SurvInfo:
         surv_info.probability = np.zeros(shape=surv_info.at_risk_count.shape)
-        non_zero_probability_mask = (surv_info.at_risk_count != 0)
+        non_zero_probability_mask = surv_info.at_risk_count != 0
 
         masked_at_risk_count = surv_info.at_risk_count[non_zero_probability_mask]
         events_count = surv_info.events_count[non_zero_probability_mask]
 
         surv_info.probability[non_zero_probability_mask] = (
-            (masked_at_risk_count - events_count) / masked_at_risk_count
-        )
+            masked_at_risk_count - events_count
+        ) / masked_at_risk_count
         surv_info.probability = np.cumprod(surv_info.probability)
         return surv_info
 
     def calculate_interval(self) -> pd.DataFrame:
-        with np.errstate(divide="ignore", invalid='ignore'):
-            tmp = (self.events_counts / (self.at_risk_counts *
-                   (self.at_risk_counts - self.events_counts)))
+        with np.errstate(divide="ignore", invalid="ignore"):
+            tmp = self.events_counts / (
+                self.at_risk_counts * (self.at_risk_counts - self.events_counts)
+            )
         cumulative_sq_ = np.cumsum(np.nan_to_num(tmp, posinf=0, neginf=0))
         return self.calculate_bounds(self.times, self.probabilities, cumulative_sq_)
 
     def calcualte_indicators(self) -> tuple[float, float]:
         survival_function = pd.DataFrame(index=self.times)
         survival_function["KM_estimate"] = self.probabilities
-        median_survival_time = self.calculate_median_survival_time(
-            survival_function)
-        median_survival_time_cli = self.calculate_median_survival_time(
-            self.interval)
+        median_survival_time = self.calculate_median_survival_time(survival_function)
+        median_survival_time_cli = self.calculate_median_survival_time(self.interval)
         return median_survival_time, median_survival_time_cli
 
-    def calculate_median_survival_time(self, survival_function: pd.DataFrame) -> Union[float, pd.DataFrame]:
+    def calculate_median_survival_time(
+        self, survival_function: pd.DataFrame
+    ) -> Union[float, pd.DataFrame]:
         return self.qth_survival_times(0.5, survival_function)
 
-    def qth_survival_times(self, q: float, survival_functions: pd.DataFrame) -> Union[float, pd.DataFrame]:
+    def qth_survival_times(
+        self, q: float, survival_functions: pd.DataFrame
+    ) -> Union[float, pd.DataFrame]:
         """
         Find the times when one or more survival functions reach the qth percentile.
         """
@@ -224,17 +232,23 @@ class KaplanMeierEstimator():
 
         if survival_functions.shape[1] == 1 and q.shape == (1,):
             q = q[0]
-            return survival_functions.apply(lambda s: self.qth_survival_time(q, s)).iloc[0]
+            return survival_functions.apply(
+                lambda s: self.qth_survival_time(q, s)
+            ).iloc[0]
         else:
-            d = {_q: survival_functions.apply(
-                lambda s: self.qth_survival_time(_q, s)) for _q in q}
+            d = {
+                _q: survival_functions.apply(lambda s: self.qth_survival_time(_q, s))
+                for _q in q
+            }
             survival_times = pd.DataFrame(d).T
             if q.duplicated().any():
                 survival_times = survival_times.loc[q]
 
             return survival_times
 
-    def qth_survival_time(self, q: float, survival_function: Union[pd.DataFrame, pd.Series]) -> float:
+    def qth_survival_time(
+        self, q: float, survival_function: Union[pd.DataFrame, pd.Series]
+    ) -> float:
         """
         Returns the time when a single survival function reaches the qth percentile, that is,
         solves  :math:`q = S(t)` for :math:`t`.
@@ -264,22 +278,32 @@ class KaplanMeierEstimator():
             pass
         return v
 
-    def calculate_bounds(self, times: np.array, probabilities: np.array, cumulative_sq: np.array, alpha=0.05) -> pd.DataFrame:
+    def calculate_bounds(
+        self,
+        times: np.array,
+        probabilities: np.array,
+        cumulative_sq: np.array,
+        alpha=0.05,
+    ) -> pd.DataFrame:
         # This method calculates confidence intervals using the exponential Greenwood formula.
         # See https://www.math.wustl.edu/%7Esawyer/handouts/greenwood.pdf
         z = norm.ppf(1 - alpha / 2)
         df = pd.DataFrame(index=times)
-        with np.errstate(divide="ignore", invalid='ignore'):
+        with np.errstate(divide="ignore", invalid="ignore"):
             v = np.array(np.log(probabilities)).reshape(-1, 1)
             cumulative_sq_ = np.array(cumulative_sq).reshape(-1, 1)
 
-            ci_labels = ["%s_lower_%g" %
-                         ("prob", 1 - alpha), "%s_upper_%g" % ("prob", 1 - alpha)]
+            ci_labels = [
+                "%s_lower_%g" % ("prob", 1 - alpha),
+                "%s_upper_%g" % ("prob", 1 - alpha),
+            ]
 
-            df[ci_labels[0]] = np.exp(-np.exp(np.log(-v) -
-                                              z * np.sqrt(cumulative_sq_) / v))
-            df[ci_labels[1]] = np.exp(-np.exp(np.log(-v) +
-                                              z * np.sqrt(cumulative_sq_) / v))
+            df[ci_labels[0]] = np.exp(
+                -np.exp(np.log(-v) - z * np.sqrt(cumulative_sq_) / v)
+            )
+            df[ci_labels[1]] = np.exp(
+                -np.exp(np.log(-v) + z * np.sqrt(cumulative_sq_) / v)
+            )
         return df.fillna(1.0)
 
     @staticmethod
@@ -292,10 +316,9 @@ class KaplanMeierEstimator():
         number_of_estimators = len(estimators)
         probabilities = np.zeros(shape=unique_times.shape)
         for i, time in enumerate(unique_times):
-            probabilities_sum = sum([
-                estimator.get_probability_at(time)
-                for estimator in estimators
-            ])
+            probabilities_sum = sum(
+                [estimator.get_probability_at(time) for estimator in estimators]
+            )
             probabilities[i] = probabilities_sum / number_of_estimators
 
         surv_info = SurvInfo(
@@ -303,12 +326,14 @@ class KaplanMeierEstimator():
             events_count=np.zeros(shape=unique_times.shape),
             censored_count=np.zeros(shape=unique_times.shape),
             at_risk_count=np.zeros(shape=unique_times.shape),
-            probability=probabilities
+            probability=probabilities,
         )
         avg_estimator = KaplanMeierEstimator()
         avg_estimator.surv_info = surv_info
         avg_estimator.interval = avg_estimator.calculate_interval()
-        avg_estimator.median_survival_time, avg_estimator.median_survival_time_cli = avg_estimator.calcualte_indicators()
+        avg_estimator.median_survival_time, avg_estimator.median_survival_time_cli = (
+            avg_estimator.calcualte_indicators()
+        )
         return avg_estimator
 
     def binary_search(self, arr, target):
@@ -316,11 +341,10 @@ class KaplanMeierEstimator():
         if index < self.len_of_times and arr[index] == target:
             return index
         else:
-            return (-index - 1)
+            return -index - 1
 
     def get_probability_at(self, time: int) -> float:
-        index = self.binary_search(
-            self.times, time)
+        index = self.binary_search(self.times, time)
 
         if index >= 0:
             return self.probabilities[index]
@@ -333,16 +357,14 @@ class KaplanMeierEstimator():
         return self.probabilities[index - 1]
 
     def get_events_count_at(self, time: int) -> int:
-        index = self.binary_search(
-            self.times, time)
+        index = self.binary_search(self.times, time)
         if index >= 0:
             return self.events_counts[index]
 
         return 0
 
     def get_at_risk_count_at(self, time: int) -> int:
-        index = self.binary_search(
-            self.times, time)
+        index = self.binary_search(self.times, time)
         if index >= 0:
             return self.at_risk_counts[index]
 
@@ -368,7 +390,9 @@ class KaplanMeierEstimator():
         return rev_km
 
     @staticmethod
-    def compare_estimators(kme1: KaplanMeierEstimator, kme2: KaplanMeierEstimator) -> dict(str, float):
+    def compare_estimators(
+        kme1: KaplanMeierEstimator, kme2: KaplanMeierEstimator
+    ) -> dict(str, float):
         results = dict()
 
         if (len(kme1.times) == 0) or (len(kme2.times) == 0):
@@ -406,22 +430,32 @@ class KaplanMeierEstimator():
         return results
 
     def get_dict(self) -> KaplanMeierEstimatorDict:
-        return KaplanMeierEstimatorDict({
-            "times": self.times.tolist(),
-            "events_count": self.events_counts.tolist(),
-            "censored_count": self.censored_counts.tolist(),
-            "at_risk_count": self.at_risk_counts.tolist(),
-            "probabilities": self.probabilities.tolist(),
-        })
+        return KaplanMeierEstimatorDict(
+            {
+                "times": self.times.tolist(),
+                "events_count": self.events_counts.tolist(),
+                "censored_count": self.censored_counts.tolist(),
+                "at_risk_count": self.at_risk_counts.tolist(),
+                "probabilities": self.probabilities.tolist(),
+            }
+        )
 
     @staticmethod
-    def log_rank(survival_time: np.ndarray, survival_status:  np.ndarray, covered_examples: np.ndarray, uncovered_examples: np.ndarray) -> float:  # pylint: disable=missing-function-docstring
+    def log_rank(
+        survival_time: np.ndarray,
+        survival_status: np.ndarray,
+        covered_examples: np.ndarray,
+        uncovered_examples: np.ndarray,
+    ) -> float:  # pylint: disable=missing-function-docstring
         covered_estimator = KaplanMeierEstimator().fit(
-            survival_time[covered_examples], survival_status[covered_examples])
+            survival_time[covered_examples], survival_status[covered_examples]
+        )
         uncovered_estimator = KaplanMeierEstimator().fit(
-            survival_time[uncovered_examples], survival_status[uncovered_examples])
+            survival_time[uncovered_examples], survival_status[uncovered_examples]
+        )
 
         stats_and_pvalue = KaplanMeierEstimator().compare_estimators(
-            covered_estimator, uncovered_estimator)
+            covered_estimator, uncovered_estimator
+        )
 
         return 1 - stats_and_pvalue["p_value"]
