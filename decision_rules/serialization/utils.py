@@ -201,8 +201,14 @@ class JSONClassSerializer(ABC):
         """
         if data is None:
             return None
-        if not issubclass(data.__class__, BaseModel):
-            data = getattr(cls, "_Model")(**data)
+        model_class: Type[BaseModel] = getattr(cls, "_Model")
+        if not isinstance(data, model_class):
+            if isinstance(data, dict):
+                data: BaseModel = model_class(**data)
+            elif isinstance(data, BaseModel):
+                data: BaseModel = model_class(**data.model_dump())
+            else:
+                raise ValueError("data should be either dict or pydantic model")
         return cls._from_pydantic_model(data)
 
 

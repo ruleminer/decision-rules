@@ -1,3 +1,5 @@
+from ._factories.classification.mlrules_factory import MLRulesRuleSetFactory
+
 try:
     from ._factory import ruleset_factory
 except ImportError as e:
