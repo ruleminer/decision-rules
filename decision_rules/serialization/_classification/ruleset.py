@@ -90,15 +90,18 @@ class _ClassificationRuleSetSerializer(JSONClassSerializer):
     ) -> _Model:
         if len(instance.rules) == 0:
             raise ValueError("Cannot serialize empty ruleset.")
-
+        if mode == SerializationModes.MINIMAL:
+            default_conclusion = None
+        else:
+            default_conclusion = JSONSerializer.serialize(
+                instance.default_conclusion, mode
+            )
         return _ClassificationRuleSetSerializer._Model(
             meta=_ClassificationMetaDataModel(
                 attributes=instance.column_names,
                 decision_attribute=instance.rules[0].conclusion.column_name,
                 decision_attribute_distribution=dict(instance.train_P.items()),
-                default_conclusion=JSONSerializer.serialize(
-                    instance.default_conclusion, mode
-                ),
+                default_conclusion=default_conclusion,
             ),
             rules=[JSONSerializer.serialize(rule, mode) for rule in instance.rules],
         )
