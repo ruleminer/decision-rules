@@ -139,6 +139,11 @@ class TestSurvivalRuleSetSerializer(unittest.TestCase):
             "Default conclusion after deserializing should be the same",
         )
         self.assertEqual(
+            ruleset.default_conclusion.value,
+            deserializer_ruleset_min.default_conclusion.value,
+            "Default conclusion after deserializing should be the same",
+        )
+        self.assertEqual(
             [r.coverage for r in ruleset.rules],
             [r.coverage for r in deserialized_ruleset_full.rules],
             "Coverages after deserializing should be the same",
