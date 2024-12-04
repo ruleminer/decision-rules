@@ -77,18 +77,15 @@ class _RegressionRuleSetSerializer(JSONClassSerializer):
     ) -> _Model:
         if len(instance.rules) == 0:
             raise ValueError("Cannot serialize empty ruleset.")
-        if mode == SerializationModes.FULL:
-            default_conclusion = JSONSerializer.serialize(
-                instance.default_conclusion, mode
-            )
-        else:
-            default_conclusion = None
+
         return _RegressionRuleSetSerializer._Model(
             meta=_RegressionMetaDataModel(
                 attributes=instance.column_names,
                 decision_attribute=instance.rules[0].conclusion.column_name,
                 y_train_median=instance.y_train_median,
-                default_conclusion=default_conclusion,
+                default_conclusion=JSONSerializer.serialize(
+                    instance.default_conclusion, mode
+                ),
             ),
             rules=[JSONSerializer.serialize(rule, mode) for rule in instance.rules],
         )
