@@ -18,24 +18,14 @@ Functionalities includes, but is not limited to:
 - comparison between rules (semantic and syntactic)
 
 ## Installation
-Base package can be installed from [PyPi](https://pypi.org/project/decision-rules/):
+Package can be installed from [PyPi](https://pypi.org/project/decision-rules/):
 ```
 pip install decision-rules
-```
-
-Besides the base package, additional dependencies are required to use the `ruleset_factories` module. To install these extras, run:
-```
-pip install decision-rules[ruleset_factories]
 ```
 
 You can also just clone the repository and install the package locally:
 ```
 pip install .
-```
-
-or with the extras:
-```
-pip install .[ruleset_factories]
 ```
 
 ## Extras

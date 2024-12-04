@@ -26,6 +26,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install .
 
+        pip install rulekit
+
     - name: Run tests for the base package
       run: |
         python -m unittest discover ./tests/base_tests
