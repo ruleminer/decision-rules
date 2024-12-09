@@ -3,16 +3,17 @@
 import math
 from typing import Any
 from typing import Callable
+from typing import Optional
 
 import numpy as np
+from decision_rules.core.coverage import Coverage
 from decision_rules.core.metrics import AbstractRulesMetrics
 from decision_rules.regression.rule import RegressionRule
 from scipy.stats import chi2
 from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import mean_absolute_percentage_error
 from sklearn.metrics import mean_squared_error
-from decision_rules.core.coverage import Coverage
-from typing import Optional
+
 
 class RegressionRulesMetrics(AbstractRulesMetrics):
     """
@@ -46,20 +47,29 @@ class RegressionRulesMetrics(AbstractRulesMetrics):
             'n': lambda: int(rule.coverage.n),
             'P': lambda: int(rule.coverage.P),
             'N': lambda: int(rule.coverage.N),
+            'unique_in_pos': lambda: self._calculate_uniquely_covered_examples_in_pos_and_neg(
+                rule, X, y, covered_type='positive'
+            ),
+            'unique_in_neg': lambda: self._calculate_uniquely_covered_examples_in_pos_and_neg(
+                rule, X, y, covered_type='negative'
+            ),
             'p_unique': lambda: self._calculate_uniquely_covered_examples(
                 rule, X, y, covered_type='positive'
             ),
             'n_unique': lambda: self._calculate_uniquely_covered_examples(
                 rule, X, y, covered_type='negative'
             ),
-            'support': lambda: int(rule.coverage.p + rule.coverage.n),
+            'all_unique': lambda: self._calculate_uniquely_covered_examples(
+                rule, X, y, covered_type='all'
+            ),
+            'support': lambda: float((rule.coverage.p + rule.coverage.n) / (rule.coverage.P + rule.coverage.N)),
             'conditions_count': lambda: int(self._calculate_conditions_count(rule)),
             'y_covered_avg': lambda: float(rule_covered_examples.mean()),
             'y_covered_median': lambda: float(np.median(rule_covered_examples)),
             'y_covered_min': lambda: float(rule_covered_examples.min()),
             'y_covered_max': lambda: float(rule_covered_examples.max()),
             'mae': lambda: float(mean_absolute_error(y, rule_prediction)),
-            'rmse': lambda: math.sqrt(mean_squared_error(y, rule_prediction)),
+            'rmse': lambda: float(math.sqrt(mean_squared_error(y, rule_prediction))),
             'mape': lambda: float(mean_absolute_percentage_error(y, rule_prediction)),
             'p-value': lambda: float(self.calculate_p_value(rule=rule, y=y)),
         }

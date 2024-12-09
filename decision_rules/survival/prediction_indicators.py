@@ -2,12 +2,15 @@ from typing import TypedDict
 
 import numpy as np
 import pandas as pd
+
 from decision_rules.problem import ProblemTypes
 from decision_rules.survival import SurvivalRuleSet
 
 
 class SurvivalGeneralPredictionIndicators(TypedDict):
     ibs: float
+    Covered_by_prediction: int
+    Not_covered_by_prediction: int
 
 
 class SurvivalPredictionIndicators(TypedDict):
@@ -44,12 +47,17 @@ def calculate_for_survival(
         SurvivalPredictionIndicators:  A dictionary containing
         prediction indicators
     """
+    all_examples = len(y_true)
     if calculate_only_for_covered_examples:
         y_true, y_pred = _drop_uncovered_examples(y_true, y_pred)
+    covered_by_prediction = len(y_true)
+    not_covered_by_prediction = all_examples - covered_by_prediction
 
     return SurvivalPredictionIndicators(
         type_of_problem=ProblemTypes.SURVIVAL.value,
         general=SurvivalGeneralPredictionIndicators(
-            ibs=ruleset.integrated_bier_score(X, y_true, y_pred)
+            ibs=ruleset.integrated_bier_score(X, y_true, y_pred),
+            Covered_by_prediction=covered_by_prediction,
+            Not_covered_by_prediction=not_covered_by_prediction,
         )
     )

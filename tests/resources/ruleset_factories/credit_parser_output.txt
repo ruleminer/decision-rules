@@ -1,0 +1,100 @@
+IF A9 = {f} AND A4 != {l} THEN class = {-}
+IF A9 = {t} AND A2 <= 76.835 AND A3 <= 25.168 THEN class = {+}
+IF A9 = {f} AND A4 != {l} AND A3 >= 0.168 THEN class = {-}
+IF A9 = {t} AND A10 = {t} AND A6 != {k} THEN class = {+}
+IF A9 = {f} AND A6 != {x} AND A4 != {l} AND A7 != {n} THEN class = {-}
+IF A8 >= 1.02 AND A9 = {t} AND A14 <= 521.5 AND A4 = {u} AND A13 = {g} THEN class = {+}
+IF A15 <= 215.5 AND A3 >= 0.395 AND A11 <= 3.5 AND A6 != {x} AND A8 <= 14.938 AND A7 != {dd} AND A7 != {z} THEN class = {-}
+IF A9 = {t} AND A14 <= 521.5 AND A6 != {ff} AND A2 <= 61.71 AND A7 != {z} AND A6 != {aa} AND A13 = {g} THEN class = {+}
+IF A8 <= 1.313 AND A15 <= 520.5 AND A3 >= 0.27 AND A11 <= 3.5 AND A6 != {cc} AND A7 != {dd} AND A6 != {x} THEN class = {-}
+IF A9 = {t} AND A14 <= 111.0 AND A7 != {j} THEN class = {+}
+IF A15 <= 148.5 AND A14 >= 71.5 AND A3 >= 0.23 AND A6 != {x} AND A6 != {cc} AND A8 <= 14.938 THEN class = {-}
+IF A9 = {t} AND A7 != {bb} AND A3 <= 15.25 AND A8 <= 9.23 AND A2 <= 61.71 AND A6 != {ff} THEN class = {+}
+IF A8 >= 1.395 AND A6 != {k} AND A4 != {y} AND A6 != {d} AND A14 <= 324.5 THEN class = {+}
+IF A15 <= 538.5 AND A3 >= 0.395 AND A11 <= 3.5 AND A6 != {x} AND A8 <= 14.938 AND A6 != {w} AND A7 != {z} THEN class = {-}
+IF A9 = {t} AND A15 >= 148.5 AND A7 != {dd} AND A2 >= 18.46 THEN class = {+}
+IF A8 >= 1.395 AND A8 <= 7.458 AND A1 = {b} AND A6 != {k} AND A2 <= 50.205 AND A6 != {e} AND A3 <= 16.333 AND A6 != {ff} THEN class = {+}
+IF A14 >= 111.0 AND A14 <= 214.0 AND A15 <= 1300.5 AND A7 != {n} AND A6 != {cc} AND A6 != {m} AND A3 <= 20.293 THEN class = {-}
+IF A9 = {t} AND A14 <= 111.0 AND A6 != {i} AND A3 <= 18.75 AND A7 != {j} AND A2 >= 16.705 THEN class = {+}
+IF A3 >= 0.56 AND A11 <= 2.5 AND A6 != {x} AND A6 != {w} AND A15 <= 1324.5 AND A8 <= 14.938 AND A7 != {h} THEN class = {-}
+IF A9 = {t} AND A14 <= 521.5 AND A4 = {u} AND A7 != {z} AND A7 != {j} AND A8 <= 11.25 AND A3 <= 18.375 AND A6 != {d} THEN class = {+}
+IF A3 >= 0.395 AND A3 <= 15.75 AND A15 >= 0.5 AND A15 <= 538.5 AND A14 <= 376.0 AND A8 <= 14.145 THEN class = {-}
+IF A6 != {ff} AND A6 != {aa} AND A3 <= 12.418 AND A8 <= 8.145 AND A2 >= 15.5 AND A2 <= 61.21 AND A6 != {i} AND A6 != {k} AND A7 != {ff} AND A7 != {dd} THEN class = {+}
+IF A3 >= 0.52 AND A11 <= 3.5 AND A6 != {x} AND A8 >= 0.063 AND A8 <= 14.938 AND A15 <= 8056.5 AND A7 != {z} THEN class = {-}
+IF A8 >= 1.395 AND A8 <= 9.063 AND A14 <= 264.0 AND A2 >= 18.21 AND A2 <= 55.165 AND A15 <= 315.0 AND A3 <= 15.645 AND A6 != {ff} AND A6 != {e} THEN class = {+}
+IF A3 <= 0.395 AND A2 >= 17.835 THEN class = {+}
+IF A15 <= 538.5 AND A6 != {x} AND A6 != {cc} AND A3 >= 0.23 AND A14 >= 111.0 AND A6 != {d} AND A2 <= 47.67 AND A8 >= 0.063 AND A11 <= 7.5 AND A6 != {i} THEN class = {-}
+IF A9 = {t} AND A3 >= 2.27 AND A3 <= 15.25 AND A14 <= 415.0 AND A6 != {i} AND A2 >= 18.75 AND A2 <= 61.71 AND A6 != {k} AND A8 <= 11.25 AND A11 <= 9.5 THEN class = {+}
+IF A14 <= 214.0 AND A3 <= 5.458 AND A15 <= 884.5 AND A8 <= 1.438 AND A2 >= 16.21 AND A7 != {n} THEN class = {-}
+IF A4 != {y} AND A12 = {f} AND A6 != {ff} AND A6 != {m} AND A11 <= 9.5 AND A3 <= 12.478 AND A6 != {d} AND A7 != {z} AND A7 != {ff} AND A7 != {o} THEN class = {+}
+IF A14 <= 214.0 AND A3 <= 5.583 AND A15 <= 884.5 AND A11 <= 6.5 AND A2 >= 16.21 AND A8 <= 10.5 THEN class = {-}
+IF A3 <= 1.02 AND A2 >= 21.705 AND A11 <= 5.5 AND A15 <= 1002.0 THEN class = {+}
+IF A15 <= 538.5 AND A2 >= 23.375 AND A2 <= 56.125 AND A3 >= 0.397 AND A14 <= 348.5 AND A8 <= 12.25 THEN class = {-}
+IF A9 = {t} AND A14 <= 521.5 AND A6 != {q} AND A2 >= 15.955 AND A2 <= 55.165 AND A3 <= 15.25 AND A6 != {ff} AND A8 <= 9.063 AND A13 = {g} AND A6 != {i} AND A6 != {w} THEN class = {+}
+IF A14 >= 61.0 AND A3 >= 0.563 AND A6 != {x} AND A6 != {cc} AND A6 != {d} AND A15 <= 1975.0 AND A8 <= 12.0 AND A6 != {w} AND A11 <= 21.5 AND A2 >= 18.96 AND A2 <= 56.25 AND A7 != {bb} THEN class = {-}
+IF A2 >= 20.04 AND A2 <= 61.5 AND A6 != {ff} AND A3 >= 0.02 AND A3 <= 6.875 AND A6 != {aa} AND A8 >= 0.02 AND A8 <= 7.895 AND A6 != {m} AND A6 != {w} AND A6 != {j} AND A7 != {dd} AND A6 != {i} AND A7 != {n} THEN class = {+}
+IF A14 >= 129.5 AND A15 <= 5.5 AND A4 = {u} AND A2 <= 40.96 AND A6 != {x} AND A11 <= 8.0 AND A3 <= 14.228 THEN class = {-}
+IF A4 != {y} AND A14 <= 316.0 AND A6 != {d} AND A11 <= 4.5 AND A6 != {ff} AND A6 != {m} AND A3 >= 0.02 AND A3 <= 11.023 AND A2 >= 16.085 AND A2 <= 41.54 AND A15 <= 308.0 AND A6 != {j} THEN class = {+}
+IF A8 <= 1.395 AND A14 <= 230.0 AND A15 <= 2142.0 AND A2 >= 18.125 AND A2 <= 64.25 THEN class = {-}
+IF A9 = {t} AND A14 <= 521.5 AND A2 >= 25.71 AND A7 != {bb} AND A7 != {z} AND A8 <= 9.23 AND A3 <= 25.73 AND A6 != {c} AND A7 != {j} THEN class = {+}
+IF A8 >= 0.105 AND A8 <= 14.938 AND A11 <= 2.5 AND A3 >= 1.145 AND A6 != {x} AND A6 != {w} AND A7 != {z} AND A15 <= 8056.5 THEN class = {-}
+IF A2 >= 17.96 AND A2 <= 61.21 AND A6 != {ff} AND A14 <= 715.5 AND A6 != {aa} AND A3 >= 0.02 AND A3 <= 12.418 AND A11 <= 1.5 AND A6 != {i} AND A6 != {m} AND A8 <= 2.48 AND A6 != {j} AND A7 != {ff} AND A6 != {r} AND A7 != {dd} THEN class = {+}
+IF A14 >= 129.5 AND A14 <= 348.5 AND A3 >= 0.188 AND A3 <= 3.895 AND A8 <= 3.375 AND A15 <= 2901.5 AND A6 != {cc} THEN class = {-}
+IF A9 = {t} AND A14 <= 399.5 AND A3 >= 1.52 AND A3 <= 15.145 AND A6 != {ff} AND A2 >= 18.75 AND A2 <= 61.71 AND A11 <= 9.5 AND A8 <= 9.5 AND A6 != {k} THEN class = {+}
+IF A14 >= 73.0 AND A14 <= 467.5 AND A6 != {cc} AND A6 != {d} AND A6 != {x} AND A3 >= 0.23 AND A3 <= 22.043 AND A8 <= 12.0 AND A7 != {bb} AND A2 >= 18.96 AND A2 <= 59.125 AND A15 <= 4407.5 AND A11 <= 21.5 THEN class = {-}
+IF A2 >= 20.79 AND A2 <= 75.915 AND A3 <= 6.875 AND A8 <= 2.27 AND A15 <= 2767.5 THEN class = {+}
+IF A8 >= 1.395 AND A14 <= 264.0 AND A4 = {u} AND A6 != {q} AND A6 != {k} THEN class = {+}
+IF A15 <= 487.5 AND A2 >= 24.46 AND A2 <= 71.46 AND A3 >= 0.52 AND A11 <= 3.5 AND A8 <= 10.5 AND A6 != {m} AND A6 != {d} AND A14 <= 635.5 AND A6 != {q} THEN class = {-}
+IF A9 = {t} AND A6 != {q} AND A2 <= 33.665 AND A3 >= 0.71 AND A6 != {i} AND A6 != {ff} AND A14 <= 505.0 THEN class = {+}
+IF A2 <= 36.625 AND A7 = {v} AND A6 != {x} AND A8 >= 0.063 AND A8 <= 4.563 AND A6 != {cc} AND A15 <= 5664.5 AND A11 <= 11.5 AND A14 <= 660.0 THEN class = {-}
+IF A2 <= 61.5 AND A6 != {ff} AND A14 <= 715.5 AND A6 != {aa} AND A3 <= 6.875 AND A6 != {w} AND A6 != {j} AND A7 != {dd} AND A7 != {o} THEN class = {+}
+IF A8 >= 0.063 AND A8 <= 0.688 AND A11 <= 2.5 THEN class = {-}
+IF A2 <= 28.46 AND A15 <= 0.5 AND A3 >= 0.02 AND A3 <= 9.645 AND A6 != {q} AND A14 <= 316.0 AND A6 != {m} AND A6 != {e} AND A6 != {ff} AND A6 != {j} THEN class = {+}
+IF A15 <= 357.0 AND A3 >= 0.313 AND A3 <= 8.002 AND A8 >= 0.27 AND A9 = {t} AND A11 <= 7.5 THEN class = {-}
+IF A9 = {t} AND A14 <= 521.5 AND A2 >= 25.71 AND A7 != {bb} AND A7 != {z} AND A8 <= 9.23 AND A3 <= 25.73 AND A7 != {j} THEN class = {+}
+IF A4 = {y} AND A14 <= 369.5 AND A11 <= 4.5 AND A6 != {w} AND A13 = {g} THEN class = {-}
+IF A2 >= 36.625 AND A7 = {v} AND A6 != {c} AND A6 != {cc} AND A6 != {m} AND A6 != {i} THEN class = {+}
+IF A2 >= 16.085 AND A2 <= 24.54 AND A11 <= 1.5 AND A3 <= 9.563 AND A6 != {i} AND A6 != {ff} AND A6 != {j} AND A6 != {e} AND A15 <= 912.0 AND A6 != {r} THEN class = {+}
+IF A15 <= 395.0 AND A6 != {x} AND A8 <= 14.145 AND A6 != {cc} AND A7 != {n} AND A7 != {bb} AND A6 != {e} AND A11 <= 7.5 THEN class = {-}
+IF A8 >= 0.688 AND A8 <= 8.98 AND A2 >= 18.5 AND A2 <= 57.665 AND A6 != {q} AND A14 >= 142.5 AND A14 <= 715.5 AND A6 != {e} AND A3 >= 0.48 AND A3 <= 12.415 AND A6 != {aa} AND A6 != {ff} THEN class = {+}
+IF A14 >= 129.5 AND A15 <= 5.5 AND A4 = {u} AND A2 <= 40.96 AND A6 != {x} AND A11 <= 8.0 AND A3 <= 14.228 THEN class = {-}
+IF A9 = {t} AND A14 <= 521.5 AND A8 <= 1.708 AND A6 != {i} AND A3 <= 18.375 AND A2 >= 18.75 AND A11 <= 17.5 THEN class = {+}
+IF A8 >= 0.063 AND A8 <= 1.395 AND A1 = {b} AND A15 <= 5664.5 AND A7 != {n} THEN class = {-}
+IF A15 <= 0.5 AND A2 <= 28.54 AND A3 >= 0.355 AND A3 <= 10.75 AND A6 != {aa} AND A8 >= 0.145 AND A6 != {e} AND A6 != {ff} AND A6 != {m} THEN class = {+}
+IF A14 <= 214.0 AND A3 >= 0.02 AND A3 <= 5.793 AND A2 >= 24.205 AND A8 <= 3.855 AND A15 <= 538.5 AND A11 <= 10.5 THEN class = {-}
+IF A2 >= 35.085 AND A6 != {c} AND A8 <= 6.625 AND A6 != {ff} AND A11 <= 17.5 AND A6 != {m} AND A14 <= 735.5 AND A6 != {w} AND A7 != {o} AND A7 != {j} THEN class = {+}
+IF A3 >= 1.563 AND A3 <= 20.793 AND A11 <= 3.5 AND A6 != {x} AND A8 >= 0.105 AND A6 != {m} AND A15 <= 231.0 AND A7 != {z} THEN class = {-}
+IF A2 >= 21.79 AND A2 <= 41.54 AND A15 <= 0.5 AND A3 >= 0.355 AND A3 <= 12.418 AND A8 >= 0.145 AND A8 <= 9.333 AND A13 != {s} AND A6 != {aa} AND A6 != {w} AND A14 <= 435.5 AND A6 != {ff} THEN class = {+}
+IF A2 >= 36.625 AND A2 <= 62.125 AND A7 = {v} AND A6 != {cc} AND A6 != {i} THEN class = {+}
+IF A14 >= 129.5 AND A15 <= 5.5 AND A4 = {u} AND A8 <= 4.082 AND A3 >= 0.083 AND A3 <= 12.52 AND A6 != {i} AND A11 <= 7.0 THEN class = {-}
+IF A9 = {t} AND A6 != {q} AND A2 <= 33.665 AND A3 >= 0.71 AND A6 != {i} AND A6 != {k} AND A6 != {ff} THEN class = {+}
+IF A3 >= 0.563 AND A3 <= 15.75 AND A15 >= 0.5 AND A15 <= 1063.5 AND A6 != {w} AND A8 <= 14.145 AND A14 <= 485.0 AND A7 != {dd} THEN class = {-}
+IF A4 != {y} AND A14 <= 316.0 AND A11 <= 9.5 AND A6 != {d} AND A6 != {ff} AND A6 != {m} AND A8 <= 4.875 AND A6 != {e} AND A7 != {ff} AND A15 <= 5425.0 AND A2 >= 16.085 AND A2 <= 62.125 AND A7 != {o} AND A3 >= 0.02 THEN class = {+}
+IF A14 >= 73.0 AND A14 <= 329.5 AND A3 >= 0.44 AND A3 <= 22.043 AND A2 >= 24.54 AND A2 <= 56.25 AND A15 <= 148.0 AND A6 != {i} AND A8 <= 13.75 THEN class = {-}
+IF A2 >= 23.125 AND A2 <= 75.915 AND A8 <= 1.938 AND A3 <= 12.418 AND A15 <= 2767.5 THEN class = {+}
+IF A8 <= 1.395 AND A14 >= 104.0 AND A14 <= 230.0 AND A7 != {n} AND A6 != {m} AND A6 != {w} AND A15 <= 3938.5 AND A6 != {d} THEN class = {-}
+IF A9 = {t} AND A3 >= 2.27 AND A3 <= 18.75 AND A14 <= 255.0 AND A6 != {k} AND A2 >= 18.75 AND A15 <= 975.0 AND A6 != {i} AND A7 != {z} THEN class = {+}
+IF A3 >= 1.563 AND A11 <= 2.5 AND A6 != {x} AND A6 != {k} AND A6 != {m} AND A7 != {j} AND A6 != {w} AND A7 != {z} AND A15 <= 8056.5 THEN class = {-}
+IF A2 >= 23.125 AND A2 <= 28.46 AND A8 <= 1.708 AND A15 <= 1087.5 AND A3 <= 12.418 THEN class = {+}
+IF A2 >= 36.625 AND A3 <= 1.583 AND A13 != {s} AND A8 <= 7.293 THEN class = {+}
+IF A8 <= 4.082 AND A2 >= 19.375 AND A2 <= 36.625 AND A14 >= 165.5 AND A14 <= 475.5 AND A3 >= 0.145 AND A6 != {cc} AND A11 <= 6.5 AND A15 <= 6250.0 THEN class = {-}
+IF A9 = {t} AND A14 <= 521.5 AND A6 != {q} AND A3 >= 2.293 AND A6 != {e} THEN class = {+}
+IF A14 <= 201.0 AND A15 <= 538.5 AND A2 >= 24.875 AND A2 <= 71.46 AND A8 <= 10.5 AND A11 <= 3.5 THEN class = {-}
+IF A2 >= 25.71 AND A2 <= 74.125 AND A9 = {t} AND A14 <= 521.5 AND A13 = {g} AND A7 != {j} AND A7 != {z} THEN class = {+}
+IF A8 <= 1.395 AND A14 <= 294.0 AND A15 <= 520.5 AND A2 >= 18.125 AND A2 <= 55.665 AND A6 != {w} THEN class = {-}
+IF A2 >= 17.96 AND A2 <= 61.5 AND A6 != {ff} AND A3 <= 6.875 AND A8 <= 2.208 AND A6 != {i} AND A6 != {aa} AND A6 != {x} AND A14 >= 45.0 AND A6 != {k} AND A7 != {dd} AND A6 != {j} AND A6 != {r} THEN class = {+}
+IF A14 >= 61.0 AND A3 >= 0.23 AND A3 <= 22.043 AND A6 != {x} AND A6 != {d} AND A6 != {cc} AND A8 <= 5.625 AND A7 != {h} AND A6 != {aa} AND A15 <= 4600.0 THEN class = {-}
+IF A2 >= 17.96 AND A2 <= 43.125 AND A6 != {ff} AND A14 >= 10.0 AND A14 <= 715.5 AND A11 <= 2.5 AND A8 >= 0.145 AND A8 <= 9.5 AND A6 != {k} AND A6 != {e} AND A6 != {aa} AND A3 >= 0.063 AND A3 <= 12.418 AND A6 != {m} AND A15 <= 1137.5 AND A6 != {r} AND A6 != {j} THEN class = {+}
+IF A8 >= 0.063 AND A3 >= 0.168 AND A3 <= 8.543 AND A15 <= 995.0 AND A11 <= 10.5 AND A4 != {l} THEN class = {-}
+IF A2 >= 37.415 AND A2 <= 74.125 AND A8 <= 6.625 AND A3 >= 0.185 AND A3 <= 18.375 AND A6 != {c} AND A14 <= 460.0 AND A11 <= 17.5 AND A6 != {m} AND A7 != {o} THEN class = {+}
+IF A9 = {f} AND A8 <= 1.375 AND A3 >= 0.145 AND A7 != {n} AND A6 != {c} AND A6 != {k} THEN class = {-}
+IF A4 != {y} AND A14 <= 316.0 AND A11 <= 6.5 AND A6 != {d} AND A6 != {ff} AND A6 != {m} AND A2 <= 50.165 AND A6 != {j} AND A15 <= 5425.0 AND A7 != {o} THEN class = {+}
+IF A14 <= 329.5 AND A15 <= 1063.5 AND A8 <= 4.75 AND A2 >= 21.375 AND A2 <= 55.875 AND A3 >= 0.833 AND A11 <= 10.5 AND A13 = {g} AND A7 != {bb} AND A6 != {x} AND A7 != {h} AND A6 != {m} AND A7 != {dd} THEN class = {-}
+IF A2 >= 20.71 AND A2 <= 44.75 AND A3 <= 2.063 AND A13 != {s} AND A15 <= 202.0 AND A11 <= 9.0 AND A1 = {b} AND A6 != {cc} AND A8 >= 0.145 AND A6 != {aa} AND A6 != {r} THEN class = {+}
+IF A8 >= 0.063 AND A8 <= 13.938 AND A3 <= 8.543 AND A15 <= 2142.0 AND A11 <= 10.5 AND A4 != {l} AND A6 != {x} AND A7 != {n} AND A7 != {j} AND A7 != {z} THEN class = {-}
+IF A9 = {t} AND A14 <= 399.5 AND A6 != {c} AND A11 <= 9.5 AND A8 <= 6.625 AND A3 <= 18.375 AND A6 != {w} AND A13 = {g} AND A7 != {bb} THEN class = {+}
+IF A14 <= 348.5 AND A4 = {y} AND A11 <= 6.5 AND A15 <= 4888.5 AND A6 != {w} AND A13 = {g} AND A6 != {x} THEN class = {-}
+IF A2 >= 23.125 AND A2 <= 61.5 AND A8 <= 2.043 AND A7 = {v} AND A6 != {m} AND A3 <= 12.25 AND A6 != {x} AND A6 != {aa} AND A15 <= 2767.5 AND A6 != {i} THEN class = {+}
+IF A8 >= 0.063 AND A8 <= 3.02 AND A11 <= 10.5 AND A3 >= 0.168 AND A3 <= 11.563 AND A15 <= 4600.0 AND A14 <= 1044.0 THEN class = {-}
+IF A2 >= 17.96 AND A2 <= 28.46 AND A15 <= 768.5 AND A3 <= 9.563 AND A11 <= 4.5 AND A14 >= 52.5 AND A7 != {h} AND A6 != {ff} AND A6 != {e} AND A6 != {d} AND A6 != {j} AND A6 != {r} THEN class = {+}
+IF A14 >= 99.5 AND A14 <= 329.5 AND A12 = {t} AND A15 <= 613.0 AND A11 <= 7.5 AND A3 >= 0.145 AND A3 <= 12.52 AND A4 != {l} AND A6 != {cc} AND A8 >= 0.27 THEN class = {-}

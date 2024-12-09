@@ -1,0 +1,3713 @@
+{
+  "meta": {
+    "attributes": [
+      "passengerid",
+      "pclass",
+      "name",
+      "sex",
+      "age",
+      "sibsp",
+      "parch",
+      "ticket",
+      "fare",
+      "cabin",
+      "embarked"
+    ],
+    "decision_attribute": "class",
+    "decision_attribute_distribution": {
+      "no": 549,
+      "yes": 342
+    }
+  },
+  "rules": [
+    {
+      "uuid": "6dc061fb-3363-4494-af27-2cfc2a988e4e",
+      "string": "IF sex = {male} AND age = {adult} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "male"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "2bb2dd2a-11a9-4dac-ab99-0d6842e066d0",
+      "string": "IF sex = {male} AND pclass != {1st} AND age = {adult} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "male"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "751cdc2f-0760-4cf7-bf42-49683a2b5ce6",
+      "string": "IF sex = {female} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "female"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 233,
+        "n": 81,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "f0238666-9a06-411d-8467-4db3f4bd3c66",
+      "string": "IF sex = {male} AND pclass != {1st} AND age = {adult} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "male"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "fb4a0175-18b2-46bd-a924-ee4c2b65ce16",
+      "string": "IF pclass != {3rd} AND sex = {female} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "female"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 233,
+        "n": 81,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "3b22cb6f-faae-428e-ae12-0c5298d31def",
+      "string": "IF pclass = {3rd} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "value": "3rd"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "7a717346-69c2-445a-850a-7017229573a2",
+      "string": "IF sex = {female} AND pclass != {3rd} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "female"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 233,
+        "n": 81,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "73bc9aa1-aac8-4242-8c07-d8630b2ef270",
+      "string": "IF pclass != {1st} AND age = {adult} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "2727dcd7-3c9e-4757-9d86-6b8e3b21dccf",
+      "string": "IF pclass != {3rd} AND pclass != {2nd} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "2nd"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 342,
+        "n": 549,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "2ea81f3e-6413-48e1-b152-b9337b67757b",
+      "string": "IF pclass != {1st} AND sex = {male} AND age = {adult} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "male"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "038a8c6d-7acc-4741-870e-a267feaebe39",
+      "string": "IF pclass != {3rd} AND sex = {female} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "female"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 233,
+        "n": 81,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "65f3d453-3dc0-425b-894f-525fd36198b8",
+      "string": "IF pclass != {1st} AND pclass != {crew} AND age = {adult} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "crew"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "e3313fb3-a492-45e7-9870-4bf24d7ea2d7",
+      "string": "IF pclass = {1st} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "value": "1st"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "8a010d52-d808-4c28-8306-fc7349f01b1a",
+      "string": "IF sex = {female} AND pclass != {3rd} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "female"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 233,
+        "n": 81,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "3865da45-e3d4-42b0-9fbe-0d4866fc75e2",
+      "string": "IF pclass != {1st} AND pclass != {crew} AND age = {adult} AND pclass = {2nd} AND sex = {male} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "crew"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "value": "2nd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "male"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "571f72f7-e61b-47d6-a77e-968d3fdb8c53",
+      "string": "IF pclass != {3rd} AND age = {child} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "child"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "a12a9c77-3fce-47f6-80fc-c41f30193843",
+      "string": "IF pclass != {1st} AND pclass != {crew} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "crew"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 549,
+        "n": 342,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "5b69d051-e7dd-4218-8031-48e3104cbf05",
+      "string": "IF pclass != {2nd} AND age = {adult} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "2nd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "5b9e9671-d3a0-47a2-9145-0ed454dc77a2",
+      "string": "IF sex = {male} AND age = {adult} AND pclass != {3rd} AND pclass != {crew} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "male"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "crew"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "2ceb39e0-82e4-46e9-bd05-36ecb3ba0ff2",
+      "string": "IF pclass != {3rd} AND pclass != {2nd} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "2nd"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 342,
+        "n": 549,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "58fba498-5036-4aa3-a2b0-1acf6d19e1f2",
+      "string": "IF pclass = {1st} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "value": "1st"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "d5eacfd7-2ab7-4eb4-a6b0-2604d3019aa4",
+      "string": "IF sex = {male} AND age = {adult} AND pclass != {3rd} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "male"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "fc22f0bf-37d2-40f9-88ee-93babcdc01be",
+      "string": "IF pclass != {3rd} AND sex = {female} AND pclass != {crew} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "female"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "crew"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 233,
+        "n": 81,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "96fde321-77a4-4b48-82a0-daa6891a7699",
+      "string": "IF pclass != {3rd} AND age = {child} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "child"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "c156407d-0fad-409b-922c-27d4b4d71ff7",
+      "string": "IF pclass != {1st} AND pclass != {crew} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "crew"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 549,
+        "n": 342,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "488a1abe-3e5c-4120-9de9-3f7945583490",
+      "string": "IF pclass != {2nd} AND age = {adult} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "2nd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "d40ed7ff-31c5-4ada-86f3-df6d3862e35e",
+      "string": "IF pclass != {1st} AND pclass != {crew} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "crew"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 549,
+        "n": 342,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "a1a982c1-216a-46f5-8e60-6ba5a2d757ab",
+      "string": "IF sex = {female} AND pclass = {1st} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "female"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "value": "1st"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "23d244fd-b999-40f2-80a2-a290284e9543",
+      "string": "IF sex = {male} AND age = {adult} AND pclass != {3rd} AND pclass != {crew} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "male"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "crew"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "f1ca9ce9-3d37-4d2a-ae7f-3fc423119b39",
+      "string": "IF pclass = {1st} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "value": "1st"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "fe88dadf-4326-4791-922a-4a8611f25d05",
+      "string": "IF pclass = {1st} AND sex = {female} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "female"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "2e41ead8-c945-496f-8e42-4a154e791e8f",
+      "string": "IF pclass = {1st} AND sex = {female} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "female"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "5dbd0995-7365-4c17-b443-8c590ef32ae4",
+      "string": "IF pclass != {1st} AND sex = {female} AND pclass != {2nd} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "female"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "2nd"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 81,
+        "n": 233,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "3bbd4275-ba2e-44d9-9768-94df93be2fc0",
+      "string": "IF pclass != {2nd} AND age = {adult} AND pclass != {1st} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "2nd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "173b6669-c519-4452-b076-83cc27fb330c",
+      "string": "IF pclass != {1st} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 549,
+        "n": 342,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "0bad0bf0-c926-4b65-9ff8-55fcf894d079",
+      "string": "IF age = {adult} AND pclass != {3rd} AND sex = {male} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "male"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "166f253f-cfb5-4c45-83d0-270f585e9d00",
+      "string": "IF pclass != {3rd} AND age = {child} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "child"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "7e74c867-d82c-452a-95ef-d199ca0911fa",
+      "string": "IF pclass != {2nd} AND age = {adult} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "2nd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "2a48b72e-735c-49d0-b7a5-e191f4daed88",
+      "string": "IF pclass != {1st} AND pclass != {crew} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "crew"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 549,
+        "n": 342,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "64c1ea67-9eee-4279-83fd-858659646d4e",
+      "string": "IF pclass != {1st} AND pclass != {crew} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "crew"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 549,
+        "n": 342,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "a7fcc6db-81ef-4f05-bc2b-785567bd4871",
+      "string": "IF pclass != {2nd} AND age = {adult} AND pclass != {1st} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "2nd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "953a28b7-dd68-49fa-a881-700b33cbee8d",
+      "string": "IF pclass != {1st} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 549,
+        "n": 342,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "fe2d1143-f1a7-4ca8-8266-76c8cee26965",
+      "string": "IF pclass != {1st} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 549,
+        "n": 342,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "065fb662-7765-4e74-9faa-8d993d0d2613",
+      "string": "IF pclass != {1st} AND sex = {female} AND pclass != {2nd} AND age = {child} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "female"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "2nd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "child"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "31283ffc-b8ef-4f6d-a399-eb16695b588e",
+      "string": "IF sex = {female} AND age = {adult} AND pclass != {crew} AND pclass != {2nd} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "female"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "crew"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "2nd"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "11cd2e58-9fa4-4a96-a81d-36e821e93613",
+      "string": "IF age = {adult} AND pclass != {3rd} AND sex = {male} AND pclass != {crew} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "male"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "crew"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "6ae6e076-b0d3-4ecd-8de9-3c5ecc421563",
+      "string": "IF pclass = {1st} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "value": "1st"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "676d125e-836f-4c86-a648-24c847981a19",
+      "string": "IF pclass = {1st} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "value": "1st"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "d6e2d116-a067-4c10-bcf4-4170cdcaa1eb",
+      "string": "IF pclass = {1st} AND sex = {female} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "female"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "75a1e6c9-810a-46f5-b8df-2ecea202dbff",
+      "string": "IF age = {adult} AND pclass != {3rd} AND sex = {male} AND pclass != {crew} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "male"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "crew"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "51bdc29d-b986-4369-8392-4e90b4db167a",
+      "string": "IF pclass != {3rd} AND age = {child} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "child"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "c1ec737a-433f-461f-845d-b80a2d838872",
+      "string": "IF pclass = {1st} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "value": "1st"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "164073b1-5a29-488e-9124-bd590ac95431",
+      "string": "IF sex = {male} AND pclass != {2nd} AND age = {adult} AND pclass != {1st} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "male"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "2nd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "3d7a4c64-830e-403f-9e0a-e32e8e3e7c7a",
+      "string": "IF pclass != {1st} AND pclass != {2nd} AND age = {child} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "2nd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "child"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "932beb34-6f85-48b2-8a80-8a0db8725ca0",
+      "string": "IF pclass = {crew} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "value": "crew"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "c3c0f205-60f6-4782-880f-793379b801b3",
+      "string": "IF pclass != {crew} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "crew"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 342,
+        "n": 549,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "d69f38ad-a24e-4734-83a2-c098b463bf3d",
+      "string": "IF age = {adult} AND pclass != {3rd} AND sex = {male} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "male"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "b517b51b-4e52-4aad-8a15-7ce87d241f4a",
+      "string": "IF sex = {male} AND pclass != {2nd} AND age = {adult} AND pclass != {1st} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "male"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "2nd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "c2e7ebcd-a5f9-4176-9313-37a569f55e52",
+      "string": "IF pclass != {1st} AND age = {adult} AND pclass != {3rd} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "97838137-a2ed-42a6-a9b9-06c5a7dfd1de",
+      "string": "IF pclass != {3rd} AND age = {child} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "child"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "e3a45d63-fd31-4d80-8ddc-01035dfa79d4",
+      "string": "IF pclass != {3rd} AND age = {child} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "child"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "5dd4137f-9594-40f9-9d66-858ab7425d4c",
+      "string": "IF pclass != {2nd} AND age = {adult} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "2nd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "b80b4efd-4c79-4ebe-9923-ff2ebdcc53c0",
+      "string": "IF pclass != {1st} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 549,
+        "n": 342,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "9fb25a18-d9c3-4a49-8040-51b03107408f",
+      "string": "IF pclass != {1st} AND pclass != {crew} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "crew"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 549,
+        "n": 342,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "10086d71-97c9-40e0-bb8b-7dee25ee5a1b",
+      "string": "IF pclass != {2nd} AND age = {adult} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "2nd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "3850f543-2beb-4b8d-963b-d086543ae052",
+      "string": "IF pclass != {1st} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 549,
+        "n": 342,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "1f2ba291-a6dd-4b08-9209-eba331165a0a",
+      "string": "IF pclass != {1st} AND sex = {female} AND pclass != {2nd} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "female"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "2nd"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 81,
+        "n": 233,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "a865dfaf-2145-48f5-b85b-4fc4b47178bf",
+      "string": "IF pclass != {2nd} AND age = {adult} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "2nd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "30beccf9-54c3-452a-8512-3a342f9d37df",
+      "string": "IF pclass != {1st} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 549,
+        "n": 342,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "b2b75d8a-4f8e-4e4f-88c8-10f81ef0810f",
+      "string": "IF pclass = {1st} AND sex = {female} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "female"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "3fd8e841-c36c-48ab-bdd3-6d91f038f879",
+      "string": "IF age = {adult} AND pclass != {3rd} AND sex = {male} AND pclass != {crew} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "male"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "crew"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "2815f611-6a4b-4310-b8ed-fc134e34c477",
+      "string": "IF pclass != {crew} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "crew"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 342,
+        "n": 549,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "d1b72017-6bd7-4276-8a09-1e14abc64893",
+      "string": "IF pclass = {1st} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "value": "1st"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "23dc95f2-6be4-4007-a0d9-e0e0cf252091",
+      "string": "IF pclass = {1st} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "value": "1st"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "8bc32419-abc4-43fd-867a-f6444182cda1",
+      "string": "IF pclass != {1st} AND sex = {female} AND pclass != {2nd} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "female"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "2nd"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 81,
+        "n": 233,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "dbbc6d0e-70dc-41ce-8fbb-933c01f6c8df",
+      "string": "IF pclass = {1st} AND sex = {female} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "female"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "c2b45879-c165-4080-807a-f4339385e77e",
+      "string": "IF age = {child} AND pclass != {3rd} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "child"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "3a580467-2233-4f99-83fd-3b0a4dc8dd8b",
+      "string": "IF pclass != {1st} AND age = {child} AND pclass != {2nd} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "child"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "2nd"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "51d68979-a4a8-46d9-ba21-eab9d5c70d87",
+      "string": "IF pclass != {2nd} AND age = {adult} AND pclass = {3rd} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "2nd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "value": "3rd"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "bfc21b79-f96f-4dfd-a4db-59a68b0ba4d8",
+      "string": "IF age = {adult} AND pclass != {3rd} AND sex = {male} AND pclass != {crew} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "male"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "crew"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "fc9081d7-d8e5-49f5-b715-1ee6f3fbb95e",
+      "string": "IF pclass = {1st} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "value": "1st"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "df846059-0d89-40a2-88e7-2299565ebb3b",
+      "string": "IF age = {child} AND pclass != {3rd} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "child"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "58146bc8-4d8b-4983-a9f4-9421e01b202b",
+      "string": "IF pclass = {1st} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "value": "1st"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "b94aafd3-5b43-42de-8a1b-99866a0174a5",
+      "string": "IF age = {adult} AND pclass != {3rd} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "712392f8-9af0-4496-9194-3c646f568872",
+      "string": "IF pclass != {3rd} AND age = {child} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "child"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "aa400988-1dcd-4475-b241-bb1f80ec4654",
+      "string": "IF pclass != {2nd} AND age = {adult} AND sex = {male} AND pclass != {1st} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "2nd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "male"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "597aa6db-48f2-4de9-8fa2-c8cb119cf521",
+      "string": "IF pclass != {1st} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 549,
+        "n": 342,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "548a09fc-4472-4033-a613-f7c2caf77f12",
+      "string": "IF pclass != {1st} AND pclass != {crew} AND sex = {male} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "crew"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "male"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 468,
+        "n": 109,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "be22739f-d7f5-48ea-8d78-c5072d127b5a",
+      "string": "IF pclass = {1st} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "value": "1st"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "a8452537-bce9-4d69-819a-67832b585023",
+      "string": "IF age = {child} AND pclass != {3rd} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "child"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "20c1e479-4976-4459-b542-bed2c3e0a448",
+      "string": "IF pclass != {1st} AND pclass != {crew} AND sex = {male} AND pclass = {2nd} AND age = {adult} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "crew"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "male"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "value": "2nd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "3a02756c-b4b1-4907-a721-56acfb012a32",
+      "string": "IF pclass != {3rd} AND age = {child} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "child"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "b2b6703e-3d7f-411c-97da-271ab9d6c99b",
+      "string": "IF pclass != {3rd} AND age = {child} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "child"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "c0cbc232-4577-492f-8d00-41be16ca13fd",
+      "string": "IF age = {adult} AND pclass = {3rd} AND sex = {male} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "value": "3rd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "male"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "aef458ef-4419-445b-8c1f-27e906c4f4d2",
+      "string": "IF pclass != {1st} AND pclass != {crew} AND sex = {male} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "crew"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "male"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 468,
+        "n": 109,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "9ed1c947-2663-4d8c-9ba8-ae8d68eb729d",
+      "string": "IF pclass = {3rd} AND age = {child} AND sex = {male} THEN class = no",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": false,
+            "value": "3rd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "child"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "male"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "no"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 549,
+        "N": 342
+      }
+    },
+    {
+      "uuid": "def00cff-f036-48da-a7eb-4c2f4dca9a87",
+      "string": "IF age = {child} AND pclass != {3rd} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "child"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "56c099b0-fa4d-43b2-8fea-7106ec08176f",
+      "string": "IF age = {child} AND pclass != {3rd} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "child"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "3rd"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    },
+    {
+      "uuid": "1be845eb-9c52-47ed-a5e6-218b0de6ed2c",
+      "string": "IF pclass != {2nd} AND age = {adult} AND sex = {male} AND pclass != {1st} THEN class = yes",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "2nd"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "value": "adult"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "value": "male"
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              1
+            ],
+            "negated": true,
+            "value": "1st"
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "yes"
+      },
+      "coverage": {
+        "p": 0,
+        "n": 0,
+        "P": 342,
+        "N": 549
+      }
+    }
+  ]
+}

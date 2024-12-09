@@ -1,7 +1,9 @@
 from typing import Any
 from typing import TypedDict
+import warnings
 
 import numpy as np
+import math
 from decision_rules.problem import ProblemTypes
 from imblearn.metrics import geometric_mean_score
 from sklearn.metrics import accuracy_score
@@ -27,6 +29,8 @@ class ClassificationGeneralPredictionIndicators(TypedDict):
     Recall_weighted: float
     Specificity: float
     Confusion_matrix: dict
+    Covered_by_prediction: int
+    Not_covered_by_prediction: int
 
 
 class ClassificationPredictionIndicatorsForClass(TypedDict):
@@ -79,25 +83,46 @@ def calculate_for_classification(
         ClassificationPredictionIndicators: A dictionary containing various
         prediction indicators, including indicators for individual classes.
     """
+    all_examples = len(y_true)
     if calculate_only_for_covered_examples:
         y_true, y_pred = _drop_uncovered_examples(y_true, y_pred)
+    covered_by_prediction = len(y_true)
+    not_covered_by_prediction = all_examples - covered_by_prediction
 
-    balanced_accuracy: float = balanced_accuracy_score(
-        y_true=y_true, y_pred=y_pred)
-    accuracy: float = accuracy_score(
-        y_true=y_true, y_pred=y_pred)
-    kappa: float = cohen_kappa_score(y_true, y_pred)
-    F1_macro: float = f1_score(y_true, y_pred, average='macro')
-    F1_micro: float = f1_score(y_true, y_pred, average='micro')
-    F1_weighted: float = f1_score(y_true, y_pred, average='weighted')
-    G_mean_macro: float = geometric_mean_score(y_true, y_pred, average='macro')
-    G_mean_micro: float = geometric_mean_score(y_true, y_pred, average='micro')
-    G_mean_weighted: float = geometric_mean_score(
-        y_true, y_pred, average='weighted')
-    Recall_macro: float = recall_score(y_true, y_pred, average='macro')
-    Recall_micro: float = recall_score(y_true, y_pred, average='micro')
-    Recall_weighted: float = recall_score(y_true, y_pred, average='weighted')
-    c_matrix: np.ndarray = confusion_matrix(y_true, y_pred)
+    with warnings.catch_warnings(record=True) as caught_warnings:
+        warnings.filterwarnings(
+            action="always",
+            category=UserWarning,
+            message=r"y_pred contains classes not in y_true",
+            module="sklearn.metrics"
+        )
+        balanced_accuracy: float = balanced_accuracy_score(
+            y_true=y_true, y_pred=y_pred)
+        accuracy: float = accuracy_score(
+            y_true=y_true, y_pred=y_pred)
+        kappa: float = cohen_kappa_score(y_true, y_pred)
+        F1_macro: float = f1_score(y_true, y_pred, average='macro')
+        F1_micro: float = f1_score(y_true, y_pred, average='micro')
+        F1_weighted: float = f1_score(y_true, y_pred, average='weighted')
+        G_mean_macro: float = geometric_mean_score(y_true, y_pred, average='macro')
+        G_mean_micro: float = geometric_mean_score(y_true, y_pred, average='micro')
+        G_mean_weighted: float = geometric_mean_score(
+            y_true, y_pred, average='weighted')
+        Recall_macro: float = recall_score(y_true, y_pred, average='macro', zero_division=0.0)
+        Recall_micro: float = recall_score(y_true, y_pred, average='micro', zero_division=0.0)
+        Recall_weighted: float = recall_score(y_true, y_pred, average='weighted', zero_division=0.0)
+        c_matrix: np.ndarray = confusion_matrix(y_true, y_pred)
+
+    for warning in caught_warnings:
+        # modify msg to include the reason for the warning
+        warnings.warn(
+            message=(
+                f"From sklearn.metrics: '{warning.message}'. This behavior could potentially "
+                "result from the default conclusion being turned off during prediction."
+            ),
+            category=warning.category,
+        )
+
     TN: int = c_matrix[0, 0]
     if c_matrix.shape[1] == 1:
         FP: int = 0
@@ -136,7 +161,9 @@ def calculate_for_classification(
             Recall_macro=Recall_macro,
             Recall_weighted=Recall_weighted,
             Specificity=specificity,
-            Confusion_matrix=general_confusion_matrix_dict
+            Confusion_matrix=general_confusion_matrix_dict,
+            Covered_by_prediction=covered_by_prediction,
+            Not_covered_by_prediction=not_covered_by_prediction,
         ),
         for_classes={
             cls: {key: value if isinstance(
@@ -162,17 +189,17 @@ def calculate_class_indicators_classification(
         ClassificationPredictionIndicatorsForClass: A dictionary representing
         the calculated prediction indicators for the class.
     """
-    TP: int = np.count_nonzero(np.logical_and(y_true == cls, y_pred == cls))
-    FN: int = np.count_nonzero(np.logical_and(y_true == cls, y_pred != cls))
-    FP: int = np.count_nonzero(np.logical_and(y_true != cls, y_pred == cls))
-    TN: int = np.count_nonzero(np.logical_and(y_true != cls, y_pred != cls))
+    TP: int = int(np.count_nonzero(np.logical_and(y_true == cls, y_pred == cls)))
+    FN: int = int(np.count_nonzero(np.logical_and(y_true == cls, y_pred != cls)))
+    FP: int = int(np.count_nonzero(np.logical_and(y_true != cls, y_pred == cls)))
+    TN: int = int(np.count_nonzero(np.logical_and(y_true != cls, y_pred != cls)))
     Precision: float = TP / (TP + FP) if (TP + FP) != 0 else 0
     Recall: float = TP / (TP + FN) if (TP + FN) != 0 else 0
     Specificity: float = TN / (TN + FP) if (TN + FP) != 0 else 0
     F1_score: float = 2 * (Precision * Recall) / \
         (Precision + Recall) if (Precision + Recall) != 0 else 0
-    G_mean: float = np.sqrt(Recall * Specificity)
-    MCC: float = (TP * TN - FP * FN) / np.sqrt((TP + FP) * (TP + FN) * (TN + FP) * (TN + FN)) if (TP + FP) * (TP + FN) * (
+    G_mean: float = math.sqrt(Recall * Specificity)
+    MCC: float = (TP * TN - FP * FN) / math.sqrt((TP + FP) * (TP + FN) * (TN + FP) * (TN + FN)) if (TP + FP) * (TP + FN) * (
         TN + FP) * (TN + FN) != 0 else 0
     PPV: float = TP / (TP + FP) if (TP + FP) != 0 else 0
     NPV: float = TN / (TN + FN) if (TN + FN) != 0 else 0

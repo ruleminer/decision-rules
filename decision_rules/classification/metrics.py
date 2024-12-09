@@ -6,12 +6,13 @@ from typing import Optional
 
 import numpy as np
 import pandas as pd
+from scipy.stats import fisher_exact
+from scipy.stats import hypergeom
+
 from decision_rules import measures
 from decision_rules.classification.rule import ClassificationRule
 from decision_rules.core.coverage import Coverage
 from decision_rules.core.metrics import AbstractRulesMetrics
-from scipy.stats import fisher_exact
-from scipy.stats import hypergeom
 
 
 class ClassificationRulesMetrics(AbstractRulesMetrics):
@@ -33,13 +34,22 @@ class ClassificationRulesMetrics(AbstractRulesMetrics):
             'n': lambda: int(rule.coverage.n),
             'P': lambda: int(rule.coverage.P),
             'N': lambda: int(rule.coverage.N),
+            'unique_in_pos': lambda: self._calculate_uniquely_covered_examples_in_pos_and_neg(
+                rule, X, y, covered_type='positive'
+            ),
+            'unique_in_neg': lambda: self._calculate_uniquely_covered_examples_in_pos_and_neg(
+                rule, X, y, covered_type='negative'
+            ),
             'p_unique': lambda: self._calculate_uniquely_covered_examples(
                 rule, X, y, covered_type='positive'
             ),
             'n_unique': lambda: self._calculate_uniquely_covered_examples(
                 rule, X, y, covered_type='negative'
             ),
-            'support': lambda: int(rule.coverage.p + rule.coverage.n),
+            'all_unique': lambda: self._calculate_uniquely_covered_examples(
+                rule, X, y, covered_type='all'
+            ),
+            'support': lambda: float((rule.coverage.p + rule.coverage.n) / (rule.coverage.P + rule.coverage.N)),
             'conditions_count': lambda: int(self._calculate_conditions_count(rule)),
             'precision': lambda: float(measures.precision(rule.coverage)),
             'coverage': lambda: float(measures.coverage(rule.coverage)),
@@ -102,6 +112,8 @@ class ClassificationRulesMetrics(AbstractRulesMetrics):
         coverage: Coverage = rule.coverage
         tn: int = coverage.N - coverage.n
         fn: int = coverage.P - coverage.p
+        if (fn + tn) == 0:
+            return float('nan')
         return tn / (fn + tn)
 
     def calculate_p_value(self, coverage: Optional[Coverage] = None, rule: Optional[ClassificationRule] = None, y: Optional[np.ndarray] = None) -> float:
@@ -119,10 +131,5 @@ class ClassificationRulesMetrics(AbstractRulesMetrics):
             # FN, TN
             [coverage.P - coverage.p, coverage.N - coverage.n]]
         )
-        M: int = confusion_matrix.sum()
-        n: int = confusion_matrix[0].sum()
-        N: int = confusion_matrix[:, 0].sum()
-        start, end = hypergeom.support(M, n, N)
-        hypergeom.pmf(np.arange(start, end+1), M, n, N)
         _, p_value = fisher_exact(confusion_matrix)
         return p_value

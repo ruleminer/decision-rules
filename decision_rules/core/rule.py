@@ -1,14 +1,15 @@
 """
 Contains abstract rule and conclusion classes.
 """
+
 from __future__ import annotations
 
-from abc import ABC
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 from typing import Any
 from uuid import uuid4
 
 import numpy as np
+
 from decision_rules.core.condition import AbstractCondition
 from decision_rules.core.coverage import Coverage
 
@@ -20,11 +21,7 @@ class AbstractConclusion(ABC):
         ABC (_type_): _description_
     """
 
-    def __init__(
-        self,
-        value: Any,
-        column_name: str
-    ) -> None:
+    def __init__(self, value: Any, column_name: str) -> None:
         self.value: Any = value
         self.column_name: str = column_name
 
@@ -54,7 +51,9 @@ class AbstractConclusion(ABC):
 
     @staticmethod
     @abstractmethod
-    def make_empty(column_name: str) -> AbstractConclusion:  # pylint: disable=invalid-name
+    def make_empty(
+        column_name: str,
+    ) -> AbstractConclusion:  # pylint: disable=invalid-name
         """Creates empty conclusion. Use it when you don't want to use default conclusion during
         prediction.
 
@@ -71,9 +70,9 @@ class AbstractConclusion(ABC):
 
     def __eq__(self, other: object) -> bool:
         return (
-            isinstance(other, AbstractConclusion) and
-            other.column_name == self.column_name and
-            other.value == self.value
+            isinstance(other, AbstractConclusion)
+            and other.column_name == self.column_name
+            and other.value == self.value
         )
 
     @abstractmethod
@@ -96,7 +95,7 @@ class AbstractRule(ABC):
         self,
         premise: AbstractCondition,
         conclusion: AbstractConclusion,
-        column_names: list[str]
+        column_names: list[str],
     ) -> None:
         """
         Args:
@@ -109,7 +108,7 @@ class AbstractRule(ABC):
         self.conclusion: AbstractConclusion = conclusion
         self.premise: AbstractCondition = premise
         self.coverage: Coverage = None
-        self.voting_weight: float = 1.0
+        self.voting_weight: float = None
 
     @property
     def uuid(self) -> str:
@@ -121,11 +120,7 @@ class AbstractRule(ABC):
         return self._uuid
 
     def calculate_coverage(
-        self,
-        X: np.ndarray,
-        y: np.ndarray = None,
-        P: int = None,
-        N: int = None
+        self, X: np.ndarray, y: np.ndarray = None, P: int = None, N: int = None
     ) -> Coverage:
         """
         Args:
@@ -145,11 +140,10 @@ class AbstractRule(ABC):
         """
         if y is None and (P is None or N is None):
             raise ValueError(
-                'Either "y" parameter or both "P" and "N" parameters should be passed' +
-                'to this method. All of them were None'
+                'Either "y" parameter or both "P" and "N" parameters should be passed'
+                + "to this method. All of them were None"
             )
-        P: int = y[self.conclusion.positives_mask(
-            y)].shape[0] if P is None else P
+        P: int = y[self.conclusion.positives_mask(y)].shape[0] if P is None else P
         N: int = y.shape[0] - P if y is not None else N
 
         with self.premise.cache(recursive=False):
@@ -221,23 +215,23 @@ class AbstractRule(ABC):
 
     def __eq__(self, other: object) -> bool:
         return (
-            isinstance(other, AbstractRule) and
-            self.conclusion == other.conclusion and
-            self.premise == other.premise
+            isinstance(other, AbstractRule)
+            and self.conclusion == other.conclusion
+            and self.premise == other.premise
         )
 
     def __str__(self, show_coverage: bool = True) -> str:
         condition_str: str = self.premise.to_string(self.column_names)
         if self.coverage is not None and show_coverage:
-            coverage_str: str = f' {str(self.coverage)}'
+            coverage_str: str = f" {str(self.coverage)}"
         else:
-            coverage_str = ''
-        return f'IF {condition_str} THEN {str(self.conclusion)}{coverage_str}'.strip()
+            coverage_str = ""
+        return f"IF {condition_str} THEN {str(self.conclusion)}{coverage_str}".strip()
 
     def get_coverage_dict(self) -> dict:
         return {
-            "p": int(self.coverage.p),
-            "n": int(self.coverage.n),
-            "P": int(self.coverage.P),
-            "N": int(self.coverage.N)
+            "p": self.coverage.p,
+            "n": self.coverage.n,
+            "P": self.coverage.P,
+            "N": self.coverage.N,
         }

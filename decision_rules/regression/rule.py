@@ -132,19 +132,20 @@ class RegressionRule(AbstractRule):
             N: int = None
     ) -> Coverage:
         covered_y: np.ndarray = y[self.premise.covered_mask(X)]
-        self.conclusion.train_covered_y_mean = np.mean(covered_y)
 
-        y_mean: float = np.mean(covered_y)
-        self.conclusion.train_covered_y_std: float = np.sqrt(
-            (np.sum(np.square(covered_y)) /
-             covered_y.shape[0]) - (y_mean * y_mean)
-        )
-        self.conclusion.train_covered_y_mean: float = np.mean(covered_y)
-        # np.min and max will fail badly on empty arrays
+        # np.min and max will fail badly on empty arrays, mean and std will raise warnings
         if covered_y.shape[0] == 0:
+            self.conclusion.train_covered_y_std: float = np.nan
+            self.conclusion.train_covered_y_mean: float = np.nan
             self.conclusion.train_covered_y_min: float = np.nan
             self.conclusion.train_covered_y_max: float = np.nan
         else:
+            y_mean: float = np.mean(covered_y)
+            self.conclusion.train_covered_y_std: float = np.sqrt(
+                (np.sum(np.square(covered_y)) /
+                covered_y.shape[0]) - (y_mean * y_mean)
+            )
+            self.conclusion.train_covered_y_mean: float = y_mean
             self.conclusion.train_covered_y_min: float = np.min(covered_y)
             self.conclusion.train_covered_y_max: float = np.max(covered_y)
 

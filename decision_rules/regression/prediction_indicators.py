@@ -1,3 +1,4 @@
+import math
 from typing import TypedDict
 
 import numpy as np
@@ -5,8 +6,8 @@ from decision_rules.problem import ProblemTypes
 from sklearn.metrics import max_error
 from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import mean_absolute_percentage_error
-from sklearn.metrics import mean_squared_error
 from sklearn.metrics import r2_score
+from sklearn.metrics import mean_squared_error
 
 # funky definition because of the field with invalid identifier name "R^2"
 RegressionGeneralPredictionIndicators = TypedDict(
@@ -18,7 +19,9 @@ RegressionGeneralPredictionIndicators = TypedDict(
         'rRMSE': float,
         'rMAE': float,
         'maxError': float,
-        'R^2': float
+        'R^2': float,
+        'Covered_by_prediction': int,
+        'Not_covered_by_prediction': int,
     }
 )
 
@@ -60,10 +63,13 @@ def calculate_for_regression(
         RegressionPredictionIndicators:  A dictionary containing
         prediction indicators
     """
+    all_examples = len(y_true)
     if calculate_only_for_covered_examples:
         y_true, y_pred = _drop_uncovered_examples(y_true, y_pred)
+    covered_by_prediction = len(y_true)
+    not_covered_by_prediction = all_examples - covered_by_prediction
 
-    RMSE = mean_squared_error(y_true, y_pred, squared=False)
+    RMSE = math.sqrt(mean_squared_error(y_true, y_pred))
     MAE = mean_absolute_error(y_true, y_pred)
     MAPE = mean_absolute_percentage_error(y_true, y_pred)
     rRMSE = RMSE / np.mean(y_true)
@@ -83,7 +89,9 @@ def calculate_for_regression(
             "rRMSE": rRMSE,
             "rMAE": rMAE,
             "maxError": maxError,
-            "R^2": R2
+            "R^2": R2,
+            "Covered_by_prediction": covered_by_prediction,
+            "Not_covered_by_prediction": not_covered_by_prediction,
         }),
         histogram=RegressionPredictionHistogram(
             max=max(errors),
