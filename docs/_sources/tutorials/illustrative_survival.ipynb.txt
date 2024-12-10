@@ -1,0 +1,1058 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Use rules in textual form"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "In this tutorial, we will load a set of survival rules in textual form and evaluate them"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Load and prepare dataset"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We begin by loading the boston-housing dataset into a DataFrame."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>donor_age</th>\n",
+       "      <th>donor_age_below_35</th>\n",
+       "      <th>donor_ABO</th>\n",
+       "      <th>donor_CMV</th>\n",
+       "      <th>recipient_age</th>\n",
+       "      <th>recipient_age_below_10</th>\n",
+       "      <th>recipient_age_int</th>\n",
+       "      <th>recipient_gender</th>\n",
+       "      <th>recipient_body_mass</th>\n",
+       "      <th>recipient_ABO</th>\n",
+       "      <th>...</th>\n",
+       "      <th>CD3_to_CD34_ratio</th>\n",
+       "      <th>ANC_recovery</th>\n",
+       "      <th>PLT_recovery</th>\n",
+       "      <th>acute_GvHD_II_III_IV</th>\n",
+       "      <th>acute_GvHD_III_IV</th>\n",
+       "      <th>time_to_acute_GvHD_III_IV</th>\n",
+       "      <th>extensive_chronic_GvHD</th>\n",
+       "      <th>relapse</th>\n",
+       "      <th>survival_time</th>\n",
+       "      <th>survival_status</th>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>index</th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "      <th></th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>22.830137</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>A</td>\n",
+       "      <td>present</td>\n",
+       "      <td>9.6</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>5_10</td>\n",
+       "      <td>male</td>\n",
+       "      <td>35.0</td>\n",
+       "      <td>A</td>\n",
+       "      <td>...</td>\n",
+       "      <td>1.338760</td>\n",
+       "      <td>19.0</td>\n",
+       "      <td>51.0</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>32.0</td>\n",
+       "      <td>no</td>\n",
+       "      <td>no</td>\n",
+       "      <td>999.0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>23.342466</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>B</td>\n",
+       "      <td>absent</td>\n",
+       "      <td>4.0</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>0_5</td>\n",
+       "      <td>male</td>\n",
+       "      <td>20.6</td>\n",
+       "      <td>B</td>\n",
+       "      <td>...</td>\n",
+       "      <td>11.078295</td>\n",
+       "      <td>16.0</td>\n",
+       "      <td>37.0</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>no</td>\n",
+       "      <td>1000000.0</td>\n",
+       "      <td>no</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>163.0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>26.394521</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>B</td>\n",
+       "      <td>absent</td>\n",
+       "      <td>6.6</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>5_10</td>\n",
+       "      <td>male</td>\n",
+       "      <td>23.4</td>\n",
+       "      <td>B</td>\n",
+       "      <td>...</td>\n",
+       "      <td>19.013230</td>\n",
+       "      <td>23.0</td>\n",
+       "      <td>20.0</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>no</td>\n",
+       "      <td>1000000.0</td>\n",
+       "      <td>no</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>435.0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>39.684932</td>\n",
+       "      <td>no</td>\n",
+       "      <td>A</td>\n",
+       "      <td>present</td>\n",
+       "      <td>18.1</td>\n",
+       "      <td>no</td>\n",
+       "      <td>10_20</td>\n",
+       "      <td>female</td>\n",
+       "      <td>50.0</td>\n",
+       "      <td>AB</td>\n",
+       "      <td>...</td>\n",
+       "      <td>29.481647</td>\n",
+       "      <td>23.0</td>\n",
+       "      <td>29.0</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>19.0</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>no</td>\n",
+       "      <td>53.0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>33.358904</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>A</td>\n",
+       "      <td>absent</td>\n",
+       "      <td>1.3</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>0_5</td>\n",
+       "      <td>female</td>\n",
+       "      <td>9.0</td>\n",
+       "      <td>AB</td>\n",
+       "      <td>...</td>\n",
+       "      <td>3.972255</td>\n",
+       "      <td>14.0</td>\n",
+       "      <td>14.0</td>\n",
+       "      <td>no</td>\n",
+       "      <td>no</td>\n",
+       "      <td>1000000.0</td>\n",
+       "      <td>no</td>\n",
+       "      <td>no</td>\n",
+       "      <td>2043.0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>...</th>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>182</th>\n",
+       "      <td>37.575342</td>\n",
+       "      <td>no</td>\n",
+       "      <td>A</td>\n",
+       "      <td>present</td>\n",
+       "      <td>12.9</td>\n",
+       "      <td>no</td>\n",
+       "      <td>10_20</td>\n",
+       "      <td>male</td>\n",
+       "      <td>44.0</td>\n",
+       "      <td>A</td>\n",
+       "      <td>...</td>\n",
+       "      <td>2.522750</td>\n",
+       "      <td>15.0</td>\n",
+       "      <td>22.0</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>16.0</td>\n",
+       "      <td>no</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>385.0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>183</th>\n",
+       "      <td>22.895890</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>A</td>\n",
+       "      <td>absent</td>\n",
+       "      <td>13.9</td>\n",
+       "      <td>no</td>\n",
+       "      <td>10_20</td>\n",
+       "      <td>female</td>\n",
+       "      <td>44.5</td>\n",
+       "      <td>0</td>\n",
+       "      <td>...</td>\n",
+       "      <td>1.038858</td>\n",
+       "      <td>12.0</td>\n",
+       "      <td>30.0</td>\n",
+       "      <td>no</td>\n",
+       "      <td>no</td>\n",
+       "      <td>1000000.0</td>\n",
+       "      <td>no</td>\n",
+       "      <td>no</td>\n",
+       "      <td>634.0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>184</th>\n",
+       "      <td>27.347945</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>A</td>\n",
+       "      <td>present</td>\n",
+       "      <td>10.4</td>\n",
+       "      <td>no</td>\n",
+       "      <td>10_20</td>\n",
+       "      <td>female</td>\n",
+       "      <td>33.0</td>\n",
+       "      <td>B</td>\n",
+       "      <td>...</td>\n",
+       "      <td>1.635559</td>\n",
+       "      <td>16.0</td>\n",
+       "      <td>16.0</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>no</td>\n",
+       "      <td>1000000.0</td>\n",
+       "      <td>no</td>\n",
+       "      <td>no</td>\n",
+       "      <td>1895.0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>185</th>\n",
+       "      <td>27.780822</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>A</td>\n",
+       "      <td>absent</td>\n",
+       "      <td>8.0</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>5_10</td>\n",
+       "      <td>male</td>\n",
+       "      <td>24.0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>...</td>\n",
+       "      <td>8.077770</td>\n",
+       "      <td>13.0</td>\n",
+       "      <td>14.0</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>54.0</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>no</td>\n",
+       "      <td>382.0</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>186</th>\n",
+       "      <td>55.553425</td>\n",
+       "      <td>no</td>\n",
+       "      <td>A</td>\n",
+       "      <td>present</td>\n",
+       "      <td>9.5</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>5_10</td>\n",
+       "      <td>male</td>\n",
+       "      <td>37.0</td>\n",
+       "      <td>AB</td>\n",
+       "      <td>...</td>\n",
+       "      <td>0.948135</td>\n",
+       "      <td>18.0</td>\n",
+       "      <td>20.0</td>\n",
+       "      <td>yes</td>\n",
+       "      <td>no</td>\n",
+       "      <td>1000000.0</td>\n",
+       "      <td>no</td>\n",
+       "      <td>no</td>\n",
+       "      <td>1109.0</td>\n",
+       "      <td>0</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "<p>187 rows × 37 columns</p>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "       donor_age donor_age_below_35 donor_ABO donor_CMV  recipient_age  \\\n",
+       "index                                                                    \n",
+       "0      22.830137                yes         A   present            9.6   \n",
+       "1      23.342466                yes         B    absent            4.0   \n",
+       "2      26.394521                yes         B    absent            6.6   \n",
+       "3      39.684932                 no         A   present           18.1   \n",
+       "4      33.358904                yes         A    absent            1.3   \n",
+       "...          ...                ...       ...       ...            ...   \n",
+       "182    37.575342                 no         A   present           12.9   \n",
+       "183    22.895890                yes         A    absent           13.9   \n",
+       "184    27.347945                yes         A   present           10.4   \n",
+       "185    27.780822                yes         A    absent            8.0   \n",
+       "186    55.553425                 no         A   present            9.5   \n",
+       "\n",
+       "      recipient_age_below_10 recipient_age_int recipient_gender  \\\n",
+       "index                                                             \n",
+       "0                        yes              5_10             male   \n",
+       "1                        yes               0_5             male   \n",
+       "2                        yes              5_10             male   \n",
+       "3                         no             10_20           female   \n",
+       "4                        yes               0_5           female   \n",
+       "...                      ...               ...              ...   \n",
+       "182                       no             10_20             male   \n",
+       "183                       no             10_20           female   \n",
+       "184                       no             10_20           female   \n",
+       "185                      yes              5_10             male   \n",
+       "186                      yes              5_10             male   \n",
+       "\n",
+       "       recipient_body_mass recipient_ABO  ... CD3_to_CD34_ratio ANC_recovery  \\\n",
+       "index                                     ...                                  \n",
+       "0                     35.0             A  ...          1.338760         19.0   \n",
+       "1                     20.6             B  ...         11.078295         16.0   \n",
+       "2                     23.4             B  ...         19.013230         23.0   \n",
+       "3                     50.0            AB  ...         29.481647         23.0   \n",
+       "4                      9.0            AB  ...          3.972255         14.0   \n",
+       "...                    ...           ...  ...               ...          ...   \n",
+       "182                   44.0             A  ...          2.522750         15.0   \n",
+       "183                   44.5             0  ...          1.038858         12.0   \n",
+       "184                   33.0             B  ...          1.635559         16.0   \n",
+       "185                   24.0             0  ...          8.077770         13.0   \n",
+       "186                   37.0            AB  ...          0.948135         18.0   \n",
+       "\n",
+       "      PLT_recovery acute_GvHD_II_III_IV acute_GvHD_III_IV  \\\n",
+       "index                                                       \n",
+       "0             51.0                  yes               yes   \n",
+       "1             37.0                  yes                no   \n",
+       "2             20.0                  yes                no   \n",
+       "3             29.0                  yes               yes   \n",
+       "4             14.0                   no                no   \n",
+       "...            ...                  ...               ...   \n",
+       "182           22.0                  yes               yes   \n",
+       "183           30.0                   no                no   \n",
+       "184           16.0                  yes                no   \n",
+       "185           14.0                  yes               yes   \n",
+       "186           20.0                  yes                no   \n",
+       "\n",
+       "      time_to_acute_GvHD_III_IV  extensive_chronic_GvHD relapse survival_time  \\\n",
+       "index                                                                           \n",
+       "0                          32.0                      no      no         999.0   \n",
+       "1                     1000000.0                      no     yes         163.0   \n",
+       "2                     1000000.0                      no     yes         435.0   \n",
+       "3                          19.0                     NaN      no          53.0   \n",
+       "4                     1000000.0                      no      no        2043.0   \n",
+       "...                         ...                     ...     ...           ...   \n",
+       "182                        16.0                      no     yes         385.0   \n",
+       "183                   1000000.0                      no      no         634.0   \n",
+       "184                   1000000.0                      no      no        1895.0   \n",
+       "185                        54.0                     yes      no         382.0   \n",
+       "186                   1000000.0                      no      no        1109.0   \n",
+       "\n",
+       "       survival_status  \n",
+       "index                   \n",
+       "0                    0  \n",
+       "1                    1  \n",
+       "2                    1  \n",
+       "3                    1  \n",
+       "4                    0  \n",
+       "...                ...  \n",
+       "182                  1  \n",
+       "183                  1  \n",
+       "184                  0  \n",
+       "185                  1  \n",
+       "186                  0  \n",
+       "\n",
+       "[187 rows x 37 columns]"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Columns:  ['donor_age' 'donor_age_below_35' 'donor_ABO' 'donor_CMV' 'recipient_age'\n",
+      " 'recipient_age_below_10' 'recipient_age_int' 'recipient_gender'\n",
+      " 'recipient_body_mass' 'recipient_ABO' 'recipient_rh' 'recipient_CMV'\n",
+      " 'disease' 'disease_group' 'gender_match' 'ABO_match' 'CMV_status'\n",
+      " 'HLA_match' 'HLA_mismatch' 'antigen' 'allel' 'HLA_group_1' 'risk_group'\n",
+      " 'stem_cell_source' 'tx_post_relapse' 'CD34_x1e6_per_kg' 'CD3_x1e8_per_kg'\n",
+      " 'CD3_to_CD34_ratio' 'ANC_recovery' 'PLT_recovery' 'acute_GvHD_II_III_IV'\n",
+      " 'acute_GvHD_III_IV' 'time_to_acute_GvHD_III_IV' 'extensive_chronic_GvHD'\n",
+      " 'relapse' 'survival_time' 'survival_status']\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "BONE_MARROW_PATH: str =(\n",
+    "    'https://raw.githubusercontent.com/ruleminer/decision-rules/'\n",
+    "    'refs/heads/docs/docs-src/source/tutorials/resources/bone-marrow.csv'\n",
+    ")\n",
+    "bone_marrow_df = pd.read_csv(BONE_MARROW_PATH, index_col='index')\n",
+    "display(bone_marrow_df)\n",
+    "print('Columns: ', bone_marrow_df.columns.values)\n",
+    "X = bone_marrow_df.drop(\"survival_status\", axis=1)\n",
+    "y = bone_marrow_df[\"survival_status\"].astype(str)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Load the ruleset in textual form"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Now we need to load the ruleset provided in a text file"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['IF recipient_age < 17.45 AND relapse = {no} AND donor_age < 45.16',\n",
+       " 'IF HLA_mismatch = {matched} AND gender_match = {other} AND recipient_rh = {plus} AND recipient_age >= 3.30 AND donor_age < 42.14 AND donor_age >= 33.34',\n",
+       " 'IF recipient_age < 18.00 AND recipient_body_mass < 69.00',\n",
+       " 'IF CD34_x1e6_per_kg < 8.14 AND donor_age >= 27.02 AND gender_match = {other} AND PLT_recovery >= 26.00 AND recipient_age >= 17.75']"
+      ]
+     },
+     "execution_count": 2,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "import urllib\n",
+    "\n",
+    "FILE_PATH: str = (\n",
+    "    'https://raw.githubusercontent.com/ruleminer/decision-rules/'\n",
+    "    'refs/heads/docs/docs-src/source/tutorials/resources/survival/text_ruleset.txt'\n",
+    ")\n",
+    "\n",
+    "with urllib.request.urlopen(FILE_PATH) as response:\n",
+    "    text_rules_model = response.read().decode('utf-8').splitlines()\n",
+    "\n",
+    "text_rules_model"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Convert the textual ruleset to a decision-rules model"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Now that the rules are loaded, we convert them into a decision-rules model using the TextRulesetFactory from decision-rules library. This conversion enables us to evaluate and modify the ruleset programmatically."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from decision_rules.ruleset_factories._factories.survival import TextRuleSetFactory \n",
+    "\n",
+    "factory = TextRuleSetFactory()\n",
+    "ruleset = factory.make(text_rules_model, X, y)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "After conversion in the decision-rules library, we can easilythe display the model"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "IF recipient_age < 17.45 AND relapse = {no} AND donor_age < 45.16 THEN survival_status = {inf} (p=134, n=0, P=187, N=0)\n",
+      "IF HLA_mismatch = {matched} AND gender_match = {other} AND recipient_rh = {plus} AND recipient_age >= 3.30 AND donor_age < 42.14 AND donor_age >= 33.34 THEN survival_status = {261.0} (p=35, n=0, P=187, N=0)\n",
+      "IF recipient_age < 18.00 AND recipient_body_mass < 69.00 THEN survival_status = {inf} (p=167, n=0, P=187, N=0)\n",
+      "IF CD34_x1e6_per_kg < 8.14 AND donor_age >= 27.02 AND gender_match = {other} AND PLT_recovery >= 26.00 AND recipient_age >= 17.75 THEN survival_status = {41.0} (p=6, n=0, P=187, N=0)\n"
+     ]
+    }
+   ],
+   "source": [
+    "for rule in ruleset.rules:\n",
+    "    print(rule)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Analyze the ruleset statistics"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can compute various metrics for the ruleset. This step involves retrieving statistical information about the rules."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We start by calculating and displaying the general characteristics of the ruleset"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "{'rules_count': 4, 'avg_conditions_count': 4.0, 'avg_precision': 1.0, 'avg_coverage': 0.46, 'total_conditions_count': 16}\n"
+     ]
+    }
+   ],
+   "source": [
+    "ruleset_stats = ruleset.calculate_ruleset_stats(X, y)\n",
+    "\n",
+    "print(ruleset_stats)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Now let's calculate metrics for each rule. To make the output more readable and easier to interpret, we will organize the metrics into a DataFrame"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Rule</th>\n",
+       "      <th>p</th>\n",
+       "      <th>n</th>\n",
+       "      <th>P</th>\n",
+       "      <th>N</th>\n",
+       "      <th>Unique</th>\n",
+       "      <th>Median Survival Time</th>\n",
+       "      <th>Median Survival Time CI Lower</th>\n",
+       "      <th>Median Survival Time CI Upper</th>\n",
+       "      <th>Events Count</th>\n",
+       "      <th>Censored Count</th>\n",
+       "      <th>Log Rank</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>r1</td>\n",
+       "      <td>134</td>\n",
+       "      <td>0</td>\n",
+       "      <td>187</td>\n",
+       "      <td>0</td>\n",
+       "      <td>4</td>\n",
+       "      <td>inf</td>\n",
+       "      <td>inf</td>\n",
+       "      <td>inf</td>\n",
+       "      <td>44</td>\n",
+       "      <td>90</td>\n",
+       "      <td>1.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>r2</td>\n",
+       "      <td>35</td>\n",
+       "      <td>0</td>\n",
+       "      <td>187</td>\n",
+       "      <td>0</td>\n",
+       "      <td>2</td>\n",
+       "      <td>261.0</td>\n",
+       "      <td>66.0</td>\n",
+       "      <td>996.0</td>\n",
+       "      <td>24</td>\n",
+       "      <td>11</td>\n",
+       "      <td>0.999369</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>r3</td>\n",
+       "      <td>167</td>\n",
+       "      <td>0</td>\n",
+       "      <td>187</td>\n",
+       "      <td>0</td>\n",
+       "      <td>31</td>\n",
+       "      <td>inf</td>\n",
+       "      <td>1243.0</td>\n",
+       "      <td>inf</td>\n",
+       "      <td>68</td>\n",
+       "      <td>99</td>\n",
+       "      <td>1.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>r4</td>\n",
+       "      <td>6</td>\n",
+       "      <td>0</td>\n",
+       "      <td>187</td>\n",
+       "      <td>0</td>\n",
+       "      <td>5</td>\n",
+       "      <td>41.0</td>\n",
+       "      <td>15.0</td>\n",
+       "      <td>202.0</td>\n",
+       "      <td>6</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1.000000</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "  Rule    p  n    P  N  Unique  Median Survival Time  \\\n",
+       "0   r1  134  0  187  0       4                   inf   \n",
+       "1   r2   35  0  187  0       2                 261.0   \n",
+       "2   r3  167  0  187  0      31                   inf   \n",
+       "3   r4    6  0  187  0       5                  41.0   \n",
+       "\n",
+       "   Median Survival Time CI Lower  Median Survival Time CI Upper  Events Count  \\\n",
+       "0                            inf                            inf            44   \n",
+       "1                           66.0                          996.0            24   \n",
+       "2                         1243.0                            inf            68   \n",
+       "3                           15.0                          202.0             6   \n",
+       "\n",
+       "   Censored Count  Log Rank  \n",
+       "0              90  1.000000  \n",
+       "1              11  0.999369  \n",
+       "2              99  1.000000  \n",
+       "3               0  1.000000  "
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "rule_metrics = ruleset.calculate_rules_metrics(X, y)\n",
+    "rule_metrics_df = pd.DataFrame([\n",
+    "    {\n",
+    "        'Rule': f\"r{i+1}\",\n",
+    "        'p': metrics['p'],\n",
+    "        'n': metrics['n'],\n",
+    "        'P': metrics['P'],\n",
+    "        'N': metrics['N'],\n",
+    "        'Unique': metrics['unique'],\n",
+    "        'Median Survival Time': metrics['median_survival_time'],\n",
+    "        'Median Survival Time CI Lower': metrics['median_survival_time_ci_lower'],\n",
+    "        'Median Survival Time CI Upper': metrics['median_survival_time_ci_upper'],\n",
+    "        'Events Count': metrics['events_count'],\n",
+    "        'Censored Count': metrics['censored_count'],\n",
+    "        'Log Rank': round(metrics['log_rank'], 6)\n",
+    "\n",
+    "    }\n",
+    "    for i, (_, metrics) in enumerate(rule_metrics.items())\n",
+    "])\n",
+    "display(rule_metrics_df)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can also calculate statistics like condition importances"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[{'condition': 'recipient_age < 18.00',\n",
+       "  'attributes': ['recipient_age'],\n",
+       "  'importance': 0.4999998982831645},\n",
+       " {'condition': 'recipient_body_mass < 69.00',\n",
+       "  'attributes': ['recipient_body_mass'],\n",
+       "  'importance': 0.49999961193118536},\n",
+       " {'condition': 'recipient_age < 17.45',\n",
+       "  'attributes': ['recipient_age'],\n",
+       "  'importance': 0.3332428003216177},\n",
+       " {'condition': 'relapse = {no}',\n",
+       "  'attributes': ['relapse'],\n",
+       "  'importance': 0.33297498018547933},\n",
+       " {'condition': 'donor_age < 45.16',\n",
+       "  'attributes': ['donor_age'],\n",
+       "  'importance': 0.3325001557811621},\n",
+       " {'condition': 'recipient_age >= 17.75',\n",
+       "  'attributes': ['recipient_age'],\n",
+       "  'importance': 0.2127866552730239},\n",
+       " {'condition': 'donor_age >= 33.34',\n",
+       "  'attributes': ['donor_age'],\n",
+       "  'importance': 0.20513529109132178},\n",
+       " {'condition': 'PLT_recovery >= 26.00',\n",
+       "  'attributes': ['PLT_recovery'],\n",
+       "  'importance': 0.19995047949703404},\n",
+       " {'condition': 'CD34_x1e6_per_kg < 8.14',\n",
+       "  'attributes': ['CD34_x1e6_per_kg'],\n",
+       "  'importance': 0.1971795671241863},\n",
+       " {'condition': 'recipient_rh = {plus}',\n",
+       "  'attributes': ['recipient_rh'],\n",
+       "  'importance': 0.1530846349015695},\n",
+       " {'condition': 'recipient_age >= 3.30',\n",
+       "  'attributes': ['recipient_age'],\n",
+       "  'importance': 0.13088032818287365},\n",
+       " {'condition': 'donor_age >= 27.02',\n",
+       "  'attributes': ['donor_age'],\n",
+       "  'importance': 0.06192325509108898},\n",
+       " {'condition': 'gender_match = {other}',\n",
+       "  'attributes': ['gender_match'],\n",
+       "  'importance': 0.05737520104853856},\n",
+       " {'condition': 'donor_age < 42.14',\n",
+       "  'attributes': ['donor_age'],\n",
+       "  'importance': 0.05514007434486943},\n",
+       " {'condition': 'HLA_mismatch = {matched}',\n",
+       "  'attributes': ['HLA_mismatch'],\n",
+       "  'importance': 0.0512592007733366}]"
+      ]
+     },
+     "execution_count": 7,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "condition_importances = ruleset.calculate_condition_importances(X, y)\n",
+    "condition_importances"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Modify the ruleset"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The decision-rule model can be easily edited. For example, we will create a new rule stating \"IF relapse = {yes} AND HLA_mismatch = {matched} THEN survival_status = 413\" and then add it to the ruleset."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "IF relapse = {yes} AND HLA_mismatch = {matched} THEN survival_status = {413}\n"
+     ]
+    }
+   ],
+   "source": [
+    "from decision_rules.survival.rule import SurvivalConclusion\n",
+    "from decision_rules.survival.rule import SurvivalRule\n",
+    "from decision_rules.conditions import NominalCondition, CompoundCondition\n",
+    "\n",
+    "rule = SurvivalRule(\n",
+    "    premise=CompoundCondition(\n",
+    "        subconditions=[\n",
+    "            NominalCondition(\n",
+    "                column_index=X.columns.get_loc('relapse'),\n",
+    "                value='yes'\n",
+    "            ),\n",
+    "            NominalCondition(\n",
+    "                column_index=X.columns.get_loc('HLA_mismatch'),\n",
+    "                value='matched'\n",
+    "            )\n",
+    "        ]\n",
+    "    ),\n",
+    "    conclusion=SurvivalConclusion(\n",
+    "        value=413,\n",
+    "        column_name='survival_status'\n",
+    "    ),\n",
+    "    column_names=X.columns.tolist(),\n",
+    "    survival_time_attr='survival_time'\n",
+    ")\n",
+    "print(rule)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "(p=24, n=0, P=187, N=0)\n"
+     ]
+    }
+   ],
+   "source": [
+    "rule.coverage = rule.calculate_coverage(X.to_numpy(), y.to_numpy())\n",
+    "print(rule.coverage)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Updated Ruleset:\n",
+      "IF recipient_age < 17.45 AND relapse = {no} AND donor_age < 45.16 THEN survival_status = {inf} (p=134, n=0, P=187, N=0)\n",
+      "IF HLA_mismatch = {matched} AND gender_match = {other} AND recipient_rh = {plus} AND recipient_age >= 3.30 AND donor_age < 42.14 AND donor_age >= 33.34 THEN survival_status = {261.0} (p=35, n=0, P=187, N=0)\n",
+      "IF recipient_age < 18.00 AND recipient_body_mass < 69.00 THEN survival_status = {inf} (p=167, n=0, P=187, N=0)\n",
+      "IF CD34_x1e6_per_kg < 8.14 AND donor_age >= 27.02 AND gender_match = {other} AND PLT_recovery >= 26.00 AND recipient_age >= 17.75 THEN survival_status = {41.0} (p=6, n=0, P=187, N=0)\n",
+      "IF relapse = {yes} AND HLA_mismatch = {matched} THEN survival_status = {413.0} (p=24, n=0, P=187, N=0)\n"
+     ]
+    }
+   ],
+   "source": [
+    "ruleset.rules.append(rule)\n",
+    "\n",
+    "print(\"Updated Ruleset:\")\n",
+    "for rule in ruleset.rules:\n",
+    "    print(rule)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Now let's remove from the rule \"IF HLA_mismatch = {matched} AND gender_match = {other} AND recipient_rh = {plus} AND recipient_age >= 3.30 AND donor_age < 42.14 AND donor_age >= 33.34 THEN survival_status = {261.0}\" the condition \"gender_match = {other}\""
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Updated Ruleset:\n",
+      "IF recipient_age < 17.45 AND relapse = {no} AND donor_age < 45.16 THEN survival_status = {inf} (p=134, n=0, P=187, N=0)\n",
+      "IF HLA_mismatch = {matched} AND recipient_rh = {plus} AND recipient_age >= 3.30 AND donor_age < 42.14 AND donor_age >= 33.34 THEN survival_status = {403.0} (p=41, n=0, P=187, N=0)\n",
+      "IF recipient_age < 18.00 AND recipient_body_mass < 69.00 THEN survival_status = {inf} (p=167, n=0, P=187, N=0)\n",
+      "IF CD34_x1e6_per_kg < 8.14 AND donor_age >= 27.02 AND gender_match = {other} AND PLT_recovery >= 26.00 AND recipient_age >= 17.75 THEN survival_status = {41.0} (p=6, n=0, P=187, N=0)\n",
+      "IF relapse = {yes} AND HLA_mismatch = {matched} THEN survival_status = {413.0} (p=24, n=0, P=187, N=0)\n"
+     ]
+    }
+   ],
+   "source": [
+    "condition_to_remove = ruleset.rules[1].premise.subconditions[1]\n",
+    "ruleset.rules[1].premise.subconditions.remove(condition_to_remove)\n",
+    "ruleset.rules[1].calculate_coverage(X.to_numpy(), y.to_numpy())\n",
+    "ruleset.rules[1].coverage = ruleset.rules[1].calculate_coverage(X.to_numpy(), y.to_numpy())\n",
+    "\n",
+    "print(\"Updated Ruleset:\")\n",
+    "for rule in ruleset.rules:\n",
+    "    print(rule)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can also modify the value of a condition. In the rule \"IF CD34_x1e6_per_kg < 8.14 AND donor_age >= 27.02 AND gender_match = {other} AND PLT_recovery >= 26.00 AND recipient_age >= 17.75 THEN survival_status = {41.0}\" we will update the condition \"donor_age >= 27.02\" to \"donor_age > 25.0\""
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Updated Ruleset:\n",
+      "IF recipient_age < 17.45 AND relapse = {no} AND donor_age < 45.16 THEN survival_status = {inf} (p=134, n=0, P=187, N=0)\n",
+      "IF HLA_mismatch = {matched} AND recipient_rh = {plus} AND recipient_age >= 3.30 AND donor_age < 42.14 AND donor_age >= 33.34 THEN survival_status = {403.0} (p=41, n=0, P=187, N=0)\n",
+      "IF recipient_age < 18.00 AND recipient_body_mass < 69.00 THEN survival_status = {inf} (p=167, n=0, P=187, N=0)\n",
+      "IF CD34_x1e6_per_kg < 8.14 AND donor_age > 25.00 AND gender_match = {other} AND PLT_recovery >= 26.00 AND recipient_age >= 17.75 THEN survival_status = {53.0} (p=7, n=0, P=187, N=0)\n",
+      "IF relapse = {yes} AND HLA_mismatch = {matched} THEN survival_status = {413.0} (p=24, n=0, P=187, N=0)\n"
+     ]
+    }
+   ],
+   "source": [
+    "ruleset.rules[3].premise.subconditions[1].left = 25.0\n",
+    "ruleset.rules[3].premise.subconditions[1].left_closed = False\n",
+    "ruleset.rules[3].coverage = ruleset.rules[3].calculate_coverage(X.to_numpy(), y.to_numpy())\n",
+    "\n",
+    "print(\"Updated Ruleset:\")\n",
+    "for rule in ruleset.rules:\n",
+    "    print(rule)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": ".venv",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.12.0"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}

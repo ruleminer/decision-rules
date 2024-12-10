@@ -1,0 +1,1010 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Use rules in textual form"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "In this tutorial, we will load a set of regression rules in textual form and evaluate them"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Load and prepare dataset"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We begin by loading the boston-housing dataset into a DataFrame."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>index</th>\n",
+       "      <th>CRIM</th>\n",
+       "      <th>ZN</th>\n",
+       "      <th>INDUS</th>\n",
+       "      <th>CHAS</th>\n",
+       "      <th>NOX</th>\n",
+       "      <th>RM</th>\n",
+       "      <th>AGE</th>\n",
+       "      <th>DIS</th>\n",
+       "      <th>RAD</th>\n",
+       "      <th>TAX</th>\n",
+       "      <th>PTRATIO</th>\n",
+       "      <th>B</th>\n",
+       "      <th>LSTAT</th>\n",
+       "      <th>MEDV</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>0</td>\n",
+       "      <td>0.00632</td>\n",
+       "      <td>18</td>\n",
+       "      <td>2.31</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0.538</td>\n",
+       "      <td>6.575</td>\n",
+       "      <td>65.2</td>\n",
+       "      <td>4.0900</td>\n",
+       "      <td>1</td>\n",
+       "      <td>296</td>\n",
+       "      <td>15</td>\n",
+       "      <td>396.90</td>\n",
+       "      <td>4.98</td>\n",
+       "      <td>24.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>1</td>\n",
+       "      <td>0.02731</td>\n",
+       "      <td>0</td>\n",
+       "      <td>7.07</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0.469</td>\n",
+       "      <td>6.421</td>\n",
+       "      <td>78.9</td>\n",
+       "      <td>4.9671</td>\n",
+       "      <td>2</td>\n",
+       "      <td>242</td>\n",
+       "      <td>17</td>\n",
+       "      <td>396.90</td>\n",
+       "      <td>9.14</td>\n",
+       "      <td>21.6</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>2</td>\n",
+       "      <td>0.02729</td>\n",
+       "      <td>0</td>\n",
+       "      <td>7.07</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0.469</td>\n",
+       "      <td>7.185</td>\n",
+       "      <td>61.1</td>\n",
+       "      <td>4.9671</td>\n",
+       "      <td>2</td>\n",
+       "      <td>242</td>\n",
+       "      <td>17</td>\n",
+       "      <td>392.83</td>\n",
+       "      <td>4.03</td>\n",
+       "      <td>34.7</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>3</td>\n",
+       "      <td>0.03237</td>\n",
+       "      <td>0</td>\n",
+       "      <td>2.18</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0.458</td>\n",
+       "      <td>6.998</td>\n",
+       "      <td>45.8</td>\n",
+       "      <td>6.0622</td>\n",
+       "      <td>3</td>\n",
+       "      <td>222</td>\n",
+       "      <td>18</td>\n",
+       "      <td>394.63</td>\n",
+       "      <td>2.94</td>\n",
+       "      <td>33.4</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>4</td>\n",
+       "      <td>0.06905</td>\n",
+       "      <td>0</td>\n",
+       "      <td>2.18</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0.458</td>\n",
+       "      <td>7.147</td>\n",
+       "      <td>54.2</td>\n",
+       "      <td>6.0622</td>\n",
+       "      <td>3</td>\n",
+       "      <td>222</td>\n",
+       "      <td>18</td>\n",
+       "      <td>396.90</td>\n",
+       "      <td>5.33</td>\n",
+       "      <td>36.2</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>...</th>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>501</th>\n",
+       "      <td>501</td>\n",
+       "      <td>0.06263</td>\n",
+       "      <td>0</td>\n",
+       "      <td>11.93</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0.573</td>\n",
+       "      <td>6.593</td>\n",
+       "      <td>69.1</td>\n",
+       "      <td>2.4786</td>\n",
+       "      <td>1</td>\n",
+       "      <td>273</td>\n",
+       "      <td>21</td>\n",
+       "      <td>391.99</td>\n",
+       "      <td>9.67</td>\n",
+       "      <td>22.4</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>502</th>\n",
+       "      <td>502</td>\n",
+       "      <td>0.04527</td>\n",
+       "      <td>0</td>\n",
+       "      <td>11.93</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0.573</td>\n",
+       "      <td>6.120</td>\n",
+       "      <td>76.7</td>\n",
+       "      <td>2.2875</td>\n",
+       "      <td>1</td>\n",
+       "      <td>273</td>\n",
+       "      <td>21</td>\n",
+       "      <td>396.90</td>\n",
+       "      <td>9.08</td>\n",
+       "      <td>20.6</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>503</th>\n",
+       "      <td>503</td>\n",
+       "      <td>0.06076</td>\n",
+       "      <td>0</td>\n",
+       "      <td>11.93</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0.573</td>\n",
+       "      <td>6.976</td>\n",
+       "      <td>91.0</td>\n",
+       "      <td>2.1675</td>\n",
+       "      <td>1</td>\n",
+       "      <td>273</td>\n",
+       "      <td>21</td>\n",
+       "      <td>396.90</td>\n",
+       "      <td>5.64</td>\n",
+       "      <td>23.9</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>504</th>\n",
+       "      <td>504</td>\n",
+       "      <td>0.10959</td>\n",
+       "      <td>0</td>\n",
+       "      <td>11.93</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0.573</td>\n",
+       "      <td>6.794</td>\n",
+       "      <td>89.3</td>\n",
+       "      <td>2.3889</td>\n",
+       "      <td>1</td>\n",
+       "      <td>273</td>\n",
+       "      <td>21</td>\n",
+       "      <td>393.45</td>\n",
+       "      <td>6.48</td>\n",
+       "      <td>22.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>505</th>\n",
+       "      <td>505</td>\n",
+       "      <td>0.04741</td>\n",
+       "      <td>0</td>\n",
+       "      <td>11.93</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0.573</td>\n",
+       "      <td>6.030</td>\n",
+       "      <td>80.8</td>\n",
+       "      <td>2.5050</td>\n",
+       "      <td>1</td>\n",
+       "      <td>273</td>\n",
+       "      <td>21</td>\n",
+       "      <td>396.90</td>\n",
+       "      <td>7.88</td>\n",
+       "      <td>11.9</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "<p>506 rows × 15 columns</p>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "     index     CRIM  ZN  INDUS  CHAS    NOX     RM   AGE     DIS  RAD  TAX  \\\n",
+       "0        0  0.00632  18   2.31     0  0.538  6.575  65.2  4.0900    1  296   \n",
+       "1        1  0.02731   0   7.07     0  0.469  6.421  78.9  4.9671    2  242   \n",
+       "2        2  0.02729   0   7.07     0  0.469  7.185  61.1  4.9671    2  242   \n",
+       "3        3  0.03237   0   2.18     0  0.458  6.998  45.8  6.0622    3  222   \n",
+       "4        4  0.06905   0   2.18     0  0.458  7.147  54.2  6.0622    3  222   \n",
+       "..     ...      ...  ..    ...   ...    ...    ...   ...     ...  ...  ...   \n",
+       "501    501  0.06263   0  11.93     0  0.573  6.593  69.1  2.4786    1  273   \n",
+       "502    502  0.04527   0  11.93     0  0.573  6.120  76.7  2.2875    1  273   \n",
+       "503    503  0.06076   0  11.93     0  0.573  6.976  91.0  2.1675    1  273   \n",
+       "504    504  0.10959   0  11.93     0  0.573  6.794  89.3  2.3889    1  273   \n",
+       "505    505  0.04741   0  11.93     0  0.573  6.030  80.8  2.5050    1  273   \n",
+       "\n",
+       "     PTRATIO       B  LSTAT  MEDV  \n",
+       "0         15  396.90   4.98  24.0  \n",
+       "1         17  396.90   9.14  21.6  \n",
+       "2         17  392.83   4.03  34.7  \n",
+       "3         18  394.63   2.94  33.4  \n",
+       "4         18  396.90   5.33  36.2  \n",
+       "..       ...     ...    ...   ...  \n",
+       "501       21  391.99   9.67  22.4  \n",
+       "502       21  396.90   9.08  20.6  \n",
+       "503       21  396.90   5.64  23.9  \n",
+       "504       21  393.45   6.48  22.0  \n",
+       "505       21  396.90   7.88  11.9  \n",
+       "\n",
+       "[506 rows x 15 columns]"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Columns:  ['index' 'CRIM' 'ZN' 'INDUS' 'CHAS' 'NOX' 'RM' 'AGE' 'DIS' 'RAD' 'TAX'\n",
+      " 'PTRATIO' 'B' 'LSTAT' 'MEDV']\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "BOSTON_HOUSING_PATH = (\n",
+    "    'https://raw.githubusercontent.com/ruleminer/decision-rules/'\n",
+    "    'refs/heads/docs/docs-src/source/tutorials/resources/boston-housing.csv'\n",
+    ")\n",
+    "boston_housing_df = pd.read_csv(BOSTON_HOUSING_PATH)\n",
+    "display(boston_housing_df)\n",
+    "print('Columns: ', boston_housing_df.columns.values)\n",
+    "X = boston_housing_df.drop(\"MEDV\", axis=1)\n",
+    "y = boston_housing_df[\"MEDV\"]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Load the ruleset in textual form"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Now we need to load the ruleset provided in a text file"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['IF AGE >= 80.05 AND RM < 7.20 AND LSTAT >= 14.74 AND CRIM >= 1.06',\n",
+       " 'IF LSTAT >= 14.43 AND AGE >= 77.95 AND CRIM >= 0.24',\n",
+       " 'IF TAX >= 300.00 AND CRIM < 15.72 AND RM >= 5.06 AND LSTAT < 32.00 AND LSTAT >= 14.73',\n",
+       " 'IF RM < 6.45 AND RM >= 5.75 AND AGE < 91.05 AND LSTAT < 14.16',\n",
+       " 'IF RM < 6.59 AND B >= 198.44 AND LSTAT < 16.12 AND RM >= 5.64 AND DIS >= 1.15']"
+      ]
+     },
+     "execution_count": 25,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "import urllib\n",
+    "\n",
+    "FILE_PATH: str = (\n",
+    "    'https://raw.githubusercontent.com/ruleminer/decision-rules/'\n",
+    "    'refs/heads/docs/docs-src/source/tutorials/resources/regression/text_ruleset.txt'\n",
+    ")\n",
+    "\n",
+    "with urllib.request.urlopen(FILE_PATH) as response:\n",
+    "    text_rules_model = response.read().decode('utf-8').splitlines()\n",
+    "\n",
+    "text_rules_model"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Convert the textual ruleset to a decision-rules model"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Now that the rules are loaded, we convert them into a decision-rules model using the TextRulesetFactory from decision-rules library. This conversion enables us to evaluate and modify the ruleset programmatically."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 26,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from decision_rules.ruleset_factories._factories.regression import TextRuleSetFactory \n",
+    "\n",
+    "factory = TextRuleSetFactory()\n",
+    "ruleset = factory.make(text_rules_model, X, y)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "After conversion in the decision-rules library, we can easilythe display the model"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 27,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "IF AGE >= 80.05 AND RM < 7.20 AND LSTAT >= 14.74 AND CRIM >= 1.06 THEN MEDV = {13.13} [9.41, 16.84] (p=72, n=31, P=105, N=401)\n",
+      "IF LSTAT >= 14.43 AND AGE >= 77.95 AND CRIM >= 0.24 THEN MEDV = {14.08} [10.07, 18.10] (p=100, n=36, P=125, N=381)\n",
+      "IF TAX >= 300.00 AND CRIM < 15.72 AND RM >= 5.06 AND LSTAT < 32.00 AND LSTAT >= 14.73 THEN MEDV = {15.23} [11.46, 19.00] (p=89, n=32, P=139, N=367)\n",
+      "IF RM < 6.45 AND RM >= 5.75 AND AGE < 91.05 AND LSTAT < 14.16 THEN MEDV = {22.05} [18.49, 25.62] (p=129, n=11, P=227, N=279)\n",
+      "IF RM < 6.59 AND B >= 198.44 AND LSTAT < 16.12 AND RM >= 5.64 AND DIS >= 1.15 THEN MEDV = {21.75} [18.05, 25.45] (p=184, n=33, P=236, N=270)\n"
+     ]
+    }
+   ],
+   "source": [
+    "for rule in ruleset.rules:\n",
+    "    print(rule)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Analyze the ruleset statistics"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can compute various metrics for the ruleset. This step involves retrieving statistical information about the rules."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We start by calculating and displaying the general characteristics of the ruleset"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "{'rules_count': 5, 'avg_conditions_count': 4.2, 'avg_precision': 0.79, 'avg_coverage': 0.69, 'total_conditions_count': 21}\n"
+     ]
+    }
+   ],
+   "source": [
+    "ruleset_stats = ruleset.calculate_ruleset_stats(X, y)\n",
+    "print(ruleset_stats)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Now let's calculate metrics for each rule. To make the output more readable and easier to interpret, we will organize the metrics into a DataFrame"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 29,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Rule</th>\n",
+       "      <th>p</th>\n",
+       "      <th>n</th>\n",
+       "      <th>P</th>\n",
+       "      <th>N</th>\n",
+       "      <th>unique_in_pos</th>\n",
+       "      <th>unique_in_neg</th>\n",
+       "      <th>p_unique</th>\n",
+       "      <th>n_unique</th>\n",
+       "      <th>all_unique</th>\n",
+       "      <th>support</th>\n",
+       "      <th>conditions_count</th>\n",
+       "      <th>y_covered_avg</th>\n",
+       "      <th>y_covered_median</th>\n",
+       "      <th>y_covered_min</th>\n",
+       "      <th>y_covered_max</th>\n",
+       "      <th>mae</th>\n",
+       "      <th>rmse</th>\n",
+       "      <th>mape</th>\n",
+       "      <th>p-value</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>r1</td>\n",
+       "      <td>72</td>\n",
+       "      <td>31</td>\n",
+       "      <td>105</td>\n",
+       "      <td>401</td>\n",
+       "      <td>3</td>\n",
+       "      <td>6</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0.204</td>\n",
+       "      <td>4</td>\n",
+       "      <td>13.128</td>\n",
+       "      <td>13.40</td>\n",
+       "      <td>5.0</td>\n",
+       "      <td>27.5</td>\n",
+       "      <td>10.096</td>\n",
+       "      <td>13.148</td>\n",
+       "      <td>0.398</td>\n",
+       "      <td>0.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>r2</td>\n",
+       "      <td>100</td>\n",
+       "      <td>36</td>\n",
+       "      <td>125</td>\n",
+       "      <td>381</td>\n",
+       "      <td>10</td>\n",
+       "      <td>7</td>\n",
+       "      <td>3</td>\n",
+       "      <td>3</td>\n",
+       "      <td>6</td>\n",
+       "      <td>0.269</td>\n",
+       "      <td>3</td>\n",
+       "      <td>14.081</td>\n",
+       "      <td>13.95</td>\n",
+       "      <td>5.0</td>\n",
+       "      <td>30.7</td>\n",
+       "      <td>9.397</td>\n",
+       "      <td>12.484</td>\n",
+       "      <td>0.374</td>\n",
+       "      <td>0.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>r3</td>\n",
+       "      <td>89</td>\n",
+       "      <td>32</td>\n",
+       "      <td>139</td>\n",
+       "      <td>367</td>\n",
+       "      <td>13</td>\n",
+       "      <td>18</td>\n",
+       "      <td>10</td>\n",
+       "      <td>11</td>\n",
+       "      <td>21</td>\n",
+       "      <td>0.239</td>\n",
+       "      <td>5</td>\n",
+       "      <td>15.233</td>\n",
+       "      <td>14.90</td>\n",
+       "      <td>6.3</td>\n",
+       "      <td>27.5</td>\n",
+       "      <td>8.650</td>\n",
+       "      <td>11.735</td>\n",
+       "      <td>0.351</td>\n",
+       "      <td>0.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>r4</td>\n",
+       "      <td>129</td>\n",
+       "      <td>11</td>\n",
+       "      <td>227</td>\n",
+       "      <td>279</td>\n",
+       "      <td>1</td>\n",
+       "      <td>4</td>\n",
+       "      <td>1</td>\n",
+       "      <td>2</td>\n",
+       "      <td>3</td>\n",
+       "      <td>0.277</td>\n",
+       "      <td>4</td>\n",
+       "      <td>22.053</td>\n",
+       "      <td>21.70</td>\n",
+       "      <td>11.9</td>\n",
+       "      <td>50.0</td>\n",
+       "      <td>6.577</td>\n",
+       "      <td>9.201</td>\n",
+       "      <td>0.352</td>\n",
+       "      <td>0.0</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>r5</td>\n",
+       "      <td>184</td>\n",
+       "      <td>33</td>\n",
+       "      <td>236</td>\n",
+       "      <td>270</td>\n",
+       "      <td>53</td>\n",
+       "      <td>25</td>\n",
+       "      <td>43</td>\n",
+       "      <td>15</td>\n",
+       "      <td>58</td>\n",
+       "      <td>0.429</td>\n",
+       "      <td>5</td>\n",
+       "      <td>21.747</td>\n",
+       "      <td>21.40</td>\n",
+       "      <td>11.9</td>\n",
+       "      <td>50.0</td>\n",
+       "      <td>6.549</td>\n",
+       "      <td>9.222</td>\n",
+       "      <td>0.346</td>\n",
+       "      <td>0.0</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "  Rule    p   n    P    N  unique_in_pos  unique_in_neg  p_unique  n_unique  \\\n",
+       "0   r1   72  31  105  401              3              6         0         0   \n",
+       "1   r2  100  36  125  381             10              7         3         3   \n",
+       "2   r3   89  32  139  367             13             18        10        11   \n",
+       "3   r4  129  11  227  279              1              4         1         2   \n",
+       "4   r5  184  33  236  270             53             25        43        15   \n",
+       "\n",
+       "   all_unique  support  conditions_count  y_covered_avg  y_covered_median  \\\n",
+       "0           0    0.204                 4         13.128             13.40   \n",
+       "1           6    0.269                 3         14.081             13.95   \n",
+       "2          21    0.239                 5         15.233             14.90   \n",
+       "3           3    0.277                 4         22.053             21.70   \n",
+       "4          58    0.429                 5         21.747             21.40   \n",
+       "\n",
+       "   y_covered_min  y_covered_max     mae    rmse   mape  p-value  \n",
+       "0            5.0           27.5  10.096  13.148  0.398      0.0  \n",
+       "1            5.0           30.7   9.397  12.484  0.374      0.0  \n",
+       "2            6.3           27.5   8.650  11.735  0.351      0.0  \n",
+       "3           11.9           50.0   6.577   9.201  0.352      0.0  \n",
+       "4           11.9           50.0   6.549   9.222  0.346      0.0  "
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "rule_metrics = ruleset.calculate_rules_metrics(X, y)\n",
+    "rule_metrics_df = pd.DataFrame([\n",
+    "    {\n",
+    "        'Rule': f\"r{i+1}\",\n",
+    "        'p': metrics['p'],\n",
+    "        'n': metrics['n'],\n",
+    "        'P': metrics['P'],\n",
+    "        'N': metrics['N'],\n",
+    "        'unique_in_pos': metrics['unique_in_pos'],\n",
+    "        'unique_in_neg': metrics['unique_in_neg'],\n",
+    "        'p_unique': metrics['p_unique'],\n",
+    "        'n_unique': metrics['n_unique'],\n",
+    "        'all_unique': metrics['all_unique'],\n",
+    "        'support':round(metrics['support'],3),\n",
+    "        'conditions_count': metrics['conditions_count'],\n",
+    "        'y_covered_avg': round(metrics['y_covered_avg'],3),\n",
+    "        'y_covered_median': round(metrics['y_covered_median'],3),\n",
+    "        'y_covered_min': metrics['y_covered_min'],\n",
+    "        'y_covered_max': metrics['y_covered_max'],\n",
+    "        'mae': round(metrics['mae'],3),\n",
+    "        'rmse': round(metrics['rmse'],3),\n",
+    "        'mape': round(metrics['mape'],3),\n",
+    "        'p-value': round(metrics['p-value'],3)\n",
+    "\n",
+    "    }\n",
+    "    for i, (_, metrics) in enumerate(rule_metrics.items())\n",
+    "])\n",
+    "display(rule_metrics_df)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can also calculate statistics like condition importances"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 30,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[{'condition': 'LSTAT >= 14.43',\n",
+       "  'attributes': ['LSTAT'],\n",
+       "  'importance': 0.32767459373187646},\n",
+       " {'condition': 'LSTAT >= 14.74',\n",
+       "  'attributes': ['LSTAT'],\n",
+       "  'importance': 0.16689142510435745},\n",
+       " {'condition': 'LSTAT >= 14.73',\n",
+       "  'attributes': ['LSTAT'],\n",
+       "  'importance': 0.15660227492592682},\n",
+       " {'condition': 'RM < 6.45',\n",
+       "  'attributes': ['RM'],\n",
+       "  'importance': 0.1464841812280583},\n",
+       " {'condition': 'LSTAT < 14.16',\n",
+       "  'attributes': ['LSTAT'],\n",
+       "  'importance': 0.14473028867871895},\n",
+       " {'condition': 'RM < 6.59',\n",
+       "  'attributes': ['RM'],\n",
+       "  'importance': 0.1174108026185524},\n",
+       " {'condition': 'LSTAT < 16.12',\n",
+       "  'attributes': ['LSTAT'],\n",
+       "  'importance': 0.1090749271904711},\n",
+       " {'condition': 'AGE < 91.05',\n",
+       "  'attributes': ['AGE'],\n",
+       "  'importance': 0.08332534928637518},\n",
+       " {'condition': 'CRIM >= 1.06',\n",
+       "  'attributes': ['CRIM'],\n",
+       "  'importance': 0.07594939786770724},\n",
+       " {'condition': 'AGE >= 77.95',\n",
+       "  'attributes': ['AGE'],\n",
+       "  'importance': 0.051180099750744834},\n",
+       " {'condition': 'RM < 7.20',\n",
+       "  'attributes': ['RM'],\n",
+       "  'importance': 0.04416566101660634},\n",
+       " {'condition': 'AGE >= 80.05',\n",
+       "  'attributes': ['AGE'],\n",
+       "  'importance': 0.03676886132555876},\n",
+       " {'condition': 'CRIM < 15.72',\n",
+       "  'attributes': ['CRIM'],\n",
+       "  'importance': 0.030665695828604723},\n",
+       " {'condition': 'RM >= 5.75',\n",
+       "  'attributes': ['RM'],\n",
+       "  'importance': 0.030479048373156292},\n",
+       " {'condition': 'B >= 198.44',\n",
+       "  'attributes': ['B'],\n",
+       "  'importance': 0.028619349699875198},\n",
+       " {'condition': 'RM >= 5.64',\n",
+       "  'attributes': ['RM'],\n",
+       "  'importance': 0.02736509389238543},\n",
+       " {'condition': 'TAX >= 300.00',\n",
+       "  'attributes': ['TAX'],\n",
+       "  'importance': 0.02714594443889693},\n",
+       " {'condition': 'CRIM >= 0.24',\n",
+       "  'attributes': ['CRIM'],\n",
+       "  'importance': 0.020564473495815715},\n",
+       " {'condition': 'RM >= 5.06',\n",
+       "  'attributes': ['RM'],\n",
+       "  'importance': 0.01044814267795384},\n",
+       " {'condition': 'LSTAT < 32.00',\n",
+       "  'attributes': ['LSTAT'],\n",
+       "  'importance': 0.003366620183006248},\n",
+       " {'condition': 'DIS >= 1.15',\n",
+       "  'attributes': ['DIS'],\n",
+       "  'importance': 0.003149404172213438}]"
+      ]
+     },
+     "execution_count": 30,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "from decision_rules.measures import c2\n",
+    "condition_importances = ruleset.calculate_condition_importances(X, y, measure=c2)\n",
+    "condition_importances"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Modify the ruleset"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The decision-rule model can be easily edited. For example, we will create a new rule stating \"IF RM < 6.95 AND TAX >= 219.00 AND LSTAT < 14.17 THEN MEDV = 23.35\" and then add it to the ruleset."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 31,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "IF RM < 6.95 AND TAX >= 219.00 AND LSTAT < 14.17 THEN MEDV = {23.35} [20.00, 25.00]\n"
+     ]
+    }
+   ],
+   "source": [
+    "from decision_rules.regression.rule import RegressionConclusion\n",
+    "from decision_rules.regression.rule import RegressionRule\n",
+    "from decision_rules.conditions import ElementaryCondition, CompoundCondition\n",
+    "\n",
+    "rule = RegressionRule(\n",
+    "    premise=CompoundCondition(\n",
+    "        subconditions=[\n",
+    "            # Condition:  RM < 6.95\n",
+    "            ElementaryCondition(\n",
+    "                column_index=X.columns.get_loc('RM'),\n",
+    "                left=float('-inf'),\n",
+    "                right=6.95,\n",
+    "                left_closed=False,\n",
+    "                right_closed=False\n",
+    "            ),\n",
+    "            # Condition: TAX >= 219.00\n",
+    "            ElementaryCondition(\n",
+    "                column_index=X.columns.get_loc('TAX'),\n",
+    "                left=219.00,\n",
+    "                right=float('inf'),\n",
+    "                left_closed=True,\n",
+    "                right_closed=False\n",
+    "            ),\n",
+    "            # Condition: LSTAT < 14.17\n",
+    "            ElementaryCondition(\n",
+    "                column_index=X.columns.get_loc('LSTAT'),\n",
+    "                left=float('-inf'),\n",
+    "                right=14.17,\n",
+    "                left_closed=False,\n",
+    "                right_closed=False\n",
+    "            ),\n",
+    "        ]\n",
+    "    ),\n",
+    "    conclusion=RegressionConclusion(\n",
+    "        value=23.35, \n",
+    "        column_name='MEDV',\n",
+    "        low = 20.0,\n",
+    "        high = 25.0 \n",
+    "    ),\n",
+    "    column_names=X.columns,\n",
+    ")\n",
+    "print(rule)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 32,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "(p=203, n=42, P=255, N=251)\n"
+     ]
+    }
+   ],
+   "source": [
+    "rule.coverage = rule.calculate_coverage(X.to_numpy(), y.to_numpy())\n",
+    "print(rule.coverage)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 33,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Updated Ruleset:\n",
+      "IF AGE >= 80.05 AND RM < 7.20 AND LSTAT >= 14.74 AND CRIM >= 1.06 THEN MEDV = {13.13} [9.41, 16.84] (p=72, n=31, P=105, N=401)\n",
+      "IF LSTAT >= 14.43 AND AGE >= 77.95 AND CRIM >= 0.24 THEN MEDV = {14.08} [10.07, 18.10] (p=100, n=36, P=125, N=381)\n",
+      "IF TAX >= 300.00 AND CRIM < 15.72 AND RM >= 5.06 AND LSTAT < 32.00 AND LSTAT >= 14.73 THEN MEDV = {15.23} [11.46, 19.00] (p=89, n=32, P=139, N=367)\n",
+      "IF RM < 6.45 AND RM >= 5.75 AND AGE < 91.05 AND LSTAT < 14.16 THEN MEDV = {22.05} [18.49, 25.62] (p=129, n=11, P=227, N=279)\n",
+      "IF RM < 6.59 AND B >= 198.44 AND LSTAT < 16.12 AND RM >= 5.64 AND DIS >= 1.15 THEN MEDV = {21.75} [18.05, 25.45] (p=184, n=33, P=236, N=270)\n",
+      "IF RM < 6.95 AND TAX >= 219.00 AND LSTAT < 14.17 THEN MEDV = {23.28} [18.17, 28.39] (p=203, n=42, P=255, N=251)\n"
+     ]
+    }
+   ],
+   "source": [
+    "ruleset.rules.append(rule)\n",
+    "\n",
+    "print(\"Updated Ruleset:\")\n",
+    "for rule in ruleset.rules:\n",
+    "    print(rule)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Now let's remove from the rule \"IF LSTAT >= 14.43 AND AGE >= 77.95 AND CRIM >= 0.24 THEN MEDV = {14.08} [10.07, 18.10]\" the condition \"AGE >= 77.95\""
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 34,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Updated Ruleset:\n",
+      "IF AGE >= 80.05 AND RM < 7.20 AND LSTAT >= 14.74 AND CRIM >= 1.06 THEN MEDV = {13.13} [9.41, 16.84] (p=72, n=31, P=105, N=401)\n",
+      "IF LSTAT >= 14.43 AND CRIM >= 0.24 THEN MEDV = {14.22} [10.01, 18.44] (p=105, n=41, P=134, N=372)\n",
+      "IF TAX >= 300.00 AND CRIM < 15.72 AND RM >= 5.06 AND LSTAT < 32.00 AND LSTAT >= 14.73 THEN MEDV = {15.23} [11.46, 19.00] (p=89, n=32, P=139, N=367)\n",
+      "IF RM < 6.45 AND RM >= 5.75 AND AGE < 91.05 AND LSTAT < 14.16 THEN MEDV = {22.05} [18.49, 25.62] (p=129, n=11, P=227, N=279)\n",
+      "IF RM < 6.59 AND B >= 198.44 AND LSTAT < 16.12 AND RM >= 5.64 AND DIS >= 1.15 THEN MEDV = {21.75} [18.05, 25.45] (p=184, n=33, P=236, N=270)\n",
+      "IF RM < 6.95 AND TAX >= 219.00 AND LSTAT < 14.17 THEN MEDV = {23.28} [18.17, 28.39] (p=203, n=42, P=255, N=251)\n"
+     ]
+    }
+   ],
+   "source": [
+    "condition_to_remove = ruleset.rules[1].premise.subconditions[1]\n",
+    "ruleset.rules[1].premise.subconditions.remove(condition_to_remove)\n",
+    "ruleset.rules[1].coverage = ruleset.rules[1].calculate_coverage(X.to_numpy(), y.to_numpy())\n",
+    "\n",
+    "print(\"Updated Ruleset:\")\n",
+    "for rule in ruleset.rules:\n",
+    "    print(rule)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can also modify the value of a condition. In the rule \"IF RM < 6.45 AND RM >= 5.75 AND AGE < 91.05 AND LSTAT < 14.16 THEN MEDV = {22.05} [18.49, 25.62]\" we will update the condition \"AGE < 91.05\" to \"AGE <= 71.5\""
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 36,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Updated Ruleset:\n",
+      "IF AGE >= 80.05 AND RM < 7.20 AND LSTAT >= 14.74 AND CRIM >= 1.06 THEN MEDV = {13.13} [9.41, 16.84] (p=72, n=31, P=105, N=401)\n",
+      "IF LSTAT >= 14.43 AND CRIM >= 0.24 THEN MEDV = {14.22} [10.01, 18.44] (p=105, n=41, P=134, N=372)\n",
+      "IF TAX >= 300.00 AND CRIM < 15.72 AND RM >= 5.06 AND LSTAT < 32.00 AND LSTAT >= 14.73 THEN MEDV = {15.23} [11.46, 19.00] (p=89, n=32, P=139, N=367)\n",
+      "IF RM < 6.45 AND RM >= 5.75 AND AGE <= 71.50 AND LSTAT < 14.16 THEN MEDV = {22.28} [19.69, 24.87] (p=85, n=22, P=173, N=333)\n",
+      "IF RM < 6.59 AND B >= 198.44 AND LSTAT < 16.12 AND RM >= 5.64 AND DIS >= 1.15 THEN MEDV = {21.75} [18.05, 25.45] (p=184, n=33, P=236, N=270)\n",
+      "IF RM < 6.95 AND TAX >= 219.00 AND LSTAT < 14.17 THEN MEDV = {23.28} [18.17, 28.39] (p=203, n=42, P=255, N=251)\n"
+     ]
+    }
+   ],
+   "source": [
+    "ruleset.rules[3].premise.subconditions[2].right = 71.5\n",
+    "ruleset.rules[3].premise.subconditions[2].right_closed = True\n",
+    "ruleset.rules[3].coverage = ruleset.rules[3].calculate_coverage(X.to_numpy(), y.to_numpy())\n",
+    "\n",
+    "print(\"Updated Ruleset:\")\n",
+    "for rule in ruleset.rules:\n",
+    "    print(rule)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": ".venv",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.12.0"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}

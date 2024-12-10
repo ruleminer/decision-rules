@@ -1,0 +1,773 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Use rules in textual form &mdash; decision_rules 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Use rules in textual form" href="illustrative_regression.html" />
+    <link rel="prev" title="Illustrative examples" href="../illustrative_example.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            decision_rules
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="manual_rules_classification.html">Define rules manually</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rules_regression.html">Evaluate regression rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generating_with_rulekit.html">Generate rules using RuleKit algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cn2.html">Generate rules using CN2 algorithm</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../illustrative_example.html">Illustrative examples</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Classification</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Load-and-prepare-dataset">Load and prepare dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Load-the-ruleset-in-textual-form">Load the ruleset in textual form</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Convert-the-textual-ruleset-to-a-decision-rules-model">Convert the textual ruleset to a decision-rules model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Analyze-the-ruleset-statistics">Analyze the ruleset statistics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Modify-the-ruleset">Modify the ruleset</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="illustrative_regression.html">Regression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="illustrative_survival.html">Survival</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../decision_rules.html">API Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">decision_rules</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../tutorials.html">Tutorials</a></li>
+          <li class="breadcrumb-item"><a href="../illustrative_example.html">Illustrative examples</a></li>
+      <li class="breadcrumb-item active">Use rules in textual form</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorials/illustrative_classification.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Use-rules-in-textual-form">
+<h1>Use rules in textual form<a class="headerlink" href="#Use-rules-in-textual-form" title="Link to this heading"></a></h1>
+<p>In this tutorial, we will load a set of classification rules in textual form and evaluate them</p>
+<section id="Load-and-prepare-dataset">
+<h2>Load and prepare dataset<a class="headerlink" href="#Load-and-prepare-dataset" title="Link to this heading"></a></h2>
+<p>We begin by loading the titanic dataset into a DataFrame.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">TITANIC_PATH</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;https://raw.githubusercontent.com/ruleminer/decision-rules/&#39;</span>
+    <span class="s1">&#39;refs/heads/docs/docs-src/source/tutorials/resources/titanic.csv&#39;</span>
+<span class="p">)</span>
+<span class="n">titanic_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">TITANIC_PATH</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">titanic_df</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Columns: &#39;</span><span class="p">,</span> <span class="n">titanic_df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Class names:&#39;</span><span class="p">,</span> <span class="n">titanic_df</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">titanic_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">titanic_df</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pclass</th>
+      <th>age</th>
+      <th>sex</th>
+      <th>class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1st</td>
+      <td>adult</td>
+      <td>male</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1st</td>
+      <td>adult</td>
+      <td>male</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1st</td>
+      <td>adult</td>
+      <td>male</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1st</td>
+      <td>adult</td>
+      <td>male</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1st</td>
+      <td>adult</td>
+      <td>male</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2196</th>
+      <td>crew</td>
+      <td>adult</td>
+      <td>female</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>2197</th>
+      <td>crew</td>
+      <td>adult</td>
+      <td>female</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <th>2198</th>
+      <td>crew</td>
+      <td>adult</td>
+      <td>female</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>2199</th>
+      <td>crew</td>
+      <td>adult</td>
+      <td>female</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>2200</th>
+      <td>crew</td>
+      <td>adult</td>
+      <td>female</td>
+      <td>no</td>
+    </tr>
+  </tbody>
+</table>
+<p>2201 rows × 4 columns</p>
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Columns:  [&#39;pclass&#39; &#39;age&#39; &#39;sex&#39; &#39;class&#39;]
+Class names: [&#39;yes&#39; &#39;no&#39;]
+</pre></div></div>
+</div>
+</section>
+<section id="Load-the-ruleset-in-textual-form">
+<h2>Load the ruleset in textual form<a class="headerlink" href="#Load-the-ruleset-in-textual-form" title="Link to this heading"></a></h2>
+<p>Now we need to load the ruleset provided in a text file</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib</span>
+
+<span class="n">FILE_PATH</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;https://raw.githubusercontent.com/ruleminer/decision-rules/&#39;</span>
+    <span class="s1">&#39;refs/heads/docs/docs-src/source/tutorials/resources/classification/&#39;</span>
+    <span class="s1">&#39;text_ruleset.txt&#39;</span>
+<span class="p">)</span>
+
+<span class="k">with</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">FILE_PATH</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
+    <span class="n">text_rules_model</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+
+
+<span class="n">text_rules_model</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;IF sex = {male} AND age = {adult} THEN class = {no}&#39;,
+ &#39;IF sex = {male} AND pclass != {1st} THEN class = {no}&#39;,
+ &#39;IF sex = {female} THEN class = {yes}&#39;,
+ &#39;IF sex = {male} AND age = {adult} AND pclass != {1st} THEN class = {no}&#39;,
+ &#39;IF pclass != {3rd} AND sex = {female} THEN class = {yes}&#39;]
+</pre></div></div>
+</div>
+</section>
+<section id="Convert-the-textual-ruleset-to-a-decision-rules-model">
+<h2>Convert the textual ruleset to a decision-rules model<a class="headerlink" href="#Convert-the-textual-ruleset-to-a-decision-rules-model" title="Link to this heading"></a></h2>
+<p>Now that the rules are loaded, we convert them into a decision-rules model using the TextRulesetFactory from decision-rules library. This conversion enables us to evaluate and modify the ruleset programmatically.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">decision_rules.ruleset_factories._factories.classification</span> <span class="kn">import</span> <span class="n">TextRuleSetFactory</span>
+
+<span class="n">factory</span> <span class="o">=</span> <span class="n">TextRuleSetFactory</span><span class="p">()</span>
+<span class="n">ruleset</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="n">text_rules_model</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>After conversion in the decision-rules library, we can easilythe display the model</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">ruleset</span><span class="o">.</span><span class="n">rules</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+IF sex = {male} AND age = {adult} THEN class = no (p=1329, n=338, P=1490, N=711)
+IF sex = {male} AND pclass != {1st} THEN class = no (p=1246, n=305, P=1490, N=711)
+IF sex = {female} THEN class = yes (p=344, n=126, P=711, N=1490)
+IF sex = {male} AND age = {adult} AND pclass != {1st} THEN class = no (p=1211, n=281, P=1490, N=711)
+IF pclass != {3rd} AND sex = {female} THEN class = yes (p=254, n=20, P=711, N=1490)
+</pre></div></div>
+</div>
+</section>
+<section id="Analyze-the-ruleset-statistics">
+<h2>Analyze the ruleset statistics<a class="headerlink" href="#Analyze-the-ruleset-statistics" title="Link to this heading"></a></h2>
+<p>We can compute various metrics for the ruleset, such as average precision, coverage, and lift. This step involves retrieving statistical information about the rules.</p>
+<p>We start by calculating and displaying the general characteristics of the ruleset</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ruleset_stats</span> <span class="o">=</span> <span class="n">ruleset</span><span class="o">.</span><span class="n">calculate_ruleset_stats</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">ruleset_stats</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;rules_count&#39;: 5, &#39;avg_conditions_count&#39;: 2.0, &#39;avg_precision&#39;: 0.81, &#39;avg_coverage&#39;: 0.68, &#39;total_conditions_count&#39;: 10}
+</pre></div></div>
+</div>
+<p>Now let’s calculate metrics for each rule. To make the output more readable and easier to interpret, we will organize the metrics into a DataFrame</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rule_metrics</span> <span class="o">=</span> <span class="n">ruleset</span><span class="o">.</span><span class="n">calculate_rules_metrics</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rule_metrics</span><span class="p">)</span>
+<span class="n">rule_metrics_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;Rule&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;r</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s1">&#39;p&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;n&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;n&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;P&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;P&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;N&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;Unique in Positive&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;unique_in_pos&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="s1">&#39;Unique in Negative&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;unique_in_neg&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="s1">&#39;P Unique&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;p_unique&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="s1">&#39;N Unique&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;n_unique&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="s1">&#39;All Unique&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;all_unique&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="s1">&#39;Support&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;support&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="s1">&#39;Conditions Count&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;conditions_count&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="s1">&#39;Precision&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;precision&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="s1">&#39;Coverage&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;coverage&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="s1">&#39;C2&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;C2&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="s1">&#39;RSS&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;RSS&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="s1">&#39;Correlation&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;correlation&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="s1">&#39;Lift&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;lift&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="s1">&#39;P Value&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;p_value&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="s1">&#39;TP&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;TP&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="s1">&#39;FP&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;FP&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="s1">&#39;TN&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;TN&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="s1">&#39;FN&#39;</span><span class="p">:</span> <span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;FN&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="s1">&#39;Sensitivity&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;sensitivity&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="s1">&#39;Specificity&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;specificity&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="s1">&#39;Negative Predictive Value&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;negative_predictive_value&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="s1">&#39;Odds Ratio&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;odds_ratio&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="s1">&#39;Relative Risk&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;relative_risk&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="s1">&#39;LR+&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;lr+&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span>
+        <span class="s1">&#39;LR-&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">metrics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;lr-&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">metrics</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rule_metrics</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+<span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">rule_metrics_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;800057da-2fc6-436b-8058-ec6903015c6f&#39;: {&#39;p&#39;: 1329, &#39;n&#39;: 338, &#39;P&#39;: 1490, &#39;N&#39;: 711, &#39;unique_in_pos&#39;: 118, &#39;unique_in_neg&#39;: 57, &#39;p_unique&#39;: 118, &#39;n_unique&#39;: 57, &#39;all_unique&#39;: 175, &#39;support&#39;: 0.7573830077237619, &#39;conditions_count&#39;: 2, &#39;precision&#39;: 0.7972405518896221, &#39;coverage&#39;: 0.8919463087248322, &#39;C2&#39;: 0.3522139513422039, &#39;RSS&#39;: 0.4165595295405846, &#39;correlation&#39;: 0.45442956675744167, &#39;lift&#39;: 1.1776687615497035, &#39;p_value&#39;: 2.627480562242127e-96, &#39;TP&#39;: 1329, &#39;FP&#39;: 338, &#39;TN&#39;: 373, &#39;FN&#39;: 161, &#39;sensitivity&#39;: 0.8919463087248322, &#39;specificity&#39;: 0.5246132208157525, &#39;negative_predictive_value&#39;: 0.6985018726591761, &#39;odds_ratio&#39;: 9.109263308770833, &#39;relative_risk&#39;: 2.6279410784509762, &#39;lr+&#39;: 1.876253921607561, &#39;lr-&#39;: 0.20596829623765237}, &#39;96746bc9-7e93-4158-b7f3-39c8709cd355&#39;: {&#39;p&#39;: 1246, &#39;n&#39;: 305, &#39;P&#39;: 1490, &#39;N&#39;: 711, &#39;unique_in_pos&#39;: 35, &#39;unique_in_neg&#39;: 24, &#39;p_unique&#39;: 35, &#39;n_unique&#39;: 24, &#39;all_unique&#39;: 59, &#39;support&#39;: 0.704679691049523, &#39;conditions_count&#39;: 2, &#39;precision&#39;: 0.8033526756931012, &#39;coverage&#39;: 0.836241610738255, &#39;C2&#39;: 0.35921539680977327, &#39;RSS&#39;: 0.40726833366371207, &#39;correlation&#39;: 0.4174899265648551, &#39;lift&#39;: 1.1866974759735005, &#39;p_value&#39;: 1.2499563232509209e-82, &#39;TP&#39;: 1246, &#39;FP&#39;: 305, &#39;TN&#39;: 406, &#39;FN&#39;: 244, &#39;sensitivity&#39;: 0.836241610738255, &#39;specificity&#39;: 0.5710267229254571, &#39;negative_predictive_value&#39;: 0.6246153846153846, &#39;odds_ratio&#39;: 6.797489955792048, &#39;relative_risk&#39;: 2.131343833471493, &#39;lr+&#39;: 1.9494025745406534, &#39;lr-&#39;: 0.28677885410123327}, &#39;b774df16-9114-4df0-a86d-586edda9d696&#39;: {&#39;p&#39;: 344, &#39;n&#39;: 126, &#39;P&#39;: 711, &#39;N&#39;: 1490, &#39;unique_in_pos&#39;: 90, &#39;unique_in_neg&#39;: 106, &#39;p_unique&#39;: 90, &#39;n_unique&#39;: 106, &#39;all_unique&#39;: 196, &#39;support&#39;: 0.21353930031803725, &#39;conditions_count&#39;: 1, &#39;precision&#39;: 0.7319148936170212, &#39;coverage&#39;: 0.4838255977496484, &#39;C2&#39;: 0.4481077026863914, &#39;RSS&#39;: 0.3992618393603866, &#39;correlation&#39;: 0.45560478314893393, &#39;lift&#39;: 2.265744980099949, &#39;p_value&#39;: 2.6906937468626293e-96, &#39;TP&#39;: 344, &#39;FP&#39;: 126, &#39;TN&#39;: 1364, &#39;FN&#39;: 367, &#39;sensitivity&#39;: 0.4838255977496484, &#39;specificity&#39;: 0.9154362416107382, &#39;negative_predictive_value&#39;: 0.7879838243789717, &#39;odds_ratio&#39;: 10.146746534610644, &#39;relative_risk&#39;: 3.4427844588344123, &#39;lr+&#39;: 5.721429687674411, &#39;lr-&#39;: 0.5638562018717184}, &#39;44f9bfbc-1095-46be-b726-333cba0bed6f&#39;: {&#39;p&#39;: 1211, &#39;n&#39;: 281, &#39;P&#39;: 1490, &#39;N&#39;: 711, &#39;unique_in_pos&#39;: 0, &#39;unique_in_neg&#39;: 0, &#39;p_unique&#39;: 0, &#39;n_unique&#39;: 0, &#39;all_unique&#39;: 0, &#39;support&#39;: 0.6778736937755566, &#39;conditions_count&#39;: 3, &#39;precision&#39;: 0.811662198391421, &#39;coverage&#39;: 0.812751677852349, &#39;C2&#39;: 0.3779351395045058, &#39;RSS&#39;: 0.4175336750394095, &#39;correlation&#39;: 0.41784182864340963, &#39;lift&#39;: 1.1989721467513539, &#39;p_value&#39;: 2.251021760405628e-83, &#39;TP&#39;: 1211, &#39;FP&#39;: 281, &#39;TN&#39;: 430, &#39;FN&#39;: 279, &#39;sensitivity&#39;: 0.812751677852349, &#39;specificity&#39;: 0.6047819971870605, &#39;negative_predictive_value&#39;: 0.6064880112834978, &#39;odds_ratio&#39;: 6.641964285714286, &#39;relative_risk&#39;: 2.055244638069705, &#39;lr+&#39;: 2.056464209797225, &#39;lr-&#39;: 0.3096129233650694}, &#39;082dbf24-8be4-47f6-a228-808c1c69b1a9&#39;: {&#39;p&#39;: 254, &#39;n&#39;: 20, &#39;P&#39;: 711, &#39;N&#39;: 1490, &#39;unique_in_pos&#39;: 0, &#39;unique_in_neg&#39;: 0, &#39;p_unique&#39;: 0, &#39;n_unique&#39;: 0, &#39;all_unique&#39;: 0, &#39;support&#39;: 0.12448886869604725, &#39;conditions_count&#39;: 2, &#39;precision&#39;: 0.927007299270073, &#39;coverage&#39;: 0.35724331926863573, &#39;C2&#39;: 0.6054503338686228, &#39;RSS&#39;: 0.34382050047668944, &#39;correlation&#39;: 0.48701637522934677, &#39;lift&#39;: 2.8696808237600995, &#39;p_value&#39;: 1.5489192105023278e-113, &#39;TP&#39;: 254, &#39;FP&#39;: 20, &#39;TN&#39;: 1470, &#39;FN&#39;: 457, &#39;sensitivity&#39;: 0.35724331926863573, &#39;specificity&#39;: 0.9865771812080537, &#39;negative_predictive_value&#39;: 0.7628437986507525, &#39;odds_ratio&#39;: 40.84673449294388, &#39;relative_risk&#39;: 3.9003123705096736, &#39;lr+&#39;: 26.6146272855134, &#39;lr-&#39;: 0.6515016695848522}}
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Rule</th>
+      <th>p</th>
+      <th>n</th>
+      <th>P</th>
+      <th>N</th>
+      <th>Unique in Positive</th>
+      <th>Unique in Negative</th>
+      <th>P Unique</th>
+      <th>N Unique</th>
+      <th>All Unique</th>
+      <th>...</th>
+      <th>FP</th>
+      <th>TN</th>
+      <th>FN</th>
+      <th>Sensitivity</th>
+      <th>Specificity</th>
+      <th>Negative Predictive Value</th>
+      <th>Odds Ratio</th>
+      <th>Relative Risk</th>
+      <th>LR+</th>
+      <th>LR-</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>r1</td>
+      <td>1329</td>
+      <td>338</td>
+      <td>1490</td>
+      <td>711</td>
+      <td>118</td>
+      <td>57</td>
+      <td>118</td>
+      <td>57</td>
+      <td>175</td>
+      <td>...</td>
+      <td>338</td>
+      <td>373</td>
+      <td>161</td>
+      <td>0.892</td>
+      <td>0.525</td>
+      <td>0.699</td>
+      <td>9.109</td>
+      <td>2.628</td>
+      <td>1.876</td>
+      <td>0.206</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>r2</td>
+      <td>1246</td>
+      <td>305</td>
+      <td>1490</td>
+      <td>711</td>
+      <td>35</td>
+      <td>24</td>
+      <td>35</td>
+      <td>24</td>
+      <td>59</td>
+      <td>...</td>
+      <td>305</td>
+      <td>406</td>
+      <td>244</td>
+      <td>0.836</td>
+      <td>0.571</td>
+      <td>0.625</td>
+      <td>6.797</td>
+      <td>2.131</td>
+      <td>1.949</td>
+      <td>0.287</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>r3</td>
+      <td>344</td>
+      <td>126</td>
+      <td>711</td>
+      <td>1490</td>
+      <td>90</td>
+      <td>106</td>
+      <td>90</td>
+      <td>106</td>
+      <td>196</td>
+      <td>...</td>
+      <td>126</td>
+      <td>1364</td>
+      <td>367</td>
+      <td>0.484</td>
+      <td>0.915</td>
+      <td>0.788</td>
+      <td>10.147</td>
+      <td>3.443</td>
+      <td>5.721</td>
+      <td>0.564</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>r4</td>
+      <td>1211</td>
+      <td>281</td>
+      <td>1490</td>
+      <td>711</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>281</td>
+      <td>430</td>
+      <td>279</td>
+      <td>0.813</td>
+      <td>0.605</td>
+      <td>0.606</td>
+      <td>6.642</td>
+      <td>2.055</td>
+      <td>2.056</td>
+      <td>0.310</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>r5</td>
+      <td>254</td>
+      <td>20</td>
+      <td>711</td>
+      <td>1490</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>20</td>
+      <td>1470</td>
+      <td>457</td>
+      <td>0.357</td>
+      <td>0.987</td>
+      <td>0.763</td>
+      <td>40.847</td>
+      <td>3.900</td>
+      <td>26.615</td>
+      <td>0.652</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 30 columns</p>
+</div></div>
+</div>
+<p>We can also calculate statistics like condition importances</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">decision_rules.measures</span> <span class="kn">import</span> <span class="n">c2</span>
+<span class="n">condition_importances</span> <span class="o">=</span> <span class="n">ruleset</span><span class="o">.</span><span class="n">calculate_condition_importances</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">measure</span><span class="o">=</span><span class="n">c2</span><span class="p">)</span>
+<span class="n">condition_importances</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;no&#39;: [{&#39;condition&#39;: &#39;sex = {male}&#39;,
+   &#39;attributes&#39;: [&#39;sex&#39;],
+   &#39;importance&#39;: 0.7637259326667143},
+  {&#39;condition&#39;: &#39;pclass != {1st}&#39;,
+   &#39;attributes&#39;: [&#39;pclass&#39;],
+   &#39;importance&#39;: 0.15287127806103967},
+  {&#39;condition&#39;: &#39;age = {adult}&#39;,
+   &#39;attributes&#39;: [&#39;age&#39;],
+   &#39;importance&#39;: 0.04417532222905417}],
+ &#39;yes&#39;: [{&#39;condition&#39;: &#39;sex = {female}&#39;,
+   &#39;attributes&#39;: [&#39;sex&#39;],
+   &#39;importance&#39;: 0.9532496919435065},
+  {&#39;condition&#39;: &#39;pclass != {3rd}&#39;,
+   &#39;attributes&#39;: [&#39;pclass&#39;],
+   &#39;importance&#39;: 0.10030834461150767}]}
+</pre></div></div>
+</div>
+</section>
+<section id="Modify-the-ruleset">
+<h2>Modify the ruleset<a class="headerlink" href="#Modify-the-ruleset" title="Link to this heading"></a></h2>
+<p>The decision-rule model can be easily edited. For example, we will create a new rule stating “IF age = child THEN class = 1” and then add it to the ruleset.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">decision_rules.classification.rule</span> <span class="kn">import</span> <span class="n">ClassificationConclusion</span>
+<span class="kn">from</span> <span class="nn">decision_rules.classification.rule</span> <span class="kn">import</span> <span class="n">ClassificationRule</span>
+<span class="kn">from</span> <span class="nn">decision_rules.conditions</span> <span class="kn">import</span> <span class="n">NominalCondition</span><span class="p">,</span> <span class="n">CompoundCondition</span>
+
+<span class="n">rule</span> <span class="o">=</span> <span class="n">ClassificationRule</span><span class="p">(</span>
+    <span class="n">premise</span><span class="o">=</span><span class="n">CompoundCondition</span><span class="p">(</span>
+        <span class="n">subconditions</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">NominalCondition</span><span class="p">(</span>
+                <span class="n">column_index</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">),</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;child&quot;</span>
+            <span class="p">)</span>
+        <span class="p">]</span>
+    <span class="p">),</span>
+    <span class="n">conclusion</span><span class="o">=</span><span class="n">ClassificationConclusion</span><span class="p">(</span>
+        <span class="n">value</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span><span class="p">,</span>
+        <span class="n">column_name</span><span class="o">=</span><span class="s1">&#39;class&#39;</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">column_names</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+IF age = {child} THEN class = yes
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rule</span><span class="o">.</span><span class="n">coverage</span> <span class="o">=</span> <span class="n">rule</span><span class="o">.</span><span class="n">calculate_coverage</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rule</span><span class="o">.</span><span class="n">coverage</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(p=57, n=52, P=711, N=1490)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ruleset</span><span class="o">.</span><span class="n">rules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Updated Ruleset:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">ruleset</span><span class="o">.</span><span class="n">rules</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Updated Ruleset:
+IF sex = {male} AND age = {adult} THEN class = no (p=1329, n=338, P=1490, N=711)
+IF sex = {male} AND pclass != {1st} THEN class = no (p=1246, n=305, P=1490, N=711)
+IF sex = {female} THEN class = yes (p=344, n=126, P=711, N=1490)
+IF sex = {male} AND age = {adult} AND pclass != {1st} THEN class = no (p=1211, n=281, P=1490, N=711)
+IF pclass != {3rd} AND sex = {female} THEN class = yes (p=254, n=20, P=711, N=1490)
+IF age = {child} THEN class = yes (p=57, n=52, P=711, N=1490)
+</pre></div></div>
+</div>
+<p>Now let’s remove from the rule “IF sex = male AND pclass != 1st THEN class = no” the condition “pclass != 1st”</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">condition_to_remove</span> <span class="o">=</span> <span class="n">ruleset</span><span class="o">.</span><span class="n">rules</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">premise</span><span class="o">.</span><span class="n">subconditions</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ruleset</span><span class="o">.</span><span class="n">rules</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">premise</span><span class="o">.</span><span class="n">subconditions</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">condition_to_remove</span><span class="p">)</span>
+<span class="n">ruleset</span><span class="o">.</span><span class="n">rules</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">coverage</span> <span class="o">=</span> <span class="n">ruleset</span><span class="o">.</span><span class="n">rules</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">calculate_coverage</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Updated Ruleset:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">ruleset</span><span class="o">.</span><span class="n">rules</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Updated Ruleset:
+IF sex = {male} AND age = {adult} THEN class = no (p=1329, n=338, P=1490, N=711)
+IF sex = {male} THEN class = no (p=1364, n=367, P=1490, N=711)
+IF sex = {female} THEN class = yes (p=344, n=126, P=711, N=1490)
+IF sex = {male} AND age = {adult} AND pclass != {1st} THEN class = no (p=1211, n=281, P=1490, N=711)
+IF pclass != {3rd} AND sex = {female} THEN class = yes (p=254, n=20, P=711, N=1490)
+IF age = {child} THEN class = yes (p=57, n=52, P=711, N=1490)
+</pre></div></div>
+</div>
+<p>We can also modify the value of a condition. In the rule “IF sex = male AND age = adult AND pclass != 1st THEN class = no” we will update the condition “pclass != 1st” to “pclass = 3”</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ruleset</span><span class="o">.</span><span class="n">rules</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">premise</span><span class="o">.</span><span class="n">subconditions</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;3st&quot;</span>
+<span class="n">ruleset</span><span class="o">.</span><span class="n">rules</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">premise</span><span class="o">.</span><span class="n">subconditions</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">negated</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">ruleset</span><span class="o">.</span><span class="n">rules</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">coverage</span> <span class="o">=</span> <span class="n">ruleset</span><span class="o">.</span><span class="n">rules</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">calculate_coverage</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Updated Ruleset:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">ruleset</span><span class="o">.</span><span class="n">rules</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Updated Ruleset:
+IF sex = {male} AND age = {adult} THEN class = no (p=1329, n=338, P=1490, N=711)
+IF sex = {male} THEN class = no (p=1364, n=367, P=1490, N=711)
+IF sex = {female} THEN class = yes (p=344, n=126, P=711, N=1490)
+IF sex = {male} AND age = {adult} AND pclass = {3st} THEN class = no (p=0, n=0, P=1490, N=711)
+IF pclass != {3rd} AND sex = {female} THEN class = yes (p=254, n=20, P=711, N=1490)
+IF age = {child} THEN class = yes (p=57, n=52, P=711, N=1490)
+</pre></div></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../illustrative_example.html" class="btn btn-neutral float-left" title="Illustrative examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="illustrative_regression.html" class="btn btn-neutral float-right" title="Use rules in textual form" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Cezary Maszczyk, Dawid Macha, Adam Grzelak.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

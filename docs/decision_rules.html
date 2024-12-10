@@ -17,11 +17,13 @@
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="decision_rules.classification" href="decision_rules.classification.html" />
-    <link rel="prev" title="Generating rules using the CN2 algorithm" href="tutorials/cn2.html" /> 
+    <link rel="prev" title="Use rules in textual form" href="tutorials/illustrative_survival.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -54,11 +56,102 @@
 <li class="toctree-l2"><a class="reference internal" href="decision_rules.serialization.html">decision_rules.serialization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="decision_rules.similarity.html">decision_rules.similarity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="decision_rules.survival.html">decision_rules.survival</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#decision-rules-conditions">decision_rules.conditions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#decision-rules-histogram">decision_rules.histogram</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#decision-rules-measures">decision_rules.measures</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#decision-rules-problem">decision_rules.problem</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#decision-rules-settings">decision_rules.settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-decision_rules.conditions">decision_rules.conditions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.conditions.AttributesCondition"><code class="docutils literal notranslate"><span class="pre">AttributesCondition</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.conditions.AttributesCondition.attributes"><code class="docutils literal notranslate"><span class="pre">AttributesCondition.attributes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.conditions.AttributesCondition.to_string"><code class="docutils literal notranslate"><span class="pre">AttributesCondition.to_string()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.conditions.CompoundCondition"><code class="docutils literal notranslate"><span class="pre">CompoundCondition</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.conditions.CompoundCondition.attributes"><code class="docutils literal notranslate"><span class="pre">CompoundCondition.attributes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.conditions.CompoundCondition.to_string"><code class="docutils literal notranslate"><span class="pre">CompoundCondition.to_string()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.conditions.ElementaryCondition"><code class="docutils literal notranslate"><span class="pre">ElementaryCondition</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.conditions.ElementaryCondition.attributes"><code class="docutils literal notranslate"><span class="pre">ElementaryCondition.attributes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.conditions.ElementaryCondition.to_string"><code class="docutils literal notranslate"><span class="pre">ElementaryCondition.to_string()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.conditions.LogicOperators"><code class="docutils literal notranslate"><span class="pre">LogicOperators</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.conditions.LogicOperators.ALTERNATIVE"><code class="docutils literal notranslate"><span class="pre">LogicOperators.ALTERNATIVE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.conditions.LogicOperators.CONJUNCTION"><code class="docutils literal notranslate"><span class="pre">LogicOperators.CONJUNCTION</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.conditions.NominalCondition"><code class="docutils literal notranslate"><span class="pre">NominalCondition</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.conditions.NominalCondition.attributes"><code class="docutils literal notranslate"><span class="pre">NominalCondition.attributes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.conditions.NominalCondition.to_string"><code class="docutils literal notranslate"><span class="pre">NominalCondition.to_string()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-decision_rules.histogram">decision_rules.histogram</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.histogram.Histograms"><code class="docutils literal notranslate"><span class="pre">Histograms</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.histogram.Histograms.bin_edges"><code class="docutils literal notranslate"><span class="pre">Histograms.bin_edges</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.histogram.Histograms.histograms"><code class="docutils literal notranslate"><span class="pre">Histograms.histograms</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.histogram.Histograms.max"><code class="docutils literal notranslate"><span class="pre">Histograms.max</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.histogram.Histograms.min"><code class="docutils literal notranslate"><span class="pre">Histograms.min</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.histogram.Histograms.model_config"><code class="docutils literal notranslate"><span class="pre">Histograms.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.histogram.Histograms.model_fields"><code class="docutils literal notranslate"><span class="pre">Histograms.model_fields</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.histogram.get_histograms"><code class="docutils literal notranslate"><span class="pre">get_histograms()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-decision_rules.measures">decision_rules.measures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.accuracy"><code class="docutils literal notranslate"><span class="pre">accuracy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.c1"><code class="docutils literal notranslate"><span class="pre">c1()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.c2"><code class="docutils literal notranslate"><span class="pre">c2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.c_foil"><code class="docutils literal notranslate"><span class="pre">c_foil()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.cn2_significnce"><code class="docutils literal notranslate"><span class="pre">cn2_significnce()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.correlation"><code class="docutils literal notranslate"><span class="pre">correlation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.coverage"><code class="docutils literal notranslate"><span class="pre">coverage()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.f_bayesian_confirmation"><code class="docutils literal notranslate"><span class="pre">f_bayesian_confirmation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.f_measure"><code class="docutils literal notranslate"><span class="pre">f_measure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.full_coverage"><code class="docutils literal notranslate"><span class="pre">full_coverage()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.g_measure"><code class="docutils literal notranslate"><span class="pre">g_measure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.geo_rss"><code class="docutils literal notranslate"><span class="pre">geo_rss()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.information_gain"><code class="docutils literal notranslate"><span class="pre">information_gain()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.j_measure"><code class="docutils literal notranslate"><span class="pre">j_measure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.kappa"><code class="docutils literal notranslate"><span class="pre">kappa()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.klosgen"><code class="docutils literal notranslate"><span class="pre">klosgen()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.laplace"><code class="docutils literal notranslate"><span class="pre">laplace()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.lift"><code class="docutils literal notranslate"><span class="pre">lift()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.logical_sufficiency"><code class="docutils literal notranslate"><span class="pre">logical_sufficiency()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.m_estimate"><code class="docutils literal notranslate"><span class="pre">m_estimate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.mutual_support"><code class="docutils literal notranslate"><span class="pre">mutual_support()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.novelty"><code class="docutils literal notranslate"><span class="pre">novelty()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.odds_ratio"><code class="docutils literal notranslate"><span class="pre">odds_ratio()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.one_way_support"><code class="docutils literal notranslate"><span class="pre">one_way_support()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.pawlak_dependency_factor"><code class="docutils literal notranslate"><span class="pre">pawlak_dependency_factor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.precision"><code class="docutils literal notranslate"><span class="pre">precision()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.q2"><code class="docutils literal notranslate"><span class="pre">q2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.relative_risk"><code class="docutils literal notranslate"><span class="pre">relative_risk()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.ripper"><code class="docutils literal notranslate"><span class="pre">ripper()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.rss"><code class="docutils literal notranslate"><span class="pre">rss()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.rule_interest"><code class="docutils literal notranslate"><span class="pre">rule_interest()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.s_bayesian"><code class="docutils literal notranslate"><span class="pre">s_bayesian()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.sensitivity"><code class="docutils literal notranslate"><span class="pre">sensitivity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.specificity"><code class="docutils literal notranslate"><span class="pre">specificity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.two_way_support"><code class="docutils literal notranslate"><span class="pre">two_way_support()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.weighted_laplace"><code class="docutils literal notranslate"><span class="pre">weighted_laplace()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.weighted_relative_accuracy"><code class="docutils literal notranslate"><span class="pre">weighted_relative_accuracy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.yails"><code class="docutils literal notranslate"><span class="pre">yails()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-decision_rules.problem">decision_rules.problem</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.problem.ProblemTypes"><code class="docutils literal notranslate"><span class="pre">ProblemTypes</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.problem.ProblemTypes.CLASSIFICATION"><code class="docutils literal notranslate"><span class="pre">ProblemTypes.CLASSIFICATION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.problem.ProblemTypes.REGRESSION"><code class="docutils literal notranslate"><span class="pre">ProblemTypes.REGRESSION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.problem.ProblemTypes.SURVIVAL"><code class="docutils literal notranslate"><span class="pre">ProblemTypes.SURVIVAL</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-decision_rules.settings">decision_rules.settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.settings.FLOAT_DISPLAY_PRECISION"><code class="docutils literal notranslate"><span class="pre">FLOAT_DISPLAY_PRECISION</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.settings.CONCISE_NUMERICAL_CONDITIONS_FORM"><code class="docutils literal notranslate"><span class="pre">CONCISE_NUMERICAL_CONDITIONS_FORM</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -92,80 +185,524 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="decision_rules.classification.html">decision_rules.classification</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.classification.html#decision-rules-classification-metrics">decision_rules.classification.metrics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.classification.html#decision-rules-classification-prediction">decision_rules.classification.prediction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.classification.html#decision-rules-classification-prediction-indicators">decision_rules.classification.prediction_indicators</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.classification.html#decision-rules-classification-rule">decision_rules.classification.rule</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.classification.html#decision-rules-classification-ruleset">decision_rules.classification.ruleset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.classification.html#module-decision_rules.classification.metrics">decision_rules.classification.metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.classification.html#module-decision_rules.classification.prediction">decision_rules.classification.prediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.classification.html#module-decision_rules.classification.prediction_indicators">decision_rules.classification.prediction_indicators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.classification.html#module-decision_rules.classification.rule">decision_rules.classification.rule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.classification.html#module-decision_rules.classification.ruleset">decision_rules.classification.ruleset</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="decision_rules.core.html">decision_rules.core</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.core.html#decision-rules-core-condition">decision_rules.core.condition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.core.html#decision-rules-core-coverage">decision_rules.core.coverage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.core.html#decision-rules-core-exceptions">decision_rules.core.exceptions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.core.html#decision-rules-core-metrics">decision_rules.core.metrics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.core.html#decision-rules-core-prediction">decision_rules.core.prediction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.core.html#decision-rules-core-rule">decision_rules.core.rule</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.core.html#decision-rules-core-ruleset">decision_rules.core.ruleset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.core.html#decision-rules-core-simplifier">decision_rules.core.simplifier</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.core.html#decision-rules-core-test-measures">decision_rules.core.test_measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.core.html#module-decision_rules.core.condition">decision_rules.core.condition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.core.html#module-decision_rules.core.coverage">decision_rules.core.coverage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.core.html#module-decision_rules.core.exceptions">decision_rules.core.exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.core.html#module-decision_rules.core.metrics">decision_rules.core.metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.core.html#module-decision_rules.core.prediction">decision_rules.core.prediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.core.html#module-decision_rules.core.rule">decision_rules.core.rule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.core.html#module-decision_rules.core.ruleset">decision_rules.core.ruleset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.core.html#module-decision_rules.core.simplifier">decision_rules.core.simplifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.core.html#module-decision_rules.core.test_measures">decision_rules.core.test_measures</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="decision_rules.helpers.html">decision_rules.helpers package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.helpers.html#decision-rules-helpers-dataset-transformer">decision_rules.helpers.dataset_transformer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.helpers.html#decision-rules-helpers-measures">decision_rules.helpers.measures</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.helpers.html#decision-rules-helpers-p-values">decision_rules.helpers.p_values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.helpers.html#module-decision_rules.helpers.dataset_transformer">decision_rules.helpers.dataset_transformer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.helpers.html#module-decision_rules.helpers.measures">decision_rules.helpers.measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.helpers.html#module-decision_rules.helpers.p_values">decision_rules.helpers.p_values</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="decision_rules.importances.html">decision_rules.importances package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.importances.html#module-contents">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.importances.html#module-decision_rules.importances">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="decision_rules.regression.html">decision_rules.regression</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.regression.html#decision-rules-regression-metrics">decision_rules.regression.metrics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.regression.html#decision-rules-regression-prediction">decision_rules.regression.prediction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.regression.html#decision-rules-regression-prediction-indicators">decision_rules.regression.prediction_indicators</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.regression.html#decision-rules-regression-rule">decision_rules.regression.rule</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.regression.html#decision-rules-regression-ruleset">decision_rules.regression.ruleset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.regression.html#module-decision_rules.regression.metrics">decision_rules.regression.metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.regression.html#module-decision_rules.regression.prediction">decision_rules.regression.prediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.regression.html#module-decision_rules.regression.prediction_indicators">decision_rules.regression.prediction_indicators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.regression.html#module-decision_rules.regression.rule">decision_rules.regression.rule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.regression.html#module-decision_rules.regression.ruleset">decision_rules.regression.ruleset</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="decision_rules.serialization.html">decision_rules.serialization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.serialization.html#decision-rules-serialization-utils">decision_rules.serialization.utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.serialization.html#module-decision_rules.serialization.utils">decision_rules.serialization.utils</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="decision_rules.similarity.html">decision_rules.similarity</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.similarity.html#decision-rules-similarity-calculate">decision_rules.similarity.calculate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.similarity.html#module-decision_rules.similarity.calculate">decision_rules.similarity.calculate</a></li>
 <li class="toctree-l2"><a class="reference internal" href="decision_rules.similarity.html#decision-rules-similarity-common">decision_rules.similarity.common</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.similarity.html#decision-rules-similarity-ruleset">decision_rules.similarity.ruleset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.similarity.html#decision-rules-similarity-semantic">decision_rules.similarity.semantic</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.similarity.html#decision-rules-similarity-syntactic">decision_rules.similarity.syntactic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.similarity.html#module-decision_rules.similarity.ruleset">decision_rules.similarity.ruleset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.similarity.html#module-decision_rules.similarity.semantic">decision_rules.similarity.semantic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.similarity.html#module-decision_rules.similarity.syntactic">decision_rules.similarity.syntactic</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="decision_rules.survival.html">decision_rules.survival</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.survival.html#decision-rules-survival-kaplan-meier">decision_rules.survival.kaplan_meier</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.survival.html#decision-rules-survival-metrics">decision_rules.survival.metrics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.survival.html#decision-rules-survival-prediction">decision_rules.survival.prediction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.survival.html#decision-rules-survival-prediction-indicators">decision_rules.survival.prediction_indicators</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.survival.html#decision-rules-survival-rule">decision_rules.survival.rule</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.survival.html#decision-rules-survival-ruleset">decision_rules.survival.ruleset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.survival.html#module-decision_rules.survival.kaplan_meier">decision_rules.survival.kaplan_meier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.survival.html#module-decision_rules.survival.metrics">decision_rules.survival.metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.survival.html#module-decision_rules.survival.prediction">decision_rules.survival.prediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.survival.html#module-decision_rules.survival.prediction_indicators">decision_rules.survival.prediction_indicators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.survival.html#module-decision_rules.survival.rule">decision_rules.survival.rule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.survival.html#module-decision_rules.survival.ruleset">decision_rules.survival.ruleset</a></li>
 </ul>
 </li>
 </ul>
 </div>
-<section id="decision-rules-conditions">
-<h2>decision_rules.conditions<a class="headerlink" href="#decision-rules-conditions" title="Link to this heading"></a></h2>
+<section id="module-decision_rules.conditions">
+<span id="decision-rules-conditions"></span><h2>decision_rules.conditions<a class="headerlink" href="#module-decision_rules.conditions" title="Link to this heading"></a></h2>
+<p>Contains logical conditions classes.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.conditions.AttributesCondition">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.conditions.</span></span><span class="sig-name descname"><span class="pre">AttributesCondition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column_left</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_right</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.conditions.AttributesCondition" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="decision_rules.core.html#decision_rules.core.condition.AbstractCondition" title="decision_rules.core.condition.AbstractCondition"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractCondition</span></code></a></p>
+<p>Condition specifying a relation between two attributes (columns).
+Possible relations are: =, !=, &gt;, &lt;</p>
+<dl class="simple">
+<dt>Example in rule:</dt><dd><p>IF petal_length &gt; sepal_width THEN y = 1</p>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="decision_rules.conditions.AttributesCondition.attributes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">attributes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">frozenset</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#decision_rules.conditions.AttributesCondition.attributes" title="Link to this definition"></a></dt>
+<dd><p>Returns:
+frozenset[int]: condition attributes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.conditions.AttributesCondition.to_string">
+<span class="sig-name descname"><span class="pre">to_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">columns_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#decision_rules.conditions.AttributesCondition.to_string" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>columns_names</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>condition string representation</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.conditions.CompoundCondition">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.conditions.</span></span><span class="sig-name descname"><span class="pre">CompoundCondition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subconditions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#decision_rules.conditions.ElementaryCondition" title="decision_rules.conditions.ElementaryCondition"><span class="pre">ElementaryCondition</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logic_operator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#decision_rules.conditions.LogicOperators" title="decision_rules.conditions.LogicOperators"><span class="pre">LogicOperators</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">LogicOperators.CONJUNCTION</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.conditions.CompoundCondition" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="decision_rules.core.html#decision_rules.core.condition.AbstractCondition" title="decision_rules.core.condition.AbstractCondition"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractCondition</span></code></a></p>
+<p>Condition specyfing logical conjunction or alternative
+of other conditions.</p>
+<dl class="simple">
+<dt>Example in rule:</dt><dd><p>IF petal_length = &lt;-0.015, 0.185&gt; AND sepal_width = &lt;-0.047, 0.253&gt; THEN y = 1</p>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="decision_rules.conditions.CompoundCondition.attributes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">attributes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">frozenset</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#decision_rules.conditions.CompoundCondition.attributes" title="Link to this definition"></a></dt>
+<dd><p>Returns:
+frozenset[int]: condition attributes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.conditions.CompoundCondition.to_string">
+<span class="sig-name descname"><span class="pre">to_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">columns_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#decision_rules.conditions.CompoundCondition.to_string" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>columns_names</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>condition string representation</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.conditions.ElementaryCondition">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.conditions.</span></span><span class="sig-name descname"><span class="pre">ElementaryCondition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_closed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_closed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.conditions.ElementaryCondition" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="decision_rules.core.html#decision_rules.core.condition.AbstractCondition" title="decision_rules.core.condition.AbstractCondition"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractCondition</span></code></a></p>
+<p>Numerical attributes condition.</p>
+<dl class="simple">
+<dt>It has left and right boundary and takes following form:</dt><dd><p>{LEFT} &lt; {ATTRIBUTE} &lt; {RIGHT}</p>
+</dd>
+<dt>Example in rule:</dt><dd><p>IF petal_length = &lt;-0.015, 0.185&gt; THEN y = 1</p>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="decision_rules.conditions.ElementaryCondition.attributes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">attributes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">frozenset</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#decision_rules.conditions.ElementaryCondition.attributes" title="Link to this definition"></a></dt>
+<dd><p>Returns:
+frozenset[int]: condition attributes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.conditions.ElementaryCondition.to_string">
+<span class="sig-name descname"><span class="pre">to_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">columns_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#decision_rules.conditions.ElementaryCondition.to_string" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>columns_names</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>condition string representation</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.conditions.LogicOperators">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.conditions.</span></span><span class="sig-name descname"><span class="pre">LogicOperators</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.conditions.LogicOperators" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.conditions.LogicOperators.ALTERNATIVE">
+<span class="sig-name descname"><span class="pre">ALTERNATIVE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ALTERNATIVE'</span></em><a class="headerlink" href="#decision_rules.conditions.LogicOperators.ALTERNATIVE" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.conditions.LogicOperators.CONJUNCTION">
+<span class="sig-name descname"><span class="pre">CONJUNCTION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'CONJUNCTION'</span></em><a class="headerlink" href="#decision_rules.conditions.LogicOperators.CONJUNCTION" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.conditions.NominalCondition">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.conditions.</span></span><span class="sig-name descname"><span class="pre">NominalCondition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.conditions.NominalCondition" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="decision_rules.core.html#decision_rules.core.condition.AbstractCondition" title="decision_rules.core.condition.AbstractCondition"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractCondition</span></code></a></p>
+<p>Class for elementary condition for nominal attributes.</p>
+<p>It takes following form:</p>
+<blockquote>
+<div><p>IF {ATTRIBUTE} = {VALUE} THEN y = {DECISION}</p>
+</div></blockquote>
+<p class="rubric">Example</p>
+<p>IF gender = 1 THEN y = 1</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="decision_rules.conditions.NominalCondition.attributes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">attributes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">frozenset</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#decision_rules.conditions.NominalCondition.attributes" title="Link to this definition"></a></dt>
+<dd><p>Returns:
+frozenset[int]: condition attributes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.conditions.NominalCondition.to_string">
+<span class="sig-name descname"><span class="pre">to_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">columns_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#decision_rules.conditions.NominalCondition.to_string" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>columns_names</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>condition string representation</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="decision-rules-histogram">
-<h2>decision_rules.histogram<a class="headerlink" href="#decision-rules-histogram" title="Link to this heading"></a></h2>
+<section id="module-decision_rules.histogram">
+<span id="decision-rules-histogram"></span><h2>decision_rules.histogram<a class="headerlink" href="#module-decision_rules.histogram" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.histogram.Histograms">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.histogram.</span></span><span class="sig-name descname"><span class="pre">Histograms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_edges</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">histograms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.histogram.Histograms" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.histogram.Histograms.bin_edges">
+<span class="sig-name descname"><span class="pre">bin_edges</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#decision_rules.histogram.Histograms.bin_edges" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.histogram.Histograms.histograms">
+<span class="sig-name descname"><span class="pre">histograms</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#decision_rules.histogram.Histograms.histograms" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.histogram.Histograms.max">
+<span class="sig-name descname"><span class="pre">max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#decision_rules.histogram.Histograms.max" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.histogram.Histograms.min">
+<span class="sig-name descname"><span class="pre">min</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#decision_rules.histogram.Histograms.min" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.histogram.Histograms.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#decision_rules.histogram.Histograms.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.histogram.Histograms.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'bin_edges':</span> <span class="pre">FieldInfo(annotation=list[float],</span> <span class="pre">required=True),</span> <span class="pre">'histograms':</span> <span class="pre">FieldInfo(annotation=dict[str,</span> <span class="pre">list[int]],</span> <span class="pre">required=True),</span> <span class="pre">'max':</span> <span class="pre">FieldInfo(annotation=int,</span> <span class="pre">required=True),</span> <span class="pre">'min':</span> <span class="pre">FieldInfo(annotation=int,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#decision_rules.histogram.Histograms.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo].</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.histogram.get_histograms">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.histogram.</span></span><span class="sig-name descname"><span class="pre">get_histograms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.ruleset.AbstractRuleSet" title="decision_rules.core.ruleset.AbstractRuleSet"><span class="pre">AbstractRuleSet</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">problem_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#decision_rules.problem.ProblemTypes" title="decision_rules.problem.ProblemTypes"><span class="pre">ProblemTypes</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">for_rules</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#decision_rules.histogram.Histograms" title="decision_rules.histogram.Histograms"><span class="pre">Histograms</span></a></span></span><a class="headerlink" href="#decision_rules.histogram.get_histograms" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </section>
-<section id="decision-rules-measures">
-<h2>decision_rules.measures<a class="headerlink" href="#decision-rules-measures" title="Link to this heading"></a></h2>
+<section id="module-decision_rules.measures">
+<span id="decision-rules-measures"></span><h2>decision_rules.measures<a class="headerlink" href="#module-decision_rules.measures" title="Link to this heading"></a></h2>
+<p>Contains functions for calculating different qualities measures.
+They can be used for calculating rule qualities and voting weights</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.accuracy">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">accuracy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.accuracy" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.c1">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">c1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.c1" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.c2">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">c2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.c2" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.c_foil">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">c_foil</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.c_foil" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.cn2_significnce">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">cn2_significnce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.cn2_significnce" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.correlation">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">correlation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.correlation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.coverage">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">coverage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.coverage" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.f_bayesian_confirmation">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">f_bayesian_confirmation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.f_bayesian_confirmation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.f_measure">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">f_measure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.f_measure" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.full_coverage">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">full_coverage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.full_coverage" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.g_measure">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">g_measure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.g_measure" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.geo_rss">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">geo_rss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.geo_rss" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.information_gain">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">information_gain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.information_gain" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.j_measure">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">j_measure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.j_measure" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.kappa">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">kappa</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.kappa" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.klosgen">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">klosgen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.klosgen" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.laplace">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">laplace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.laplace" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.lift">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">lift</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.lift" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.logical_sufficiency">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">logical_sufficiency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.logical_sufficiency" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.m_estimate">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">m_estimate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.m_estimate" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.mutual_support">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">mutual_support</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.mutual_support" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.novelty">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">novelty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.novelty" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.odds_ratio">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">odds_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.odds_ratio" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.one_way_support">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">one_way_support</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.one_way_support" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.pawlak_dependency_factor">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">pawlak_dependency_factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.pawlak_dependency_factor" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.precision">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">precision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.precision" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.q2">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">q2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.q2" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.relative_risk">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">relative_risk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.relative_risk" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.ripper">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">ripper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.ripper" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.rss">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">rss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.rss" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.rule_interest">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">rule_interest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.rule_interest" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.s_bayesian">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">s_bayesian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.s_bayesian" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.sensitivity">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">sensitivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.sensitivity" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.specificity">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">specificity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.specificity" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.two_way_support">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">two_way_support</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.two_way_support" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.weighted_laplace">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">weighted_laplace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.weighted_laplace" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.weighted_relative_accuracy">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">weighted_relative_accuracy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.weighted_relative_accuracy" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.yails">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">yails</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.yails" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </section>
-<section id="decision-rules-problem">
-<h2>decision_rules.problem<a class="headerlink" href="#decision-rules-problem" title="Link to this heading"></a></h2>
+<section id="module-decision_rules.problem">
+<span id="decision-rules-problem"></span><h2>decision_rules.problem<a class="headerlink" href="#module-decision_rules.problem" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.problem.ProblemTypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.problem.</span></span><span class="sig-name descname"><span class="pre">ProblemTypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.problem.ProblemTypes" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.problem.ProblemTypes.CLASSIFICATION">
+<span class="sig-name descname"><span class="pre">CLASSIFICATION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'classification'</span></em><a class="headerlink" href="#decision_rules.problem.ProblemTypes.CLASSIFICATION" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.problem.ProblemTypes.REGRESSION">
+<span class="sig-name descname"><span class="pre">REGRESSION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'regression'</span></em><a class="headerlink" href="#decision_rules.problem.ProblemTypes.REGRESSION" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.problem.ProblemTypes.SURVIVAL">
+<span class="sig-name descname"><span class="pre">SURVIVAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'survival'</span></em><a class="headerlink" href="#decision_rules.problem.ProblemTypes.SURVIVAL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
-<section id="decision-rules-settings">
-<h2>decision_rules.settings<a class="headerlink" href="#decision-rules-settings" title="Link to this heading"></a></h2>
+<section id="module-decision_rules.settings">
+<span id="decision-rules-settings"></span><h2>decision_rules.settings<a class="headerlink" href="#module-decision_rules.settings" title="Link to this heading"></a></h2>
+<p>Contains global configuration conditions classes.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.settings.FLOAT_DISPLAY_PRECISION">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.settings.</span></span><span class="sig-name descname"><span class="pre">FLOAT_DISPLAY_PRECISION</span></span><a class="headerlink" href="#decision_rules.settings.FLOAT_DISPLAY_PRECISION" title="Link to this definition"></a></dt>
+<dd><p>controls floating points numbers precision
+when displaying rules as strings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.settings.CONCISE_NUMERICAL_CONDITIONS_FORM">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.settings.</span></span><span class="sig-name descname"><span class="pre">CONCISE_NUMERICAL_CONDITIONS_FORM</span></span><a class="headerlink" href="#decision_rules.settings.CONCISE_NUMERICAL_CONDITIONS_FORM" title="Link to this definition"></a></dt>
+<dd><p>If set to true, string representations
+of numerical elementary conditions where one of the interval boundary is
++/- infinity will be writen in more concise form of “X &lt; right” or “X &gt; left”
+instead of the full form: “X = &lt;left, right)”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 </section>
 
@@ -173,7 +710,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="tutorials/cn2.html" class="btn btn-neutral float-left" title="Generating rules using the CN2 algorithm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tutorials/illustrative_survival.html" class="btn btn-neutral float-left" title="Use rules in textual form" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="decision_rules.classification.html" class="btn btn-neutral float-right" title="decision_rules.classification" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

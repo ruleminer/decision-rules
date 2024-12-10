@@ -1,0 +1,832 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Use rules in textual form"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "In this tutorial, we will load a set of classification rules in textual form and evaluate them"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Load and prepare dataset"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We begin by loading the titanic dataset into a DataFrame."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>pclass</th>\n",
+       "      <th>age</th>\n",
+       "      <th>sex</th>\n",
+       "      <th>class</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>1st</td>\n",
+       "      <td>adult</td>\n",
+       "      <td>male</td>\n",
+       "      <td>yes</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>1st</td>\n",
+       "      <td>adult</td>\n",
+       "      <td>male</td>\n",
+       "      <td>yes</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>1st</td>\n",
+       "      <td>adult</td>\n",
+       "      <td>male</td>\n",
+       "      <td>yes</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>1st</td>\n",
+       "      <td>adult</td>\n",
+       "      <td>male</td>\n",
+       "      <td>yes</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>1st</td>\n",
+       "      <td>adult</td>\n",
+       "      <td>male</td>\n",
+       "      <td>yes</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>...</th>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2196</th>\n",
+       "      <td>crew</td>\n",
+       "      <td>adult</td>\n",
+       "      <td>female</td>\n",
+       "      <td>yes</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2197</th>\n",
+       "      <td>crew</td>\n",
+       "      <td>adult</td>\n",
+       "      <td>female</td>\n",
+       "      <td>yes</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2198</th>\n",
+       "      <td>crew</td>\n",
+       "      <td>adult</td>\n",
+       "      <td>female</td>\n",
+       "      <td>no</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2199</th>\n",
+       "      <td>crew</td>\n",
+       "      <td>adult</td>\n",
+       "      <td>female</td>\n",
+       "      <td>no</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2200</th>\n",
+       "      <td>crew</td>\n",
+       "      <td>adult</td>\n",
+       "      <td>female</td>\n",
+       "      <td>no</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "<p>2201 rows × 4 columns</p>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "     pclass    age     sex class\n",
+       "0       1st  adult    male   yes\n",
+       "1       1st  adult    male   yes\n",
+       "2       1st  adult    male   yes\n",
+       "3       1st  adult    male   yes\n",
+       "4       1st  adult    male   yes\n",
+       "...     ...    ...     ...   ...\n",
+       "2196   crew  adult  female   yes\n",
+       "2197   crew  adult  female   yes\n",
+       "2198   crew  adult  female    no\n",
+       "2199   crew  adult  female    no\n",
+       "2200   crew  adult  female    no\n",
+       "\n",
+       "[2201 rows x 4 columns]"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Columns:  ['pclass' 'age' 'sex' 'class']\n",
+      "Class names: ['yes' 'no']\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "TITANIC_PATH = (\n",
+    "    'https://raw.githubusercontent.com/ruleminer/decision-rules/'\n",
+    "    'refs/heads/docs/docs-src/source/tutorials/resources/titanic.csv'\n",
+    ")\n",
+    "titanic_df = pd.read_csv(TITANIC_PATH)\n",
+    "display(titanic_df)\n",
+    "print('Columns: ', titanic_df.columns.values)\n",
+    "print('Class names:', titanic_df['class'].unique())\n",
+    "X = titanic_df.drop(\"class\", axis=1)\n",
+    "y = titanic_df[\"class\"]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Load the ruleset in textual form"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Now we need to load the ruleset provided in a text file"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['IF sex = {male} AND age = {adult} THEN class = {no}',\n",
+       " 'IF sex = {male} AND pclass != {1st} THEN class = {no}',\n",
+       " 'IF sex = {female} THEN class = {yes}',\n",
+       " 'IF sex = {male} AND age = {adult} AND pclass != {1st} THEN class = {no}',\n",
+       " 'IF pclass != {3rd} AND sex = {female} THEN class = {yes}']"
+      ]
+     },
+     "execution_count": 5,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "import urllib\n",
+    "\n",
+    "FILE_PATH: str = (\n",
+    "    'https://raw.githubusercontent.com/ruleminer/decision-rules/'\n",
+    "    'refs/heads/docs/docs-src/source/tutorials/resources/classification/'\n",
+    "    'text_ruleset.txt'\n",
+    ")\n",
+    "\n",
+    "with urllib.request.urlopen(FILE_PATH) as response:\n",
+    "    text_rules_model = response.read().decode('utf-8').splitlines()\n",
+    "\n",
+    "\n",
+    "text_rules_model"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Convert the textual ruleset to a decision-rules model"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Now that the rules are loaded, we convert them into a decision-rules model using the TextRulesetFactory from decision-rules library. This conversion enables us to evaluate and modify the ruleset programmatically."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from decision_rules.ruleset_factories._factories.classification import TextRuleSetFactory\n",
+    "\n",
+    "factory = TextRuleSetFactory()\n",
+    "ruleset = factory.make(text_rules_model, X, y)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "After conversion in the decision-rules library, we can easilythe display the model"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "IF sex = {male} AND age = {adult} THEN class = no (p=1329, n=338, P=1490, N=711)\n",
+      "IF sex = {male} AND pclass != {1st} THEN class = no (p=1246, n=305, P=1490, N=711)\n",
+      "IF sex = {female} THEN class = yes (p=344, n=126, P=711, N=1490)\n",
+      "IF sex = {male} AND age = {adult} AND pclass != {1st} THEN class = no (p=1211, n=281, P=1490, N=711)\n",
+      "IF pclass != {3rd} AND sex = {female} THEN class = yes (p=254, n=20, P=711, N=1490)\n"
+     ]
+    }
+   ],
+   "source": [
+    "for rule in ruleset.rules:\n",
+    "    print(rule)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Analyze the ruleset statistics"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can compute various metrics for the ruleset, such as average precision, coverage, and lift. This step involves retrieving statistical information about the rules."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We start by calculating and displaying the general characteristics of the ruleset"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "{'rules_count': 5, 'avg_conditions_count': 2.0, 'avg_precision': 0.81, 'avg_coverage': 0.68, 'total_conditions_count': 10}\n"
+     ]
+    }
+   ],
+   "source": [
+    "ruleset_stats = ruleset.calculate_ruleset_stats(X, y)\n",
+    "\n",
+    "print(ruleset_stats)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Now let's calculate metrics for each rule. To make the output more readable and easier to interpret, we will organize the metrics into a DataFrame"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "{'800057da-2fc6-436b-8058-ec6903015c6f': {'p': 1329, 'n': 338, 'P': 1490, 'N': 711, 'unique_in_pos': 118, 'unique_in_neg': 57, 'p_unique': 118, 'n_unique': 57, 'all_unique': 175, 'support': 0.7573830077237619, 'conditions_count': 2, 'precision': 0.7972405518896221, 'coverage': 0.8919463087248322, 'C2': 0.3522139513422039, 'RSS': 0.4165595295405846, 'correlation': 0.45442956675744167, 'lift': 1.1776687615497035, 'p_value': 2.627480562242127e-96, 'TP': 1329, 'FP': 338, 'TN': 373, 'FN': 161, 'sensitivity': 0.8919463087248322, 'specificity': 0.5246132208157525, 'negative_predictive_value': 0.6985018726591761, 'odds_ratio': 9.109263308770833, 'relative_risk': 2.6279410784509762, 'lr+': 1.876253921607561, 'lr-': 0.20596829623765237}, '96746bc9-7e93-4158-b7f3-39c8709cd355': {'p': 1246, 'n': 305, 'P': 1490, 'N': 711, 'unique_in_pos': 35, 'unique_in_neg': 24, 'p_unique': 35, 'n_unique': 24, 'all_unique': 59, 'support': 0.704679691049523, 'conditions_count': 2, 'precision': 0.8033526756931012, 'coverage': 0.836241610738255, 'C2': 0.35921539680977327, 'RSS': 0.40726833366371207, 'correlation': 0.4174899265648551, 'lift': 1.1866974759735005, 'p_value': 1.2499563232509209e-82, 'TP': 1246, 'FP': 305, 'TN': 406, 'FN': 244, 'sensitivity': 0.836241610738255, 'specificity': 0.5710267229254571, 'negative_predictive_value': 0.6246153846153846, 'odds_ratio': 6.797489955792048, 'relative_risk': 2.131343833471493, 'lr+': 1.9494025745406534, 'lr-': 0.28677885410123327}, 'b774df16-9114-4df0-a86d-586edda9d696': {'p': 344, 'n': 126, 'P': 711, 'N': 1490, 'unique_in_pos': 90, 'unique_in_neg': 106, 'p_unique': 90, 'n_unique': 106, 'all_unique': 196, 'support': 0.21353930031803725, 'conditions_count': 1, 'precision': 0.7319148936170212, 'coverage': 0.4838255977496484, 'C2': 0.4481077026863914, 'RSS': 0.3992618393603866, 'correlation': 0.45560478314893393, 'lift': 2.265744980099949, 'p_value': 2.6906937468626293e-96, 'TP': 344, 'FP': 126, 'TN': 1364, 'FN': 367, 'sensitivity': 0.4838255977496484, 'specificity': 0.9154362416107382, 'negative_predictive_value': 0.7879838243789717, 'odds_ratio': 10.146746534610644, 'relative_risk': 3.4427844588344123, 'lr+': 5.721429687674411, 'lr-': 0.5638562018717184}, '44f9bfbc-1095-46be-b726-333cba0bed6f': {'p': 1211, 'n': 281, 'P': 1490, 'N': 711, 'unique_in_pos': 0, 'unique_in_neg': 0, 'p_unique': 0, 'n_unique': 0, 'all_unique': 0, 'support': 0.6778736937755566, 'conditions_count': 3, 'precision': 0.811662198391421, 'coverage': 0.812751677852349, 'C2': 0.3779351395045058, 'RSS': 0.4175336750394095, 'correlation': 0.41784182864340963, 'lift': 1.1989721467513539, 'p_value': 2.251021760405628e-83, 'TP': 1211, 'FP': 281, 'TN': 430, 'FN': 279, 'sensitivity': 0.812751677852349, 'specificity': 0.6047819971870605, 'negative_predictive_value': 0.6064880112834978, 'odds_ratio': 6.641964285714286, 'relative_risk': 2.055244638069705, 'lr+': 2.056464209797225, 'lr-': 0.3096129233650694}, '082dbf24-8be4-47f6-a228-808c1c69b1a9': {'p': 254, 'n': 20, 'P': 711, 'N': 1490, 'unique_in_pos': 0, 'unique_in_neg': 0, 'p_unique': 0, 'n_unique': 0, 'all_unique': 0, 'support': 0.12448886869604725, 'conditions_count': 2, 'precision': 0.927007299270073, 'coverage': 0.35724331926863573, 'C2': 0.6054503338686228, 'RSS': 0.34382050047668944, 'correlation': 0.48701637522934677, 'lift': 2.8696808237600995, 'p_value': 1.5489192105023278e-113, 'TP': 254, 'FP': 20, 'TN': 1470, 'FN': 457, 'sensitivity': 0.35724331926863573, 'specificity': 0.9865771812080537, 'negative_predictive_value': 0.7628437986507525, 'odds_ratio': 40.84673449294388, 'relative_risk': 3.9003123705096736, 'lr+': 26.6146272855134, 'lr-': 0.6515016695848522}}\n"
+     ]
+    },
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Rule</th>\n",
+       "      <th>p</th>\n",
+       "      <th>n</th>\n",
+       "      <th>P</th>\n",
+       "      <th>N</th>\n",
+       "      <th>Unique in Positive</th>\n",
+       "      <th>Unique in Negative</th>\n",
+       "      <th>P Unique</th>\n",
+       "      <th>N Unique</th>\n",
+       "      <th>All Unique</th>\n",
+       "      <th>...</th>\n",
+       "      <th>FP</th>\n",
+       "      <th>TN</th>\n",
+       "      <th>FN</th>\n",
+       "      <th>Sensitivity</th>\n",
+       "      <th>Specificity</th>\n",
+       "      <th>Negative Predictive Value</th>\n",
+       "      <th>Odds Ratio</th>\n",
+       "      <th>Relative Risk</th>\n",
+       "      <th>LR+</th>\n",
+       "      <th>LR-</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>r1</td>\n",
+       "      <td>1329</td>\n",
+       "      <td>338</td>\n",
+       "      <td>1490</td>\n",
+       "      <td>711</td>\n",
+       "      <td>118</td>\n",
+       "      <td>57</td>\n",
+       "      <td>118</td>\n",
+       "      <td>57</td>\n",
+       "      <td>175</td>\n",
+       "      <td>...</td>\n",
+       "      <td>338</td>\n",
+       "      <td>373</td>\n",
+       "      <td>161</td>\n",
+       "      <td>0.892</td>\n",
+       "      <td>0.525</td>\n",
+       "      <td>0.699</td>\n",
+       "      <td>9.109</td>\n",
+       "      <td>2.628</td>\n",
+       "      <td>1.876</td>\n",
+       "      <td>0.206</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>r2</td>\n",
+       "      <td>1246</td>\n",
+       "      <td>305</td>\n",
+       "      <td>1490</td>\n",
+       "      <td>711</td>\n",
+       "      <td>35</td>\n",
+       "      <td>24</td>\n",
+       "      <td>35</td>\n",
+       "      <td>24</td>\n",
+       "      <td>59</td>\n",
+       "      <td>...</td>\n",
+       "      <td>305</td>\n",
+       "      <td>406</td>\n",
+       "      <td>244</td>\n",
+       "      <td>0.836</td>\n",
+       "      <td>0.571</td>\n",
+       "      <td>0.625</td>\n",
+       "      <td>6.797</td>\n",
+       "      <td>2.131</td>\n",
+       "      <td>1.949</td>\n",
+       "      <td>0.287</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>r3</td>\n",
+       "      <td>344</td>\n",
+       "      <td>126</td>\n",
+       "      <td>711</td>\n",
+       "      <td>1490</td>\n",
+       "      <td>90</td>\n",
+       "      <td>106</td>\n",
+       "      <td>90</td>\n",
+       "      <td>106</td>\n",
+       "      <td>196</td>\n",
+       "      <td>...</td>\n",
+       "      <td>126</td>\n",
+       "      <td>1364</td>\n",
+       "      <td>367</td>\n",
+       "      <td>0.484</td>\n",
+       "      <td>0.915</td>\n",
+       "      <td>0.788</td>\n",
+       "      <td>10.147</td>\n",
+       "      <td>3.443</td>\n",
+       "      <td>5.721</td>\n",
+       "      <td>0.564</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>r4</td>\n",
+       "      <td>1211</td>\n",
+       "      <td>281</td>\n",
+       "      <td>1490</td>\n",
+       "      <td>711</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>...</td>\n",
+       "      <td>281</td>\n",
+       "      <td>430</td>\n",
+       "      <td>279</td>\n",
+       "      <td>0.813</td>\n",
+       "      <td>0.605</td>\n",
+       "      <td>0.606</td>\n",
+       "      <td>6.642</td>\n",
+       "      <td>2.055</td>\n",
+       "      <td>2.056</td>\n",
+       "      <td>0.310</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>r5</td>\n",
+       "      <td>254</td>\n",
+       "      <td>20</td>\n",
+       "      <td>711</td>\n",
+       "      <td>1490</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>...</td>\n",
+       "      <td>20</td>\n",
+       "      <td>1470</td>\n",
+       "      <td>457</td>\n",
+       "      <td>0.357</td>\n",
+       "      <td>0.987</td>\n",
+       "      <td>0.763</td>\n",
+       "      <td>40.847</td>\n",
+       "      <td>3.900</td>\n",
+       "      <td>26.615</td>\n",
+       "      <td>0.652</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "<p>5 rows × 30 columns</p>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "  Rule     p    n     P     N  Unique in Positive  Unique in Negative  \\\n",
+       "0   r1  1329  338  1490   711                 118                  57   \n",
+       "1   r2  1246  305  1490   711                  35                  24   \n",
+       "2   r3   344  126   711  1490                  90                 106   \n",
+       "3   r4  1211  281  1490   711                   0                   0   \n",
+       "4   r5   254   20   711  1490                   0                   0   \n",
+       "\n",
+       "   P Unique  N Unique  All Unique  ...   FP    TN   FN  Sensitivity  \\\n",
+       "0       118        57         175  ...  338   373  161        0.892   \n",
+       "1        35        24          59  ...  305   406  244        0.836   \n",
+       "2        90       106         196  ...  126  1364  367        0.484   \n",
+       "3         0         0           0  ...  281   430  279        0.813   \n",
+       "4         0         0           0  ...   20  1470  457        0.357   \n",
+       "\n",
+       "   Specificity  Negative Predictive Value  Odds Ratio  Relative Risk     LR+  \\\n",
+       "0        0.525                      0.699       9.109          2.628   1.876   \n",
+       "1        0.571                      0.625       6.797          2.131   1.949   \n",
+       "2        0.915                      0.788      10.147          3.443   5.721   \n",
+       "3        0.605                      0.606       6.642          2.055   2.056   \n",
+       "4        0.987                      0.763      40.847          3.900  26.615   \n",
+       "\n",
+       "     LR-  \n",
+       "0  0.206  \n",
+       "1  0.287  \n",
+       "2  0.564  \n",
+       "3  0.310  \n",
+       "4  0.652  \n",
+       "\n",
+       "[5 rows x 30 columns]"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "rule_metrics = ruleset.calculate_rules_metrics(X, y)\n",
+    "print(rule_metrics)\n",
+    "rule_metrics_df = pd.DataFrame([\n",
+    "    {\n",
+    "        'Rule': f\"r{i+1}\",\n",
+    "        'p': metrics['p'],\n",
+    "        'n': metrics['n'],\n",
+    "        'P': metrics['P'],\n",
+    "        'N': metrics['N'],\n",
+    "        'Unique in Positive': metrics.get('unique_in_pos', 0),\n",
+    "        'Unique in Negative': metrics.get('unique_in_neg', 0),\n",
+    "        'P Unique': metrics.get('p_unique', 0),\n",
+    "        'N Unique': metrics.get('n_unique', 0),\n",
+    "        'All Unique': metrics.get('all_unique', 0),\n",
+    "        'Support': round(metrics.get('support', 0), 3),\n",
+    "        'Conditions Count': metrics.get('conditions_count', 0),\n",
+    "        'Precision': round(metrics.get('precision', 0), 3),\n",
+    "        'Coverage': round(metrics.get('coverage', 0), 3),\n",
+    "        'C2': round(metrics.get('C2', 0), 3),\n",
+    "        'RSS': round(metrics.get('RSS', 0), 3),\n",
+    "        'Correlation': round(metrics.get('correlation', 0), 3),\n",
+    "        'Lift': round(metrics.get('lift', 0), 3),\n",
+    "        'P Value': metrics.get('p_value', 0),\n",
+    "        'TP': metrics.get('TP', 0),\n",
+    "        'FP': metrics.get('FP', 0),\n",
+    "        'TN': metrics.get('TN', 0),\n",
+    "        'FN': metrics.get('FN', 0),\n",
+    "        'Sensitivity': round(metrics.get('sensitivity', 0), 3),\n",
+    "        'Specificity': round(metrics.get('specificity', 0), 3),\n",
+    "        'Negative Predictive Value': round(metrics.get('negative_predictive_value', 0), 3),\n",
+    "        'Odds Ratio': round(metrics.get('odds_ratio', 0), 3),\n",
+    "        'Relative Risk': round(metrics.get('relative_risk', 0), 3),\n",
+    "        'LR+': round(metrics.get('lr+', 0), 3),\n",
+    "        'LR-': round(metrics.get('lr-', 0), 3),\n",
+    "    }\n",
+    "    for i, (_, metrics) in enumerate(rule_metrics.items())\n",
+    "])\n",
+    "display(rule_metrics_df)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can also calculate statistics like condition importances"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "{'no': [{'condition': 'sex = {male}',\n",
+       "   'attributes': ['sex'],\n",
+       "   'importance': 0.7637259326667143},\n",
+       "  {'condition': 'pclass != {1st}',\n",
+       "   'attributes': ['pclass'],\n",
+       "   'importance': 0.15287127806103967},\n",
+       "  {'condition': 'age = {adult}',\n",
+       "   'attributes': ['age'],\n",
+       "   'importance': 0.04417532222905417}],\n",
+       " 'yes': [{'condition': 'sex = {female}',\n",
+       "   'attributes': ['sex'],\n",
+       "   'importance': 0.9532496919435065},\n",
+       "  {'condition': 'pclass != {3rd}',\n",
+       "   'attributes': ['pclass'],\n",
+       "   'importance': 0.10030834461150767}]}"
+      ]
+     },
+     "execution_count": 10,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "from decision_rules.measures import c2\n",
+    "condition_importances = ruleset.calculate_condition_importances(X, y, measure=c2)\n",
+    "condition_importances"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Modify the ruleset"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The decision-rule model can be easily edited. For example, we will create a new rule stating \"IF age = child THEN class = 1\" and then add it to the ruleset."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "IF age = {child} THEN class = yes\n"
+     ]
+    }
+   ],
+   "source": [
+    "from decision_rules.classification.rule import ClassificationConclusion\n",
+    "from decision_rules.classification.rule import ClassificationRule\n",
+    "from decision_rules.conditions import NominalCondition, CompoundCondition\n",
+    "\n",
+    "rule = ClassificationRule(\n",
+    "    premise=CompoundCondition(\n",
+    "        subconditions=[\n",
+    "            NominalCondition(\n",
+    "                column_index=X.columns.get_loc('age'),\n",
+    "                value = \"child\"\n",
+    "            )\n",
+    "        ]\n",
+    "    ),\n",
+    "    conclusion=ClassificationConclusion(\n",
+    "        value='yes',\n",
+    "        column_name='class',\n",
+    "    ),\n",
+    "    column_names=X.columns,\n",
+    ")\n",
+    "print(rule)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "(p=57, n=52, P=711, N=1490)\n"
+     ]
+    }
+   ],
+   "source": [
+    "rule.coverage = rule.calculate_coverage(X.to_numpy(), y.to_numpy())\n",
+    "print(rule.coverage)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Updated Ruleset:\n",
+      "IF sex = {male} AND age = {adult} THEN class = no (p=1329, n=338, P=1490, N=711)\n",
+      "IF sex = {male} AND pclass != {1st} THEN class = no (p=1246, n=305, P=1490, N=711)\n",
+      "IF sex = {female} THEN class = yes (p=344, n=126, P=711, N=1490)\n",
+      "IF sex = {male} AND age = {adult} AND pclass != {1st} THEN class = no (p=1211, n=281, P=1490, N=711)\n",
+      "IF pclass != {3rd} AND sex = {female} THEN class = yes (p=254, n=20, P=711, N=1490)\n",
+      "IF age = {child} THEN class = yes (p=57, n=52, P=711, N=1490)\n"
+     ]
+    }
+   ],
+   "source": [
+    "ruleset.rules.append(rule)\n",
+    "\n",
+    "print(\"Updated Ruleset:\")\n",
+    "for rule in ruleset.rules:\n",
+    "    print(rule)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Now let's remove from the rule \"IF sex = male AND pclass != 1st THEN class = no\" the condition \"pclass != 1st\""
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Updated Ruleset:\n",
+      "IF sex = {male} AND age = {adult} THEN class = no (p=1329, n=338, P=1490, N=711)\n",
+      "IF sex = {male} THEN class = no (p=1364, n=367, P=1490, N=711)\n",
+      "IF sex = {female} THEN class = yes (p=344, n=126, P=711, N=1490)\n",
+      "IF sex = {male} AND age = {adult} AND pclass != {1st} THEN class = no (p=1211, n=281, P=1490, N=711)\n",
+      "IF pclass != {3rd} AND sex = {female} THEN class = yes (p=254, n=20, P=711, N=1490)\n",
+      "IF age = {child} THEN class = yes (p=57, n=52, P=711, N=1490)\n"
+     ]
+    }
+   ],
+   "source": [
+    "condition_to_remove = ruleset.rules[1].premise.subconditions[1]\n",
+    "ruleset.rules[1].premise.subconditions.remove(condition_to_remove)\n",
+    "ruleset.rules[1].coverage = ruleset.rules[1].calculate_coverage(X.to_numpy(), y.to_numpy())\n",
+    "\n",
+    "print(\"Updated Ruleset:\")\n",
+    "for rule in ruleset.rules:\n",
+    "    print(rule)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We can also modify the value of a condition. In the rule \"IF sex = male AND age = adult AND pclass != 1st THEN class = no\" we will update the condition \"pclass != 1st\" to \"pclass = 3\""
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Updated Ruleset:\n",
+      "IF sex = {male} AND age = {adult} THEN class = no (p=1329, n=338, P=1490, N=711)\n",
+      "IF sex = {male} THEN class = no (p=1364, n=367, P=1490, N=711)\n",
+      "IF sex = {female} THEN class = yes (p=344, n=126, P=711, N=1490)\n",
+      "IF sex = {male} AND age = {adult} AND pclass = {3st} THEN class = no (p=0, n=0, P=1490, N=711)\n",
+      "IF pclass != {3rd} AND sex = {female} THEN class = yes (p=254, n=20, P=711, N=1490)\n",
+      "IF age = {child} THEN class = yes (p=57, n=52, P=711, N=1490)\n"
+     ]
+    }
+   ],
+   "source": [
+    "ruleset.rules[3].premise.subconditions[2].value = \"3st\"\n",
+    "ruleset.rules[3].premise.subconditions[2].negated = False\n",
+    "ruleset.rules[3].coverage = ruleset.rules[3].calculate_coverage(X.to_numpy(), y.to_numpy())\n",
+    "\n",
+    "print(\"Updated Ruleset:\")\n",
+    "for rule in ruleset.rules:\n",
+    "    print(rule)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": ".venv",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.12.0"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}

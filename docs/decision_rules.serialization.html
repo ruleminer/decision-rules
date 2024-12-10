@@ -52,16 +52,22 @@
 <li class="toctree-l2"><a class="reference internal" href="decision_rules.importances.html">decision_rules.importances package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="decision_rules.regression.html">decision_rules.regression</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">decision_rules.serialization</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#decision-rules-serialization-utils">decision_rules.serialization.utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-decision_rules.serialization.utils">decision_rules.serialization.utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.serialization.utils.JSONClassSerializer"><code class="docutils literal notranslate"><span class="pre">JSONClassSerializer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.serialization.utils.JSONSerializer"><code class="docutils literal notranslate"><span class="pre">JSONSerializer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.serialization.utils.SerializationModes"><code class="docutils literal notranslate"><span class="pre">SerializationModes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.serialization.utils.register_serializer"><code class="docutils literal notranslate"><span class="pre">register_serializer()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="decision_rules.similarity.html">decision_rules.similarity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="decision_rules.survival.html">decision_rules.survival</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#decision-rules-conditions">decision_rules.conditions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#decision-rules-histogram">decision_rules.histogram</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#decision-rules-measures">decision_rules.measures</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#decision-rules-problem">decision_rules.problem</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#decision-rules-settings">decision_rules.settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#module-decision_rules.conditions">decision_rules.conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#module-decision_rules.histogram">decision_rules.histogram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#module-decision_rules.measures">decision_rules.measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#module-decision_rules.problem">decision_rules.problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#module-decision_rules.settings">decision_rules.settings</a></li>
 </ul>
 </li>
 </ul>
@@ -93,8 +99,188 @@
              
   <section id="decision-rules-serialization">
 <h1>decision_rules.serialization<a class="headerlink" href="#decision-rules-serialization" title="Link to this heading"></a></h1>
-<section id="decision-rules-serialization-utils">
-<h2>decision_rules.serialization.utils<a class="headerlink" href="#decision-rules-serialization-utils" title="Link to this heading"></a></h2>
+<section id="module-decision_rules.serialization.utils">
+<span id="decision-rules-serialization-utils"></span><h2>decision_rules.serialization.utils<a class="headerlink" href="#module-decision_rules.serialization.utils" title="Link to this heading"></a></h2>
+<p>Contains classed useful for serializing and deserializing objects.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.serialization.utils.JSONClassSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.serialization.utils.</span></span><span class="sig-name descname"><span class="pre">JSONClassSerializer</span></span><a class="headerlink" href="#decision_rules.serialization.utils.JSONClassSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Abstract class for classes serializer. Each serializer should
+inherit this class and be registered for type by “register_serializer”.
+Each class serializer should have inner class “Model” which is pydantic model
+class for JSON representation.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.serialization.utils.JSONClassSerializer.deserialize">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">deserialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">BaseModel</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#decision_rules.serialization.utils.JSONClassSerializer.deserialize" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> – (Union[dict, BaseModel]): dictionary or pydantic model</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>object instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.serialization.utils.JSONClassSerializer.serialize">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">serialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#decision_rules.serialization.utils.SerializationModes" title="decision_rules.serialization.utils.SerializationModes"><span class="pre">SerializationModes</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">SerializationModes.FULL</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#decision_rules.serialization.utils.JSONClassSerializer.serialize" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instance</strong> (<em>Any</em>) – object instance</p></li>
+<li><p><strong>mode</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="#decision_rules.serialization.utils.SerializationModes" title="decision_rules.serialization.utils.SerializationModes"><em>SerializationModes</em></a><em>]</em><em>, </em><em>optional</em>) – Controls serialization mode.
+In minimal mode only minimal information is serialized. After deserialization
+of the rulesets you’ll have to call update method to use it. In full mode all
+important information is serialized and after ruleset deserialization and
+you can use it further without calling update. Defaults to SerializationModes.FULL</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>json dictionary</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.serialization.utils.JSONSerializer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.serialization.utils.</span></span><span class="sig-name descname"><span class="pre">JSONSerializer</span></span><a class="headerlink" href="#decision_rules.serialization.utils.JSONSerializer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Serializes deserializes registered object types.
+It can serialize and deserialize any object for which type there was registered
+as serializer class.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.serialization.utils.JSONSerializer.deserialize">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">deserialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_class</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">type</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#decision_rules.serialization.utils.JSONSerializer.deserialize" title="Link to this definition"></a></dt>
+<dd><p>Deserializes json dictionary to given target class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>dict</em>) – json dictionary</p></li>
+<li><p><strong>target_class</strong> (<em>type</em>) – target class</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if no serializer class is registered for passed object type</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>deserialized object</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.serialization.utils.JSONSerializer.register_serializer">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register_serializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serializable_class</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">serializer_class</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.serialization.utils.JSONSerializer.register_serializer" title="Link to this definition"></a></dt>
+<dd><p>Registere new serializer for given type</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>serializable_class</strong> (<em>type</em>) – serializer class</p></li>
+<li><p><strong>serializer_class</strong> (<em>type</em>) – type of objects to be serialized / deserialized</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – when try to register multiple serializers for the same type</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.serialization.utils.JSONSerializer.serialize">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">serialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#decision_rules.serialization.utils.SerializationModes" title="decision_rules.serialization.utils.SerializationModes"><span class="pre">SerializationModes</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">SerializationModes.FULL</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#decision_rules.serialization.utils.JSONSerializer.serialize" title="Link to this definition"></a></dt>
+<dd><p>Serializes given object to json dictionary</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<em>Any</em>) – value</p></li>
+<li><p><strong>mode</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="#decision_rules.serialization.utils.SerializationModes" title="decision_rules.serialization.utils.SerializationModes"><em>SerializationModes</em></a><em>]</em><em>, </em><em>optional</em>) – Controls serialization mode.
+In minimal mode only minimal information is serialized. After deserialization
+of the rulesets you’ll have to call update method to use it. In full mode all
+important information is serialized and after ruleset deserialization and
+you can use it further without calling update. Defaults to SerializationModes.FULL</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if no serializer class is registered for passed object type</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>json dictionary</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.serialization.utils.SerializationModes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.serialization.utils.</span></span><span class="sig-name descname"><span class="pre">SerializationModes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.serialization.utils.SerializationModes" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Specifies possible serialization modes choice.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.serialization.utils.SerializationModes.FULL">
+<span class="sig-name descname"><span class="pre">FULL</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'full'</span></em><a class="headerlink" href="#decision_rules.serialization.utils.SerializationModes.FULL" title="Link to this definition"></a></dt>
+<dd><p>In this mode all important information is serialized. After
+deserialization of the rulesets you can use it as it is without calling <cite>update</cite>
+method.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.serialization.utils.SerializationModes.MINIMAL">
+<span class="sig-name descname"><span class="pre">MINIMAL</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'minimal'</span></em><a class="headerlink" href="#decision_rules.serialization.utils.SerializationModes.MINIMAL" title="Link to this definition"></a></dt>
+<dd><p>In this mode only minimal, necessary information is serialized. After
+deserialization of the rulesets you’ll have to call <cite>update</cite> method to use it.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.serialization.utils.SerializationModes.instantiate">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">instantiate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#decision_rules.serialization.utils.SerializationModes" title="decision_rules.serialization.utils.SerializationModes"><span class="pre">SerializationModes</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#decision_rules.serialization.utils.SerializationModes" title="decision_rules.serialization.utils.SerializationModes"><span class="pre">SerializationModes</span></a></span></span><a class="headerlink" href="#decision_rules.serialization.utils.SerializationModes.instantiate" title="Link to this definition"></a></dt>
+<dd><p>Creates serialization mode instance from given value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>Union</em><em>[</em><a class="reference internal" href="#decision_rules.serialization.utils.SerializationModes" title="decision_rules.serialization.utils.SerializationModes"><em>SerializationModes</em></a><em>, </em><em>str</em><em>]</em>) – either serialization mode or its name</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If given value is not a valid serialization mode</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>serialization mode</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#decision_rules.serialization.utils.SerializationModes" title="decision_rules.serialization.utils.SerializationModes">SerializationModes</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.serialization.utils.register_serializer">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.serialization.utils.</span></span><span class="sig-name descname"><span class="pre">register_serializer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">registered_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.serialization.utils.register_serializer" title="Link to this definition"></a></dt>
+<dd><p>Register decorated class to be used as serializer for given type.</p>
+<p class="rubric">Example</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>type</strong> (<em>type</em>) – type of objects to be serialized</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 </section>
 

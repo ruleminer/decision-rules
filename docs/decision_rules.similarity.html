@@ -53,19 +53,33 @@
 <li class="toctree-l2"><a class="reference internal" href="decision_rules.regression.html">decision_rules.regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="decision_rules.serialization.html">decision_rules.serialization</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">decision_rules.similarity</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#decision-rules-similarity-calculate">decision_rules.similarity.calculate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-decision_rules.similarity.calculate">decision_rules.similarity.calculate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.similarity.calculate.SimilarityType"><code class="docutils literal notranslate"><span class="pre">SimilarityType</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.similarity.calculate.calculate_rule_similarity"><code class="docutils literal notranslate"><span class="pre">calculate_rule_similarity()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#decision-rules-similarity-common">decision_rules.similarity.common</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#decision-rules-similarity-ruleset">decision_rules.similarity.ruleset</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#decision-rules-similarity-semantic">decision_rules.similarity.semantic</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#decision-rules-similarity-syntactic">decision_rules.similarity.syntactic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-decision_rules.similarity.ruleset">decision_rules.similarity.ruleset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.similarity.ruleset.calculate_ruleset_similarity"><code class="docutils literal notranslate"><span class="pre">calculate_ruleset_similarity()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-decision_rules.similarity.semantic">decision_rules.similarity.semantic</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.similarity.semantic.SimilarityMeasure"><code class="docutils literal notranslate"><span class="pre">SimilarityMeasure</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.similarity.semantic.calculate_semantic_similarity_matrix"><code class="docutils literal notranslate"><span class="pre">calculate_semantic_similarity_matrix()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-decision_rules.similarity.syntactic">decision_rules.similarity.syntactic</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.similarity.syntactic.SyntacticRuleSimilarityCalculator"><code class="docutils literal notranslate"><span class="pre">SyntacticRuleSimilarityCalculator</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="decision_rules.survival.html">decision_rules.survival</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#decision-rules-conditions">decision_rules.conditions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#decision-rules-histogram">decision_rules.histogram</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#decision-rules-measures">decision_rules.measures</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#decision-rules-problem">decision_rules.problem</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#decision-rules-settings">decision_rules.settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#module-decision_rules.conditions">decision_rules.conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#module-decision_rules.histogram">decision_rules.histogram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#module-decision_rules.measures">decision_rules.measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#module-decision_rules.problem">decision_rules.problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#module-decision_rules.settings">decision_rules.settings</a></li>
 </ul>
 </li>
 </ul>
@@ -97,20 +111,134 @@
              
   <section id="decision-rules-similarity">
 <h1>decision_rules.similarity<a class="headerlink" href="#decision-rules-similarity" title="Link to this heading"></a></h1>
-<section id="decision-rules-similarity-calculate">
-<h2>decision_rules.similarity.calculate<a class="headerlink" href="#decision-rules-similarity-calculate" title="Link to this heading"></a></h2>
+<section id="module-decision_rules.similarity.calculate">
+<span id="decision-rules-similarity-calculate"></span><h2>decision_rules.similarity.calculate<a class="headerlink" href="#module-decision_rules.similarity.calculate" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.similarity.calculate.SimilarityType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.similarity.calculate.</span></span><span class="sig-name descname"><span class="pre">SimilarityType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.similarity.calculate.SimilarityType" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.similarity.calculate.SimilarityType.SEMANTIC">
+<span class="sig-name descname"><span class="pre">SEMANTIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'semantic'</span></em><a class="headerlink" href="#decision_rules.similarity.calculate.SimilarityType.SEMANTIC" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.similarity.calculate.SimilarityType.SYNTACTIC">
+<span class="sig-name descname"><span class="pre">SYNTACTIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'syntactic'</span></em><a class="headerlink" href="#decision_rules.similarity.calculate.SimilarityType.SYNTACTIC" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.similarity.calculate.calculate_rule_similarity">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.similarity.calculate.</span></span><span class="sig-name descname"><span class="pre">calculate_rule_similarity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ruleset1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.ruleset.AbstractRuleSet" title="decision_rules.core.ruleset.AbstractRuleSet"><span class="pre">AbstractRuleSet</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ruleset2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.ruleset.AbstractRuleSet" title="decision_rules.core.ruleset.AbstractRuleSet"><span class="pre">AbstractRuleSet</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">similarity_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#decision_rules.similarity.calculate.SimilarityType" title="decision_rules.similarity.calculate.SimilarityType"><span class="pre">SimilarityType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">measure</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#decision_rules.similarity.semantic.SimilarityMeasure" title="decision_rules.similarity.semantic.SimilarityMeasure"><span class="pre">SimilarityMeasure</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#decision_rules.similarity.calculate.calculate_rule_similarity" title="Link to this definition"></a></dt>
+<dd><p>Calculate the rule similarity between two sets of rules based on the specified measure and type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ruleset1</strong> – AbstractRuleSet</p></li>
+<li><p><strong>ruleset2</strong> – AbstractRuleSet</p></li>
+<li><p><strong>dataset</strong> – pd.DataFrame</p></li>
+<li><p><strong>similarity_type</strong> – SimilarityType - semantic or syntactic</p></li>
+<li><p><strong>measure</strong> – for semantic similarity</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>array (matrix) of similarities</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="decision-rules-similarity-common">
 <h2>decision_rules.similarity.common<a class="headerlink" href="#decision-rules-similarity-common" title="Link to this heading"></a></h2>
 </section>
-<section id="decision-rules-similarity-ruleset">
-<h2>decision_rules.similarity.ruleset<a class="headerlink" href="#decision-rules-similarity-ruleset" title="Link to this heading"></a></h2>
+<section id="module-decision_rules.similarity.ruleset">
+<span id="decision-rules-similarity-ruleset"></span><h2>decision_rules.similarity.ruleset<a class="headerlink" href="#module-decision_rules.similarity.ruleset" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.similarity.ruleset.calculate_ruleset_similarity">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.similarity.ruleset.</span></span><span class="sig-name descname"><span class="pre">calculate_ruleset_similarity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ruleset1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.ruleset.AbstractRuleSet" title="decision_rules.core.ruleset.AbstractRuleSet"><span class="pre">AbstractRuleSet</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ruleset2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.ruleset.AbstractRuleSet" title="decision_rules.core.ruleset.AbstractRuleSet"><span class="pre">AbstractRuleSet</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.similarity.ruleset.calculate_ruleset_similarity" title="Link to this definition"></a></dt>
+<dd><p>Calculates the similarity between two rulesets based on the number of pairs of examples
+that are covered by the same rules in both rulesets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ruleset1</strong> – first ruleset</p></li>
+<li><p><strong>ruleset2</strong> – second ruleset</p></li>
+<li><p><strong>dataset</strong> – dataset to calculate the similarity for</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>similarity between the rulesets</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
-<section id="decision-rules-similarity-semantic">
-<h2>decision_rules.similarity.semantic<a class="headerlink" href="#decision-rules-similarity-semantic" title="Link to this heading"></a></h2>
+<section id="module-decision_rules.similarity.semantic">
+<span id="decision-rules-similarity-semantic"></span><h2>decision_rules.similarity.semantic<a class="headerlink" href="#module-decision_rules.similarity.semantic" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.similarity.semantic.SimilarityMeasure">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.similarity.semantic.</span></span><span class="sig-name descname"><span class="pre">SimilarityMeasure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.similarity.semantic.SimilarityMeasure" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.similarity.semantic.SimilarityMeasure.CORRELATION">
+<span class="sig-name descname"><span class="pre">CORRELATION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Correlation'</span></em><a class="headerlink" href="#decision_rules.similarity.semantic.SimilarityMeasure.CORRELATION" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.similarity.semantic.SimilarityMeasure.JACCARD">
+<span class="sig-name descname"><span class="pre">JACCARD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Jaccard'</span></em><a class="headerlink" href="#decision_rules.similarity.semantic.SimilarityMeasure.JACCARD" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="decision_rules.similarity.semantic.SimilarityMeasure.KULCZYNSKI">
+<span class="sig-name descname"><span class="pre">KULCZYNSKI</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Kulczynski'</span></em><a class="headerlink" href="#decision_rules.similarity.semantic.SimilarityMeasure.KULCZYNSKI" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.similarity.semantic.calculate_semantic_similarity_matrix">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.similarity.semantic.</span></span><span class="sig-name descname"><span class="pre">calculate_semantic_similarity_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measure</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#decision_rules.similarity.semantic.SimilarityMeasure" title="decision_rules.similarity.semantic.SimilarityMeasure"><span class="pre">SimilarityMeasure</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ruleset1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.ruleset.AbstractRuleSet" title="decision_rules.core.ruleset.AbstractRuleSet"><span class="pre">AbstractRuleSet</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ruleset2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.ruleset.AbstractRuleSet" title="decision_rules.core.ruleset.AbstractRuleSet"><span class="pre">AbstractRuleSet</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#decision_rules.similarity.semantic.calculate_semantic_similarity_matrix" title="Link to this definition"></a></dt>
+<dd><p>Calculates the similarity matrix based on the specified similarity measure</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>measure</strong> (<a class="reference internal" href="#decision_rules.similarity.semantic.SimilarityMeasure" title="decision_rules.similarity.semantic.SimilarityMeasure"><em>SimilarityMeasure</em></a>) – The similarity measure to use</p></li>
+<li><p><strong>ruleset1</strong> (<em>AbstractRuleset</em>) – The first ruleset</p></li>
+<li><p><strong>ruleset2</strong> (<em>AbstractRuleset</em>) – The second ruleset</p></li>
+<li><p><strong>dataset</strong> (<em>pd.DataFrame</em>) – The dataset to use for calculations</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If an invalid measure is specified.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The similarity matrix.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
-<section id="decision-rules-similarity-syntactic">
-<h2>decision_rules.similarity.syntactic<a class="headerlink" href="#decision-rules-similarity-syntactic" title="Link to this heading"></a></h2>
+<section id="module-decision_rules.similarity.syntactic">
+<span id="decision-rules-similarity-syntactic"></span><h2>decision_rules.similarity.syntactic<a class="headerlink" href="#module-decision_rules.similarity.syntactic" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.similarity.syntactic.SyntacticRuleSimilarityCalculator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.similarity.syntactic.</span></span><span class="sig-name descname"><span class="pre">SyntacticRuleSimilarityCalculator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ruleset1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.ruleset.AbstractRuleSet" title="decision_rules.core.ruleset.AbstractRuleSet"><span class="pre">AbstractRuleSet</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ruleset2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.ruleset.AbstractRuleSet" title="decision_rules.core.ruleset.AbstractRuleSet"><span class="pre">AbstractRuleSet</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.similarity.syntactic.SyntacticRuleSimilarityCalculator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Calculator of syntactic rule similarity.
+Caveat: the assumption is that the conditions in rules are connected only with conjunction operators.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="decision_rules.similarity.syntactic.SyntacticRuleSimilarityCalculator.calculate">
+<span class="sig-name descname"><span class="pre">calculate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#decision_rules.similarity.syntactic.SyntacticRuleSimilarityCalculator.calculate" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 </section>
 
