@@ -8,13 +8,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>decision_rules.helpers package &mdash; decision_rules 1.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=7ab3649f" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="_static/documentation_options.js?v=8d563738"></script>
-      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -49,19 +49,9 @@
 <li class="toctree-l2"><a class="reference internal" href="decision_rules.classification.html">decision_rules.classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="decision_rules.core.html">decision_rules.core</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">decision_rules.helpers package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#module-decision_rules.helpers.dataset_transformer">decision_rules.helpers.dataset_transformer</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer"><code class="docutils literal notranslate"><span class="pre">ConditionalDatasetTransformer</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-decision_rules.helpers.measures">decision_rules.helpers.measures</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#decision_rules.helpers.measures.get_measure_function_by_name"><code class="docutils literal notranslate"><span class="pre">get_measure_function_by_name()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-decision_rules.helpers.p_values">decision_rules.helpers.p_values</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#decision_rules.helpers.p_values.correct_p_values_fdr"><code class="docutils literal notranslate"><span class="pre">correct_p_values_fdr()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#decision_rules.helpers.p_values.get_significant_fraction"><code class="docutils literal notranslate"><span class="pre">get_significant_fraction()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#decision-rules-helpers-dataset-transformer">decision_rules.helpers.dataset_transformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision-rules-helpers-measures">decision_rules.helpers.measures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision-rules-helpers-p-values">decision_rules.helpers.p_values</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="decision_rules.importances.html">decision_rules.importances package</a></li>
@@ -69,11 +59,11 @@
 <li class="toctree-l2"><a class="reference internal" href="decision_rules.serialization.html">decision_rules.serialization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="decision_rules.similarity.html">decision_rules.similarity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="decision_rules.survival.html">decision_rules.survival</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#module-decision_rules.conditions">decision_rules.conditions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#module-decision_rules.histogram">decision_rules.histogram</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#module-decision_rules.measures">decision_rules.measures</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#module-decision_rules.problem">decision_rules.problem</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#module-decision_rules.settings">decision_rules.settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#decision-rules-conditions">decision_rules.conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#decision-rules-histogram">decision_rules.histogram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#decision-rules-measures">decision_rules.measures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#decision-rules-problem">decision_rules.problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decision_rules.html#decision-rules-settings">decision_rules.settings</a></li>
 </ul>
 </li>
 </ul>
@@ -105,132 +95,14 @@
              
   <section id="decision-rules-helpers-package">
 <h1>decision_rules.helpers package<a class="headerlink" href="#decision-rules-helpers-package" title="Link to this heading"></a></h1>
-<section id="module-decision_rules.helpers.dataset_transformer">
-<span id="decision-rules-helpers-dataset-transformer"></span><h2>decision_rules.helpers.dataset_transformer<a class="headerlink" href="#module-decision_rules.helpers.dataset_transformer" title="Link to this heading"></a></h2>
-<p>Contains helpers classes.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.helpers.dataset_transformer.</span></span><span class="sig-name descname"><span class="pre">ConditionalDatasetTransformer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conditions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="decision_rules.core.html#decision_rules.core.condition.AbstractCondition" title="decision_rules.core.condition.AbstractCondition"><span class="pre">AbstractCondition</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Helper class transforming dataset with given set of conditions. It produces
-binary dataset showing conditions coverage.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.Methods">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Methods</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.Methods" title="Link to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
-<p>Methods of how to extract conditions from rules.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>Enum</strong> (<em>_type_</em>) – _description_</p>
-</dd>
-</dl>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.Methods.NESTED">
-<span class="sig-name descname"><span class="pre">NESTED</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'nested'</span></em><a class="headerlink" href="#decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.Methods.NESTED" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.Methods.SPLIT">
-<span class="sig-name descname"><span class="pre">SPLIT</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'split'</span></em><a class="headerlink" href="#decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.Methods.SPLIT" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.Methods.TOP_LEVEL">
-<span class="sig-name descname"><span class="pre">TOP_LEVEL</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'top_level'</span></em><a class="headerlink" href="#decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.Methods.TOP_LEVEL" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.transform">
-<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.Methods" title="decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.Methods"><span class="pre">Methods</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'top_level'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.transform" title="Link to this definition"></a></dt>
-<dd><p>Transform dataset with set of conditions producing binary dataset.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>X</strong> (<em>np.ndarray</em>) – X</p></li>
-<li><p><strong>column_names</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – names of columns</p></li>
-<li><p><strong>method</strong> (<a class="reference internal" href="#decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.Methods" title="decision_rules.helpers.dataset_transformer.ConditionalDatasetTransformer.Methods"><em>ConditionalDatasetTransformer.Methods</em></a>) – controls how to generate colums.
-“top_level”: passed conditions as columns,
-“split”: passed conditions and their subconditions as columns,
-“nested”: all passed conditions and their subconditions recursivly</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>transformed binary dataset</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>pd.DataFrame</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<section id="decision-rules-helpers-dataset-transformer">
+<h2>decision_rules.helpers.dataset_transformer<a class="headerlink" href="#decision-rules-helpers-dataset-transformer" title="Link to this heading"></a></h2>
 </section>
-<section id="module-decision_rules.helpers.measures">
-<span id="decision-rules-helpers-measures"></span><h2>decision_rules.helpers.measures<a class="headerlink" href="#module-decision_rules.helpers.measures" title="Link to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="decision_rules.helpers.measures.get_measure_function_by_name">
-<span class="sig-prename descclassname"><span class="pre">decision_rules.helpers.measures.</span></span><span class="sig-name descname"><span class="pre">get_measure_function_by_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measure_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#decision_rules.helpers.measures.get_measure_function_by_name" title="Link to this definition"></a></dt>
-<dd><p>Returns function that calculates quality measure for given measure name</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>measure_name</strong> (<em>str</em>) – Name of the quality measure in snake case or
-camel case</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – If measure is not supported by the package</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Quality measure funciton</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>Callable[[<a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage">Coverage</a>], float]</p>
-</dd>
-</dl>
-</dd></dl>
-
+<section id="decision-rules-helpers-measures">
+<h2>decision_rules.helpers.measures<a class="headerlink" href="#decision-rules-helpers-measures" title="Link to this heading"></a></h2>
 </section>
-<section id="module-decision_rules.helpers.p_values">
-<span id="decision-rules-helpers-p-values"></span><h2>decision_rules.helpers.p_values<a class="headerlink" href="#module-decision_rules.helpers.p_values" title="Link to this heading"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="decision_rules.helpers.p_values.correct_p_values_fdr">
-<span class="sig-prename descclassname"><span class="pre">decision_rules.helpers.p_values.</span></span><span class="sig-name descname"><span class="pre">correct_p_values_fdr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#decision_rules.helpers.p_values.correct_p_values_fdr" title="Link to this definition"></a></dt>
-<dd><p>Adjust p-values using the False Discovery Rate (FDR) method.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>p_values</strong> (<em>list</em>) – List of p-values to be adjusted.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>List of adjusted p-values, maintaining the original order.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="decision_rules.helpers.p_values.get_significant_fraction">
-<span class="sig-prename descclassname"><span class="pre">decision_rules.helpers.p_values.</span></span><span class="sig-name descname"><span class="pre">get_significant_fraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">significance_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.helpers.p_values.get_significant_fraction" title="Link to this definition"></a></dt>
-<dd><p>Calculates the fraction of significant rules based on the p-values.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>p_values</strong> (<em>list</em><em>[</em><em>float</em><em>]</em>) – List of p-values.</p></li>
-<li><p><strong>significance_level</strong> (<em>float</em>) – The significance level.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The fraction of significant rules.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
+<section id="decision-rules-helpers-p-values">
+<h2>decision_rules.helpers.p_values<a class="headerlink" href="#decision-rules-helpers-p-values" title="Link to this heading"></a></h2>
 </section>
 </section>
 
