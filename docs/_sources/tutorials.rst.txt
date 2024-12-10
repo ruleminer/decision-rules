@@ -9,3 +9,7 @@ Tutorials
    Generate rules using RuleKit algorithm <tutorials/generating_with_rulekit.ipynb>
    Generate rules using CN2 algorithm <tutorials/cn2.ipynb>
    Illustrative examples <illustrative_example>
+
+      +-------------------------------+        +---------------+
+IF    | sex = male AND status != firs | THEN   | survived = no |
+      +-------------------------------+        +---------------+

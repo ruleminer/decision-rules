@@ -1,0 +1,184 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction &mdash; decision_rules 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tutorials" href="tutorials.html" />
+    <link rel="prev" title="Decision Rules" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            decision_rules
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#supported-types-of-problems">Supported types of problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dataset">Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rule-sets">Rule Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rules">Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conditions">Conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prediction">Prediction</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decision_rules.html">API Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">decision_rules</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/key_concepts.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
+<p>This section describes the key concepts behind the decision-rules package and how they are implemented.</p>
+<section id="supported-types-of-problems">
+<h2>Supported types of problems<a class="headerlink" href="#supported-types-of-problems" title="Link to this heading"></a></h2>
+<p>This package support three types of problems: classification, regression and survival.</p>
+<p><strong>Classification</strong> is the process of assigning objects to specific categories based on the characteristics of examples. For example, given a dataset describing patient test results and a decision class indicating whether the patient is sick or not, a rule model can learn which test results indicate the patient’s illness. In the case of classification, the conclusion of the decision rule will indicate the assignment of the example to the selected category (class).</p>
+<p><strong>Regression</strong> is a process used to understand how selected variables (characteristics) affect another variable. It allows building a model to predict the value of one numerical variable based on other variables. An example of regression analysis might be checking how the amount of time spent on physical activity affects blood cholesterol levels. Another example of a regression-type analysis may be examining how the characteristics of an apartment being sold, such as price, location, year of construction, affect the final selling price of that apartment. In the case of regression, the rule’s conclusion will point to a specific numerical value.</p>
+<p><strong>Survival analysis</strong> is used to study the amount of time until a given event occurs. This method examines how different factors can affect the probability of survival over a specific time frame. An example of such an analysis may be understanding how long patients survive after heart surgery and how various factors, such as age, gender or pre-operative health status, affect that survival. Survival analysis can be applied not only to medical data, but also to predictive maintenance analysis, time-to-event economic studies and others. In the case of survival analysis, in the conclusion of the rule there is an estimator of the survival function, most often the Kaplan-Meier estimator. Such a function tells us how the probability of occurrence of the event under study changes over time.</p>
+</section>
+<section id="dataset">
+<h2>Dataset<a class="headerlink" href="#dataset" title="Link to this heading"></a></h2>
+<p>Rule sets operate on tabular datasets in the form of pandas DataFrames.</p>
+<ul class="simple">
+<li><p><strong>Classification:</strong> The label column can be a number or string (but will be treated as a discrete variable).</p></li>
+<li><p><strong>Regression:</strong> The target column must be a number.</p></li>
+<li><dl class="simple">
+<dt><strong>Survival Analysis:</strong> Requires two columns:</dt><dd><ul>
+<li><p><strong>Survival time:</strong> Numerical.</p></li>
+<li><p><strong>Survival status:</strong> String with values “1” (event occurred) and “0” (event did not occur).</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="rule-sets">
+<h2>Rule Sets<a class="headerlink" href="#rule-sets" title="Link to this heading"></a></h2>
+<p>Rule sets in decision rules are predictive models consisting of multiple rules. However, rule sets are more than just a set of rules. They also define how prediction is performed using these rules.</p>
+<p>Each rule set must contain at least one rule, in addition, it also contains one special rule called the default rule. The default rule is used to make predictions for examples discovered by other rules. Such a rule behaves in a unique way. Its premise is a condition that is always true. For this reason, in this package we talk about default conclusions instead of default rules.</p>
+</section>
+<section id="rules">
+<h2>Rules<a class="headerlink" href="#rules" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>Rules are the key components of the this package. Each rule consist of the main two parts: premise and conclusions. Rules have a following form:</dt><dd><p>IF premise THEN conclusion</p>
+</dd>
+<dt>The conclusion is a part of rule specifying the decision that should be made for the example if it satisfyes the rule’s premise part. Conclusions can have different form depending on the type of problem we’re facing.</dt><dd><ul class="simple">
+<li><p><strong>Classification:</strong> Assigns the example to a specific class.</p></li>
+<li><p><strong>Regression:</strong> Predicts a value and provides a confidence interval (mean ± standard deviation). By default the value (lets denote is as α) is set to the mean value of the label attribute of all examples covered by the training set however it can be set to any other value. The confidence interval is by default defined as (α ± <em>std</em>), where <em>std</em> is standard deviation of the label attribute values of the examples covered by rule and can be modified.</p></li>
+<li><p><strong>Survival Analysis:</strong> Provides a Kaplan-Meier estimator of the survival function. Such a function tells us how the probability of occurrence of the event under study changes over time.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="conditions">
+<h2>Conditions<a class="headerlink" href="#conditions" title="Link to this heading"></a></h2>
+<p>This package provides the following predefined condition types:</p>
+<ul class="simple">
+<li><p><em>a</em> ∈ <em>A</em> (where <em>a</em> is numerical and <em>A</em> is a value interval) e.g., <cite>age ∈ [18, 33)</cite></p></li>
+<li><p><em>a</em> = <em>d</em> (where <em>a</em> is a discrete attribute and <em>d</em> is its specific value) e.g., <cite>gender = male</cite></p></li>
+<li><p><em>a</em> &lt;/&gt;/≤/ ≥ <em>b</em> or <em>a</em> =/≠ <em>b</em> (where <em>b</em> is another attribute) e.g. <cite>height &gt; width</cite></p></li>
+<li><p>Conjunctions and disjunctions of these conditions (nested conditions are supported). e.g <cite>gender = male ∧ age &gt; 18</cite></p></li>
+</ul>
+<p>New condition types can be easily implemented.</p>
+</section>
+<section id="prediction">
+<h2>Prediction<a class="headerlink" href="#prediction" title="Link to this heading"></a></h2>
+<p>Rule sets perform prediction for given examples using specified prediction strategy.
+This package provides two predefined prediction strategies:</p>
+<ul class="simple">
+<li><p><strong>Voting:</strong> All applicable rules “vote” for their predicted value. The final prediction is the average of these votes, weighted by rule voting weights.</p></li>
+<li><p><strong>Best Rule:</strong> The best-matching rule (based on a chosen metric) is used for prediction.</p></li>
+</ul>
+<p>Custom prediction strategies can be implemented.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Decision Rules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tutorials.html" class="btn btn-neutral float-right" title="Tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Cezary Maszczyk, Dawid Macha, Adam Grzelak.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
