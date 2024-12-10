@@ -1,0 +1,4 @@
+IF recipient_age < 17.45 AND relapse = {no} AND donor_age < 45.16
+IF HLA_mismatch = {matched} AND gender_match = {other} AND recipient_rh = {plus} AND recipient_age >= 3.30 AND donor_age < 42.14 AND donor_age >= 33.34
+IF recipient_age < 18.00 AND recipient_body_mass < 69.00
+IF CD34_x1e6_per_kg < 8.14 AND donor_age >= 27.02 AND gender_match = {other} AND PLT_recovery >= 26.00 AND recipient_age >= 17.75

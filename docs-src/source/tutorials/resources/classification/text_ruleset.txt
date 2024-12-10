@@ -1,0 +1,5 @@
+IF sex = {male} AND age = {adult} THEN class = {no}
+IF sex = {male} AND pclass != {1st} THEN class = {no}
+IF sex = {female} THEN class = {yes}
+IF sex = {male} AND age = {adult} AND pclass != {1st} THEN class = {no}
+IF pclass != {3rd} AND sex = {female} THEN class = {yes}
