@@ -47,7 +47,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#supported-types-of-problems">Supported types of problems</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dataset">Dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#rule-sets">Rule Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rulesets">Rulesets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rules">Rules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#conditions">Conditions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#prediction">Prediction</a></li>
@@ -109,20 +109,20 @@
 </li>
 </ul>
 </section>
-<section id="rule-sets">
-<h2>Rule Sets<a class="headerlink" href="#rule-sets" title="Link to this heading"></a></h2>
-<p>Rule sets in decision rules are predictive models consisting of multiple rules. However, rule sets are more than just a set of rules. They also define how prediction is performed using these rules.</p>
-<p>Each rule set must contain at least one rule, in addition, it also contains one special rule called the default rule. The default rule is used to make predictions for examples discovered by other rules. Such a rule behaves in a unique way. Its premise is a condition that is always true. For this reason, in this package we talk about default conclusions instead of default rules.</p>
+<section id="rulesets">
+<h2>Rulesets<a class="headerlink" href="#rulesets" title="Link to this heading"></a></h2>
+<p>Rule sets in decision-rules package are predictive models consisting of multiple rules. However, rulesets are more than just a set of rules. They also define how prediction is performed using these rules.</p>
+<p>Each ruleset must contain at least one rule, in addition, it also contains one special rule called the default rule. The default rule is used to make predictions for examples uncovered by other rules. Such a rule behaves in a unique way. Its premise is a condition that is always true. For this reason, in this package we talk about default conclusions instead of default rules.</p>
 </section>
 <section id="rules">
 <h2>Rules<a class="headerlink" href="#rules" title="Link to this heading"></a></h2>
 <dl class="simple">
 <dt>Rules are the key components of the this package. Each rule consist of the main two parts: premise and conclusions. Rules have a following form:</dt><dd><p>IF premise THEN conclusion</p>
 </dd>
-<dt>The conclusion is a part of rule specifying the decision that should be made for the example if it satisfyes the rule’s premise part. Conclusions can have different form depending on the type of problem we’re facing.</dt><dd><ul class="simple">
+<dt>The conclusion is a part of rule specifying the decision that should be made for the example if it satisfies the rule’s premise part. Conclusions can have different form depending on the type of problem we’re facing.</dt><dd><ul class="simple">
 <li><p><strong>Classification:</strong> Assigns the example to a specific class.</p></li>
-<li><p><strong>Regression:</strong> Predicts a value and provides a confidence interval (mean ± standard deviation). By default the value (lets denote is as α) is set to the mean value of the label attribute of all examples covered by the training set however it can be set to any other value. The confidence interval is by default defined as (α ± <em>std</em>), where <em>std</em> is standard deviation of the label attribute values of the examples covered by rule and can be modified.</p></li>
-<li><p><strong>Survival Analysis:</strong> Provides a Kaplan-Meier estimator of the survival function. Such a function tells us how the probability of occurrence of the event under study changes over time.</p></li>
+<li><p><strong>Regression:</strong> Predicts a value and provides a confidence interval (mean ± standard deviation). By default the value (lets denote is as α) is set to the mean value of the label attribute of all examples covered by the rule, however it can be set to any other value. The confidence interval is by default defined as (α ± <em>std</em>), where <em>std</em> is standard deviation of the label attribute values of the examples covered by rule and can be modified.</p></li>
+<li><p><strong>Survival Analysis:</strong> Provides a Kaplan-Meier estimator of the survival function. Such a function tells us how the probability of occurrence of the event under study changes over time. By default it is a Kaplan-Meier estimator calculated on the examples covered by the rule.</p></li>
 </ul>
 </dd>
 </dl>
@@ -143,7 +143,7 @@
 <p>Rule sets perform prediction for given examples using specified prediction strategy.
 This package provides two predefined prediction strategies:</p>
 <ul class="simple">
-<li><p><strong>Voting:</strong> All applicable rules “vote” for their predicted value. The final prediction is the average of these votes, weighted by rule voting weights.</p></li>
+<li><p><strong>Voting:</strong> All applicable rules “vote” on their predicted value. Each rule is assigned a voting weight indicating how much its vote should affect the final outcome. The final prediction is determined by the voting results.</p></li>
 <li><p><strong>Best Rule:</strong> The best-matching rule (based on a chosen metric) is used for prediction.</p></li>
 </ul>
 <p>Custom prediction strategies can be implemented.</p>

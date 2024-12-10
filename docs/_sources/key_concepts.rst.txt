@@ -26,12 +26,12 @@ Rule sets operate on tabular datasets in the form of pandas DataFrames.
     * **Survival time:** Numerical.
     * **Survival status:** String with values "1" (event occurred) and "0" (event did not occur). 
 
-Rule Sets
+Rulesets
 ----------
 
-Rule sets in decision rules are predictive models consisting of multiple rules. However, rule sets are more than just a set of rules. They also define how prediction is performed using these rules. 
+Rule sets in decision-rules package are predictive models consisting of multiple rules. However, rulesets are more than just a set of rules. They also define how prediction is performed using these rules. 
 
-Each rule set must contain at least one rule, in addition, it also contains one special rule called the default rule. The default rule is used to make predictions for examples discovered by other rules. Such a rule behaves in a unique way. Its premise is a condition that is always true. For this reason, in this package we talk about default conclusions instead of default rules.
+Each ruleset must contain at least one rule, in addition, it also contains one special rule called the default rule. The default rule is used to make predictions for examples uncovered by other rules. Such a rule behaves in a unique way. Its premise is a condition that is always true. For this reason, in this package we talk about default conclusions instead of default rules.
 
 Rules
 -----
@@ -40,10 +40,10 @@ Rules are the key components of the this package. Each rule consist of the main 
     IF premise THEN conclusion
 
 
-The conclusion is a part of rule specifying the decision that should be made for the example if it satisfyes the rule's premise part. Conclusions can have different form depending on the type of problem we're facing. 
+The conclusion is a part of rule specifying the decision that should be made for the example if it satisfies the rule's premise part. Conclusions can have different form depending on the type of problem we're facing. 
     * **Classification:** Assigns the example to a specific class.
-    * **Regression:** Predicts a value and provides a confidence interval (mean ± standard deviation). By default the value (lets denote is as α) is set to the mean value of the label attribute of all examples covered by the training set however it can be set to any other value. The confidence interval is by default defined as (α ± *std*), where *std* is standard deviation of the label attribute values of the examples covered by rule and can be modified.
-    * **Survival Analysis:** Provides a Kaplan-Meier estimator of the survival function. Such a function tells us how the probability of occurrence of the event under study changes over time.
+    * **Regression:** Predicts a value and provides a confidence interval (mean ± standard deviation). By default the value (lets denote is as α) is set to the mean value of the label attribute of all examples covered by the rule, however it can be set to any other value. The confidence interval is by default defined as (α ± *std*), where *std* is standard deviation of the label attribute values of the examples covered by rule and can be modified.
+    * **Survival Analysis:** Provides a Kaplan-Meier estimator of the survival function. Such a function tells us how the probability of occurrence of the event under study changes over time. By default it is a Kaplan-Meier estimator calculated on the examples covered by the rule.
 
 Conditions
 ----------
@@ -63,7 +63,7 @@ Prediction
 Rule sets perform prediction for given examples using specified prediction strategy. 
 This package provides two predefined prediction strategies:
 
-* **Voting:** All applicable rules "vote" for their predicted value. The final prediction is the average of these votes, weighted by rule voting weights.
+* **Voting:** All applicable rules “vote” on their predicted value. Each rule is assigned a voting weight indicating how much its vote should affect the final outcome. The final prediction is determined by the voting results.
 * **Best Rule:** The best-matching rule (based on a chosen metric) is used for prediction.
 
 Custom prediction strategies can be implemented.
