@@ -9,14 +9,6 @@ decision\_rules.similarity.calculate
    :undoc-members:
    :show-inheritance:
 
-decision\_rules.similarity.common
-----------------------------------------
-
-.. automodule:: decision_rules.similarity.common
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 decision\_rules.similarity.ruleset
 -----------------------------------------
 
