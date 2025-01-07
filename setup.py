@@ -22,8 +22,7 @@ setup(
         "scikit-learn>=1.1",
         "imbalanced-learn>=0.10",
         "typeguard>=4.3",
-        "packaging>=14.1",
-        "Orange3>=3.38.1"
+        "packaging>=14.1"
     ],
     python_requires=">=3.9",
 )
