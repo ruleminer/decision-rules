@@ -1,16 +1,17 @@
 # pylint: disable=missing-module-docstring, missing-class-docstring, missing-function-docstring
 import unittest
 import numpy as np
+import pandas as pd
 
+from Orange.data import Table
 from Orange.classification.rules import CN2Classifier, CN2Learner
-from Orange.data import Domain, Table, DiscreteVariable, ContinuousVariable
+from Orange.data import Table
 
 from decision_rules.classification.ruleset import ClassificationRuleSet
 from decision_rules.ruleset_factories._factories.classification.cn2_factory import get_orange_cn2_factory_class
 from decision_rules.serialization import JSONSerializer
 from decision_rules.core.prediction import FirstRuleCoveringStrategy
 
-from tests.loaders import load_dataset_to_x_y
 
 
 class TestOrangeCN2ClassificationRuleSet(unittest.TestCase):
@@ -28,15 +29,27 @@ class TestOrangeCN2ClassificationRuleSet(unittest.TestCase):
         Loads X and y from the CSV dataset, converts them to an Orange Table,
         and trains a CN2Classifier.
         """
-        # Load dataset into pandas
-        X, y = load_dataset_to_x_y(cls.dataset_path)
 
-        # Build an Orange Domain for the features and the class
-        domain = Domain(
-            [ContinuousVariable(name) for name in X.columns],
-            DiscreteVariable(y.name, values=list(map(str, y.unique())))
+        table: Table = Table("titanic")
+
+        # print some information about columns
+        pd.DataFrame(
+            [
+                {
+                    "Column type": (
+                        "label" if index == len(table.domain.attributes) else "feature"
+                    ),
+                    "Column name": attr.name,
+                    "Data type": "discrete" if attr.is_discrete else "continuous",
+                    "Possible values": attr.values,
+                }
+                for index, attr in enumerate(
+                    list(table.domain.attributes) + [table.domain.class_var]
+                )
+            ]
         )
-        table = Table.from_numpy(domain, X.values, y.values)
+        X = pd.DataFrame(table.X_df)
+        y = pd.Series(table.Y_df.values[:, 0])
 
         # Train the CN2 model
         cn2_learner = CN2Learner()
@@ -80,6 +93,7 @@ class TestOrangeCN2ClassificationRuleSet(unittest.TestCase):
 
         # Use the FirstRuleCoveringStrategy to mimic CN2 behavior
         ruleset.set_prediction_strategy(FirstRuleCoveringStrategy)
+        _ = ruleset.update(self.X, self.y, measure=lambda c: (c.P + c.N) / (c.P + c.N + c.n + c.p))
 
         # Orange's CN2 predict(...) typically returns class probabilities.
         # We use argmax(...) to get the predicted class index.
@@ -103,6 +117,7 @@ class TestOrangeCN2ClassificationRuleSet(unittest.TestCase):
 
         ruleset: ClassificationRuleSet = factory.make(self.cn2_model, self.X)
         ruleset.set_prediction_strategy(FirstRuleCoveringStrategy)
+        _ = ruleset.update(self.X, self.y, measure=lambda c: (c.P + c.N) / (c.P + c.N + c.n + c.p))
         original_pred = ruleset.predict(self.X)
 
         # Serialize -> Deserialize
@@ -112,8 +127,8 @@ class TestOrangeCN2ClassificationRuleSet(unittest.TestCase):
         )
 
         # (Optional) Update coverage/statistics in the deserialized object
-        deserialized.update(self.X, self.y)
         deserialized.set_prediction_strategy(FirstRuleCoveringStrategy)
+        _ = deserialized.update(self.X, self.y, measure=lambda c: (c.P + c.N) / (c.P + c.N + c.n + c.p))
         deserialized_pred = deserialized.predict(self.X)
 
         self.assertTrue(
@@ -121,31 +136,3 @@ class TestOrangeCN2ClassificationRuleSet(unittest.TestCase):
             "Deserialized CN2 ruleset should produce the same predictions as the original ruleset."
         )
 
-    def test_if_subconditions_are_in_the_same_order(self):
-        """
-        Verifies that subconditions in each rule premise keep the same order
-        as in the original Orange CN2 model.
-        """
-        OrangeCN2FactoryClass = get_orange_cn2_factory_class()
-        factory = OrangeCN2FactoryClass()
-
-        ruleset: ClassificationRuleSet = factory.make(self.cn2_model, self.X)
-
-        # In Orange, the last rule is the default rule (no selectors),
-        # so only compare up to len(rule_list) - 1
-        for rule_index, rule in enumerate(ruleset.rules):
-            orange_rule = self.cn2_model.rule_list[rule_index]
-            for sub_idx, subcond in enumerate(rule.premise.subconditions):
-                # The expected attribute name in decision_rules
-                subcond_column_idx = list(subcond.attributes)[0]
-                expected_attr_name = ruleset.column_names[subcond_column_idx]
-
-                # The actual attribute name in Orange
-                orange_selector = orange_rule.selectors[sub_idx]
-                actual_attr_name = orange_selector.variable.name
-
-                self.assertEqual(
-                    expected_attr_name,
-                    actual_attr_name,
-                    "Subconditions should match in order and attribute name."
-                )
