@@ -4,3 +4,5 @@ from decision_rules.ruleset_factories._factories.classification.rulekit_factory 
     get_rulekit_factory_class
 from decision_rules.ruleset_factories._factories.classification.text_factory import \
     TextRuleSetFactory
+from decision_rules.ruleset_factories._factories.classification.lord_factory import \
+    LordRuleSetFactory
