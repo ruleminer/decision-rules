@@ -1,6 +1,5 @@
 import json
 import os
-from typing import List, Tuple
 from unittest import TestCase
 
 from decision_rules.classification.ruleset import ClassificationRuleSet
@@ -16,7 +15,7 @@ class ClassificationLordTest(TestCase):
     Test the LordRuleSetFactory class for classification rulesets.
     """
 
-    def _load_rules(self, dataset: str) -> Tuple[List[str], dict]:
+    def _load_rules(self, dataset: str) -> tuple[list[str], dict]:
         """
         Load LORD rules (lines) and expected rules info (in JSON) for a given dataset.
         

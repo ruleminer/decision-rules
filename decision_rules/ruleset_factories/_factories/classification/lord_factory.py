@@ -36,10 +36,10 @@ class LordRuleSetFactory(AbstractLordRuleSetFactory):
         Returns:
             ClassificationRuleSet: a set of classification
         """
-        parsed_tuples = LordParser.parse(model)
+        parsed_tuples: list[tuple[str, float]] = LordParser.parse(model)
 
-        rule_texts = [tpl[0] for tpl in parsed_tuples]
-        heuristic_values = [tpl[1] for tpl in parsed_tuples]
+        rule_texts: list[str] = [tpl[0] for tpl in parsed_tuples]
+        heuristic_values: list[float] = [tpl[1] for tpl in parsed_tuples]
         ruleset: ClassificationRuleSet = TextRuleSetFactory().make(
             rule_texts, X_train, y_train, measure_name=measure_name
         )
