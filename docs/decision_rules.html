@@ -106,6 +106,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.c2"><code class="docutils literal notranslate"><span class="pre">c2()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.c_foil"><code class="docutils literal notranslate"><span class="pre">c_foil()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.cn2_significnce"><code class="docutils literal notranslate"><span class="pre">cn2_significnce()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.confidence"><code class="docutils literal notranslate"><span class="pre">confidence()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.correlation"><code class="docutils literal notranslate"><span class="pre">correlation()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.coverage"><code class="docutils literal notranslate"><span class="pre">coverage()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#decision_rules.measures.f_bayesian_confirmation"><code class="docutils literal notranslate"><span class="pre">f_bayesian_confirmation()</span></code></a></li>
@@ -376,8 +377,8 @@ frozenset[int]: condition attributes</p>
 <dt class="sig sig-object py" id="decision_rules.conditions.NominalCondition">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.conditions.</span></span><span class="sig-name descname"><span class="pre">NominalCondition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.conditions.NominalCondition" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="decision_rules.core.html#decision_rules.core.condition.AbstractCondition" title="decision_rules.core.condition.AbstractCondition"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractCondition</span></code></a></p>
-<p>Class for elementary condition for nominal attributes.
-It took following form:</p>
+<p>Class for elementary condition for nominal attributes.</p>
+<p>It takes following form:</p>
 <blockquote>
 <div><p>IF {ATTRIBUTE} = {VALUE} THEN y = {DECISION}</p>
 </div></blockquote>
@@ -484,6 +485,11 @@ They can be used for calculating rule qualities and voting weights</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="decision_rules.measures.cn2_significnce">
 <span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">cn2_significnce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.cn2_significnce" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="decision_rules.measures.confidence">
+<span class="sig-prename descclassname"><span class="pre">decision_rules.measures.</span></span><span class="sig-name descname"><span class="pre">confidence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="decision_rules.core.html#decision_rules.core.coverage.Coverage" title="decision_rules.core.coverage.Coverage"><span class="pre">Coverage</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#decision_rules.measures.confidence" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">

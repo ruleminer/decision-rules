@@ -89,8 +89,9 @@
   <section id="Generating-rules-using-the-CN2-algorithm">
 <h1>Generating rules using the CN2 algorithm<a class="headerlink" href="#Generating-rules-using-the-CN2-algorithm" title="Link to this heading"></a></h1>
 <p>In this tutorial we will learn how to integrate decision rules with other rule induction packages. We will cover multiple topics such as: * creating decision-rules rulesets programiclly, * writing custom rule quality measures, * programmatic creation of decision rule sets.</p>
-<p>We will use the implementation of the CN2 algorithm provided by the <a class="reference external" href="https://orange3.readthedocs.io/projects/orange-data-mining-library/en/latest/">Orange</a> package. In this tutorial we will use the popular <a class="reference external" href="https://www.kaggle.com/c/titanic/data">titanic</a> dataset. Later, we will write a custom rule set factory class that will transform an instance of the Orange rule set to an instance of the <code class="docutils literal notranslate"><span class="pre">decision_rules.classification.ClassificationRuleSet</span></code> class. At Finally, we will briefly introduce
+<p>We will use the implementation of the CN2 algorithm provided by the <a class="reference external" href="https://orange3.readthedocs.io/projects/orange-data-mining-library/en/latest/">Orange</a> package. In this tutorial we will use the popular <a class="reference external" href="https://www.kaggle.com/c/titanic/data">titanic</a> dataset. Later, we will write a custom rule set factory class that will transform an instance of the Orange rule set to an instance of the <code class="docutils literal notranslate"><span class="pre">decision_rules.classification.ClassificationRuleSet</span></code> class. Finally, we will briefly introduce
 the various operations that can be performed using such an object.</p>
+<p>Custom classes and methods presented in tutorial are already implemented and available in the <strong>decision-rules</strong> package, but this tutorial will teach you how to implement them yourself. This knowledge will enable you to add your own custom factories, quality measures, or prediction strategies in the future if needed.</p>
 <p>We will start by loading the <a class="reference external" href="https://www.kaggle.com/c/titanic/data">titanic</a> dataset. We will use the <code class="docutils literal notranslate"><span class="pre">submodule</span></code> of Orange data here.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[58]:
@@ -506,7 +507,7 @@ File <span class="ansi-green-intense-fg ansi-bold">c:\Users\cezar\OneDrive\Pulpi
 </pre></div></div>
 </div>
 <p>As the error message indicates, we forgot to call the update(…) method on the ruleset object. This method requires a dataset and a quality measure to calculate the quality of the rules used later to resolve conflicts during prediction.</p>
-<p>The Orange CN2 algorithm uses a confidence quality measure to resolve conflicts during prediction. Decision rules do not provide such a measure, but it is very easy to write your own implementation. Below we can see the equation for calculating confidence based on the confusion matrix.</p>
+<p>The Orange CN2 algorithm uses a confidence quality measure to resolve conflicts during prediction. The <strong>decision-rules</strong> package already provides a built-in implementation of this measure, but in this section, we will demonstrate how you can easily define your own custom measure. This is useful for extending the functionality or tailoring it to specific needs. Below we can see the equation for calculating confidence based on the confusion matrix.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Confidence = (TP + TN) / (TP + TN + FP + FN)
 </pre></div>
 </div>
@@ -553,7 +554,8 @@ False
 </div>
 <p>There is still a difference in the predictions. It is because both models are using different conflict resolution strategies. Decision-rules models use voting strategy by default. It means that when more than one rules from different classes covers the same example, they “vote” for their class. Each vote of the specific rule is multiplied by its quality (voting_weight). Finally, the class with the highest score is selected. However, this is not the way conflicts are resolved in the CN2
 algorithm. Instead of conducting a vote, it selects the first rule from a set of rules that that covers the given examples and uses it to get the predicted value.</p>
-<p>Decision-rules package provides us with two prediction strategies: <code class="docutils literal notranslate"><span class="pre">vote</span></code> and <code class="docutils literal notranslate"><span class="pre">best_rule</span></code>. The first one we’ve already discussed. The second one select the rule with the highest quality from all the rules covering given examples and use it to predict for this example. Unfortunately, none of these already existing strategies fit our case. In this example, we will demonstrate how easily we can write our own custom prediction strategy that does exactly the same thing as our original algorithm.</p>
+<p>Decision-rules package provides us with three prediction strategies: <code class="docutils literal notranslate"><span class="pre">vote</span></code> and <code class="docutils literal notranslate"><span class="pre">best_rule</span></code>, <code class="docutils literal notranslate"><span class="pre">first_rule</span></code> . The first one we’ve already discussed. The second one select the rule with the highest quality from all the rules covering given examples and use it to predict for this example. While the package includes a ready-to-use <code class="docutils literal notranslate"><span class="pre">FirstRuleCoveringStrategy</span></code> that does exactly the same thing as our original algorithm, we will write it from scratch to demonstrate how prediction strategies can
+be easily implemented and extended.</p>
 <p>To implement our own prediction strategy we need to write a class inheriting from <code class="docutils literal notranslate"><span class="pre">decision_rules.core.prediction.PredictionStrategy</span></code> class. It have to implement a single method <code class="docutils literal notranslate"><span class="pre">_perform_prediction</span></code> (and optionally overwrite others). This method takes a single parameter called <code class="docutils literal notranslate"><span class="pre">voting_matrix</span></code>. This is a numpy array containing as many rows as the predicted dataset and as many columns as the as many columns as the number of rules in our ruleset. For each row (example) and column (rule), it
 stores zero (if the rule does not include the example) or the quality of the rule (if the rule includes the example). Such an array is very convenient for implementation of various prediction strategies. Below we can see the finished implementation.</p>
 <div class="nbinput nblast docutils container">
@@ -566,15 +568,16 @@ stores zero (if the rule does not include the example) or the quality of the rul
 <span class="k">class</span> <span class="nc">FirstRuleCoveringStrategy</span><span class="p">(</span><span class="n">PredictionStrategy</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">_perform_prediction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">voting_matrix</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="n">coverage_matrix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">coverage_matrix</span>
         <span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
             <span class="p">[</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">rules</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">conclusion</span><span class="o">.</span><span class="n">value</span>
                 <span class="c1"># numpy argmax will return first occurence of the maximum</span>
-                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">voting_matrix</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">coverage_matrix</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
             <span class="p">]</span>
         <span class="p">)</span>
         <span class="c1"># we need to handle examples uncovered by any rule using default rule/conclusion</span>
-        <span class="n">predictions</span><span class="p">[</span><span class="n">voting_matrix</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_conclusion</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">predictions</span><span class="p">[</span><span class="n">coverage_matrix</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_conclusion</span><span class="o">.</span><span class="n">value</span>
         <span class="k">return</span> <span class="n">predictions</span>
 </pre></div>
 </div>
@@ -604,7 +607,7 @@ True
 </pre></div></div>
 </div>
 <p>Finally we achieved the same predictions.</p>
-<p>This example showed us how the decision rule package can be used with different rule induction algorithms. Rule induction algorithm. Even if it does not implement all possible prediction mechanisms we can easily extend it to fit many different cases.</p>
+<p>This example showed us how the decision rule package can be used with different rule induction algorithms. Even if it does not implement all possible prediction mechanisms we can easily extend it to fit many different cases.</p>
 </section>
 
 

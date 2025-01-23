@@ -73,6 +73,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-decision_rules.core.prediction">decision_rules.core.prediction</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#decision_rules.core.prediction.BestRulePredictionStrategy"><code class="docutils literal notranslate"><span class="pre">BestRulePredictionStrategy</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#decision_rules.core.prediction.FirstRuleCoveringStrategy"><code class="docutils literal notranslate"><span class="pre">FirstRuleCoveringStrategy</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#decision_rules.core.prediction.PredictionStrategy"><code class="docutils literal notranslate"><span class="pre">PredictionStrategy</span></code></a></li>
 </ul>
 </li>
@@ -269,58 +270,16 @@ all condition’s subconditions.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Rule coverage</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="decision_rules.core.coverage.Coverage.p">
-<span class="sig-name descname"><span class="pre">p</span></span><a class="headerlink" href="#decision_rules.core.coverage.Coverage.p" title="Link to this definition"></a></dt>
-<dd><p>Positive covered examples.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>int</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="decision_rules.core.coverage.Coverage.n">
-<span class="sig-name descname"><span class="pre">n</span></span><a class="headerlink" href="#decision_rules.core.coverage.Coverage.n" title="Link to this definition"></a></dt>
-<dd><p>Negative covered examples.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>int</p>
-</dd>
-</dl>
+<dt class="sig sig-object py" id="decision_rules.core.coverage.Coverage.N">
+<span class="sig-name descname"><span class="pre">N</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#decision_rules.core.coverage.Coverage.N" title="Link to this definition"></a></dt>
+<dd><p>All negative examples.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="decision_rules.core.coverage.Coverage.P">
-<span class="sig-name descname"><span class="pre">P</span></span><a class="headerlink" href="#decision_rules.core.coverage.Coverage.P" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">P</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#decision_rules.core.coverage.Coverage.P" title="Link to this definition"></a></dt>
 <dd><p>All positive examples.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>int</p>
-</dd>
-</dl>
 </dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="decision_rules.core.coverage.Coverage.N">
-<span class="sig-name descname"><span class="pre">N</span></span><a class="headerlink" href="#decision_rules.core.coverage.Coverage.N" title="Link to this definition"></a></dt>
-<dd><p>All negative examples.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>int</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="id0">
-<span class="sig-name descname"><span class="pre">N</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="id1">
-<span class="sig-name descname"><span class="pre">P</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
-<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="decision_rules.core.coverage.Coverage.as_tuple">
@@ -328,14 +287,16 @@ all condition’s subconditions.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id2">
-<span class="sig-name descname"><span class="pre">n</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="decision_rules.core.coverage.Coverage.n">
+<span class="sig-name descname"><span class="pre">n</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#decision_rules.core.coverage.Coverage.n" title="Link to this definition"></a></dt>
+<dd><p>Negative covered examples.</p>
+</dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id3">
-<span class="sig-name descname"><span class="pre">p</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="decision_rules.core.coverage.Coverage.p">
+<span class="sig-name descname"><span class="pre">p</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#decision_rules.core.coverage.Coverage.p" title="Link to this definition"></a></dt>
+<dd><p>Positive covered examples.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -569,6 +530,14 @@ list[str]: list of names of all supported metrics</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.core.prediction.</span></span><span class="sig-name descname"><span class="pre">BestRulePredictionStrategy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rules</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#decision_rules.core.rule.AbstractRule" title="decision_rules.core.rule.AbstractRule"><span class="pre">AbstractRule</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_conclusion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#decision_rules.core.rule.AbstractConclusion" title="decision_rules.core.rule.AbstractConclusion"><span class="pre">AbstractConclusion</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.core.prediction.BestRulePredictionStrategy" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#decision_rules.core.prediction.PredictionStrategy" title="decision_rules.core.prediction.PredictionStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">PredictionStrategy</span></code></a></p>
 <p>Best rule prediction strategy for prediction.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="decision_rules.core.prediction.FirstRuleCoveringStrategy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">decision_rules.core.prediction.</span></span><span class="sig-name descname"><span class="pre">FirstRuleCoveringStrategy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rules</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#decision_rules.core.rule.AbstractRule" title="decision_rules.core.rule.AbstractRule"><span class="pre">AbstractRule</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_conclusion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#decision_rules.core.rule.AbstractConclusion" title="decision_rules.core.rule.AbstractConclusion"><span class="pre">AbstractConclusion</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#decision_rules.core.prediction.FirstRuleCoveringStrategy" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#decision_rules.core.prediction.PredictionStrategy" title="decision_rules.core.prediction.PredictionStrategy"><code class="xref py py-class docutils literal notranslate"><span class="pre">PredictionStrategy</span></code></a></p>
+<p>First rule prediction strategy for prediction.
+It selects the first rule from a set of rules that that covers the given examples and uses it to get the predicted value</p>
 </dd></dl>
 
 <dl class="py class">
