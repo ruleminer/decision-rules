@@ -11,6 +11,7 @@ from decision_rules.classification.ruleset import ClassificationRuleSet
 from decision_rules.ruleset_factories._factories.classification.cn2_factory import get_orange_cn2_factory_class
 from decision_rules.serialization import JSONSerializer
 from decision_rules.core.prediction import FirstRuleCoveringStrategy
+from decision_rules.measures import confidence
 
 
 class TestOrangeCN2ClassificationRuleSet(unittest.TestCase):
@@ -73,8 +74,7 @@ class TestOrangeCN2ClassificationRuleSet(unittest.TestCase):
 
         # Use the FirstRuleCoveringStrategy to mimic CN2 behavior
         ruleset.set_prediction_strategy(FirstRuleCoveringStrategy)
-        _ = ruleset.update(self.X, self.y, measure=lambda c: (
-            c.P + c.N) / (c.P + c.N + c.n + c.p))
+        _ = ruleset.update(self.X, self.y, measure=confidence)
 
         # Orange's CN2 predict(...) typically returns class probabilities.
         # We use argmax(...) to get the predicted class index.
@@ -98,8 +98,7 @@ class TestOrangeCN2ClassificationRuleSet(unittest.TestCase):
 
         ruleset: ClassificationRuleSet = factory.make(self.cn2_model, self.X)
         ruleset.set_prediction_strategy(FirstRuleCoveringStrategy)
-        _ = ruleset.update(self.X, self.y, measure=lambda c: (
-            c.P + c.N) / (c.P + c.N + c.n + c.p))
+        _ = ruleset.update(self.X, self.y, measure=confidence)
         original_pred = ruleset.predict(self.X)
 
         # Serialize -> Deserialize
@@ -110,8 +109,7 @@ class TestOrangeCN2ClassificationRuleSet(unittest.TestCase):
 
         # (Optional) Update coverage/statistics in the deserialized object
         deserialized.set_prediction_strategy(FirstRuleCoveringStrategy)
-        _ = deserialized.update(self.X, self.y, measure=lambda c: (
-            c.P + c.N) / (c.P + c.N + c.n + c.p))
+        _ = deserialized.update(self.X, self.y, measure=confidence)
         deserialized_pred = deserialized.predict(self.X)
 
         self.assertTrue(
