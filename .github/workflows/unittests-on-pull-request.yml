@@ -28,6 +28,8 @@ jobs:
 
         pip install rulekit
 
+        pip install Orange3
+        
     - name: Run tests for the base package
       run: |
         python -m unittest discover ./tests/base_tests
