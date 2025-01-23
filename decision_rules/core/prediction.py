@@ -210,7 +210,8 @@ class FirstRuleCoveringStrategy(PredictionStrategy):
     It selects the first rule from a set of rules that that covers the given examples and uses it to get the predicted value
     """
 
-    def _perform_prediction(self, coverage_matrix: np.ndarray) -> np.ndarray:
+    def _perform_prediction(self, voting_matrix: np.ndarray) -> np.ndarray:
+        coverage_matrix = self.coverage_matrix
         predictions = np.array(
             [
                 self.rules[i].conclusion.value
