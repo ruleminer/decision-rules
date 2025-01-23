@@ -203,3 +203,23 @@ class BestRulePredictionStrategy(PredictionStrategy):
 
     def _get_prediction_from_conclusion(self, conclusion: AbstractConclusion) -> Any:
         return conclusion.value
+
+
+class FirstRuleCoveringStrategy(PredictionStrategy):
+    """First rule prediction strategy for prediction. 
+    It selects the first rule from a set of rules that that covers the given examples and uses it to get the predicted value
+    """
+
+    def _perform_prediction(self, voting_matrix: np.ndarray) -> np.ndarray:
+        coverage_matrix = self.coverage_matrix
+        predictions = np.array(
+            [
+                self.rules[i].conclusion.value
+                # numpy argmax will return first occurence of the maximum
+                for i in coverage_matrix.argmax(axis=1)
+            ]
+        )
+        # we need to handle examples uncovered by any rule using default rule/conclusion
+        predictions[coverage_matrix.sum(
+            axis=1) == 0] = self.default_conclusion.value
+        return predictions

@@ -1,1 +1,2 @@
 from decision_rules.ruleset_factories._parsers.mlrules_parser import MLRulesParser
+from decision_rules.ruleset_factories._parsers.lord_parser import LordParser

@@ -3,6 +3,7 @@ Contains functions for calculating different qualities measures.
 They can be used for calculating rule qualities and voting weights
 """
 import math
+import sys
 
 from decision_rules.core.coverage import Coverage as Cov
 
@@ -97,7 +98,7 @@ def correlation(c: Cov) -> float:  # pylint: disable=missing-function-docstring
         c.P * c.N * (c.p + c.n) * (c.P - c.p + c.N - c.n)
     )
     if denominator == 0.0:
-        return float('inf')
+        return 0.0
     return (c.p * c.N - c.P * c.n) / denominator
 
 
@@ -121,7 +122,7 @@ def f_bayesian_confirmation(c: Cov) -> float:  # pylint: disable=missing-functio
 def f_measure(c: Cov) -> float:  # pylint: disable=missing-function-docstring
     beta_2: float = 2 * 2
     if c.p == 0:
-        return float('inf')
+        return 0.0
     return (
         (beta_2 + 1) * (c.p / (c.p + c.n)) *
         (c.p / c.P) / (beta_2 * (c.p / (c.p + c.n) + c.p / c.P))
@@ -216,7 +217,7 @@ def klosgen(c: Cov) -> float:  # pylint: disable=missing-function-docstring
 
 def logical_sufficiency(c: Cov) -> float:  # pylint: disable=missing-function-docstring
     if c.n == 0 or c.P == 0:
-        return float('inf')
+        return sys.float_info.max
     return c.p + c.N / (c.n * c.P)
 
 
@@ -267,7 +268,7 @@ def rule_interest(c: Cov) -> float:  # pylint: disable=missing-function-docstrin
 
 def s_bayesian(c: Cov) -> float:  # pylint: disable=missing-function-docstring
     if c.p == c.P and c.n == c.N:
-        return float('inf')
+        return 0.0
     if c.p == 0 and c.n == 0:
         return - (c.P - c.p) / (c.P - c.p + c.N - c.n)
     return c.p / (c.p + c.n) - (c.P - c.p) / (c.P - c.p + c.N - c.n)
@@ -281,7 +282,7 @@ def two_way_support(c: Cov) -> float:  # pylint: disable=missing-function-docstr
 
 def weighted_relative_accuracy(c: Cov) -> float:  # pylint: disable=missing-function-docstring
     if c.p == 0 and c.n == 0:
-        return float('-inf')
+        return 0.0
     return (c.p + c.n) / (c.P + c.N) * (c.p / (c.p + c.n) - c.P / (c.P + c.N))
 
 
@@ -292,3 +293,7 @@ def yails(c: Cov) -> float:  # pylint: disable=missing-function-docstring
     w1: float = 0.5 + 0.25 * prec
     w2: float = 0.5 - 0.25 * prec
     return w1 * c.p / (c.p + c.n) + w2 * (c.p / c.P)
+
+
+def confidence(c: Cov) -> float:  # pylint: disable=missing-function-docstring
+    return (c.P + c.N) / (c.P + c.N + c.n + c.p)
