@@ -293,3 +293,7 @@ def yails(c: Cov) -> float:  # pylint: disable=missing-function-docstring
     w1: float = 0.5 + 0.25 * prec
     w2: float = 0.5 - 0.25 * prec
     return w1 * c.p / (c.p + c.n) + w2 * (c.p / c.P)
+
+
+def confidence(c: Cov) -> float:  # pylint: disable=missing-function-docstring
+    return (c.P + c.N) / (c.P + c.N + c.n + c.p)

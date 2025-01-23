@@ -13,7 +13,6 @@ from decision_rules.serialization import JSONSerializer
 from decision_rules.core.prediction import FirstRuleCoveringStrategy
 
 
-
 class TestOrangeCN2ClassificationRuleSet(unittest.TestCase):
     """
     Tests for the ClassificationRuleSet produced by the Orange CN2 factory.
@@ -32,33 +31,14 @@ class TestOrangeCN2ClassificationRuleSet(unittest.TestCase):
 
         table: Table = Table("titanic")
 
-        # print some information about columns
-        pd.DataFrame(
-            [
-                {
-                    "Column type": (
-                        "label" if index == len(table.domain.attributes) else "feature"
-                    ),
-                    "Column name": attr.name,
-                    "Data type": "discrete" if attr.is_discrete else "continuous",
-                    "Possible values": attr.values,
-                }
-                for index, attr in enumerate(
-                    list(table.domain.attributes) + [table.domain.class_var]
-                )
-            ]
-        )
-        X = pd.DataFrame(table.X_df)
-        y = pd.Series(table.Y_df.values[:, 0])
-
         # Train the CN2 model
         cn2_learner = CN2Learner()
         cn2_model = cn2_learner(table)
 
         # Store these for use in tests
         cls.cn2_model = cn2_model
-        cls.X = X
-        cls.y = y
+        cls.X = pd.DataFrame(table.X_df)
+        cls.y = pd.Series(table.Y_df.values[:, 0])
         cls.table = table
 
     def test_same_number_of_rules(self):
@@ -93,7 +73,8 @@ class TestOrangeCN2ClassificationRuleSet(unittest.TestCase):
 
         # Use the FirstRuleCoveringStrategy to mimic CN2 behavior
         ruleset.set_prediction_strategy(FirstRuleCoveringStrategy)
-        _ = ruleset.update(self.X, self.y, measure=lambda c: (c.P + c.N) / (c.P + c.N + c.n + c.p))
+        _ = ruleset.update(self.X, self.y, measure=lambda c: (
+            c.P + c.N) / (c.P + c.N + c.n + c.p))
 
         # Orange's CN2 predict(...) typically returns class probabilities.
         # We use argmax(...) to get the predicted class index.
@@ -117,7 +98,8 @@ class TestOrangeCN2ClassificationRuleSet(unittest.TestCase):
 
         ruleset: ClassificationRuleSet = factory.make(self.cn2_model, self.X)
         ruleset.set_prediction_strategy(FirstRuleCoveringStrategy)
-        _ = ruleset.update(self.X, self.y, measure=lambda c: (c.P + c.N) / (c.P + c.N + c.n + c.p))
+        _ = ruleset.update(self.X, self.y, measure=lambda c: (
+            c.P + c.N) / (c.P + c.N + c.n + c.p))
         original_pred = ruleset.predict(self.X)
 
         # Serialize -> Deserialize
@@ -128,11 +110,11 @@ class TestOrangeCN2ClassificationRuleSet(unittest.TestCase):
 
         # (Optional) Update coverage/statistics in the deserialized object
         deserialized.set_prediction_strategy(FirstRuleCoveringStrategy)
-        _ = deserialized.update(self.X, self.y, measure=lambda c: (c.P + c.N) / (c.P + c.N + c.n + c.p))
+        _ = deserialized.update(self.X, self.y, measure=lambda c: (
+            c.P + c.N) / (c.P + c.N + c.n + c.p))
         deserialized_pred = deserialized.predict(self.X)
 
         self.assertTrue(
             np.array_equal(original_pred, deserialized_pred),
             "Deserialized CN2 ruleset should produce the same predictions as the original ruleset."
         )
-

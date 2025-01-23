@@ -209,14 +209,16 @@ class FirstRuleCoveringStrategy(PredictionStrategy):
     """First rule prediction strategy for prediction. 
     It selects the first rule from a set of rules that that covers the given examples and uses it to get the predicted value
     """
-    def _perform_prediction(self, voting_matrix: np.ndarray) -> np.ndarray:
+
+    def _perform_prediction(self, coverage_matrix: np.ndarray) -> np.ndarray:
         predictions = np.array(
             [
                 self.rules[i].conclusion.value
                 # numpy argmax will return first occurence of the maximum
-                for i in voting_matrix.argmax(axis=1)
+                for i in coverage_matrix.argmax(axis=1)
             ]
         )
         # we need to handle examples uncovered by any rule using default rule/conclusion
-        predictions[voting_matrix.sum(axis=1) == 0] = self.default_conclusion.value
+        predictions[coverage_matrix.sum(
+            axis=1) == 0] = self.default_conclusion.value
         return predictions
