@@ -1,0 +1,329 @@
+IF A3 = {6.04} THEN class = {+}
+IF A8 = {15.5} THEN class = {+}
+IF A2 = {23.33} THEN class = {+}
+IF A2 = {41.5} THEN class = {+}
+IF A14 = {93.0} THEN class = {+}
+IF A13 = {p} AND A1 = {a} THEN class = {+}
+IF A2 = {42.75} THEN class = {-}
+IF A2 = {15.83} AND A9 = {t} THEN class = {+}
+IF A2 = {21.33} THEN class = {+}
+IF A15 = {350.0} THEN class = {-}
+IF A2 = {36.25} THEN class = {+}
+IF A2 = {19.0} THEN class = {-}
+IF A3 = {0.17} THEN class = {-}
+IF A14 = {371.0} THEN class = {+}
+IF A8 = {2.0} AND A10 = {t} AND A9 = {t} THEN class = {+}
+IF A3 = {2.21} THEN class = {-}
+IF A14 = {928.0} THEN class = {-}
+IF A14 = {180.0} AND A9 = {f} THEN class = {-}
+IF A2 = {18.33} THEN class = {-}
+IF A14 = {290.0} THEN class = {+}
+IF A8 = {5.5} AND A9 = {t} THEN class = {+}
+IF A11 = {15.0} THEN class = {+}
+IF A8 = {5.25} THEN class = {+}
+IF A14 = {50.0} THEN class = {+}
+IF A8 = {11.0} THEN class = {+}
+IF A8 = {4.5} AND A10 = {f} THEN class = {-}
+IF A2 = {30.83} THEN class = {+}
+IF A3 = {3.29} THEN class = {-}
+IF A14 = {432.0} THEN class = {+}
+IF A15 = {316.0} THEN class = {-}
+IF A2 = {36.67} AND A9 = {t} THEN class = {+}
+IF A14 = {181.0} THEN class = {+}
+IF A2 = {41.17} AND A9 = {t} THEN class = {+}
+IF A2 = {44.33} THEN class = {+}
+IF A11 = {4.0} AND A9 = {t} THEN class = {+}
+IF A2 = {18.0} THEN class = {+}
+IF A8 = {14.0} THEN class = {+}
+IF A2 = {38.75} THEN class = {-}
+IF A14 = {356.0} THEN class = {-}
+IF A3 = {2.5} AND A9 = {f} THEN class = {-}
+IF A3 = {19.0} THEN class = {-}
+IF A2 = {69.17} THEN class = {-}
+IF A14 = {443.0} THEN class = {-}
+IF A3 = {12.33} THEN class = {+}
+IF A2 = {27.33} THEN class = {-}
+IF A2 = {15.17} THEN class = {-}
+IF A14 = {711.0} THEN class = {+}
+IF A14 = {292.0} THEN class = {-}
+IF A6 = {x} AND A10 = {t} THEN class = {+}
+IF A8 = {7.415} THEN class = {+}
+IF A4 = {l} THEN class = {+}
+IF A3 = {0.415} THEN class = {-}
+IF A3 = {15.0} THEN class = {+}
+IF A14 = {369.0} THEN class = {-}
+IF A2 = {16.0} THEN class = {-}
+IF A2 = {42.25} THEN class = {-}
+IF A15 = {990.0} THEN class = {-}
+IF A14 = {360.0} AND A9 = {f} THEN class = {-}
+IF A14 = {254.0} THEN class = {-}
+IF A15 = {3065.0} THEN class = {+}
+IF A6 = {x} AND A14 = {0.0} THEN class = {+}
+IF A2 = {54.42} THEN class = {+}
+IF A15 = {5000.0} THEN class = {+}
+IF A2 = {36.17} THEN class = {-}
+IF A2 = {32.83} THEN class = {+}
+IF A8 = {2.0} AND A10 = {f} THEN class = {-}
+IF A14 = {320.0} AND A13 = {s} THEN class = {-}
+IF A15 = {68.0} THEN class = {-}
+IF A8 = {2.0} AND A9 = {f} THEN class = {-}
+IF A14 = {411.0} THEN class = {-}
+IF A2 = {31.83} THEN class = {-}
+IF A2 = {34.92} THEN class = {+}
+IF A2 = {50.08} THEN class = {+}
+IF A2 = {39.0} THEN class = {+}
+IF A14 = {180.0} AND A4 = {u} THEN class = {-}
+IF A2 = {41.58} THEN class = {-}
+IF A2 = {55.92} THEN class = {+}
+IF A2 = {41.33} THEN class = {+}
+IF A11 = {9.0} THEN class = {+}
+IF A2 = {30.0} THEN class = {+}
+IF A15 = {31285.0} THEN class = {+}
+IF A2 = {28.42} THEN class = {+}
+IF A3 = {1.085} THEN class = {-}
+IF A3 = {7.25} THEN class = {-}
+IF A2 = {47.17} THEN class = {-}
+IF A11 = {11.0} AND A9 = {t} THEN class = {+}
+IF A3 = {5.0} AND A4 = {y} AND A10 = {f} THEN class = {-}
+IF A3 = {26.335} THEN class = {-}
+IF A2 = {48.33} THEN class = {+}
+IF A15 = {21.0} THEN class = {-}
+IF A2 = {31.25} AND A9 = {f} THEN class = {-}
+IF A15 = {17.0} THEN class = {-}
+IF A14 = {176.0} THEN class = {-}
+IF A2 = {40.0} THEN class = {+}
+IF A3 = {0.79} AND A9 = {t} THEN class = {+}
+IF A2 = {23.08} AND A9 = {f} THEN class = {-}
+IF A2 = {33.75} THEN class = {-}
+IF A8 = {0.04} AND A9 = {t} THEN class = {+}
+IF A15 = {6.0} AND A9 = {t} THEN class = {+}
+IF A2 = {38.42} THEN class = {-}
+IF A15 = {147.0} THEN class = {-}
+IF A3 = {8.585} THEN class = {+}
+IF A15 = {5777.0} THEN class = {+}
+IF A2 = {47.33} THEN class = {-}
+IF A14 = {186.0} THEN class = {+}
+IF A8 = {2.585} THEN class = {+}
+IF A14 = {500.0} THEN class = {+}
+IF A3 = {1.375} THEN class = {-}
+IF A14 = {230.0} THEN class = {+}
+IF A2 = {28.25} THEN class = {+}
+IF A7 = {j} AND A14 = {0.0} THEN class = {+}
+IF A2 = {29.17} THEN class = {-}
+IF A2 = {42.0} THEN class = {+}
+IF A8 = {2.165} THEN class = {+}
+IF A2 = {80.25} THEN class = {-}
+IF A2 = {44.25} THEN class = {-}
+IF A2 = {17.67} THEN class = {-}
+IF A3 = {5.125} THEN class = {+}
+IF A8 = {2.415} THEN class = {-}
+IF A2 = {32.08} AND A9 = {t} THEN class = {+}
+IF A14 = {160.0} AND A9 = {f} THEN class = {-}
+IF A3 = {4.585} THEN class = {-}
+IF A3 = {12.335} THEN class = {+}
+IF A14 = {220.0} AND A9 = {t} THEN class = {+}
+IF A2 = {23.92} AND A4 = {u} THEN class = {+}
+IF A15 = {560.0} THEN class = {+}
+IF A2 = {40.58} AND A9 = {f} THEN class = {-}
+IF A11 = {8.0} THEN class = {+}
+IF A15 = {824.0} THEN class = {+}
+IF A15 = {140.0} THEN class = {-}
+IF A2 = {30.25} THEN class = {-}
+IF A2 = {18.67} THEN class = {-}
+IF A2 = {47.67} THEN class = {+}
+IF A3 = {0.75} AND A9 = {f} THEN class = {-}
+IF A3 = {8.0} THEN class = {+}
+IF A15 = {600.0} THEN class = {+}
+IF A2 = {21.83} AND A9 = {t} THEN class = {+}
+IF A2 = {47.25} THEN class = {+}
+IF A2 = {20.25} THEN class = {+}
+IF A2 = {25.08} THEN class = {+}
+IF A2 = {50.75} THEN class = {-}
+IF A8 = {6.04} THEN class = {+}
+IF A2 = {39.42} THEN class = {-}
+IF A15 = {18.0} THEN class = {-}
+IF A3 = {3.0} AND A9 = {f} THEN class = {-}
+IF A3 = {9.0} AND A9 = {t} THEN class = {+}
+IF A14 = {550.0} THEN class = {-}
+IF A3 = {5.04} THEN class = {+}
+IF A14 = {167.0} THEN class = {-}
+IF A2 = {16.17} THEN class = {+}
+IF A3 = {14.585} THEN class = {-}
+IF A3 = {3.75} AND A9 = {f} THEN class = {-}
+IF A2 = {67.75} THEN class = {+}
+IF A3 = {1.165} THEN class = {-}
+IF A2 = {26.0} THEN class = {+}
+IF A2 = {18.83} AND A9 = {t} THEN class = {+}
+IF A3 = {13.75} THEN class = {+}
+IF A14 = {160.0} AND A6 = {q} THEN class = {-}
+IF A2 = {17.92} THEN class = {-}
+IF A2 = {35.25} THEN class = {-}
+IF A11 = {6.0} AND A15 = {0.0} THEN class = {+}
+IF A2 = {55.75} THEN class = {-}
+IF A3 = {0.25} AND A9 = {f} THEN class = {-}
+IF A14 = {460.0} THEN class = {-}
+IF A2 = {26.83} THEN class = {-}
+IF A15 = {225.0} THEN class = {-}
+IF A3 = {1.25} THEN class = {-}
+IF A8 = {4.29} THEN class = {+}
+IF A3 = {2.665} THEN class = {-}
+IF A8 = {1.04} THEN class = {+}
+IF A2 = {18.17} THEN class = {-}
+IF A2 = {48.25} THEN class = {+}
+IF A8 = {8.0} THEN class = {+}
+IF A14 = {17.0} THEN class = {-}
+IF A15 = {27.0} THEN class = {-}
+IF A14 = {280.0} AND A9 = {f} THEN class = {-}
+IF A3 = {9.335} THEN class = {+}
+IF A8 = {13.5} THEN class = {-}
+IF A3 = {4.04} THEN class = {+}
+IF A3 = {1.335} THEN class = {-}
+IF A15 = {2100.0} THEN class = {-}
+IF A8 = {0.5} AND A6 = {m} THEN class = {-}
+IF A2 = {34.58} THEN class = {-}
+IF A8 = {3.165} THEN class = {+}
+IF A2 = {22.0} THEN class = {-}
+IF A8 = {0.125} AND A9 = {f} THEN class = {-}
+IF A8 = {0.665} AND A9 = {t} THEN class = {+}
+IF A8 = {1.335} THEN class = {+}
+IF A2 = {18.5} THEN class = {+}
+IF A2 = {62.75} THEN class = {-}
+IF A14 = {274.0} THEN class = {+}
+IF A11 = {17.0} THEN class = {+}
+IF A15 = {1000.0} AND A9 = {t} THEN class = {+}
+IF A14 = {20.0} AND A9 = {t} THEN class = {+}
+IF A8 = {0.25} AND A9 = {f} THEN class = {-}
+IF A2 = {23.58} THEN class = {-}
+IF A8 = {1.54} THEN class = {+}
+IF A3 = {0.25} AND A9 = {t} THEN class = {+}
+IF A6 = {aa} AND A9 = {f} THEN class = {-}
+IF A2 = {18.08} AND A9 = {t} THEN class = {+}
+IF A15 = {3.0} AND A9 = {f} THEN class = {-}
+IF A3 = {15.5} THEN class = {-}
+IF A2 = {44.17} THEN class = {+}
+IF A8 = {6.0} THEN class = {+}
+IF A8 = {1.46} THEN class = {+}
+IF A2 = {73.42} THEN class = {+}
+IF A2 = {43.17} THEN class = {-}
+IF A3 = {3.04} THEN class = {+}
+IF A2 = {37.58} THEN class = {+}
+IF A15 = {5.0} THEN class = {-}
+IF A8 = {1.165} THEN class = {-}
+IF A8 = {3.0} AND A9 = {f} THEN class = {-}
+IF A14 = {431.0} THEN class = {+}
+IF A11 = {5.0} AND A15 = {0.0} THEN class = {+}
+IF A2 = {19.5} THEN class = {-}
+IF A11 = {7.0} AND A7 = {v} THEN class = {+}
+IF A2 = {24.58} THEN class = {-}
+IF A14 = {112.0} THEN class = {-}
+IF A2 = {22.17} THEN class = {-}
+IF A2 = {64.08} THEN class = {+}
+IF A2 = {38.67} THEN class = {+}
+IF A15 = {105.0} THEN class = {-}
+IF A2 = {47.42} THEN class = {+}
+IF A2 = {20.42} AND A9 = {t} THEN class = {+}
+IF A6 = {d} AND A1 = {a} THEN class = {-}
+IF A2 = {20.17} THEN class = {+}
+IF A11 = {14.0} THEN class = {+}
+IF A3 = {0.79} AND A9 = {f} THEN class = {-}
+IF A2 = {48.5} THEN class = {+}
+IF A3 = {2.875} AND A6 = {x} THEN class = {+}
+IF A2 = {23.25} AND A9 = {t} THEN class = {+}
+IF A2 = {22.83} THEN class = {+}
+IF A3 = {2.085} THEN class = {-}
+IF A2 = {39.83} THEN class = {-}
+IF A3 = {25.21} THEN class = {-}
+IF A15 = {15.0} THEN class = {+}
+IF A8 = {4.75} THEN class = {+}
+IF A15 = {678.0} THEN class = {+}
+IF A15 = {5200.0} THEN class = {-}
+IF A2 = {19.58} THEN class = {-}
+IF A3 = {6.0} AND A9 = {t} THEN class = {+}
+IF A8 = {2.5} AND A9 = {f} THEN class = {-}
+IF A8 = {20.0} THEN class = {+}
+IF A2 = {20.42} AND A9 = {f} THEN class = {-}
+IF A15 = {1300.0} THEN class = {-}
+IF A14 = {330.0} THEN class = {+}
+IF A3 = {2.25} THEN class = {-}
+IF A2 = {28.58} THEN class = {-}
+IF A2 = {41.0} THEN class = {+}
+IF A3 = {11.46} THEN class = {-}
+IF A8 = {0.585} AND A12 = {t} THEN class = {-}
+IF A2 = {57.42} THEN class = {+}
+IF A3 = {2.75} AND A9 = {f} THEN class = {-}
+IF A3 = {10.335} THEN class = {+}
+IF A3 = {0.375} AND A6 = {cc} THEN class = {+}
+IF A15 = {2803.0} THEN class = {-}
+IF A8 = {12.75} THEN class = {+}
+IF A15 = {53.0} THEN class = {-}
+IF A2 = {34.83} THEN class = {-}
+IF A3 = {9.17} THEN class = {+}
+IF A2 = {27.0} THEN class = {+}
+IF A15 = {690.0} THEN class = {+}
+IF A2 = {69.5} THEN class = {-}
+IF A2 = {25.5} THEN class = {+}
+IF A2 = {58.42} THEN class = {+}
+IF A15 = {2000.0} THEN class = {+}
+IF A2 = {33.92} THEN class = {-}
+IF A14 = {276.0} THEN class = {-}
+IF A15 = {500.0} AND A4 = {y} THEN class = {+}
+IF A3 = {1.415} THEN class = {+}
+IF A15 = {4.0} THEN class = {-}
+IF A3 = {0.5} AND A9 = {f} THEN class = {-}
+IF A8 = {1.415} THEN class = {+}
+IF A8 = {0.415} AND A9 = {f} THEN class = {-}
+IF A14 = {268.0} THEN class = {-}
+IF A2 = {21.08} THEN class = {-}
+IF A2 = {34.0} THEN class = {-}
+IF A2 = {21.0} THEN class = {+}
+IF A15 = {2.0} THEN class = {-}
+IF A14 = {140.0} AND A10 = {f} THEN class = {-}
+IF A2 = {16.25} THEN class = {-}
+IF A2 = {25.75} THEN class = {+}
+IF A14 = {132.0} THEN class = {-}
+IF A8 = {0.5} AND A9 = {f} THEN class = {-}
+IF A8 = {15.0} THEN class = {+}
+IF A2 = {20.5} THEN class = {+}
+IF A3 = {9.5} AND A9 = {t} THEN class = {+}
+IF A2 = {49.83} THEN class = {+}
+IF A2 = {29.83} THEN class = {-}
+IF A15 = {768.0} THEN class = {+}
+IF A2 = {37.17} THEN class = {-}
+IF A3 = {11.5} AND A9 = {f} THEN class = {-}
+IF A14 = {75.0} THEN class = {-}
+IF A3 = {0.335} THEN class = {-}
+IF A8 = {1.835} THEN class = {+}
+IF A2 = {29.92} THEN class = {+}
+IF A2 = {21.25} THEN class = {+}
+IF A3 = {10.415} THEN class = {-}
+IF A3 = {1.75} AND A8 = {0.25} THEN class = {-}
+IF A2 = {59.67} THEN class = {+}
+IF A2 = {46.0} THEN class = {+}
+IF A14 = {120.0} AND A9 = {f} THEN class = {-}
+IF A2 = {25.42} THEN class = {-}
+IF A2 = {23.17} THEN class = {+}
+IF A3 = {4.625} THEN class = {+}
+IF A14 = {228.0} AND A9 = {t} THEN class = {+}
+IF A8 = {0.71} THEN class = {+}
+IF A15 = {1430.0} THEN class = {+}
+IF A3 = {0.625} THEN class = {-}
+IF A2 = {51.92} THEN class = {-}
+IF A14 = {29.0} THEN class = {+}
+IF A15 = {351.0} THEN class = {-}
+IF A14 = {420.0} AND A10 = {f} THEN class = {-}
+IF A2 = {18.75} THEN class = {+}
+IF A14 = {272.0} THEN class = {-}
+IF A2 = {40.92} THEN class = {-}
+IF A3 = {8.46} THEN class = {+}
+IF A11 = {5.0} AND A6 = {w} THEN class = {+}
+IF A15 = {567.0} THEN class = {+}
+IF A15 = {1000.0} AND A9 = {f} THEN class = {-}
+IF A11 = {16.0} THEN class = {+}
+IF A15 = {10.0} THEN class = {-}
+IF A8 = {1.21} THEN class = {+}
+IF A2 = {36.5} THEN class = {-}
+IF A14 = {80.0} AND A9 = {f} THEN class = {-}
+IF A2 = {47.83} THEN class = {-}
+IF A2 = {35.0} THEN class = {-}
+IF A15 = {113.0} THEN class = {+}
+IF A2 = {52.17} THEN class = {-}

@@ -1,0 +1,78 @@
+Metric type: MESTIMATE, Argument: 0,100000
+preprocess time: 0 ms
+tree building time: 16 ms
+selector-nlists generation time: 0 ms
+Total init time: 16 ms
+	SearchRuleThread 5 founds 21 rules, finished in 0 ms
+	SearchRuleThread 1 founds 16 rules, finished in 0 ms
+	SearchRuleThread 2 founds 14 rules, finished in 0 ms
+	SearchRuleThread 4 founds 15 rules, finished in 0 ms
+	SearchRuleThread 3 founds 18 rules, finished in 0 ms
+	SearchRuleThread 0 founds 18 rules, finished in 0 ms
+	FilterRuleThread 5 finished in 0 ms
+	FilterRuleThread 3 finished in 0 ms
+	FilterRuleThread 1 finished in 0 ms
+	FilterRuleThread 0 finished in 0 ms
+	FilterRuleThread 4 finished in 0 ms
+	FilterRuleThread 2 finished in 0 ms
+Learning time: 31 ms
+------------------------------------------------------------------------------------
+Rule set: 
+IF (petalwidth=0.2) THEN (class=Iris-setosa)	(p=28.0, n=0.0, heuristic_value=0.9976275207591934)
+IF (petalwidth=2.5) THEN (class=Iris-virginica)	(p=3.0, n=0.0, heuristic_value=0.9784946236559139)
+IF (petalwidth=1.8) & (sepalwidth=3.0) THEN (class=Iris-virginica)	(p=4.0, n=0.0, heuristic_value=0.983739837398374)
+IF (petallength=1.7) THEN (class=Iris-setosa)	(p=4.0, n=0.0, heuristic_value=0.983739837398374)
+IF (petallength=4.2) THEN (class=Iris-versicolor)	(p=4.0, n=0.0, heuristic_value=0.983739837398374)
+IF (petalwidth=1.7) & (sepalwidth=2.5) THEN (class=Iris-virginica)	(p=1.0, n=0.0, heuristic_value=0.9393939393939394)
+IF (petallength=4.7) THEN (class=Iris-versicolor)	(p=5.0, n=0.0, heuristic_value=0.9869281045751634)
+IF (petallength=4.9) & (petalwidth=1.5) THEN (class=Iris-versicolor)	(p=2.0, n=0.0, heuristic_value=0.9682539682539681)
+IF (petalwidth=1.7) & (petallength=5.0) THEN (class=Iris-versicolor)	(p=1.0, n=0.0, heuristic_value=0.9393939393939394)
+IF (petalwidth=2.1) THEN (class=Iris-virginica)	(p=6.0, n=0.0, heuristic_value=0.9890710382513661)
+IF (petallength=4.4) THEN (class=Iris-versicolor)	(p=4.0, n=0.0, heuristic_value=0.983739837398374)
+IF (sepalwidth=2.2) & (petallength=5.0) THEN (class=Iris-virginica)	(p=1.0, n=0.0, heuristic_value=0.9393939393939394)
+IF (petallength=4.6) THEN (class=Iris-versicolor)	(p=3.0, n=0.0, heuristic_value=0.9784946236559139)
+IF (sepallength=7.7) THEN (class=Iris-virginica)	(p=4.0, n=0.0, heuristic_value=0.983739837398374)
+IF (petallength=5.1) & (sepalwidth=2.8) THEN (class=Iris-virginica)	(p=2.0, n=0.0, heuristic_value=0.9682539682539681)
+IF (sepallength=7.2) THEN (class=Iris-virginica)	(p=3.0, n=0.0, heuristic_value=0.9784946236559139)
+IF (petallength=1.5) THEN (class=Iris-setosa)	(p=14.0, n=0.0, heuristic_value=0.9952718676122931)
+IF (petallength=4.5) & (petalwidth=1.5) THEN (class=Iris-versicolor)	(p=5.0, n=0.0, heuristic_value=0.9869281045751634)
+IF (petalwidth=2.4) THEN (class=Iris-virginica)	(p=3.0, n=0.0, heuristic_value=0.9784946236559139)
+IF (sepallength=7.3) THEN (class=Iris-virginica)	(p=1.0, n=0.0, heuristic_value=0.9393939393939394)
+IF (petalwidth=1.6) & (sepallength=6.0) THEN (class=Iris-versicolor)	(p=2.0, n=0.0, heuristic_value=0.9682539682539681)
+IF (petallength=4.9) & (petalwidth=1.8) THEN (class=Iris-virginica)	(p=2.0, n=0.0, heuristic_value=0.9682539682539681)
+IF (sepallength=6.8) & (petalwidth=1.4) THEN (class=Iris-versicolor)	(p=1.0, n=0.0, heuristic_value=0.9393939393939394)
+IF (petallength=1.4) THEN (class=Iris-setosa)	(p=12.0, n=0.0, heuristic_value=0.9944903581267218)
+IF (petallength=5.6) THEN (class=Iris-virginica)	(p=6.0, n=0.0, heuristic_value=0.9890710382513661)
+IF (petallength=4.0) THEN (class=Iris-versicolor)	(p=5.0, n=0.0, heuristic_value=0.9869281045751634)
+IF (sepallength=6.2) & (petalwidth=1.8) THEN (class=Iris-virginica)	(p=1.0, n=0.0, heuristic_value=0.9393939393939394)
+IF (sepalwidth=2.4) THEN (class=Iris-versicolor)	(p=3.0, n=0.0, heuristic_value=0.9784946236559139)
+IF (petalwidth=1.0) THEN (class=Iris-versicolor)	(p=7.0, n=0.0, heuristic_value=0.9906103286384977)
+IF (petallength=5.7) THEN (class=Iris-virginica)	(p=3.0, n=0.0, heuristic_value=0.9784946236559139)
+IF (petalwidth=1.3) THEN (class=Iris-versicolor)	(p=13.0, n=0.0, heuristic_value=0.994910941475827)
+IF (sepallength=5.9) & (petallength=4.8) THEN (class=Iris-versicolor)	(p=1.0, n=0.0, heuristic_value=0.9393939393939394)
+IF (petalwidth=0.3) THEN (class=Iris-setosa)	(p=7.0, n=0.0, heuristic_value=0.9906103286384977)
+IF (petalwidth=0.1) THEN (class=Iris-setosa)	(p=6.0, n=0.0, heuristic_value=0.9890710382513661)
+IF (petalwidth=0.4) THEN (class=Iris-setosa)	(p=7.0, n=0.0, heuristic_value=0.9906103286384977)
+IF (petallength=5.8) THEN (class=Iris-virginica)	(p=3.0, n=0.0, heuristic_value=0.9784946236559139)
+IF (petalwidth=1.1) THEN (class=Iris-versicolor)	(p=3.0, n=0.0, heuristic_value=0.9784946236559139)
+IF (petallength=5.5) THEN (class=Iris-virginica)	(p=3.0, n=0.0, heuristic_value=0.9784946236559139)
+IF (petalwidth=1.2) THEN (class=Iris-versicolor)	(p=5.0, n=0.0, heuristic_value=0.9869281045751634)
+IF (petalwidth=2.0) THEN (class=Iris-virginica)	(p=6.0, n=0.0, heuristic_value=0.9890710382513661)
+IF (petallength=1.3) THEN (class=Iris-setosa)	(p=7.0, n=0.0, heuristic_value=0.9906103286384977)
+IF (petallength=3.9) THEN (class=Iris-versicolor)	(p=3.0, n=0.0, heuristic_value=0.9784946236559139)
+IF (petallength=1.6) THEN (class=Iris-setosa)	(p=7.0, n=0.0, heuristic_value=0.9906103286384977)
+IF (petalwidth=2.3) THEN (class=Iris-virginica)	(p=8.0, n=0.0, heuristic_value=0.9917695473251029)
+IF (petalwidth=1.9) THEN (class=Iris-virginica)	(p=5.0, n=0.0, heuristic_value=0.9869281045751634)
+
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+Testing example count: 150
+Prediction time: 0 ms
+Total running time: 47 ms
+Rule count: 45
+Average rule length: 1,266667
+Recall: 1,000000
+Precision: 1,000000
+Macro f1-score (not weighted): 1,000000
+Accuracy: 1,000000
+Finished.
