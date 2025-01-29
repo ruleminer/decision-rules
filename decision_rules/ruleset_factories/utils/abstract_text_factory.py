@@ -57,6 +57,7 @@ class AbstractTextRuleSetFactory(AbstractFactory):
         ruleset._calculate_P_N(y_uniques, y_counts)
 
         ruleset.column_names = self.columns_names
+        ruleset.decision_attribute = self.decision_attribute_name
 
         return ruleset
 
