@@ -306,6 +306,20 @@ class SurvivalRuleSet(AbstractRuleSet):
         score = score_sum / sorted_info[info_size - 1].time
 
         return score
+    
+    def calculate_p_values(self) -> list[float]:
+        """
+        Calculates the p-value for each survival rule using the metrics instance.
+
+        Returns:
+            list[float]: A list of p-values for each rule.
+        """
+        metrics: AbstractRulesMetrics = self.get_metrics_object_instance()
+        p_values = []
+        for rule in self.rules:
+            p_values.append(metrics.calculate_p_value(rule=rule))
+        return p_values
+
 
     def _sanitize_dataset(
         self,
