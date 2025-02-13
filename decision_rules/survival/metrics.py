@@ -40,6 +40,26 @@ class SurvivalRulesMetrics(AbstractRulesMetrics):
             "censored_count": lambda: int(rule.conclusion.estimator.censored_count_sum),
             "log_rank": lambda: float(rule.log_rank),
         }
+    
+    def calculate_p_value(
+        self,
+        coverage: Optional[Coverage] = None,
+        rule: Optional[SurvivalRule] = None,
+        y: Optional[np.ndarray] = None
+    ) -> float:
+        """
+        Calculates the p-value for a survival rule based on the precomputed log_rank value.
+            p_value = 1 - log_rank
+        Args:
+            coverage (Optional[Coverage]): Not used.
+            rule (Optional[SurvivalRule]): The survival rule for which to calculate the p-value.
+            y (Optional[np.ndarray]): Not used.
 
-    def calculate_p_value(self, coverage: Optional[Coverage] = None, rule: Optional[SurvivalRule] = None, y: Optional[np.ndarray] = None) -> float:
-        raise NotImplementedError()
+        Returns:
+            float: The p-value for the rule.
+        """
+        if rule is None:
+            raise ValueError("A survival rule must be provided to calculate p_value.")
+        if rule.log_rank is None:
+            raise ValueError(f"log_rank has not been computed for the rule with uuid: {rule.uuid}")
+        return 1 - rule.log_rank
