@@ -40,9 +40,6 @@ class SurvivalRulesMetrics(AbstractRulesMetrics):
             "censored_count": lambda: int(rule.conclusion.estimator.censored_count_sum),
             "log_rank": lambda: float(rule.log_rank),
         }
-
-    def calculate_p_value(self, coverage: Optional[Coverage] = None, rule: Optional[SurvivalRule] = None, y: Optional[np.ndarray] = None) -> float:
-        raise NotImplementedError()
     
     def calculate_p_value(
         self,
