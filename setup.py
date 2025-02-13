@@ -9,7 +9,7 @@ setup(
     ),
     long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
-    version="1.5.0",
+    version="1.6.0",
     author="Cezary Maszczyk, Dawid Macha, Adam Grzelak, Bartosz Piguła",
     author_email="cezary.maszczyk@emag.lukasiewicz.gov.pl",
     readme="README.md",
