@@ -431,17 +431,17 @@ class AbstractRuleSet(_PredictionModel, ABC):
 
         stats = dict()
         stats["rules_count"] = len(self.rules)
+        stats["total_conditions_count"] = sum(
+            [count_conditions(rule.premise) for rule in self.rules]
+        )
         stats["avg_conditions_count"] = round(
-            np.mean([len(rule.premise.subconditions) for rule in self.rules]), 2
+            stats["total_conditions_count"] / len(self.rules), 2
         )
         stats["avg_precision"] = round(
             np.mean([precision(rule.coverage) for rule in self.rules]), 2
         )
         stats["avg_coverage"] = round(
             np.mean([coverage(rule.coverage) for rule in self.rules]), 2
-        )
-        stats["total_conditions_count"] = sum(
-            [count_conditions(rule.premise) for rule in self.rules]
         )
 
         return stats
