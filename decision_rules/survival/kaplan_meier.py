@@ -95,7 +95,6 @@ class KaplanMeierEstimator:
             at_risk_count=kaplan_meier_estimator_dict["at_risk_count"],
             probability=kaplan_meier_estimator_dict["probabilities"],
         )
-        self.process_surv_info(self.surv_info)
         if update_additional_indicators:
             self._update_additional_indicators()
         return self
