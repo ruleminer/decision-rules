@@ -165,10 +165,22 @@ class KaplanMeierEstimator:
 
         grouped_data["at_risk_count"][time_point] = at_risk_count
 
-        unique_times = np.array(list(grouped_data["events_count"].keys()))
-        events_count = np.array(list(grouped_data["events_count"].values()))
-        censored_count = np.array(list(grouped_data["censored_count"].values()))
-        at_risk_count = np.array(list(grouped_data["at_risk_count"].values()))
+        unique_times = list(grouped_data["events_count"].keys())
+        events_count = list(grouped_data["events_count"].values())
+        censored_count = list(grouped_data["censored_count"].values())
+        at_risk_count = list(grouped_data["at_risk_count"].values())
+
+        # add zero time point so all Kaplan-Meiers start from 0
+        unique_times.insert(0, 0)
+        events_count.insert(0, 0)
+        censored_count.insert(0, 0)
+        # at the zero time all objects are at risk
+        at_risk_count.insert(0, at_risk_count[0])
+
+        unique_times = np.array(unique_times)
+        events_count = np.array(events_count)
+        censored_count = np.array(censored_count)
+        at_risk_count = np.array(at_risk_count)
 
         surv_info = SurvInfo(
             time=unique_times,
