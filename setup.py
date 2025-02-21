@@ -22,7 +22,8 @@ setup(
         "scikit-learn>=1.1",
         "imbalanced-learn>=0.10",
         "typeguard>=4.3",
-        "packaging>=14.1"
+        "packaging>=14.1",
+        "pyvis>=0.2.2"
     ],
     python_requires=">=3.9",
 )
