@@ -31,40 +31,42 @@ class DecisionAttributeMismatchException(Exception):
         super().__init__(message)
 
 
-class InvalidMeasureNameException(Exception):
+class RulesetFactoriesException(Exception):
+    """
+    Base exception for all errors raised from ruleset factories.
+    """
+    pass
+
+class InvalidMeasureNameException(RulesetFactoriesException):
     def __init__(self):
-        message = f"measure_name must be either a string or a function"
+        message = "measure_name must be either a string or a function"
         super().__init__(message)
 
-
-class InvalidSurvivalTimeAttributeException(Exception):
+class InvalidSurvivalTimeAttributeException(RulesetFactoriesException):
     def __init__(self, attribute: str):
         self.detail = {"attribute": attribute}
         message = f"Invalid survival time attribute name: {attribute}"
         super().__init__(message)
 
-class InvalidConditionFormatException(Exception):
+class InvalidConditionFormatException(RulesetFactoriesException):
     def __init__(self, condition_str: str):
         self.detail = {"condition_str": condition_str}
         message = f"Invalid condition format: {condition_str}"
         super().__init__(message)
 
-
-class AttributeNotFoundException(Exception):
+class AttributeNotFoundException(RulesetFactoriesException):
     def __init__(self, attribute_name: str):
         self.detail = {"attribute_name": attribute_name}
         message = f"Attribute '{attribute_name}' not found in dataset columns"
         super().__init__(message)
 
-
-class InvalidNumericValueException(Exception):
-    def __init__(self, operator: str, value: str, ):
+class InvalidNumericValueException(RulesetFactoriesException):
+    def __init__(self, operator: str, value: str):
         self.detail = {"operator": operator, "value": value}
-        message = f"Expected a numeric value after '{operator}', got:'{value}'"
+        message = f"Expected a numeric value after '{operator}', got: '{value}'"
         super().__init__(message)
 
-
-class InvalidValueFormatException(Exception):
+class InvalidValueFormatException(RulesetFactoriesException):
     def __init__(self, operator: str, value: str):
         self.detail = {"operator": operator, "value": value}
         message = f"Invalid value format '{value}' for operator '{operator}'"
