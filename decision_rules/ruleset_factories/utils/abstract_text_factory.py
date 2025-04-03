@@ -13,6 +13,11 @@ from decision_rules.core.rule import AbstractConclusion
 from decision_rules.core.rule import AbstractRule
 from decision_rules.core.ruleset import AbstractRuleSet
 from decision_rules.ruleset_factories._factories.abstract_factory import AbstractFactory
+from decision_rules.core.exceptions import InvalidConditionFormatException
+from decision_rules.core.exceptions import AttributeNotFoundException
+from decision_rules.core.exceptions import InvalidNumericValueException
+from decision_rules.core.exceptions import InvalidValueFormatException
+
 
 
 class AbstractTextRuleSetFactory(AbstractFactory):
@@ -36,19 +41,19 @@ class AbstractTextRuleSetFactory(AbstractFactory):
         self.column_indices = {
             column_name: i for i, column_name in enumerate(self.columns_names)
         }
-        error_messages = []
+
         rules = []
         for rule_str in model:
             try:
                 rule = self._make_rule(rule_str)
                 rules.append(rule)
-            except ValueError as e:
-                error_messages.append(
-                    f"Error processing rule '{rule_str}': {e}")
-
-        if error_messages:
-            raise ValueError(
-                "Errors encountered while processing rules:\n" + "\n".join(error_messages))
+            except (InvalidConditionFormatException,
+                    AttributeNotFoundException,
+                    InvalidNumericValueException,
+                    InvalidValueFormatException) as e:
+                e.detail["rule"] = rule_str
+                e.args = (f"Error while parsing the rule '{rule_str}': {e.args[0]}",)
+                raise e from None
 
         y_uniques, y_counts = np.unique(y_train, return_counts=True)
 
@@ -69,8 +74,7 @@ class AbstractTextRuleSetFactory(AbstractFactory):
             attr_name, operator, value, value_type = self._parse_single_condition(
                 condition)
             if attr_name not in self.columns_names:
-                raise ValueError(
-                    f"Attribute {attr_name} not found in columns_names")
+                raise AttributeNotFoundException(attr_name)
             column_index = self.columns_names.index(attr_name)
             if value_type == 'numeric':
                 if operator in ['<', '<=']:
@@ -113,7 +117,7 @@ class AbstractTextRuleSetFactory(AbstractFactory):
 
         match = re.match(pattern, condition_str.strip())
         if not match:
-            raise ValueError(f"Invalid condition format: {condition_str}")
+            raise InvalidConditionFormatException(condition_str)
 
         attr_name, operator, value = match.groups()
         if value.startswith("{") and value.endswith("}"):
@@ -123,12 +127,10 @@ class AbstractTextRuleSetFactory(AbstractFactory):
             value_type = 'range'
         elif operator in ['<', '>', '<=', '>=']:
             if not re.match(r"\s*[\d]+(\.[\d]+)?\s*$", value):
-                raise ValueError(
-                    f"Expected a numeric value after {operator}, got: {value}")
+                raise InvalidNumericValueException(operator, value)
             value_type = 'numeric'
         else:
-            raise ValueError(
-                f"Invalid value format for operator {operator}: {value}")
+            raise InvalidValueFormatException(operator, value)
 
         return attr_name, operator, value, value_type
 

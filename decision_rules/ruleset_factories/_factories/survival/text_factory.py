@@ -7,7 +7,9 @@ from decision_rules.survival.rule import SurvivalConclusion
 from decision_rules.survival.rule import SurvivalRule
 from decision_rules.survival.ruleset import SurvivalRuleSet
 from decision_rules.ruleset_factories.utils.abstract_text_factory import AbstractTextRuleSetFactory
-
+from decision_rules.core.exceptions import InvalidSurvivalTimeAttributeException
+from decision_rules.core.exceptions import RuleConclusionFormatException
+from decision_rules.core.exceptions import RuleConclusionFloatConversionException
 
 class TextRuleSetFactory(AbstractTextRuleSetFactory):
     """Generates survival ruleset from list of str rules
@@ -21,7 +23,7 @@ class TextRuleSetFactory(AbstractTextRuleSetFactory):
         survival_time_attr: str = "survival_time",
     ) -> SurvivalRuleSet:
         if survival_time_attr not in X_train.columns.tolist():
-            raise ValueError(f"Invalid survival time attribute name")
+            raise InvalidSurvivalTimeAttributeException(attribute=survival_time_attr)
         else:
             self.survival_time_attr = survival_time_attr
         ruleset: SurvivalRuleSet = super().make(
@@ -49,8 +51,7 @@ class TextRuleSetFactory(AbstractTextRuleSetFactory):
         match = re.search(pattern, conclusion_part)
 
         if not match:
-            raise ValueError(
-                f"Rule conclusion format is incorrect: {conclusion_part}")
+            raise RuleConclusionFormatException(conclusion_part=conclusion_part)
 
         try:
             probabilities_str, times_str = match.groups()
@@ -58,8 +59,7 @@ class TextRuleSetFactory(AbstractTextRuleSetFactory):
                              for prob in probabilities_str.split(',')]
             times = [float(time) for time in times_str.split(',')]
         except ValueError as e:
-            raise ValueError(
-                f"Error converting probabilities or times to float: {e}")
+            raise RuleConclusionFloatConversionException()
 
         zeros = [0] * len(times)
 

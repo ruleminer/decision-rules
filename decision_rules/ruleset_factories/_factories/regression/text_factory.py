@@ -10,6 +10,10 @@ from decision_rules.regression.rule import RegressionConclusion
 from decision_rules.regression.rule import RegressionRule
 from decision_rules.regression.ruleset import RegressionRuleSet
 from decision_rules.ruleset_factories.utils.abstract_text_factory import AbstractTextRuleSetFactory
+from decision_rules.core.exceptions import InvalidMeasureNameException
+from decision_rules.core.exceptions import RuleConclusionFormatException
+from decision_rules.core.exceptions import DecisionAttributeMismatchException
+from decision_rules.core.exceptions import RuleConclusionFloatConversionException
 
 
 class TextRuleSetFactory(AbstractTextRuleSetFactory):
@@ -29,8 +33,7 @@ class TextRuleSetFactory(AbstractTextRuleSetFactory):
         elif callable(measure_name):
             measure = measure_name
         else:
-            raise ValueError(
-                "measure_name must be either a string or a function")
+            raise InvalidMeasureNameException()
 
         ruleset: RegressionRuleSet = super().make(
             model, X_train, y_train
@@ -64,22 +67,22 @@ class TextRuleSetFactory(AbstractTextRuleSetFactory):
         match = re.search(pattern, conclusion_part)
 
         if not match:
-            raise ValueError(
-                f"Rule conclusion format is incorrect: {conclusion_part}")
+            raise RuleConclusionFormatException(conclusion_part=conclusion_part)
 
         decision_attribute_name, decision_value, low_value, high_value = match.groups()
 
         if decision_attribute_name != self.decision_attribute_name:
-            raise ValueError(
-                f"Decision attribute name '{decision_attribute_name}' does not match the expected decision attribute name '{self.decision_attribute_name}'")
+            raise DecisionAttributeMismatchException(
+                given_attribute=decision_attribute_name,
+                expected_attribute=self.decision_attribute_name
+            )
 
         try:
             decision_value = float(decision_value)
             low_value = float(low_value) if low_value else decision_value
             high_value = float(high_value) if high_value else decision_value
         except ValueError as e:
-            raise ValueError(
-                f"Error converting rule conclusion values to float: {e}")
+            raise RuleConclusionFloatConversionException()
 
         return RegressionConclusion(value=decision_value, column_name=decision_attribute_name, fixed=True, low=low_value, high=high_value)
 
