@@ -5,21 +5,27 @@ class InvalidStateError(Exception):
     Args:
         Exception (_type_): _description_
     """
+class RulesetFactoriesException(Exception):
+    """
+    Base exception for all errors raised from ruleset factories.
+    """
+    pass
 
-class RuleConclusionFormatException(Exception):
+
+class RuleConclusionFormatException(RulesetFactoriesException):
     def __init__(self, conclusion_part: str):
         self.detail = {"conclusion_part": conclusion_part}
         message = f"Rule conclusion format is incorrect: {conclusion_part}"
         super().__init__(message)
 
 
-class RuleConclusionFloatConversionException(Exception):
+class RuleConclusionFloatConversionException(RulesetFactoriesException):
     def __init__(self):
         message = f"Error converting rule conclusion values to float"
         super().__init__(message)
 
 
-class DecisionAttributeMismatchException(Exception):
+class DecisionAttributeMismatchException(RulesetFactoriesException):
     def __init__(self, given_attribute: str, expected_attribute: str):
         self.detail = {
             "given_attribute": given_attribute,
@@ -30,12 +36,6 @@ class DecisionAttributeMismatchException(Exception):
         )
         super().__init__(message)
 
-
-class RulesetFactoriesException(Exception):
-    """
-    Base exception for all errors raised from ruleset factories.
-    """
-    pass
 
 class InvalidMeasureNameException(RulesetFactoriesException):
     def __init__(self):
