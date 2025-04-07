@@ -1,6 +1,7 @@
 import re
-from typing import List
+from typing import Any, Iterable, List
 
+import numpy as np
 import pandas as pd
 from decision_rules.survival.kaplan_meier import KaplanMeierEstimator
 from decision_rules.survival.rule import SurvivalConclusion
@@ -24,13 +25,36 @@ class TextRuleSetFactory(AbstractTextRuleSetFactory):
     ) -> SurvivalRuleSet:
         if survival_time_attr not in X_train.columns.tolist():
             raise InvalidSurvivalTimeAttributeException(attribute=survival_time_attr)
-        else:
-            self.survival_time_attr = survival_time_attr
-        ruleset: SurvivalRuleSet = super().make(
-            model, X_train, y_train
+        labels_values, y_counts = np.unique(y_train, return_counts=True)
+        ruleset: SurvivalRuleSet = self._build_ruleset(
+            model=model,
+            y_counts=y_counts,
+            decision_attribute_name=y_train.name,
+            labels_values = labels_values,
+            columns_names=X_train.columns.tolist(),
+            survival_time_attr = survival_time_attr
         )
-        ruleset.y_values = self.labels_values
+        ruleset.y_values = labels_values
         ruleset.update(X_train, y_train)
+        return ruleset
+    
+    def _build_ruleset(
+        self,
+        model: list,
+        y_counts: np.ndarray,
+        decision_attribute_name: str,
+        labels_values: Iterable[Any],
+        columns_names: list[str],
+        survival_time_attr: str
+    ) -> SurvivalRuleSet:
+        self.survival_time_attr = survival_time_attr
+        ruleset = super()._build_ruleset(
+            model,
+            y_counts,
+            decision_attribute_name,
+            labels_values,
+            columns_names
+        )
         return ruleset
 
     def _make_ruleset(self, rules: List[SurvivalRule]) -> SurvivalRuleSet:
