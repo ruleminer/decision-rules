@@ -1,11 +1,16 @@
 from typing import Callable
 from typing import Union
+from typing import Any
+from typing import Iterable
 
+import numpy as np
 import pandas as pd
 from decision_rules.classification.ruleset import ClassificationRuleSet
 from decision_rules.ruleset_factories._factories.classification.text_factory import TextRuleSetFactory
 from decision_rules.ruleset_factories._parsers import LordParser
 from decision_rules.ruleset_factories.utils.abstract_lord_factory import AbstractLordRuleSetFactory
+from decision_rules.core.exceptions import InvalidMeasureNameException
+from decision_rules.helpers import get_measure_function_by_name
 
 
 class LordRuleSetFactory(AbstractLordRuleSetFactory):
@@ -36,13 +41,52 @@ class LordRuleSetFactory(AbstractLordRuleSetFactory):
         Returns:
             ClassificationRuleSet: a set of classification
         """
+        labels_values, y_counts = np.unique(y_train, return_counts=True)
+
+        ruleset: ClassificationRuleSet = self._build_ruleset(
+            model,
+            y_counts,
+            decision_attribute_name=y_train.name,
+            labels_values=labels_values,
+            columns_names=X_train.columns.tolist()
+        )
+
+        if isinstance(measure_name, str):
+            measure = get_measure_function_by_name(measure_name)
+        elif callable(measure_name):
+            measure = measure_name
+        else:
+            raise InvalidMeasureNameException()
+        ruleset.y_values = labels_values
+        ruleset.update(
+            X_train, y_train,
+            measure=measure
+        )
+
+        return ruleset
+
+    def _build_ruleset(
+        self,
+        model: list[str],
+        y_counts: np.ndarray,
+        decision_attribute_name: str,
+        labels_values: Iterable[Any],
+        columns_names: list[str]
+    ) -> ClassificationRuleSet:
+
         parsed_tuples: list[tuple[str, float]] = LordParser.parse(model)
 
         rule_texts: list[str] = [tpl[0] for tpl in parsed_tuples]
         heuristic_values: list[float] = [tpl[1] for tpl in parsed_tuples]
-        ruleset: ClassificationRuleSet = TextRuleSetFactory().make(
-            rule_texts, X_train, y_train, measure_name=measure_name
+
+        ruleset: ClassificationRuleSet = TextRuleSetFactory()._build_ruleset(
+            rule_texts,
+            y_counts,
+            decision_attribute_name=decision_attribute_name,
+            labels_values=labels_values,
+            columns_names=columns_names
         )
+
         for rule_obj, hv in zip(ruleset.rules, heuristic_values):
             rule_obj.voting_weight = hv
 
