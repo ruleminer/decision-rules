@@ -1,15 +1,12 @@
 # pylint: disable=missing-module-docstring,missing-class-docstring,missing-function-docstring
 import unittest
 
-from decision_rules.conditions import AttributesCondition
-from decision_rules.conditions import CompoundCondition
-from decision_rules.conditions import ElementaryCondition
-from decision_rules.conditions import LogicOperators
-from decision_rules.conditions import NominalCondition
+from decision_rules.conditions import (AttributesRelationCondition,
+                                       CompoundCondition, ElementaryCondition,
+                                       LogicOperators, NominalCondition)
 from decision_rules.core.coverage import Coverage
 from decision_rules.serialization import JSONSerializer
-from decision_rules.survival.rule import SurvivalConclusion
-from decision_rules.survival.rule import SurvivalRule
+from decision_rules.survival.rule import SurvivalConclusion, SurvivalRule
 
 
 class TestSurvivalRuleSerializer(unittest.TestCase):
@@ -18,7 +15,7 @@ class TestSurvivalRuleSerializer(unittest.TestCase):
         rule = SurvivalRule(
             CompoundCondition(
                 subconditions=[
-                    AttributesCondition(
+                    AttributesRelationCondition(
                         column_left=2, column_right=3, operator='>'
                     ),
                     ElementaryCondition(

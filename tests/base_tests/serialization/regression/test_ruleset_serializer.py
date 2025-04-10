@@ -4,9 +4,9 @@ import unittest
 import pandas as pd
 
 from decision_rules import measures
-from decision_rules.conditions import (AttributesCondition, CompoundCondition,
-                                       ElementaryCondition, LogicOperators,
-                                       NominalCondition)
+from decision_rules.conditions import (AttributesRelationCondition,
+                                       CompoundCondition, ElementaryCondition,
+                                       LogicOperators, NominalCondition)
 from decision_rules.core.coverage import Coverage
 from decision_rules.core.exceptions import InvalidStateError
 from decision_rules.regression.rule import RegressionConclusion, RegressionRule
@@ -20,7 +20,7 @@ class TestRegressionRuleSetSerializer(unittest.TestCase):
         rule1 = RegressionRule(
             CompoundCondition(
                 subconditions=[
-                    AttributesCondition(column_left=2, column_right=3, operator=">"),
+                    AttributesRelationCondition(column_left=2, column_right=3, operator=">"),
                     ElementaryCondition(
                         column_index=2,
                         left=-1,
@@ -44,7 +44,7 @@ class TestRegressionRuleSetSerializer(unittest.TestCase):
         rule2 = RegressionRule(
             CompoundCondition(
                 subconditions=[
-                    AttributesCondition(column_left=1, column_right=3, operator="="),
+                    AttributesRelationCondition(column_left=1, column_right=3, operator="="),
                     ElementaryCondition(
                         column_index=2,
                         left=float("-inf"),

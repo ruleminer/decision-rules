@@ -10,7 +10,8 @@ from typing import Any, Callable, Optional, Union
 import numpy as np
 import pandas as pd
 
-from decision_rules.conditions import AttributesCondition, CompoundCondition
+from decision_rules.conditions import (AttributesRelationCondition,
+                                       CompoundCondition)
 from decision_rules.core.coverage import (ClassificationCoverageInfodict,
                                           Coverage)
 from decision_rules.core.exceptions import InvalidStateError
@@ -497,7 +498,7 @@ class AbstractRuleSet(_PredictionModel, ABC):
             for condition in premise.subconditions:
                 self._update_condition(condition, old_to_new_attr_mapping)
             return
-        if isinstance(premise, AttributesCondition):
+        if isinstance(premise, AttributesRelationCondition):
             premise.column_left = old_to_new_attr_mapping[premise.column_left]
             premise.column_right = old_to_new_attr_mapping[premise.column_right]
             return
