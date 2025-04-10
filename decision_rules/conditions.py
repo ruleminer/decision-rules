@@ -274,10 +274,10 @@ class NominalAttributesEqualityCondition(AbstractCondition):
 
     def __init__(
         self,
-        column_indices: list[str],
+        column_indices: list[int],
     ):
         super().__init__()
-        self.column_indices: list[str] = column_indices
+        self.column_indices: list[int] = column_indices
 
     @property
     def attributes(self) -> frozenset[int]:
