@@ -1,14 +1,11 @@
 # pylint: disable=missing-module-docstring,missing-class-docstring,missing-function-docstring
 import unittest
 
-from decision_rules.conditions import AttributesCondition
-from decision_rules.conditions import CompoundCondition
-from decision_rules.conditions import ElementaryCondition
-from decision_rules.conditions import LogicOperators
-from decision_rules.conditions import NominalCondition
+from decision_rules.conditions import (AttributesRelationCondition,
+                                       CompoundCondition, ElementaryCondition,
+                                       LogicOperators, NominalCondition)
 from decision_rules.core.coverage import Coverage
-from decision_rules.regression.rule import RegressionConclusion
-from decision_rules.regression.rule import RegressionRule
+from decision_rules.regression.rule import RegressionConclusion, RegressionRule
 from decision_rules.serialization import JSONSerializer
 
 
@@ -18,7 +15,7 @@ class TestRegressionRuleSerializer(unittest.TestCase):
         rule = RegressionRule(
             CompoundCondition(
                 subconditions=[
-                    AttributesCondition(
+                    AttributesRelationCondition(
                         column_left=2, column_right=3, operator='>'
                     ),
                     ElementaryCondition(

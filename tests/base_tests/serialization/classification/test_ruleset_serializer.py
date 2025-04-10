@@ -7,9 +7,9 @@ from decision_rules import measures
 from decision_rules.classification.rule import (ClassificationConclusion,
                                                 ClassificationRule)
 from decision_rules.classification.ruleset import ClassificationRuleSet
-from decision_rules.conditions import (AttributesCondition, CompoundCondition,
-                                       ElementaryCondition, LogicOperators,
-                                       NominalCondition)
+from decision_rules.conditions import (AttributesRelationCondition,
+                                       CompoundCondition, ElementaryCondition,
+                                       LogicOperators, NominalCondition)
 from decision_rules.core.coverage import Coverage
 from decision_rules.core.exceptions import InvalidStateError
 from decision_rules.serialization import JSONSerializer, SerializationModes
@@ -21,7 +21,7 @@ class TestClassificationRuleSetSerializer(unittest.TestCase):
         rule1 = ClassificationRule(
             CompoundCondition(
                 subconditions=[
-                    AttributesCondition(column_left=2, column_right=3, operator=">"),
+                    AttributesRelationCondition(column_left=2, column_right=3, operator=">"),
                     ElementaryCondition(
                         column_index=2,
                         left=-1,
@@ -43,7 +43,7 @@ class TestClassificationRuleSetSerializer(unittest.TestCase):
         rule2 = ClassificationRule(
             CompoundCondition(
                 subconditions=[
-                    AttributesCondition(column_left=1, column_right=3, operator="<"),
+                    AttributesRelationCondition(column_left=1, column_right=3, operator="<"),
                     NominalCondition(
                         column_index=1,
                         value="value",
