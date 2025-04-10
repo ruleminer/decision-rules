@@ -10,6 +10,7 @@ from decision_rules.ruleset_factories._factories.classification.text_factory imp
 from decision_rules.ruleset_factories._parsers import MLRulesParser
 from decision_rules.ruleset_factories.utils.abstract_mlrules_factory import AbstractMLRulesRuleSetFactory
 from decision_rules.core.exceptions import InvalidMeasureNameException
+from decision_rules.core.exceptions import MLRulesParsingException
 from decision_rules.helpers import get_measure_function_by_name
 
 
@@ -79,7 +80,10 @@ class MLRulesRuleSetFactory(AbstractMLRulesRuleSetFactory):
         columns_names: list[str]
     ) -> ClassificationRuleSet:
 
-        rules = MLRulesParser.parse(model)
+        try:
+            rules = MLRulesParser.parse(model)
+        except Exception as e:
+            raise MLRulesParsingException(e) from None
 
         ruleset = TextRuleSetFactory()._build_ruleset(
             rules,

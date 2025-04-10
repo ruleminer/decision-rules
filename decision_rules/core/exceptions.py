@@ -71,3 +71,23 @@ class InvalidValueFormatException(RulesetFactoriesException):
         self.detail = {"operator": operator, "value": value}
         message = f"Invalid value format '{value}' for operator '{operator}'"
         super().__init__(message)
+
+class MissingIfKeywordException(RulesetFactoriesException):
+    def __init__(self, rule_str: str):
+        self.detail = {"rule": rule_str}
+        message = f"Rule must start with 'IF': {rule_str}"
+        super().__init__(message)
+
+class MLRulesParsingException(RulesetFactoriesException):
+    def __init__(self, original_exception: Exception):
+        self.detail = {"original_exception": str(original_exception)}
+        message = ("Error occurred during parsing of the MLRules model. "
+                   "Ensure that the input data originates from the correct algorithm.")
+        super().__init__(message)
+
+class LordParsingException(RulesetFactoriesException):
+    def __init__(self, original_exception: Exception):
+        self.detail = {"original_exception": str(original_exception)}
+        message = ("Error occurred during parsing of the LORD model. "
+                   "Ensure that the input data originates from the correct algorithm.")
+        super().__init__(message)

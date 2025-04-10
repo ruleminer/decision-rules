@@ -17,6 +17,7 @@ from decision_rules.core.exceptions import InvalidConditionFormatException
 from decision_rules.core.exceptions import AttributeNotFoundException
 from decision_rules.core.exceptions import InvalidNumericValueException
 from decision_rules.core.exceptions import InvalidValueFormatException
+from decision_rules.core.exceptions import MissingIfKeywordException    
 
 
 class AbstractTextRuleSetFactory(AbstractFactory):
@@ -160,6 +161,9 @@ class AbstractTextRuleSetFactory(AbstractFactory):
         return left, right, left_closed, right_closed
 
     def _make_rule_premise(self, rule_str: str) -> CompoundCondition:
+        if not rule_str.strip().startswith("IF "):
+            raise MissingIfKeywordException(rule_str)
+
         premise_str = rule_str.split(" THEN ")[0][3:]
         compound_condition = self._parse_condition_from_string(premise_str)
         return compound_condition

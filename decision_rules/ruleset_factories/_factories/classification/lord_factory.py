@@ -10,6 +10,7 @@ from decision_rules.ruleset_factories._factories.classification.text_factory imp
 from decision_rules.ruleset_factories._parsers import LordParser
 from decision_rules.ruleset_factories.utils.abstract_lord_factory import AbstractLordRuleSetFactory
 from decision_rules.core.exceptions import InvalidMeasureNameException
+from decision_rules.core.exceptions import LordParsingException
 from decision_rules.helpers import get_measure_function_by_name
 
 
@@ -74,7 +75,10 @@ class LordRuleSetFactory(AbstractLordRuleSetFactory):
         columns_names: list[str]
     ) -> ClassificationRuleSet:
 
-        parsed_tuples: list[tuple[str, float]] = LordParser.parse(model)
+        try:
+            parsed_tuples: list[tuple[str, float]] = LordParser.parse(model)
+        except Exception as e:
+            raise LordParsingException(e) from None
 
         rule_texts: list[str] = [tpl[0] for tpl in parsed_tuples]
         heuristic_values: list[float] = [tpl[1] for tpl in parsed_tuples]
