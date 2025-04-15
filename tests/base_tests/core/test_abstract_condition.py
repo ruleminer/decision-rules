@@ -2,6 +2,7 @@
 import unittest
 
 import numpy as np
+
 from decision_rules.conditions import AbstractCondition
 
 
@@ -19,8 +20,11 @@ class TestingCondition(AbstractCondition):
     def _calculate_covered_mask(self, X: np.ndarray) -> np.ndarray:
         return X[:, self.colum_index] != 0
 
+    def update_column_indices(self, old_to_new_attr_mapping: dict[int, int]):
+        self.column_index = old_to_new_attr_mapping[self.column_index]
+
     def to_string(self, columns_names: list[str]) -> str:
-        return ''
+        return ""
 
     def __hash__(self):
         return hash((self.colum_index, self.code))
@@ -40,7 +44,7 @@ class TestAbstractCondition(unittest.TestCase):
         real_covered_mask = condition.covered_mask(X)
         self.assertTrue(
             np.array_equal(real_covered_mask, expected_covered_mask),
-            'Covered mask should work the same as _calculate_covered_mask without cache'
+            "Covered mask should work the same as _calculate_covered_mask without cache",
         )
 
         with condition.cache():
@@ -49,16 +53,16 @@ class TestAbstractCondition(unittest.TestCase):
             real_covered_mask = condition.covered_mask(X)
             self.assertTrue(
                 np.array_equal(real_covered_mask, old_covered_mask),
-                '"covered_mask" should return last cached mask which may not always be up valid'
+                '"covered_mask" should return last cached mask which may not always be up valid',
             )
 
         expected_covered_mask = X.astype(bool)[:, 0]
         real_covered_mask = condition.covered_mask(X)
         self.assertTrue(
             np.array_equal(real_covered_mask, expected_covered_mask),
-            'After invalidating cache mask should be recalculated on new data'
+            "After invalidating cache mask should be recalculated on new data",
         )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

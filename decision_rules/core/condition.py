@@ -1,10 +1,10 @@
 """
 Contains base abstract condition class
 """
+
 from __future__ import annotations
 
-from abc import ABC
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 from contextlib import contextmanager
 
 import numpy as np
@@ -57,8 +57,7 @@ class AbstractCondition(ABC):
                     self.invalidate_cache()
 
     def invalidate_cache(self):
-        """Disable covered and uncovered examples masks cache.
-        """
+        """Disable covered and uncovered examples masks cache."""
         self.cached = False
         self.__cached_covered_mask = None
         self.__cached_uncovered_mask = None
@@ -105,10 +104,7 @@ class AbstractCondition(ABC):
             np.ndarray: 1 dimensional numpy array of booleans specifying
                 whether given examples is covered by a condition or not.
         """
-        valid_examples_mask = np.all(
-            pd.notnull(X[:, list(self.attributes)]),
-            axis=1
-        )
+        valid_examples_mask = np.all(pd.notnull(X[:, list(self.attributes)]), axis=1)
         return np.logical_not(self._calculate_covered_mask(X)) & valid_examples_mask
 
     def covered_mask(self, X: np.ndarray) -> np.ndarray:
@@ -156,6 +152,15 @@ class AbstractCondition(ABC):
         if self.cached:
             self.__cached_uncovered_mask = uncovered_mask
         return uncovered_mask
+
+    @abstractmethod
+    def update_column_indices(self, old_to_new_attr_mapping: dict[int, int]):
+        """Updates indices of columns used by condition.
+
+        Args:
+            old_to_new_attr_mapping (dict[int, int]): dictionary mapping old
+                column indices (keys) to new column indices (values)
+        """
 
     @abstractmethod
     def to_string(self, columns_names: list[str]) -> str:

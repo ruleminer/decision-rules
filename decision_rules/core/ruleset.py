@@ -10,10 +10,13 @@ from typing import Any, Callable, Optional, Union
 import numpy as np
 import pandas as pd
 
-from decision_rules.conditions import (AttributesRelationCondition,
-                                       CompoundCondition)
-from decision_rules.core.coverage import (ClassificationCoverageInfodict,
-                                          Coverage)
+from decision_rules.conditions import (
+    AttributesRelationCondition,
+    DiscreteSetCondition,
+    NominalAttributesEqualityCondition,
+)
+from decision_rules.core.condition import AbstractCondition
+from decision_rules.core.coverage import ClassificationCoverageInfodict, Coverage
 from decision_rules.core.exceptions import InvalidStateError
 from decision_rules.core.metrics import AbstractRulesMetrics
 from decision_rules.core.prediction import PredictionStrategy, _PredictionModel
@@ -474,6 +477,15 @@ class AbstractRuleSet(_PredictionModel, ABC):
         return isinstance(other, AbstractRuleSet) and other.rules == self.rules
 
     def split_dataset(self, dataset: pd.DataFrame) -> tuple[pd.DataFrame, pd.Series]:
+        """Splits dataset into X and y.
+
+        Args:
+            dataset (pd.DataFrame): dataset's DataFrame
+
+        Returns:
+            tuple[pd.DataFrame, pd.Series]: tuple where first element is dataset without
+              decision columns and second element is decision column
+        """
         X = dataset.drop(columns=self.decision_attribute)
         y = dataset[self.decision_attribute]
         return X, y
@@ -483,23 +495,21 @@ class AbstractRuleSet(_PredictionModel, ABC):
         return {rule.uuid: rule.get_coverage_dict() for rule in self.rules}
 
     def update_meta(self, new_attributes: list[str]):
+        """Updates ruleset metadata about attributes.
+
+        Args:
+            new_attributes (list[str]): new list of attributes names in the same order
+                as columns in the dataset DataFrame
+
+        Raises:
+            ValueError: if new attributes do not contain all of the old attributes.
+        """
         if set(self.column_names).difference(set(new_attributes)):
             raise ValueError("New attributes do not contain all of the old attributes.")
-        old_to_new_attr_mapping = {
+        old_to_new_attr_mapping: dict[int, int] = {
             i: new_attributes.index(attr) for i, attr in enumerate(self.column_names)
         }
         for rule in self.rules:
-            self._update_condition(rule.premise, old_to_new_attr_mapping)
+            rule.premise.update_column_indices(old_to_new_attr_mapping)
             rule.column_names = new_attributes
         self.column_names = new_attributes
-
-    def _update_condition(self, premise, old_to_new_attr_mapping):
-        if isinstance(premise, CompoundCondition):
-            for condition in premise.subconditions:
-                self._update_condition(condition, old_to_new_attr_mapping)
-            return
-        if isinstance(premise, AttributesRelationCondition):
-            premise.column_left = old_to_new_attr_mapping[premise.column_left]
-            premise.column_right = old_to_new_attr_mapping[premise.column_right]
-            return
-        premise.column_index = old_to_new_attr_mapping[premise.column_index]
