@@ -43,6 +43,9 @@ class NominalCondition(AbstractCondition):
     def _calculate_covered_mask(self, X: np.ndarray) -> np.ndarray:
         return X[:, self.column_index].astype(str) == self.value
 
+    def update_column_indices(self, old_to_new_attr_mapping: dict[int, int]):
+        self.column_index = old_to_new_attr_mapping[self.column_index]
+
     def to_string(self, columns_names: list[str]) -> str:
         column_name: str = columns_names[self.column_index]
         return f'{column_name} {"!" if self.negated else ""}= {{{self.value}}}'
@@ -116,6 +119,9 @@ class ElementaryCondition(AbstractCondition):
             if self.right is None:
                 return left_part
             return right_part
+
+    def update_column_indices(self, old_to_new_attr_mapping: dict[int, int]):
+        self.column_index = old_to_new_attr_mapping[self.column_index]
 
     def to_string(self, columns_names: str) -> str:
         column_name = columns_names[self.column_index]
@@ -230,6 +236,10 @@ class AttributesRelationCondition(AbstractCondition):
     def _calculate_covered_mask(self, X: np.ndarray) -> np.ndarray:
         return self._operator_func(X[:, self.column_left], X[:, self.column_right])
 
+    def update_column_indices(self, old_to_new_attr_mapping: dict[int, int]):
+        self.column_left = old_to_new_attr_mapping[self.column_left]
+        self.column_right = old_to_new_attr_mapping[self.column_right]
+
     def to_string(self, columns_names: str) -> str:
         col_left = columns_names[self.column_left]
         col_right = columns_names[self.column_right]
@@ -295,6 +305,9 @@ class NominalAttributesEqualityCondition(AbstractCondition):
             mask = mask & submask
         return mask & np.logical_not(np.any(arrays == None, axis=0))
 
+    def update_column_indices(self, old_to_new_attr_mapping: dict[int, int]):
+        self.column_indices = [old_to_new_attr_mapping[i] for i in self.column_indices]
+
     def to_string(self, columns_names: list[str]) -> str:
         operator: str = " != " if self.negated else " = "
         return operator.join(columns_names[index] for index in self.column_indices)
@@ -337,6 +350,9 @@ class DiscreteSetCondition(AbstractCondition):
 
     def _calculate_covered_mask(self, X: np.ndarray) -> np.ndarray:
         return np.any([X[:, self.column_index] == e for e in self.values_set], axis=0)
+
+    def update_column_indices(self, old_to_new_attr_mapping: dict[int, int]):
+        self.column_index = old_to_new_attr_mapping[self.column_index]
 
     def to_string(self, columns_names: list[str]) -> str:
         column_name: str = columns_names[self.column_index]
@@ -395,6 +411,10 @@ class CompoundCondition(AbstractCondition):
             for i in range(1, len(self.subconditions)):
                 covered_mask |= self.subconditions[i].covered_mask(X)
         return covered_mask
+
+    def update_column_indices(self, old_to_new_attr_mapping: dict[int, int]):
+        for condition in self.subconditions:
+            condition.update_column_indices(old_to_new_attr_mapping)
 
     def to_string(self, columns_names: list[str]) -> str:
         tmp = []
