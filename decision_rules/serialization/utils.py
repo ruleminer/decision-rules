@@ -1,12 +1,14 @@
 """
 Contains classed useful for serializing and deserializing objects.
 """
-
 from __future__ import annotations
 
-from abc import ABC, abstractmethod
+from abc import ABC
+from abc import abstractmethod
 from enum import Enum
-from typing import Any, Type, Union
+from typing import Any
+from typing import Type
+from typing import Union
 
 from pydantic import BaseModel
 
@@ -17,12 +19,12 @@ class SerializationModes(Enum):
     """
 
     FULL: str = "full"
-    """In this mode all important information is serialized. After 
-    deserialization of the rulesets you can use it as it is without calling `update` 
+    """In this mode all important information is serialized. After
+    deserialization of the rulesets you can use it as it is without calling `update`
     method.
     """
     MINIMAL: str = "minimal"
-    """In this mode only minimal, necessary information is serialized. After 
+    """In this mode only minimal, necessary information is serialized. After
     deserialization of the rulesets you'll have to call `update` method to use it.
     """
 
@@ -208,7 +210,8 @@ class JSONClassSerializer(ABC):
             elif isinstance(data, BaseModel):
                 data: BaseModel = model_class(**data.model_dump())
             else:
-                raise ValueError("data should be either dict or pydantic model")
+                raise ValueError(
+                    "data should be either dict or pydantic model")
         return cls._from_pydantic_model(data)
 
 

@@ -4,14 +4,18 @@ import unittest
 import pandas as pd
 
 from decision_rules import measures
-from decision_rules.conditions import (AttributesRelationCondition,
-                                       CompoundCondition, ElementaryCondition,
-                                       LogicOperators, NominalCondition)
+from decision_rules.conditions import AttributesRelationCondition
+from decision_rules.conditions import CompoundCondition
+from decision_rules.conditions import ElementaryCondition
+from decision_rules.conditions import LogicOperators
+from decision_rules.conditions import NominalCondition
 from decision_rules.core.coverage import Coverage
 from decision_rules.core.exceptions import InvalidStateError
-from decision_rules.regression.rule import RegressionConclusion, RegressionRule
+from decision_rules.regression.rule import RegressionConclusion
+from decision_rules.regression.rule import RegressionRule
 from decision_rules.regression.ruleset import RegressionRuleSet
-from decision_rules.serialization import JSONSerializer, SerializationModes
+from decision_rules.serialization import JSONSerializer
+from decision_rules.serialization import SerializationModes
 
 
 class TestRegressionRuleSetSerializer(unittest.TestCase):
@@ -20,7 +24,8 @@ class TestRegressionRuleSetSerializer(unittest.TestCase):
         rule1 = RegressionRule(
             CompoundCondition(
                 subconditions=[
-                    AttributesRelationCondition(column_left=2, column_right=3, operator=">"),
+                    AttributesRelationCondition(
+                        column_left=2, column_right=3, operator=">"),
                     ElementaryCondition(
                         column_index=2,
                         left=-1,
@@ -44,7 +49,8 @@ class TestRegressionRuleSetSerializer(unittest.TestCase):
         rule2 = RegressionRule(
             CompoundCondition(
                 subconditions=[
-                    AttributesRelationCondition(column_left=1, column_right=3, operator="="),
+                    AttributesRelationCondition(
+                        column_left=1, column_right=3, operator="="),
                     ElementaryCondition(
                         column_index=2,
                         left=float("-inf"),

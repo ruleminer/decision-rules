@@ -3,9 +3,9 @@ import unittest
 
 import numpy as np
 
-from decision_rules.conditions import (AttributesRelationCondition,
-                                       DiscreteSetCondition,
-                                       NominalAttributesEqualityCondition)
+from decision_rules.conditions import AttributesRelationCondition
+from decision_rules.conditions import DiscreteSetCondition
+from decision_rules.conditions import NominalAttributesEqualityCondition
 
 
 class TestAttributesCondition(unittest.TestCase):
@@ -18,38 +18,50 @@ class TestAttributesCondition(unittest.TestCase):
                 [1, 1],
             ]
         )
-        cond = AttributesRelationCondition(column_left=0, column_right=1, operator="=")
+        cond = AttributesRelationCondition(
+            column_left=0, column_right=1, operator="=")
         self.assertTrue(
-            np.array_equal(cond.covered_mask(X), np.array([False, False, True])),
+            np.array_equal(cond.covered_mask(
+                X), np.array([False, False, True])),
             "Should work for = operator",
         )
-        cond = AttributesRelationCondition(column_left=0, column_right=1, operator="!=")
+        cond = AttributesRelationCondition(
+            column_left=0, column_right=1, operator="!=")
         self.assertTrue(
-            np.array_equal(cond.covered_mask(X), np.array([True, True, False])),
+            np.array_equal(cond.covered_mask(
+                X), np.array([True, True, False])),
             "Should work for != operator",
         )
 
-        cond = AttributesRelationCondition(column_left=0, column_right=1, operator=">")
+        cond = AttributesRelationCondition(
+            column_left=0, column_right=1, operator=">")
         self.assertTrue(
-            np.array_equal(cond.covered_mask(X), np.array([False, True, False])),
+            np.array_equal(cond.covered_mask(
+                X), np.array([False, True, False])),
             "Should work for > operator",
         )
 
-        cond = AttributesRelationCondition(column_left=0, column_right=1, operator=">=")
+        cond = AttributesRelationCondition(
+            column_left=0, column_right=1, operator=">=")
         self.assertTrue(
-            np.array_equal(cond.covered_mask(X), np.array([False, True, True])),
+            np.array_equal(cond.covered_mask(
+                X), np.array([False, True, True])),
             "Should work for >= operator",
         )
 
-        cond = AttributesRelationCondition(column_left=0, column_right=1, operator="<")
+        cond = AttributesRelationCondition(
+            column_left=0, column_right=1, operator="<")
         self.assertTrue(
-            np.array_equal(cond.covered_mask(X), np.array([True, False, False])),
+            np.array_equal(cond.covered_mask(
+                X), np.array([True, False, False])),
             "Should work for < operator",
         )
 
-        cond = AttributesRelationCondition(column_left=0, column_right=1, operator="<=")
+        cond = AttributesRelationCondition(
+            column_left=0, column_right=1, operator="<=")
         self.assertTrue(
-            np.array_equal(cond.covered_mask(X), np.array([True, False, True])),
+            np.array_equal(cond.covered_mask(
+                X), np.array([True, False, True])),
             "Should work for <= operator",
         )
 
@@ -59,8 +71,10 @@ class TestAttributesCondition(unittest.TestCase):
             )
 
     def test_equality(self):
-        cond_1 = AttributesRelationCondition(column_left=0, column_right=1, operator="=")
-        cond_2 = AttributesRelationCondition(column_left=0, column_right=1, operator="=")
+        cond_1 = AttributesRelationCondition(
+            column_left=0, column_right=1, operator="=")
+        cond_2 = AttributesRelationCondition(
+            column_left=0, column_right=1, operator="=")
         self.assertTrue(cond_1 == cond_2)
 
         cond_2.negated = True
@@ -89,7 +103,8 @@ class TestNominalAttributesEqualityCondition(unittest.TestCase):
         cond = NominalAttributesEqualityCondition(column_indices=[0, 1])
         self.assertTrue(
             np.array_equal(
-                cond.covered_mask(X), np.array([True, False, True, False, True])
+                cond.covered_mask(X), np.array(
+                    [True, False, True, False, True])
             ),
             "Should work for more than two columns",
         )
@@ -97,7 +112,8 @@ class TestNominalAttributesEqualityCondition(unittest.TestCase):
         cond = NominalAttributesEqualityCondition(column_indices=[0, 1, 2])
         self.assertTrue(
             np.array_equal(
-                cond.covered_mask(X), np.array([True, False, True, False, False])
+                cond.covered_mask(X), np.array(
+                    [True, False, True, False, False])
             ),
             "Should work for more than two columns",
         )
@@ -130,7 +146,8 @@ class DiscreteSetConditionCondition(unittest.TestCase):
         cond = DiscreteSetCondition(column_index=0, values_set={0, 1, 2})
         self.assertTrue(
             np.array_equal(
-                cond.covered_mask(X), np.array([True, True, True, False, False])
+                cond.covered_mask(X), np.array(
+                    [True, True, True, False, False])
             ),
         )
 

@@ -1,11 +1,13 @@
 # pylint: disable=missing-module-docstring,missing-class-docstring,missing-function-docstring
 import unittest
 
-from decision_rules.conditions import (AttributesRelationCondition,
-                                       CompoundCondition, DiscreteSetCondition,
-                                       ElementaryCondition, LogicOperators,
-                                       NominalAttributesEqualityCondition,
-                                       NominalCondition)
+from decision_rules.conditions import AttributesRelationCondition
+from decision_rules.conditions import CompoundCondition
+from decision_rules.conditions import DiscreteSetCondition
+from decision_rules.conditions import ElementaryCondition
+from decision_rules.conditions import LogicOperators
+from decision_rules.conditions import NominalAttributesEqualityCondition
+from decision_rules.conditions import NominalCondition
 from decision_rules.serialization import JSONSerializer
 
 
@@ -87,6 +89,7 @@ class TestNominalAttributesEqualityConditionSerializer(unittest.TestCase):
             "Serializing and deserializing should lead to the the same object",
         )
 
+
 class TestDiscreteSetConditionSerializer(unittest.TestCase):
 
     def test_serializing_deserializing(self):
@@ -103,6 +106,7 @@ class TestDiscreteSetConditionSerializer(unittest.TestCase):
             deserializer_cond,
             "Serializing and deserializing should lead to the the same object",
         )
+
 
 class TestCompoundConditionSerializer(unittest.TestCase):
 

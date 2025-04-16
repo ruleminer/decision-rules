@@ -1,10 +1,9 @@
+import math
+import warnings
 from typing import Any
 from typing import TypedDict
-import warnings
 
 import numpy as np
-import math
-from decision_rules.problem import ProblemTypes
 from imblearn.metrics import geometric_mean_score
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import balanced_accuracy_score
@@ -12,6 +11,8 @@ from sklearn.metrics import cohen_kappa_score
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import f1_score
 from sklearn.metrics import recall_score
+
+from decision_rules.problem import ProblemTypes
 
 
 class ClassificationGeneralPredictionIndicators(TypedDict):
@@ -104,13 +105,18 @@ def calculate_for_classification(
         F1_macro: float = f1_score(y_true, y_pred, average='macro')
         F1_micro: float = f1_score(y_true, y_pred, average='micro')
         F1_weighted: float = f1_score(y_true, y_pred, average='weighted')
-        G_mean_macro: float = geometric_mean_score(y_true, y_pred, average='macro')
-        G_mean_micro: float = geometric_mean_score(y_true, y_pred, average='micro')
+        G_mean_macro: float = geometric_mean_score(
+            y_true, y_pred, average='macro')
+        G_mean_micro: float = geometric_mean_score(
+            y_true, y_pred, average='micro')
         G_mean_weighted: float = geometric_mean_score(
             y_true, y_pred, average='weighted')
-        Recall_macro: float = recall_score(y_true, y_pred, average='macro', zero_division=0.0)
-        Recall_micro: float = recall_score(y_true, y_pred, average='micro', zero_division=0.0)
-        Recall_weighted: float = recall_score(y_true, y_pred, average='weighted', zero_division=0.0)
+        Recall_macro: float = recall_score(
+            y_true, y_pred, average='macro', zero_division=0.0)
+        Recall_micro: float = recall_score(
+            y_true, y_pred, average='micro', zero_division=0.0)
+        Recall_weighted: float = recall_score(
+            y_true, y_pred, average='weighted', zero_division=0.0)
         c_matrix: np.ndarray = confusion_matrix(y_true, y_pred)
 
     for warning in caught_warnings:
@@ -189,10 +195,14 @@ def calculate_class_indicators_classification(
         ClassificationPredictionIndicatorsForClass: A dictionary representing
         the calculated prediction indicators for the class.
     """
-    TP: int = int(np.count_nonzero(np.logical_and(y_true == cls, y_pred == cls)))
-    FN: int = int(np.count_nonzero(np.logical_and(y_true == cls, y_pred != cls)))
-    FP: int = int(np.count_nonzero(np.logical_and(y_true != cls, y_pred == cls)))
-    TN: int = int(np.count_nonzero(np.logical_and(y_true != cls, y_pred != cls)))
+    TP: int = int(np.count_nonzero(
+        np.logical_and(y_true == cls, y_pred == cls)))
+    FN: int = int(np.count_nonzero(
+        np.logical_and(y_true == cls, y_pred != cls)))
+    FP: int = int(np.count_nonzero(
+        np.logical_and(y_true != cls, y_pred == cls)))
+    TN: int = int(np.count_nonzero(
+        np.logical_and(y_true != cls, y_pred != cls)))
     Precision: float = TP / (TP + FP) if (TP + FP) != 0 else 0
     Recall: float = TP / (TP + FN) if (TP + FN) != 0 else 0
     Specificity: float = TN / (TN + FP) if (TN + FP) != 0 else 0

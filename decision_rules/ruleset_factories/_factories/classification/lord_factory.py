@@ -2,6 +2,7 @@ from typing import Callable
 from typing import Union
 
 import pandas as pd
+
 from decision_rules.classification.ruleset import ClassificationRuleSet
 from decision_rules.ruleset_factories._factories.classification.text_factory import TextRuleSetFactory
 from decision_rules.ruleset_factories._parsers import LordParser

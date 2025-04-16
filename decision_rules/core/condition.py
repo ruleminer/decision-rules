@@ -1,10 +1,10 @@
 """
 Contains base abstract condition class
 """
-
 from __future__ import annotations
 
-from abc import ABC, abstractmethod
+from abc import ABC
+from abc import abstractmethod
 from contextlib import contextmanager
 
 import numpy as np
@@ -104,7 +104,8 @@ class AbstractCondition(ABC):
             np.ndarray: 1 dimensional numpy array of booleans specifying
                 whether given examples is covered by a condition or not.
         """
-        valid_examples_mask = np.all(pd.notnull(X[:, list(self.attributes)]), axis=1)
+        valid_examples_mask = np.all(pd.notnull(
+            X[:, list(self.attributes)]), axis=1)
         return np.logical_not(self._calculate_covered_mask(X)) & valid_examples_mask
 
     def covered_mask(self, X: np.ndarray) -> np.ndarray:
