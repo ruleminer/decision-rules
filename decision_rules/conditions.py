@@ -368,7 +368,7 @@ class DiscreteSetCondition(AbstractCondition):
         )
 
     def __hash__(self):
-        return hash((self.negated, self.attributes, self.values_set))
+        return hash((self.negated, self.attributes, frozenset(self.values_set)))
 
 
 class CompoundCondition(AbstractCondition):

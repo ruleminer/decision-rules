@@ -95,7 +95,7 @@ class TestDiscreteSetConditionSerializer(unittest.TestCase):
 
         serializer_cond = JSONSerializer.serialize(condition)
         deserializer_cond = JSONSerializer.deserialize(
-            serializer_cond, NominalAttributesEqualityCondition
+            serializer_cond, DiscreteSetCondition
         )
 
         self.assertEqual(
@@ -123,6 +123,8 @@ class TestCompoundConditionSerializer(unittest.TestCase):
                     column_index=2,
                     value="value",
                 ),
+                DiscreteSetCondition(column_index=0, values_set={0, 1, 2}),
+                NominalAttributesEqualityCondition(column_indices=[2, 3]),
             ],
             logic_operator=LogicOperators.ALTERNATIVE,
         )
