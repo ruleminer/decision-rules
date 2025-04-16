@@ -44,7 +44,7 @@ class LordRuleSetFactory(AbstractLordRuleSetFactory):
         """
         labels_values, y_counts = np.unique(y_train, return_counts=True)
 
-        ruleset: ClassificationRuleSet = self._build_ruleset(
+        ruleset, heuristic_values = self._build_ruleset(
             model,
             y_counts,
             decision_attribute_name=y_train.name,
@@ -63,6 +63,8 @@ class LordRuleSetFactory(AbstractLordRuleSetFactory):
             X_train, y_train,
             measure=measure
         )
+        for rule_obj, hv in zip(ruleset.rules, heuristic_values):
+            rule_obj.voting_weight = hv
 
         return ruleset
 
@@ -73,7 +75,7 @@ class LordRuleSetFactory(AbstractLordRuleSetFactory):
         decision_attribute_name: str,
         labels_values: Iterable[Any],
         columns_names: list[str]
-    ) -> ClassificationRuleSet:
+    ) -> tuple[ClassificationRuleSet, list[float]]:
 
         try:
             parsed_tuples: list[tuple[str, float]] = LordParser.parse(model)
@@ -94,4 +96,4 @@ class LordRuleSetFactory(AbstractLordRuleSetFactory):
         for rule_obj, hv in zip(ruleset.rules, heuristic_values):
             rule_obj.voting_weight = hv
 
-        return ruleset
+        return ruleset, heuristic_values
