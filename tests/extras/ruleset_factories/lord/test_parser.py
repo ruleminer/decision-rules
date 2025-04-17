@@ -19,7 +19,7 @@ class TestLordParser(TestCase):
         with open(lord_file_path, encoding="utf-8") as f:
             lord_rules_lines = f.readlines()
 
-        parsed_tuples = LordParser.parse(lord_rules_lines) 
+        parsed_tuples = LordParser.parse(lord_rules_lines)
 
         with open(os.path.join(rules_dir, "credit_lord_parser_output.txt"), encoding="utf-8") as f:
             expected_rule_lines = [line.strip() for line in f]

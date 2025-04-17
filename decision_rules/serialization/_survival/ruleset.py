@@ -1,7 +1,6 @@
 """
 Contains classes for regression ruleset JSON serialization.
 """
-
 from __future__ import annotations
 
 from typing import Optional
@@ -12,10 +11,10 @@ from decision_rules.core.coverage import Coverage
 from decision_rules.serialization._survival.kaplan_meier import \
     _KaplanMeierEstimatorModel
 from decision_rules.serialization._survival.rule import _SurvivalRuleSerializer
-from decision_rules.serialization.utils import (JSONClassSerializer,
-                                                JSONSerializer,
-                                                SerializationModes,
-                                                register_serializer)
+from decision_rules.serialization.utils import JSONClassSerializer
+from decision_rules.serialization.utils import JSONSerializer
+from decision_rules.serialization.utils import register_serializer
+from decision_rules.serialization.utils import SerializationModes
 from decision_rules.survival.kaplan_meier import KaplanMeierEstimator
 from decision_rules.survival.rule import SurvivalRule
 from decision_rules.survival.ruleset import SurvivalRuleSet
@@ -58,7 +57,8 @@ class _SurvivalRuleSetSerializer(JSONClassSerializer):
                 rule.conclusion.median_survival_time_ci_upper,
             )
             if model.rules[i].coverage is not None:
-                rule.coverage = Coverage(**model.rules[i].coverage.model_dump())
+                rule.coverage = Coverage(
+                    **model.rules[i].coverage.model_dump())
         return ruleset
 
     @classmethod
@@ -94,5 +94,6 @@ class _SurvivalRuleSetSerializer(JSONClassSerializer):
                 survival_time_attribute=instance.rules[0].survival_time_attr,
                 default_conclusion=default_conclusion,
             ),
-            rules=[JSONSerializer.serialize(rule, mode) for rule in instance.rules],
+            rules=[JSONSerializer.serialize(rule, mode)
+                   for rule in instance.rules],
         )

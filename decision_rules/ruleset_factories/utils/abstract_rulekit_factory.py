@@ -1,21 +1,28 @@
 from abc import abstractmethod
 from enum import Enum
-from typing import Any, Callable, Iterable, Optional
+from typing import Any
+from typing import Callable
+from typing import Iterable
+from typing import Optional
 
 import packaging.version
 import pandas as pd
 
-from decision_rules.conditions import (AbstractCondition, CompoundCondition,
-                                       ElementaryCondition, LogicOperators,
-                                       NominalCondition)
+from decision_rules.conditions import AbstractCondition
+from decision_rules.conditions import CompoundCondition
+from decision_rules.conditions import ElementaryCondition
+from decision_rules.conditions import LogicOperators
+from decision_rules.conditions import NominalCondition
 from decision_rules.core.coverage import Coverage
-from decision_rules.core.rule import AbstractConclusion, AbstractRule
+from decision_rules.core.rule import AbstractConclusion
+from decision_rules.core.rule import AbstractRule
 from decision_rules.core.ruleset import AbstractRuleSet
 from decision_rules.helpers import get_measure_function_by_name
 from decision_rules.ruleset_factories._factories.abstract_factory import \
     AbstractFactory
 
 MINIMUM_RULEKIT_VERSION: str = "2.1.21"
+
 
 def check_if_rulekit_is_installed_and_correct_version():
     try:
@@ -30,7 +37,7 @@ def check_if_rulekit_is_installed_and_correct_version():
     if actual_version < required_version:
         raise ImportError(
             "The 'ruleset_factories' extra requires rulekit version 2.1.21 or higher. "
-            f"Currently installed version is { __VERSION__}. "
+            f"Currently installed version is {__VERSION__}. "
             "Please install it with: `pip install rulekit>=2.1.21`"
         )
 
@@ -56,7 +63,8 @@ class AbstractRuleKitRuleSetFactory(AbstractFactory):
         ruleset.column_names = self.columns_names
         ruleset.decision_attribute = y_train.name
 
-        ruleset.update(X_train, y_train, measure=self._get_voting_measure(model))
+        ruleset.update(X_train, y_train,
+                       measure=self._get_voting_measure(model))
         return ruleset
 
     def _get_voting_measure(
@@ -79,7 +87,8 @@ class AbstractRuleKitRuleSetFactory(AbstractFactory):
         else:
             operator = LogicOperators.CONJUNCTION
 
-        condition = CompoundCondition(subconditions=[], logic_operator=operator)
+        condition = CompoundCondition(
+            subconditions=[], logic_operator=operator)
         subconditions = java_object.getSubconditions()
         for subcondition in subconditions:
             self._make_condition(condition, subcondition)
@@ -131,7 +140,8 @@ class AbstractRuleKitRuleSetFactory(AbstractFactory):
     def _make_elementary_condition(
         self, parent: Optional[CompoundCondition], java_object: Any
     ) -> ElementaryCondition:
-        type = str(java_object.getValueSet().getClass().getName()).split(".")[-1]
+        type = str(java_object.getValueSet(
+        ).getClass().getName()).split(".")[-1]
         condition: AbstractCondition = {
             "SingletonSetComplement": lambda a, b: self._make_nominal_condition(
                 a, b, negated=True

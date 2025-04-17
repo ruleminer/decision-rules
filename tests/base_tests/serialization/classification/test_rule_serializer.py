@@ -4,11 +4,13 @@ from typing import Any
 
 from pydantic import BaseModel
 
-from decision_rules.classification.rule import (ClassificationConclusion,
-                                                ClassificationRule)
-from decision_rules.conditions import (AttributesRelationCondition,
-                                       CompoundCondition, ElementaryCondition,
-                                       LogicOperators, NominalCondition)
+from decision_rules.classification.rule import ClassificationConclusion
+from decision_rules.classification.rule import ClassificationRule
+from decision_rules.conditions import AttributesRelationCondition
+from decision_rules.conditions import CompoundCondition
+from decision_rules.conditions import ElementaryCondition
+from decision_rules.conditions import LogicOperators
+from decision_rules.conditions import NominalCondition
 from decision_rules.core.coverage import Coverage
 from decision_rules.serialization import JSONSerializer
 
@@ -19,7 +21,8 @@ class TestClassificationRuleSerializer(unittest.TestCase):
         rule = ClassificationRule(
             CompoundCondition(
                 subconditions=[
-                    AttributesRelationCondition(column_left=2, column_right=3, operator=">"),
+                    AttributesRelationCondition(
+                        column_left=2, column_right=3, operator=">"),
                     ElementaryCondition(
                         column_index=2,
                         left=-1,

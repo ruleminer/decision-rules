@@ -1,27 +1,32 @@
 """
 Contains abstract ruleset class.
 """
-
 from __future__ import annotations
 
-from abc import ABC, abstractmethod
-from typing import Any, Callable, Optional, Union
+from abc import ABC
+from abc import abstractmethod
+from typing import Any
+from typing import Callable
+from typing import Optional
+from typing import Union
 
 import numpy as np
 import pandas as pd
 
-from decision_rules.conditions import (
-    AttributesRelationCondition,
-    DiscreteSetCondition,
-    NominalAttributesEqualityCondition,
-)
+from decision_rules.conditions import AttributesRelationCondition
+from decision_rules.conditions import DiscreteSetCondition
+from decision_rules.conditions import NominalAttributesEqualityCondition
 from decision_rules.core.condition import AbstractCondition
-from decision_rules.core.coverage import ClassificationCoverageInfodict, Coverage
+from decision_rules.core.coverage import ClassificationCoverageInfodict
+from decision_rules.core.coverage import Coverage
 from decision_rules.core.exceptions import InvalidStateError
 from decision_rules.core.metrics import AbstractRulesMetrics
-from decision_rules.core.prediction import PredictionStrategy, _PredictionModel
-from decision_rules.core.rule import AbstractConclusion, AbstractRule
-from decision_rules.measures import coverage, precision
+from decision_rules.core.prediction import _PredictionModel
+from decision_rules.core.prediction import PredictionStrategy
+from decision_rules.core.rule import AbstractConclusion
+from decision_rules.core.rule import AbstractRule
+from decision_rules.measures import coverage
+from decision_rules.measures import precision
 
 
 class AbstractRuleSet(_PredictionModel, ABC):
@@ -295,7 +300,8 @@ class AbstractRuleSet(_PredictionModel, ABC):
                     f'Coverage info missing for rule: "{rule.uuid}" '
                     + "and possibly some other rules too."
                 )
-        self._base_update(np.array(y_uniques), np.array(y_values_count), measure)
+        self._base_update(np.array(y_uniques),
+                          np.array(y_values_count), measure)
 
     def update(
         self,
@@ -324,7 +330,8 @@ class AbstractRuleSet(_PredictionModel, ABC):
             self.column_names = X_train.columns.tolist()
         X_train, y_train = self._sanitize_dataset(X_train, y_train)
         y_uniques, y_values_count = np.unique(y_train, return_counts=True)
-        coverage_matrix: np.ndarray = self.calculate_rules_coverages(X_train, y_train)
+        coverage_matrix: np.ndarray = self.calculate_rules_coverages(
+            X_train, y_train)
 
         self._base_update(y_uniques, y_values_count, measure)
         return coverage_matrix
@@ -505,7 +512,8 @@ class AbstractRuleSet(_PredictionModel, ABC):
             ValueError: if new attributes do not contain all of the old attributes.
         """
         if set(self.column_names).difference(set(new_attributes)):
-            raise ValueError("New attributes do not contain all of the old attributes.")
+            raise ValueError(
+                "New attributes do not contain all of the old attributes.")
         old_to_new_attr_mapping: dict[int, int] = {
             i: new_attributes.index(attr) for i, attr in enumerate(self.column_names)
         }

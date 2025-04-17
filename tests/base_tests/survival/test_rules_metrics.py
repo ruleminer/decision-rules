@@ -2,6 +2,7 @@
 import unittest
 
 import pandas as pd
+
 from decision_rules.conditions import CompoundCondition
 from decision_rules.conditions import NominalCondition
 from decision_rules.survival.metrics import SurvivalRulesMetrics
@@ -100,7 +101,7 @@ class TestSurvivalRulesMetrics(BaseRulesMetricsTestCase):
         # Rule 3:
         # Premise: A == 'b' and B == 'b'
         # Covers rows 2 and 4 (labels 0, 0)
-        # Rule 2 also covers these rows 
+        # Rule 2 also covers these rows
         expected_all_unique_rule3 = 0
 
         # Calculation using the method
@@ -113,7 +114,6 @@ class TestSurvivalRulesMetrics(BaseRulesMetricsTestCase):
         unique_all_rule3 = metrics_object._calculate_uniquely_covered_examples(
             self.ruleset.rules[2], X_np, y_np, 'all'
         )
-
 
         self.assertEqual(
             unique_all_rule1,
@@ -130,6 +130,7 @@ class TestSurvivalRulesMetrics(BaseRulesMetricsTestCase):
             expected_all_unique_rule3,
             'Uniquely covered negative examples for rule 1 do not match expected value'
         )
+
 
 if __name__ == '__main__':
     unittest.main()

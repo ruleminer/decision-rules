@@ -1,11 +1,12 @@
 """
 Contains logical conditions classes.
 """
-
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Callable, Union
+from typing import Any
+from typing import Callable
+from typing import Union
 
 import numpy as np
 
@@ -306,7 +307,8 @@ class NominalAttributesEqualityCondition(AbstractCondition):
         return mask & np.logical_not(np.any(arrays == None, axis=0))
 
     def update_column_indices(self, old_to_new_attr_mapping: dict[int, int]):
-        self.column_indices = [old_to_new_attr_mapping[i] for i in self.column_indices]
+        self.column_indices = [old_to_new_attr_mapping[i]
+                               for i in self.column_indices]
 
     def to_string(self, columns_names: list[str]) -> str:
         operator: str = " != " if self.negated else " = "
