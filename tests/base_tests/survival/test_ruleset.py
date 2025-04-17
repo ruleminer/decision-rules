@@ -117,7 +117,8 @@ class TestSurvivalRuleSet(unittest.TestCase):
             with open(attribute_importances_file_path, "r", encoding="utf-8") as file:
                 attribute_importances_read = json.load(file)
 
-            condition_importances = pd.DataFrame(condition_importances).round(10)
+            condition_importances = pd.DataFrame(
+                condition_importances).round(10)
             condition_importances_read = pd.DataFrame(condition_importances_read).round(
                 10
             )

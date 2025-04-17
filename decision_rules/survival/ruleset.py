@@ -1,10 +1,11 @@
 """
 Contains survival ruleset class.
 """
-
 from __future__ import annotations
 
-from typing import Optional, Type, Union
+from typing import Optional
+from typing import Type
+from typing import Union
 
 import numpy as np
 import pandas as pd
@@ -22,12 +23,11 @@ from decision_rules.importances._survival.conditions import (
 )
 from decision_rules.survival.kaplan_meier import KaplanMeierEstimator
 from decision_rules.survival.metrics import SurvivalRulesMetrics
-from decision_rules.survival.prediction import (
-    BestRulePredictionStrategy,
-    SurvivalPrediction,
-    VotingPredictionStrategy,
-)
-from decision_rules.survival.rule import SurvivalConclusion, SurvivalRule
+from decision_rules.survival.prediction import BestRulePredictionStrategy
+from decision_rules.survival.prediction import SurvivalPrediction
+from decision_rules.survival.prediction import VotingPredictionStrategy
+from decision_rules.survival.rule import SurvivalConclusion
+from decision_rules.survival.rule import SurvivalRule
 
 
 class SurvivalRuleSet(AbstractRuleSet):
@@ -107,7 +107,8 @@ class SurvivalRuleSet(AbstractRuleSet):
         if self.column_names is None:
             self.column_names = X_train.columns.tolist()
         # sort data by survival time
-        survival_time_attr_index = self.column_names.index(self.survival_time_attr_name)
+        survival_time_attr_index = self.column_names.index(
+            self.survival_time_attr_name)
         X_train, y_train = self._sanitize_dataset(X_train, y_train)
         survival_time = X_train[:, survival_time_attr_index]
         sorted_indices = np.argsort(survival_time)
@@ -155,7 +156,8 @@ class SurvivalRuleSet(AbstractRuleSet):
         try:
             self.update(X, y)
             metrics: SurvivalRulesMetrics = self.get_metrics_object_instance()
-            metrics_values: dict = metrics.calculate(X, y, metrics_to_calculate)
+            metrics_values: dict = metrics.calculate(
+                X, y, metrics_to_calculate)
             return metrics_values
         except Exception as e:
             raise e
@@ -190,7 +192,8 @@ class SurvivalRuleSet(AbstractRuleSet):
         self, X: pd.DataFrame, y: pd.Series, *args
     ) -> dict[str, float]:
         X, y = self._sanitize_dataset(X, y)
-        condtion_importances_generator = SurvivalRuleSetConditionImportances(self)
+        condtion_importances_generator = SurvivalRuleSetConditionImportances(
+            self)
         self.condition_importances = (
             condtion_importances_generator.calculate_importances(X, y)
         )
@@ -306,7 +309,7 @@ class SurvivalRuleSet(AbstractRuleSet):
         score = score_sum / sorted_info[info_size - 1].time
 
         return score
-    
+
     def calculate_p_values(self) -> list[float]:
         """
         Calculates the p-value for each survival rule using the metrics instance.
@@ -319,7 +322,6 @@ class SurvivalRuleSet(AbstractRuleSet):
         for rule in self.rules:
             p_values.append(metrics.calculate_p_value(rule=rule))
         return p_values
-
 
     def _sanitize_dataset(
         self,

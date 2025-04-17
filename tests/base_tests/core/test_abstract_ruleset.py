@@ -1,10 +1,14 @@
-import pandas as pd
 import unittest
+
+import pandas as pd
+
+from decision_rules import measures
+from decision_rules.classification import ClassificationConclusion
 from decision_rules.classification import ClassificationRule
 from decision_rules.classification import ClassificationRuleSet
-from decision_rules.classification import ClassificationConclusion
-from decision_rules.conditions import ElementaryCondition, CompoundCondition
-from decision_rules import measures
+from decision_rules.conditions import CompoundCondition
+from decision_rules.conditions import ElementaryCondition
+
 
 class TestCalculateRulesetStats(unittest.TestCase):
     def test_single_elementary(self):
@@ -15,16 +19,17 @@ class TestCalculateRulesetStats(unittest.TestCase):
         elementary = ElementaryCondition(column_index=0, left=10)
         rule = ClassificationRule(
             premise=elementary,
-            conclusion=ClassificationConclusion(value='0', column_name='label'),
+            conclusion=ClassificationConclusion(
+                value='0', column_name='label'),
             column_names=['a']
         )
         ruleset = ClassificationRuleSet([rule])
         df = pd.DataFrame({'a': range(10)})
         series = pd.Series(['0'] * 10)
-        
+
         ruleset.update(df, series, measure=measures.c2)
         stats = ruleset.calculate_ruleset_stats()
-        
+
         assert stats['total_conditions_count'] == 1
         assert stats['avg_conditions_count'] == 1
 
@@ -42,16 +47,17 @@ class TestCalculateRulesetStats(unittest.TestCase):
         )
         rule = ClassificationRule(
             premise=compound,
-            conclusion=ClassificationConclusion(value='1', column_name='label'),
+            conclusion=ClassificationConclusion(
+                value='1', column_name='label'),
             column_names=['a']
         )
         ruleset = ClassificationRuleSet([rule])
         df = pd.DataFrame({'a': list(range(25))})
         series = pd.Series(['1'] * 25)
-        
+
         ruleset.update(df, series, measure=measures.c2)
         stats = ruleset.calculate_ruleset_stats()
-        
+
         assert stats['total_conditions_count'] == 2
         assert stats['avg_conditions_count'] == 2
 
@@ -78,16 +84,17 @@ class TestCalculateRulesetStats(unittest.TestCase):
         )
         rule = ClassificationRule(
             premise=compound,
-            conclusion=ClassificationConclusion(value='1', column_name='label'),
+            conclusion=ClassificationConclusion(
+                value='1', column_name='label'),
             column_names=['a']
         )
         ruleset = ClassificationRuleSet([rule])
         df = pd.DataFrame({'a': list(range(15))})
         series = pd.Series(['1'] * 15)
-        
+
         ruleset.update(df, series, measure=measures.c2)
         stats = ruleset.calculate_ruleset_stats()
-        
+
         assert stats['total_conditions_count'] == 3
         assert stats['avg_conditions_count'] == 3
 
@@ -100,7 +107,8 @@ class TestCalculateRulesetStats(unittest.TestCase):
         """
         rule1 = ClassificationRule(
             premise=ElementaryCondition(column_index=0, left=10),
-            conclusion=ClassificationConclusion(value='0', column_name='label'),
+            conclusion=ClassificationConclusion(
+                value='0', column_name='label'),
             column_names=['a']
         )
         compound = CompoundCondition(
@@ -112,16 +120,17 @@ class TestCalculateRulesetStats(unittest.TestCase):
         )
         rule2 = ClassificationRule(
             premise=compound,
-            conclusion=ClassificationConclusion(value='0', column_name='label'),
+            conclusion=ClassificationConclusion(
+                value='0', column_name='label'),
             column_names=['a']
         )
         ruleset = ClassificationRuleSet([rule1, rule2])
         df = pd.DataFrame({'a': list(range(20))})
         series = pd.Series(['0'] * 20)
-        
+
         ruleset.update(df, series, measure=measures.c2)
         stats = ruleset.calculate_ruleset_stats()
-        
+
         assert stats['rules_count'] == 2
         assert stats['total_conditions_count'] == 3
         assert stats['avg_conditions_count'] == 1.5

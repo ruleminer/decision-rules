@@ -5,10 +5,12 @@ import unittest
 
 import numpy as np
 import pandas as pd
+
 from decision_rules import measures
 from decision_rules.regression.ruleset import RegressionRuleSet
 from decision_rules.serialization.utils import JSONSerializer
 from tests.loaders import load_resources_path
+
 
 class TestRegressionRuleSetImportanceCalculation(unittest.TestCase):
 

@@ -5,6 +5,7 @@ from typing import Iterable
 
 import numpy as np
 import pandas as pd
+
 from decision_rules.classification.ruleset import ClassificationRuleSet
 from decision_rules.ruleset_factories._factories.classification.text_factory import TextRuleSetFactory
 from decision_rules.ruleset_factories._parsers import LordParser
@@ -97,3 +98,4 @@ class LordRuleSetFactory(AbstractLordRuleSetFactory):
             rule_obj.voting_weight = hv
 
         return ruleset, heuristic_values
+

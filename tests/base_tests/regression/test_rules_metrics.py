@@ -2,6 +2,7 @@
 import unittest
 
 import pandas as pd
+
 from decision_rules.conditions import CompoundCondition
 from decision_rules.conditions import NominalCondition
 from decision_rules.regression.metrics import RegressionRulesMetrics
@@ -99,7 +100,7 @@ class TestRegressionRulesMetrics(BaseRulesMetricsTestCase):
         # Premise: A == 'a'
         # Covers rows 0 and 1 (labels 1, 1)
         # Other rules do not cover these rows
-        expected_p_unique_rule1 = 2 
+        expected_p_unique_rule1 = 2
         expected_n_unique_rule1 = 0
         expected_all_unique_rule1 = 2
 
@@ -107,16 +108,16 @@ class TestRegressionRulesMetrics(BaseRulesMetricsTestCase):
         # Premise: A == 'b' and B == 'b'
         # Covers rows 2 and 4 (labels 0, 0)
         # Rule 3 also covers these rows
-        expected_p_unique_rule2 = 0  
-        expected_n_unique_rule2 = 0  
+        expected_p_unique_rule2 = 0
+        expected_n_unique_rule2 = 0
         expected_all_unique_rule2 = 0
 
         # Rule 3:
         # Premise: A == 'b' and B == 'b'
         # Covers rows 2 and 4 (labels 0, 0)
         # Rule 2 covers these rows appropriately
-        expected_p_unique_rule3 = 0 
-        expected_n_unique_rule3 = 0 
+        expected_p_unique_rule3 = 0
+        expected_n_unique_rule3 = 0
         expected_all_unique_rule3 = 0
 
         # Calculation using the method
@@ -212,8 +213,8 @@ class TestRegressionRulesMetrics(BaseRulesMetricsTestCase):
         # Prediction: 0
         # Rule 3 also covers these rows, predicting value 1 (incorrectly)
         # Since Rule 2 is the only one that predicts appropriately, it uniquely covers these examples appropriately
-        expected_pos_unique_rule2 = 2 
-        expected_neg_unique_rule2 = 0 
+        expected_pos_unique_rule2 = 2
+        expected_neg_unique_rule2 = 0
 
         # Rule 3:
         # Premise: A == 'b' and B == 'b'
@@ -221,8 +222,8 @@ class TestRegressionRulesMetrics(BaseRulesMetricsTestCase):
         # Prediction: 1
         # Prediction < low
         # Rule 2 covers these rows appropriately, so Rule 3 uniquely covers them inappropriately
-        expected_pos_unique_rule3 = 0 
-        expected_neg_unique_rule3 = 2 
+        expected_pos_unique_rule3 = 0
+        expected_neg_unique_rule3 = 2
 
         # Calculation using the method
         unique_in_positive_rule1 = metrics_object._calculate_uniquely_covered_examples_in_pos_and_neg(
@@ -274,6 +275,7 @@ class TestRegressionRulesMetrics(BaseRulesMetricsTestCase):
             expected_neg_unique_rule3,
             'Uniquely covered negative examples for rule 3 do not match expected value'
         )
+
 
 if __name__ == '__main__':
     unittest.main()

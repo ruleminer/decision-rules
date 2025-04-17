@@ -1,11 +1,14 @@
 from __future__ import annotations
 
 from bisect import bisect_left
-from typing import Optional, TypedDict, Union
+from typing import Optional
+from typing import TypedDict
+from typing import Union
 
 import numpy as np
 import pandas as pd
-from scipy.stats import chi2, norm
+from scipy.stats import chi2
+from scipy.stats import norm
 
 
 class KaplanMeierEstimatorDict(TypedDict):
@@ -168,7 +171,8 @@ class KaplanMeierEstimator:
 
         unique_times = np.array(list(grouped_data["events_count"].keys()))
         events_count = np.array(list(grouped_data["events_count"].values()))
-        censored_count = np.array(list(grouped_data["censored_count"].values()))
+        censored_count = np.array(
+            list(grouped_data["censored_count"].values()))
         at_risk_count = np.array(list(grouped_data["at_risk_count"].values()))
 
         surv_info = SurvInfo(
@@ -200,7 +204,8 @@ class KaplanMeierEstimator:
     def calculate_interval(self) -> pd.DataFrame:
         with np.errstate(divide="ignore", invalid="ignore"):
             tmp = self.events_counts / (
-                self.at_risk_counts * (self.at_risk_counts - self.events_counts)
+                self.at_risk_counts *
+                (self.at_risk_counts - self.events_counts)
             )
         cumulative_sq_ = np.cumsum(np.nan_to_num(tmp, posinf=0, neginf=0))
         return self.calculate_bounds(self.times, self.probabilities, cumulative_sq_)
@@ -208,8 +213,10 @@ class KaplanMeierEstimator:
     def calcualte_indicators(self) -> tuple[float, float]:
         survival_function = pd.DataFrame(index=self.times)
         survival_function["KM_estimate"] = self.probabilities
-        median_survival_time = self.calculate_median_survival_time(survival_function)
-        median_survival_time_cli = self.calculate_median_survival_time(self.interval)
+        median_survival_time = self.calculate_median_survival_time(
+            survival_function)
+        median_survival_time_cli = self.calculate_median_survival_time(
+            self.interval)
         return median_survival_time, median_survival_time_cli
 
     def calculate_median_survival_time(
@@ -237,7 +244,8 @@ class KaplanMeierEstimator:
             ).iloc[0]
         else:
             d = {
-                _q: survival_functions.apply(lambda s: self.qth_survival_time(_q, s))
+                _q: survival_functions.apply(
+                    lambda s: self.qth_survival_time(_q, s))
                 for _q in q
             }
             survival_times = pd.DataFrame(d).T
@@ -317,7 +325,8 @@ class KaplanMeierEstimator:
         probabilities = np.zeros(shape=unique_times.shape)
         for i, time in enumerate(unique_times):
             probabilities_sum = sum(
-                [estimator.get_probability_at(time) for estimator in estimators]
+                [estimator.get_probability_at(time)
+                 for estimator in estimators]
             )
             probabilities[i] = probabilities_sum / number_of_estimators
 

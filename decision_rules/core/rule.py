@@ -1,10 +1,10 @@
 """
 Contains abstract rule and conclusion classes.
 """
-
 from __future__ import annotations
 
-from abc import ABC, abstractmethod
+from abc import ABC
+from abc import abstractmethod
 from typing import Any
 from uuid import uuid4
 
@@ -143,7 +143,8 @@ class AbstractRule(ABC):
                 'Either "y" parameter or both "P" and "N" parameters should be passed'
                 + "to this method. All of them were None"
             )
-        P: int = y[self.conclusion.positives_mask(y)].shape[0] if P is None else P
+        P: int = y[self.conclusion.positives_mask(
+            y)].shape[0] if P is None else P
         N: int = y.shape[0] - P if y is not None else N
 
         with self.premise.cache(recursive=False):

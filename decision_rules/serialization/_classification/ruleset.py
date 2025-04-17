@@ -1,10 +1,10 @@
 """
 Contains classes for classification ruleset JSON serialization.
 """
-
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Any
+from typing import Optional
 
 import numpy as np
 from pydantic import BaseModel
@@ -12,12 +12,12 @@ from pydantic import BaseModel
 from decision_rules.classification.rule import ClassificationRule
 from decision_rules.classification.ruleset import ClassificationRuleSet
 from decision_rules.core.coverage import Coverage
-from decision_rules.serialization._classification.rule import (
-    _ClassificationRuleConclusionSerializer, _ClassificationRuleSerializer)
-from decision_rules.serialization.utils import (JSONClassSerializer,
-                                                JSONSerializer,
-                                                SerializationModes,
-                                                register_serializer)
+from decision_rules.serialization._classification.rule import _ClassificationRuleConclusionSerializer
+from decision_rules.serialization._classification.rule import _ClassificationRuleSerializer
+from decision_rules.serialization.utils import JSONClassSerializer
+from decision_rules.serialization.utils import JSONSerializer
+from decision_rules.serialization.utils import register_serializer
+from decision_rules.serialization.utils import SerializationModes
 
 
 class _ClassificationMetaDataModel(BaseModel):
@@ -57,7 +57,8 @@ class _ClassificationRuleSetSerializer(JSONClassSerializer):
     def _calculate_P_N(
         cls: type, model: _Model, ruleset: ClassificationRuleSet
     ):  # pylint: disable=invalid-name
-        all_example_count = sum(model.meta.decision_attribute_distribution.values())
+        all_example_count = sum(
+            model.meta.decision_attribute_distribution.values())
         ruleset.train_P = {}
         ruleset.train_N = {}
         for y_value, count in model.meta.decision_attribute_distribution.items():
@@ -100,5 +101,6 @@ class _ClassificationRuleSetSerializer(JSONClassSerializer):
                     instance.default_conclusion, mode
                 ),
             ),
-            rules=[JSONSerializer.serialize(rule, mode) for rule in instance.rules],
+            rules=[JSONSerializer.serialize(rule, mode)
+                   for rule in instance.rules],
         )

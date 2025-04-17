@@ -9,20 +9,16 @@ from typing import Any, Optional, Union
 
 from pydantic import BaseModel
 
-from decision_rules.conditions import (
-    AbstractCondition,
-    AttributesCondition,
-    CompoundCondition,
-    ElementaryCondition,
-    LogicOperators,
-    NominalCondition,
-)
-from decision_rules.serialization.utils import (
-    JSONClassSerializer,
-    JSONSerializer,
-    SerializationModes,
-    register_serializer,
-)
+from decision_rules.conditions import (AbstractCondition,
+                                       AttributesRelationCondition,
+                                       CompoundCondition, DiscreteSetCondition,
+                                       ElementaryCondition, LogicOperators,
+                                       NominalAttributesEqualityCondition,
+                                       NominalCondition)
+from decision_rules.serialization.utils import (JSONClassSerializer,
+                                                JSONSerializer,
+                                                SerializationModes,
+                                                register_serializer)
 
 
 class _BaseConditionModel(BaseModel):
@@ -116,7 +112,7 @@ class _ElementaryConditionSerializer(_BaseConditionSerializer, JSONClassSerializ
 class _AttributesConditionSerializer(_BaseConditionSerializer, JSONClassSerializer):
 
     condition_type: str = "attributes"
-    condition_class: type = AttributesCondition
+    condition_class: type = AttributesRelationCondition
 
     class _Model(_BaseConditionModel):
         operator: str
@@ -124,8 +120,8 @@ class _AttributesConditionSerializer(_BaseConditionSerializer, JSONClassSerializ
     @staticmethod
     def _from_pydantic_model(
         model: _AttributesConditionSerializer._Model,
-    ) -> AttributesCondition:
-        condition = AttributesCondition(
+    ) -> AttributesRelationCondition:
+        condition = AttributesRelationCondition(
             operator=model.operator,
             column_left=model.attributes[0],
             column_right=model.attributes[1],
@@ -135,7 +131,7 @@ class _AttributesConditionSerializer(_BaseConditionSerializer, JSONClassSerializ
 
     @staticmethod
     def _to_pydantic_model(
-        instance: AttributesCondition,
+        instance: AttributesRelationCondition,
         mode: SerializationModes,  # pylint: disable=unused-argument
     ) -> _AttributesConditionSerializer._Model:
         return _AttributesConditionSerializer._Model(
@@ -143,6 +139,70 @@ class _AttributesConditionSerializer(_BaseConditionSerializer, JSONClassSerializ
             attributes=[instance.column_left, instance.column_right],
             negated=instance.negated,
             operator=instance.operator,
+        )
+
+
+class _DiscreteSetConditionSerializer(_BaseConditionSerializer, JSONClassSerializer):
+
+    condition_type: str = "discrete_set"
+    condition_class: type = DiscreteSetCondition
+
+    class _Model(_BaseConditionModel):
+        values_set: set[Union[str, int]]
+
+    @staticmethod
+    def _from_pydantic_model(
+        model: _DiscreteSetConditionSerializer._Model,
+    ) -> DiscreteSetCondition:
+        condition = DiscreteSetCondition(
+            column_index=model.attributes[0],
+            values_set=model.values_set,
+        )
+        condition.negated = model.negated if model.negated is not None else False
+        return condition
+
+    @staticmethod
+    def _to_pydantic_model(
+        instance: DiscreteSetCondition,
+        mode: SerializationModes,  # pylint: disable=unused-argument
+    ) -> _DiscreteSetConditionSerializer._Model:
+        return _DiscreteSetConditionSerializer._Model(
+            type=_DiscreteSetConditionSerializer.condition_type,
+            attributes=list(instance.attributes),
+            negated=instance.negated,
+            values_set=instance.values_set,
+        )
+
+
+class _NominalAttributesEqualityConditionSerializer(
+    _BaseConditionSerializer, JSONClassSerializer
+):
+
+    condition_type: str = "nominal_attributes_equality"
+    condition_class: type = NominalAttributesEqualityCondition
+
+    class _Model(_BaseConditionModel):
+        pass
+
+    @staticmethod
+    def _from_pydantic_model(
+        model: _NominalAttributesEqualityConditionSerializer._Model,
+    ) -> DiscreteSetCondition:
+        condition = NominalAttributesEqualityCondition(
+            column_indices=model.attributes,
+        )
+        condition.negated = model.negated if model.negated is not None else False
+        return condition
+
+    @staticmethod
+    def _to_pydantic_model(
+        instance: DiscreteSetCondition,
+        mode: SerializationModes,  # pylint: disable=unused-argument
+    ) -> _NominalAttributesEqualityConditionSerializer._Model:
+        return _NominalAttributesEqualityConditionSerializer._Model(
+            type=_NominalAttributesEqualityConditionSerializer.condition_type,
+            attributes=list(instance.attributes),
+            negated=instance.negated,
         )
 
 
@@ -193,7 +253,9 @@ class _CompoundConditionSerializer(_BaseConditionSerializer, JSONClassSerializer
 
 @register_serializer(NominalCondition)
 @register_serializer(ElementaryCondition)
-@register_serializer(AttributesCondition)
+@register_serializer(AttributesRelationCondition)
+@register_serializer(DiscreteSetCondition)
+@register_serializer(NominalAttributesEqualityCondition)
 @register_serializer(CompoundCondition)
 class _ConditionSerializer(JSONClassSerializer):
 
@@ -201,6 +263,8 @@ class _ConditionSerializer(JSONClassSerializer):
         _NominalConditionSerializer,
         _ElementaryConditionSerializer,
         _AttributesConditionSerializer,
+        _DiscreteSetConditionSerializer,
+        _NominalAttributesEqualityConditionSerializer,
         _CompoundConditionSerializer,
     ]
 
