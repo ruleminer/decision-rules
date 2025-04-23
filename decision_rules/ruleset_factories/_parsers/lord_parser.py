@@ -41,12 +41,12 @@ class LordParser:
     )
 
     @staticmethod
-    def parse(model: list[str]) -> list[tuple[str, float]]:
+    def parse(model: list[str]) -> list[str]:
         """
         Parses a list of LORD rule lines into a list of textual rules
         compatible with TextRuleSetFactory.
         """
-        parsed_rules: list[tuple[str, float]] = []
+        parsed_rules: list[str] = []
 
         for line in model:
             line = line.strip()
@@ -67,9 +67,7 @@ class LordParser:
             premise_final: str = " AND ".join(premise_conditions)
 
             rule_text: str = f"IF {premise_final} THEN {decision_attr} = {{{decision_val}}}"
-            heuristic_value: Optional[float] = LordParser._extract_heuristic_value(
-                line)
-            parsed_rules.append((rule_text, heuristic_value))
+            parsed_rules.append(rule_text)
 
         return parsed_rules
 

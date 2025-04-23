@@ -29,7 +29,7 @@ class LordRuleSetFactory(AbstractLordRuleSetFactory):
         model: list[str],
         X_train: pd.DataFrame,
         y_train: pd.Series,
-        measure_name: Union[str, Callable] = "C2",
+        measure_name: Union[str, Callable] = "lord",
     ) -> ClassificationRuleSet:
         """
 
@@ -45,7 +45,7 @@ class LordRuleSetFactory(AbstractLordRuleSetFactory):
         """
         labels_values, y_counts = np.unique(y_train, return_counts=True)
 
-        ruleset, heuristic_values = self._build_ruleset(
+        ruleset = self._build_ruleset(
             model,
             y_counts,
             decision_attribute_name=y_train.name,
@@ -64,9 +64,6 @@ class LordRuleSetFactory(AbstractLordRuleSetFactory):
             X_train, y_train,
             measure=measure
         )
-        for rule_obj, hv in zip(ruleset.rules, heuristic_values):
-            rule_obj.voting_weight = hv
-
         return ruleset
 
     def _build_ruleset(
@@ -76,15 +73,12 @@ class LordRuleSetFactory(AbstractLordRuleSetFactory):
         decision_attribute_name: str,
         labels_values: Iterable[Any],
         columns_names: list[str]
-    ) -> tuple[ClassificationRuleSet, list[float]]:
+    ) -> ClassificationRuleSet:
 
         try:
-            parsed_tuples: list[tuple[str, float]] = LordParser.parse(model)
+            rule_texts: list[str] = LordParser.parse(model)
         except Exception as e:
             raise LordParsingException(e) from None
-
-        rule_texts: list[str] = [tpl[0] for tpl in parsed_tuples]
-        heuristic_values: list[float] = [tpl[1] for tpl in parsed_tuples]
 
         ruleset: ClassificationRuleSet = TextRuleSetFactory()._build_ruleset(
             rule_texts,
@@ -93,9 +87,5 @@ class LordRuleSetFactory(AbstractLordRuleSetFactory):
             labels_values=labels_values,
             columns_names=columns_names
         )
-
-        for rule_obj, hv in zip(ruleset.rules, heuristic_values):
-            rule_obj.voting_weight = hv
-
-        return ruleset, heuristic_values
+        return ruleset
 
