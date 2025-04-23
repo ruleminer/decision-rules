@@ -3,17 +3,16 @@ Contains ConditionImportance class for determining importances of condtions in R
 """
 from __future__ import annotations
 
-from abc import ABC
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 from collections import defaultdict
 from copy import deepcopy
 from dataclasses import dataclass
 from typing import Callable
 
 import numpy as np
+
 from decision_rules.core.coverage import Coverage
-from decision_rules.core.rule import AbstractCondition
-from decision_rules.core.rule import AbstractRule
+from decision_rules.core.rule import AbstractCondition, AbstractRule
 from decision_rules.core.ruleset import AbstractRuleSet
 
 
@@ -58,12 +57,13 @@ class AbstractRuleSetConditionImportances(ABC):
 
     def _calculate_conditions_importances(self, conditions_with_rules: dict[str, list[AbstractRule]],  X: np.ndarray, y: np.ndarray, measure: Callable[[Coverage], float]) -> list[ConditionImportance]:
         conditions_importances = []
-        for condition in conditions_with_rules.keys():
-            sum = 0
-            for rule in conditions_with_rules[condition]:
-                sum += self._calculate_index_simplified(
-                    condition, rule, X, y, measure)
-            conditions_importances.append(ConditionImportance(condition, sum))
+        for condition, rules in conditions_with_rules.items():
+            indices_sum: float = sum([
+                self._calculate_index_simplified(
+                    condition, rule, X, y, measure
+                ) for rule in rules
+            ])
+            conditions_importances.append(ConditionImportance(condition, indices_sum))
 
         return conditions_importances
 
