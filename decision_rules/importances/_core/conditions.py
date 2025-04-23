@@ -58,11 +58,11 @@ class AbstractRuleSetConditionImportances(ABC):
     def _calculate_conditions_importances(self, conditions_with_rules: dict[str, list[AbstractRule]],  X: np.ndarray, y: np.ndarray, measure: Callable[[Coverage], float]) -> list[ConditionImportance]:
         conditions_importances = []
         for condition, rules in conditions_with_rules.items():
-            indices_sum: float = sum([
+            indices_sum: float = sum(
                 self._calculate_index_simplified(
                     condition, rule, X, y, measure
                 ) for rule in rules
-            ])
+            )
             conditions_importances.append(ConditionImportance(condition, indices_sum))
 
         return conditions_importances
