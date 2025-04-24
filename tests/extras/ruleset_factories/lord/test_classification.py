@@ -47,7 +47,7 @@ class ClassificationLordTest(TestCase):
             lord_rules_lines,
             X,
             y,
-            measure_name="C2"
+            measure_name="lord"
         )
 
         self.assertEqual(len(ruleset.rules), len(expected_info["rules"]))
@@ -66,7 +66,7 @@ class ClassificationLordTest(TestCase):
             lord_rules_lines,
             X,
             y,
-            measure_name="Correlation"
+            measure_name="lord"
         )
 
         self.assertEqual(len(ruleset.rules), len(expected_info["rules"]))

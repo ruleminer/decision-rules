@@ -12,6 +12,9 @@ from decision_rules.classification.rule import ClassificationRule
 from decision_rules.classification.ruleset import ClassificationRuleSet
 from decision_rules.helpers import get_measure_function_by_name
 from decision_rules.ruleset_factories.utils.abstract_text_factory import AbstractTextRuleSetFactory
+from decision_rules.core.exceptions import InvalidMeasureNameException
+from decision_rules.core.exceptions import RuleConclusionFormatException
+from decision_rules.core.exceptions import DecisionAttributeMismatchException
 
 
 class TextRuleSetFactory(AbstractTextRuleSetFactory):
@@ -31,8 +34,7 @@ class TextRuleSetFactory(AbstractTextRuleSetFactory):
         elif callable(measure_name):
             measure = measure_name
         else:
-            raise ValueError(
-                "measure_name must be either a string or a function")
+            raise InvalidMeasureNameException()
 
         ruleset: ClassificationRuleSet = super().make(
             model, X_train, y_train
@@ -66,14 +68,15 @@ class TextRuleSetFactory(AbstractTextRuleSetFactory):
         match = re.search(pattern, conclusion_part)
 
         if not match:
-            raise ValueError(
-                f"Rule conclusion format is incorrect: {conclusion_part}")
+            raise RuleConclusionFormatException(conclusion_part=conclusion_part)
 
         decision_attribute_name, decision_value = match.groups()
 
         if decision_attribute_name != self.decision_attribute_name:
-            raise ValueError(
-                f"Decision attribute name '{decision_attribute_name}' does not match the expected decision attribute name '{self.decision_attribute_name}'")
+            raise DecisionAttributeMismatchException(
+                given_attribute=decision_attribute_name,
+                expected_attribute=self.decision_attribute_name
+            )
 
         return ClassificationConclusion(column_name=decision_attribute_name, value=decision_value)
 
