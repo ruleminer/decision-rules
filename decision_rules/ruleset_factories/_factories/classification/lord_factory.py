@@ -9,13 +9,13 @@ import pandas as pd
 from decision_rules.classification.ruleset import ClassificationRuleSet
 from decision_rules.ruleset_factories._factories.classification.text_factory import TextRuleSetFactory
 from decision_rules.ruleset_factories._parsers import LordParser
-from decision_rules.ruleset_factories.utils.abstract_lord_factory import AbstractLordRuleSetFactory
+from decision_rules.ruleset_factories._factories.abstract_factory import AbstractFactory
 from decision_rules.core.exceptions import InvalidMeasureNameException
 from decision_rules.core.exceptions import LordParsingException
 from decision_rules.helpers import get_measure_function_by_name
 
 
-class LordRuleSetFactory(AbstractLordRuleSetFactory):
+class LordRuleSetFactory(AbstractFactory):
     """
     Factory for creating a ClassificationRuleSet from a list of lines of LORD ruleset.
 
@@ -78,7 +78,7 @@ class LordRuleSetFactory(AbstractLordRuleSetFactory):
         try:
             rule_texts: list[str] = LordParser.parse(model)
         except Exception as e:
-            raise LordParsingException(e) from None
+            raise LordParsingException(e) from e
 
         ruleset: ClassificationRuleSet = TextRuleSetFactory()._build_ruleset(
             rule_texts,

@@ -8,13 +8,13 @@ import pandas as pd
 from decision_rules.classification.ruleset import ClassificationRuleSet
 from decision_rules.ruleset_factories._factories.classification.text_factory import TextRuleSetFactory
 from decision_rules.ruleset_factories._parsers import MLRulesParser
-from decision_rules.ruleset_factories.utils.abstract_mlrules_factory import AbstractMLRulesRuleSetFactory
+from decision_rules.ruleset_factories._factories.abstract_factory import AbstractFactory
 from decision_rules.core.exceptions import InvalidMeasureNameException
 from decision_rules.core.exceptions import MLRulesParsingException
 from decision_rules.helpers import get_measure_function_by_name
 
 
-class MLRulesRuleSetFactory(AbstractMLRulesRuleSetFactory):
+class MLRulesRuleSetFactory(AbstractFactory):
     """
     Factory for creating a ClassificationRuleSet from a list of lines of MLRules output file.
 
@@ -83,7 +83,7 @@ class MLRulesRuleSetFactory(AbstractMLRulesRuleSetFactory):
         try:
             rules = MLRulesParser.parse(model)
         except Exception as e:
-            raise MLRulesParsingException(e) from None
+            raise MLRulesParsingException(e) from e
 
         ruleset = TextRuleSetFactory()._build_ruleset(
             rules,
