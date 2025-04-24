@@ -2,6 +2,7 @@
 import unittest
 
 import numpy as np
+
 from decision_rules.conditions import NominalCondition
 
 
@@ -13,15 +14,13 @@ class TestNominalCondition(unittest.TestCase):
     def test_covered_mask(self):
         X: np.ndarray = np.array(np.random.randint(0, 2, size=10))
         X = np.expand_dims(X, axis=1)
-        condition = NominalCondition(
-            column_index=0, value=1
-        )
+        condition = NominalCondition(column_index=0, value=1)
 
         expected_mask: np.ndarray = X[:, 0].astype(bool)
         actual_mask: np.ndarray = condition.covered_mask(X)
         self.assertTrue(
             np.array_equal(expected_mask, actual_mask),
-            'Covered examples mask does not work properly'
+            "Covered examples mask does not work properly",
         )
 
         condition.negated = True
@@ -29,7 +28,7 @@ class TestNominalCondition(unittest.TestCase):
         actual_mask: np.ndarray = condition.covered_mask(X)
         self.assertTrue(
             np.array_equal(expected_mask, actual_mask),
-            'Covered examples mask does not work properly for negated condition'
+            "Covered examples mask does not work properly for negated condition",
         )
 
     def test_equality(self):
@@ -48,22 +47,14 @@ class TestNominalCondition(unittest.TestCase):
         cond_2 = NominalCondition(column_index=0, value=2)
         self.assertTrue(cond_1 != cond_2)
 
-
     def test_on_none_values(self):
-        X = np.array([
-            None,
-            'a'
-        ]).reshape(2, 1)
-        condition = NominalCondition(
-            column_index=0,
-            value='a'
-        )
+        X = np.array([None, "a"]).reshape(2, 1)
+        condition = NominalCondition(column_index=0, value="a")
         condition.negated = True
         self.assertFalse(
-            condition.covered_mask(X)[0],
-            'Empty values should not be covered'
+            condition.covered_mask(X)[0], "Empty values should not be covered"
         )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

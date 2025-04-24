@@ -6,6 +6,7 @@ from __future__ import annotations
 from typing import Optional
 
 import numpy as np
+
 from decision_rules import settings
 from decision_rules.core.condition import AbstractCondition
 from decision_rules.core.coverage import Coverage
@@ -146,7 +147,7 @@ class RegressionRule(AbstractRule):
             y_mean: float = np.mean(covered_y)
             self.conclusion.train_covered_y_std: float = np.sqrt(
                 (np.sum(np.square(covered_y)) /
-                covered_y.shape[0]) - (y_mean * y_mean)
+                 covered_y.shape[0]) - (y_mean * y_mean)
             )
             self.conclusion.train_covered_y_mean: float = y_mean
             self.conclusion.train_covered_y_min: float = np.min(covered_y)

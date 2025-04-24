@@ -29,7 +29,8 @@ def ruleset_factory(
     # get class name
     model_class_name: str = model.__class__.__name__
     # get also names of parent classes (in case it is an expert induction model)
-    model_parent_names: list[str] = [cls.__name__ for cls in model.__class__.mro()]
+    model_parent_names: list[str] = [
+        cls.__name__ for cls in model.__class__.mro()]
     class_names = [model_class_name] + model_parent_names
     if "RuleClassifier" in class_names:
         factory: AbstractFactory = (
@@ -40,5 +41,6 @@ def ruleset_factory(
     elif "SurvivalRules" in class_names:
         factory: AbstractFactory = factories.survival.get_rulekit_factory_class()()
     else:
-        raise ValueError(f'No ruleset factory class for type: "{model_class_name}"')
+        raise ValueError(
+            f'No ruleset factory class for type: "{model_class_name}"')
     return factory.make(model, X_train, y_train)

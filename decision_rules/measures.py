@@ -297,3 +297,27 @@ def yails(c: Cov) -> float:  # pylint: disable=missing-function-docstring
 
 def confidence(c: Cov) -> float:  # pylint: disable=missing-function-docstring
     return (c.P + c.N) / (c.P + c.N + c.n + c.p)
+
+def lord(c: Cov, m: float = 0.1) -> float:
+    """
+    m‐estimate heuristic value used in LORD algorithm.
+
+    Based on the m‐estimate from Cestnik (1990) and employed in CN2 (Clark & Boswell, 1991)
+    and Ripper (Cohen, 1995). In LORD, this measure guides rule growth and pruning
+    to find locally optimal rules (see “Efficient learning of large sets of locally optimal
+    classification rules”, Machine Learning 112:571–610, 2023;
+    https://doi.org/10.1007/s10994-022-06290-w).
+
+    Formula:
+        h_m = (p + m * (P / (P + N))) / (p + n + m)
+
+    where:
+      p = number of true positives (c.p)
+      n = number of false positives (c.n)
+      P = total number of positives (c.P)
+      N = total number of negatives (c.N)
+      m = smoothing parameter (default 0.1)
+    """
+    if c.p + c.n + m == 0:
+        return 0.0
+    return (c.p + m * (c.P / (c.P + c.N))) / (c.p + c.n + m)

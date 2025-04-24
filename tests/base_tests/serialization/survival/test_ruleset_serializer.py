@@ -3,14 +3,18 @@ import unittest
 
 import pandas as pd
 
-from decision_rules.conditions import (AttributesCondition, CompoundCondition,
-                                       ElementaryCondition, LogicOperators,
-                                       NominalCondition)
+from decision_rules.conditions import AttributesRelationCondition
+from decision_rules.conditions import CompoundCondition
+from decision_rules.conditions import ElementaryCondition
+from decision_rules.conditions import LogicOperators
+from decision_rules.conditions import NominalCondition
 from decision_rules.core.coverage import Coverage
 from decision_rules.core.exceptions import InvalidStateError
-from decision_rules.serialization import JSONSerializer, SerializationModes
+from decision_rules.serialization import JSONSerializer
+from decision_rules.serialization import SerializationModes
 from decision_rules.survival.kaplan_meier import KaplanMeierEstimator
-from decision_rules.survival.rule import SurvivalConclusion, SurvivalRule
+from decision_rules.survival.rule import SurvivalConclusion
+from decision_rules.survival.rule import SurvivalRule
 from decision_rules.survival.ruleset import SurvivalRuleSet
 from tests.helpers import compare_survival_prediction
 
@@ -21,7 +25,8 @@ class TestSurvivalRuleSetSerializer(unittest.TestCase):
         rule1 = SurvivalRule(
             CompoundCondition(
                 subconditions=[
-                    AttributesCondition(column_left=2, column_right=3, operator=">"),
+                    AttributesRelationCondition(
+                        column_left=2, column_right=3, operator=">"),
                     ElementaryCondition(
                         column_index=2,
                         left=-1,
@@ -46,7 +51,8 @@ class TestSurvivalRuleSetSerializer(unittest.TestCase):
         rule2 = SurvivalRule(
             CompoundCondition(
                 subconditions=[
-                    AttributesCondition(column_left=1, column_right=3, operator="="),
+                    AttributesRelationCondition(
+                        column_left=1, column_right=3, operator="="),
                     ElementaryCondition(
                         column_index=2,
                         left=float("-inf"),
@@ -80,7 +86,8 @@ class TestSurvivalRuleSetSerializer(unittest.TestCase):
         ruleset.default_conclusion.estimator = KaplanMeierEstimator().update(
             conclusion_estimator_dict, update_additional_indicators=True
         )
-        ruleset.column_names = ["col_1", "col_2", "col_3", "col_4", "survival_time"]
+        ruleset.column_names = ["col_1", "col_2",
+                                "col_3", "col_4", "survival_time"]
         return ruleset
 
     def _prepare_dataset(self) -> tuple[pd.DataFrame, pd.Series]:

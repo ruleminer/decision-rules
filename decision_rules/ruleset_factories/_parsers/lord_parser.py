@@ -41,19 +41,20 @@ class LordParser:
     )
 
     @staticmethod
-    def parse(model: list[str]) -> list[tuple[str, float]]:
+    def parse(model: list[str]) -> list[str]:
         """
         Parses a list of LORD rule lines into a list of textual rules
         compatible with TextRuleSetFactory.
         """
-        parsed_rules: list[tuple[str, float]] = []
+        parsed_rules: list[str] = []
 
         for line in model:
             line = line.strip()
             if not line:
                 continue
 
-            match: Optional[re.Match] = LordParser.LORD_RULE_PATTERN.match(line)
+            match: Optional[re.Match] = LordParser.LORD_RULE_PATTERN.match(
+                line)
             if not match:
                 continue
 
@@ -61,12 +62,12 @@ class LordParser:
             decision_attr: str = match.group("decision_attr").strip()
             decision_val: str = match.group("decision_val").strip()
 
-            premise_conditions: list[str] = LordParser._parse_premise(premise_str)
+            premise_conditions: list[str] = LordParser._parse_premise(
+                premise_str)
             premise_final: str = " AND ".join(premise_conditions)
 
             rule_text: str = f"IF {premise_final} THEN {decision_attr} = {{{decision_val}}}"
-            heuristic_value: Optional[float] = LordParser._extract_heuristic_value(line)
-            parsed_rules.append((rule_text, heuristic_value))
+            parsed_rules.append(rule_text)
 
         return parsed_rules
 
@@ -81,7 +82,7 @@ class LordParser:
 
         for part in parts:
             part = part.strip()
-            m: Optional[re.Match]  = LordParser.CLAUSE_PATTERN.match(part)
+            m: Optional[re.Match] = LordParser.CLAUSE_PATTERN.match(part)
             if not m:
                 continue
 
@@ -89,7 +90,8 @@ class LordParser:
             val: str = m.group("val").strip()
 
             if ":" in val:
-                conditions: list[str] = LordParser._parse_interval(attribute, val)
+                conditions: list[str] = LordParser._parse_interval(
+                    attribute, val)
                 all_conditions.extend(conditions)
             else:
                 all_conditions.append(f"{attribute} = {{{val}}}")
@@ -110,7 +112,7 @@ class LordParser:
             return []
 
         left_bracket: str = interval[0]
-        right_bracket: str= interval[-1]
+        right_bracket: str = interval[-1]
         middle: str = interval[1:-1].strip()
 
         parts: list[str] = middle.split(":")
@@ -146,10 +148,11 @@ class LordParser:
     @staticmethod
     def _extract_heuristic_value(line: str) -> Optional[float]:
         """
-        Extracts the value heuristic_value=... from the line 
+        Extracts the value heuristic_value=... from the line
         """
         import re
-        pattern: re.Pattern = re.compile(r"heuristic_value\s*=\s*(?P<val>[0-9\.]+)")
+        pattern: re.Pattern = re.compile(
+            r"heuristic_value\s*=\s*(?P<val>[0-9\.]+)")
         match: Optional[re.Match] = pattern.search(line)
         if match:
             return float(match.group("val"))
