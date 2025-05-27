@@ -31,6 +31,8 @@ class SurvivalRulesMetrics(AbstractRulesMetrics):
             'n': lambda: int(rule.coverage.n),
             'P': lambda: int(rule.coverage.P),
             'N': lambda: int(rule.coverage.N),
+            'covered_count': lambda: int(rule.coverage.p + rule.coverage.n),
+            'number_of_conditions': lambda: int(len(rule.premise.subconditions)),
             'unique': lambda: self._calculate_uniquely_covered_examples(
                 rule, X, y, covered_type='all'
             ),
@@ -40,6 +42,7 @@ class SurvivalRulesMetrics(AbstractRulesMetrics):
             "events_count": lambda: int(rule.conclusion.estimator.events_count_sum),
             "censored_count": lambda: int(rule.conclusion.estimator.censored_count_sum),
             "log_rank": lambda: float(rule.log_rank),
+            'p_value': lambda: float(self.calculate_p_value(rule=rule)),
         }
 
     def calculate_p_value(

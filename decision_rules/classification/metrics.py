@@ -34,6 +34,7 @@ class ClassificationRulesMetrics(AbstractRulesMetrics):
             'n': lambda: int(rule.coverage.n),
             'P': lambda: int(rule.coverage.P),
             'N': lambda: int(rule.coverage.N),
+            'covered_count': lambda: int(rule.coverage.p + rule.coverage.n),
             'unique_in_pos': lambda: self._calculate_uniquely_covered_examples_in_pos_and_neg(
                 rule, X, y, covered_type='positive'
             ),
