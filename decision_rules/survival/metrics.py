@@ -32,7 +32,7 @@ class SurvivalRulesMetrics(AbstractRulesMetrics):
             'P': lambda: int(rule.coverage.P),
             'N': lambda: int(rule.coverage.N),
             'covered_count': lambda: int(rule.coverage.p + rule.coverage.n),
-            'number_of_conditions': lambda: int(len(rule.premise.subconditions)),
+            'conditions_count': lambda: int(self._calculate_conditions_count(rule)),
             'unique': lambda: self._calculate_uniquely_covered_examples(
                 rule, X, y, covered_type='all'
             ),
