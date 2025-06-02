@@ -148,7 +148,7 @@ class _DiscreteSetConditionSerializer(_BaseConditionSerializer, JSONClassSeriali
     condition_class: type = DiscreteSetCondition
 
     class _Model(_BaseConditionModel):
-        values_set: set[Union[str, int]]
+        values_set: list[Union[str, int]]
 
     @staticmethod
     def _from_pydantic_model(
@@ -156,7 +156,7 @@ class _DiscreteSetConditionSerializer(_BaseConditionSerializer, JSONClassSeriali
     ) -> DiscreteSetCondition:
         condition = DiscreteSetCondition(
             column_index=model.attributes[0],
-            values_set=model.values_set,
+            values_set=set(model.values_set),
         )
         condition.negated = model.negated if model.negated is not None else False
         return condition
@@ -170,7 +170,7 @@ class _DiscreteSetConditionSerializer(_BaseConditionSerializer, JSONClassSeriali
             type=_DiscreteSetConditionSerializer.condition_type,
             attributes=list(instance.attributes),
             negated=instance.negated,
-            values_set=instance.values_set,
+            values_set=list(instance.values_set),
         )
 
 
