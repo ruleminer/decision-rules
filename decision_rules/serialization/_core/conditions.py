@@ -287,4 +287,7 @@ class _ConditionSerializer(JSONClassSerializer):
 
     @classmethod
     def deserialize(cls, data: Union[dict, BaseModel]) -> Any:
-        return cls._conditions_types_map[data["type"]].deserialize(data)
+        try:
+            return cls._conditions_types_map[data["type"]].deserialize(data)
+        except Exception as e:
+            raise e 

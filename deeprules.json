@@ -1,0 +1,420 @@
+{
+  "meta": {
+    "attributes": [
+      "AGE",
+      "SEX",
+      "STEROID",
+      "ANTIVIRALS",
+      "FATIGUE",
+      "MALAISE",
+      "ANOREXIA",
+      "LIVER_BIG",
+      "LIVER_FIRM",
+      "SPLEEN_PALPABLE",
+      "SPIDERS",
+      "ASCITES",
+      "VARICES",
+      "BILIRUBIN",
+      "ALK_PHOSPHATE",
+      "SGOT",
+      "ALBUMIN",
+      "PROTIME",
+      "HISTOLOGY"
+    ],
+    "decision_attribute": "class",
+    "decision_attribute_distribution": {
+      "LIVE": 86,
+      "DIE": 22
+    },
+    "default_conclusion": {
+      "value": "LIVE"
+    }
+  },
+  "rules": [
+    {
+      "uuid": "3c049a62-7236-4646-97a0-0a3f8ce692cb",
+      "string": "IF (ALBUMIN >= 3.85 OR LIVER_BIG != HISTOLOGY OR FATIGUE = {no}) AND (BILIRUBIN >= 0.45 OR FATIGUE = LIVER_FIRM) AND (ALBUMIN >= 2.65 OR ASCITES = {no}) THEN class = LIVE",
+      "premise": {
+        "type": "compound",
+        "attributes": [16, 18, 4, 7, 8, 11, 13],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [16, 18, 4, 7],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [16],
+                "negated": false,
+                "left": 3.8499999999999996,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "nominal_attributes_equality",
+                "attributes": [18, 7],
+                "negated": true
+              },
+              {
+                "type": "elementary_nominal",
+                "attributes": [4],
+                "negated": false,
+                "value": "no"
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [8, 4, 13],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [13],
+                "negated": false,
+                "left": 0.45,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "nominal_attributes_equality",
+                "attributes": [8, 4],
+                "negated": false
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [16, 11],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [16],
+                "negated": false,
+                "left": 2.6500000000000004,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_nominal",
+                "attributes": [11],
+                "negated": false,
+                "value": "no"
+              }
+            ]
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "LIVE"
+      },
+      "coverage": {
+        "p": 77,
+        "n": 1,
+        "P": 86,
+        "N": 22
+      },
+      "voting_weight": 0.8880305740770856
+    },
+    {
+      "uuid": "e8ddc9b9-f4d1-4e3f-a861-5fa54bc062c3",
+      "string": "IF (PROTIME <= 40.50 OR BILIRUBIN > ALBUMIN OR ASCITES = {yes}) AND AGE >= 29.00 AND SEX = {female} AND SGOT <= 255.50 THEN class = DIE",
+      "premise": {
+        "type": "compound",
+        "attributes": [16, 17, 0, 1, 11, 13, 15],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [16, 17, 11, 13],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [17],
+                "negated": false,
+                "left": null,
+                "right": 40.5,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "attributes",
+                "attributes": [13, 16],
+                "negated": false,
+                "operator": ">"
+              },
+              {
+                "type": "elementary_nominal",
+                "attributes": [11],
+                "negated": false,
+                "value": "yes"
+              }
+            ]
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [0],
+            "negated": false,
+            "left": 29.0,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [1],
+            "negated": false,
+            "value": "female"
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [15],
+            "negated": false,
+            "left": null,
+            "right": 255.5,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "DIE"
+      },
+      "coverage": {
+        "p": 17,
+        "n": 1,
+        "P": 22,
+        "N": 86
+      },
+      "voting_weight": 0.8245243128964059
+    },
+    {
+      "uuid": "ba01c456-5e97-4103-ba98-9bbe726a9cf3",
+      "string": "IF (ALBUMIN >= 3.60 OR STEROID = {no}) AND (MALAISE = ANOREXIA OR PROTIME >= 44.50) AND (BILIRUBIN <= 3.70 OR STEROID != LIVER_FIRM OR FATIGUE = {no}) AND (BILIRUBIN >= 0.45 OR FATIGUE = LIVER_FIRM) THEN class = LIVE",
+      "premise": {
+        "type": "compound",
+        "attributes": [2, 4, 5, 6, 8, 13, 16, 17],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [16, 2],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [16],
+                "negated": false,
+                "left": 3.6,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_nominal",
+                "attributes": [2],
+                "negated": false,
+                "value": "no"
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [17, 5, 6],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "nominal_attributes_equality",
+                "attributes": [5, 6],
+                "negated": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [17],
+                "negated": false,
+                "left": 44.5,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [8, 2, 4, 13],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [13],
+                "negated": false,
+                "left": null,
+                "right": 3.7,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "nominal_attributes_equality",
+                "attributes": [8, 2],
+                "negated": true
+              },
+              {
+                "type": "elementary_nominal",
+                "attributes": [4],
+                "negated": false,
+                "value": "no"
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [8, 4, 13],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [13],
+                "negated": false,
+                "left": 0.45,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "nominal_attributes_equality",
+                "attributes": [8, 4],
+                "negated": false
+              }
+            ]
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "LIVE"
+      },
+      "coverage": {
+        "p": 72,
+        "n": 0,
+        "P": 86,
+        "N": 22
+      },
+      "voting_weight": 0.9186046511627908
+    },
+    {
+      "uuid": "5d67da03-2f66-4031-a430-5194adfbcc51",
+      "string": "IF (AGE >= 32.50 AND STEROID = SPLEEN_PALPABLE AND ANOREXIA = {no}) OR (ASCITES = {yes} AND ALBUMIN <= 3.75 AND STEROID != SPLEEN_PALPABLE) OR (BILIRUBIN > ALBUMIN AND LIVER_FIRM = {no}) THEN class = DIE",
+      "premise": {
+        "type": "compound",
+        "attributes": [0, 2, 6, 8, 9, 11, 13, 16],
+        "negated": false,
+        "operator": "ALTERNATIVE",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [0, 9, 2, 6],
+            "negated": false,
+            "operator": "CONJUNCTION",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [0],
+                "negated": false,
+                "left": 32.5,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "nominal_attributes_equality",
+                "attributes": [9, 2],
+                "negated": false
+              },
+              {
+                "type": "elementary_nominal",
+                "attributes": [6],
+                "negated": false,
+                "value": "no"
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [16, 9, 2, 11],
+            "negated": false,
+            "operator": "CONJUNCTION",
+            "subconditions": [
+              {
+                "type": "elementary_nominal",
+                "attributes": [11],
+                "negated": false,
+                "value": "yes"
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [16],
+                "negated": false,
+                "left": null,
+                "right": 3.75,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "nominal_attributes_equality",
+                "attributes": [9, 2],
+                "negated": true
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [16, 8, 13],
+            "negated": false,
+            "operator": "CONJUNCTION",
+            "subconditions": [
+              {
+                "type": "attributes",
+                "attributes": [13, 16],
+                "negated": false,
+                "operator": ">"
+              },
+              {
+                "type": "elementary_nominal",
+                "attributes": [8],
+                "negated": false,
+                "value": "no"
+              }
+            ]
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "DIE"
+      },
+      "coverage": {
+        "p": 20,
+        "n": 19,
+        "P": 22,
+        "N": 86
+      },
+      "voting_weight": 0.3705480565945683
+    }
+  ]
+}

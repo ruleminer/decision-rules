@@ -1,0 +1,417 @@
+{
+  "rules": [
+    {
+      "uuid": "540af611-835c-46f9-839d-17e39297c9ca",
+      "index": 1,
+      "string": "IF feathers = {True} THEN class = bird",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "value": "True",
+            "negated": false,
+            "attributes": [1]
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "bird"
+      }
+    },
+    {
+      "uuid": "c5ebf156-56f4-486e-8cbf-4ffd87730308",
+      "index": 2,
+      "string": "IF predator = {False} THEN class = insect",
+      "premise": [
+        {
+          "type": "compound",
+          "operator": "CONJUNCTION",
+          "subconditions": [
+            {
+              "type": "elementary_nominal",
+              "attributes": [6],
+              "negated": false,
+              "value": "False",
+              "left": null,
+              "right": null,
+              "left_closed": false,
+              "right_closed": false
+            }
+          ],
+          "attributes": [],
+          "negated": false,
+          "left": null,
+          "right": null,
+          "left_closed": false,
+          "right_closed": false
+        }
+      ],
+      "conclusion": {
+        "value": "insect"
+      }
+    },
+    {
+      "uuid": "3433c1bd-fdf9-4dfb-9110-d742c7270344",
+      "index": 3,
+      "string": "IF hair = {False} AND toothed = {True} AND legs >= 3.00 AND aquatic = {True} THEN class = amphibian",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "value": "False",
+            "negated": false,
+            "attributes": [0]
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "True",
+            "negated": false,
+            "attributes": [7]
+          },
+          {
+            "left": 3,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [12],
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "True",
+            "negated": false,
+            "attributes": [5]
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "amphibian"
+      }
+    },
+    {
+      "uuid": "ee7f6a44-3d80-4aa4-b096-3f6594937ae4",
+      "index": 4,
+      "string": "IF eggs = {True} AND fins = {True} THEN class = fish",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "value": "True",
+            "negated": false,
+            "attributes": [2]
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "True",
+            "negated": false,
+            "attributes": [11]
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "fish"
+      }
+    },
+    {
+      "uuid": "4bacb121-05b2-4acf-8ecd-42b2ed72416e",
+      "index": 5,
+      "string": "IF legs >= 7.00 THEN class = invertebrate",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "left": 7,
+            "type": "elementary_numerical",
+            "right": null,
+            "negated": false,
+            "attributes": [12],
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "invertebrate"
+      }
+    },
+    {
+      "uuid": "99b3c563-3e0e-4291-b6b3-00ad3243001a",
+      "index": 6,
+      "string": "IF breathes = {False} AND backbone = {False} THEN class = invertebrate",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "value": "False",
+            "negated": false,
+            "attributes": [9]
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "False",
+            "negated": false,
+            "attributes": [8]
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "invertebrate"
+      }
+    },
+    {
+      "uuid": "cf11ed00-3efd-4235-be61-a33301c24ff2",
+      "index": 7,
+      "string": "IF airborne = {False} AND backbone = {False} THEN class = invertebrate",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "value": "False",
+            "negated": false,
+            "attributes": [4]
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "False",
+            "negated": false,
+            "attributes": [8]
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "invertebrate"
+      }
+    },
+    {
+      "uuid": "3159e5ab-c66e-4731-a5da-d383537cb582",
+      "index": 8,
+      "string": "IF eggs = {False} AND toothed = {True} AND venomous = {True} THEN class = reptile",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "value": "False",
+            "negated": false,
+            "attributes": [2]
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "True",
+            "negated": false,
+            "attributes": [7]
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "True",
+            "negated": false,
+            "attributes": [10]
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "reptile"
+      }
+    },
+    {
+      "uuid": "835a025f-070d-4996-99b3-4a621e986ca4",
+      "index": 9,
+      "string": "IF aquatic = {False} AND toothed = {True} AND venomous = {True} THEN class = reptile",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "value": "False",
+            "negated": false,
+            "attributes": [5]
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "True",
+            "negated": false,
+            "attributes": [7]
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "True",
+            "negated": false,
+            "attributes": [10]
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "reptile"
+      }
+    },
+    {
+      "uuid": "dc92a3fd-d52a-4eb1-a959-248068b17375",
+      "index": 10,
+      "string": "IF toothed = {True} AND fins = {False} AND legs < 1.00 THEN class = reptile",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "value": "True",
+            "negated": false,
+            "attributes": [7]
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "False",
+            "negated": false,
+            "attributes": [11]
+          },
+          {
+            "left": null,
+            "type": "elementary_numerical",
+            "right": 1,
+            "negated": false,
+            "attributes": [12],
+            "left_closed": false,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "reptile"
+      }
+    },
+    {
+      "uuid": "dcb72a8b-5c2f-4767-bc4e-96889e56abd4",
+      "index": 11,
+      "string": "IF aquatic = {False} AND toothed = {True} AND hair = {False} THEN class = reptile",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "value": "False",
+            "negated": false,
+            "attributes": [5]
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "True",
+            "negated": false,
+            "attributes": [7]
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "False",
+            "negated": false,
+            "attributes": [0]
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "reptile"
+      }
+    },
+    {
+      "uuid": "2da1cbd1-fb29-43eb-bf2b-9a6c82124be8",
+      "index": 12,
+      "string": "IF backbone = {True} AND feathers = {False} AND aquatic = {False} AND hair = {False} THEN class = reptile",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "value": "True",
+            "negated": false,
+            "attributes": [8]
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "False",
+            "negated": false,
+            "attributes": [1]
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "False",
+            "negated": false,
+            "attributes": [5]
+          },
+          {
+            "type": "elementary_nominal",
+            "value": "False",
+            "negated": false,
+            "attributes": [0]
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "reptile"
+      }
+    },
+    {
+      "uuid": "b7435414-d21f-436d-9064-9e4335b3fce1",
+      "index": 13,
+      "string": "IF milk = {True} THEN class = mammal",
+      "premise": {
+        "type": "compound",
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "value": "True",
+            "negated": false,
+            "attributes": [3]
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "mammal"
+      }
+    }
+  ],
+  "meta": {
+    "attributes": [
+      "hair",
+      "feathers",
+      "eggs",
+      "milk",
+      "airborne",
+      "aquatic",
+      "predator",
+      "toothed",
+      "backbone",
+      "breathes",
+      "venomous",
+      "fins",
+      "legs",
+      "tail",
+      "domestic",
+      "catsize"
+    ],
+    "decision_attribute": "class",
+    "decision_attribute_distribution": {
+      "bird": 20,
+      "fish": 13,
+      "insect": 8,
+      "mammal": 41,
+      "reptile": 5,
+      "amphibian": 4,
+      "invertebrate": 10
+    }
+  }
+}
