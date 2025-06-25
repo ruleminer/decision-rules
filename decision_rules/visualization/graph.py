@@ -1,33 +1,95 @@
-from pyvis.network import Network
-import webbrowser
-import os
 import numpy as np
 import pandas as pd
+import os
+import webbrowser
+import matplotlib
+import matplotlib.pyplot as plt
+from pyvis.network import Network
+from typing import Optional, Union, Any
+from decision_rules.core.ruleset import AbstractRuleSet
+from decision_rules.core.rule import AbstractRule
 
-def visualize_rules_graph(rules, X, y, problem_type="classification"):
+
+def visualize_rules_graph(
+    rules: Union[
+        AbstractRuleSet,
+        AbstractRule,
+        list[AbstractRule]
+    ],
+    X: pd.DataFrame,
+    y: Union[pd.Series, Any],
+    problem_type: str = "classification",
+    survival_time_attr: str = None,
+    height: str = "750px",
+    width: str = "100%",
+    show: bool = True,
+    save_path: Optional[str] = None,
+):
     """
-    Visualizes an interactive graph of rules as a sequence:
-      rule -> conditions (chain) -> conclusion.
-    For classification, edges show [positive, negative] counts.
-    For regression, edges show "mean ± std".
-    For survival, edges show median survival time.
-    The graph is generated using the PyVis library.
+    Visualizes an interactive graph of rules as a sequence: rule → conditions (chain) → conclusion using PyVis.
+
+    Parameters
+    ----------
+    rules : AbstractRuleSet, AbstractRule, or list of AbstractRule
+        Set of rules to visualize. Can be a RuleSet, a single Rule, or a list of Rule objects.
+    X : pandas.DataFrame or numpy.ndarray
+        Feature matrix (samples x features) for evaluating rule coverage.
+    y : pandas.Series, numpy.ndarray, or array-like
+        Target vector (ground truth labels or values).
+    problem_type : str, default="classification"
+        Type of problem: "classification", "regression", or "survival".
+    survival_time_attr : str or None, optional
+        Name of the survival time attribute (only for survival analysis).
+    height : str, default="750px"
+        Height of the PyVis network visualization.
+    width : str, default="100%"
+        Width of the PyVis network visualization.
+    show : bool, default=True
+        Whether to open the generated visualization in a browser.
+    save_path : str or None, optional
+        If provided, saves the HTML visualization to this path. Otherwise, uses a default file name.
+
+    Returns
+    -------
+    output_file : str
+        Path to the saved HTML file with the interactive visualization.
     """
-    # Convert X and y to numpy arrays if needed
+
+
+    # Normalize rules input
+    if hasattr(rules, "rules"):
+        rules = rules.rules
+    elif isinstance(rules, (list, tuple)):
+        rules = list(rules)
+    else:
+        rules = [rules]
+
     if isinstance(X, pd.DataFrame):
-        X = X.to_numpy()
+        X_np = X.to_numpy()
+    else:
+        X_np = np.asarray(X)
     if isinstance(y, pd.Series):
-        y = y.to_numpy()
+        y_np = y.to_numpy()
+    else:
+        y_np = np.asarray(y)
 
-    # Default styling for nodes and colors
     default_node_color = "#5F73A1"
-    conclusion_color   = "#C1572A"
+    conclusion_color = "#C1572A"
     rule_palette = [
         "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd",
         "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"
     ]
 
-    net = Network(height="750px", width="100%", directed=True)
+    if problem_type == "classification":
+        class_labels = sorted({str(rule.conclusion) for rule in rules})
+        n_classes = len(class_labels)
+        cmap = plt.get_cmap("tab10" if n_classes <= 10 else "tab20")
+        conclusion_palette = [matplotlib.colors.to_hex(
+            cmap(i % cmap.N)) for i in range(n_classes)]
+        class2color = {cl: conclusion_palette[i]
+                       for i, cl in enumerate(class_labels)}
+
+    net = Network(height=height, width=width, directed=True)
     net.set_options('''
     var options = {
       "layout": {
@@ -63,31 +125,29 @@ def visualize_rules_graph(rules, X, y, problem_type="classification"):
     ''')
 
     def compute_label(rule, accumulated_conditions):
-        """
-        Computes the label for an edge based on the current rule and its accumulated conditions.
-        """
-        temp_premise = rule.premise.__class__(subconditions=accumulated_conditions)
+        temp_premise = rule.premise.__class__(
+            subconditions=accumulated_conditions)
         temp_rule = rule.__class__(premise=temp_premise, conclusion=rule.conclusion,
                                    column_names=rule.column_names)
-        mask = temp_rule.premise.covered_mask(X)
+        mask = temp_rule.premise.covered_mask(X_np)
         if np.count_nonzero(mask) == 0:
             return "N/A" if problem_type in ["regression", "survival"] else "[N/A]"
 
         if problem_type == "regression":
-            mean_val = np.mean(y[mask])
-            std_val = np.std(y[mask])
+            mean_val = np.mean(y_np[mask])
+            std_val = np.std(y_np[mask])
             return f"{mean_val:.2f} ± {std_val:.2f}"
         elif problem_type == "survival":
-            temp_rule.set_survival_time_attr("survival_time")
-            _ = temp_rule.calculate_coverage(X, y)
+            survival_time = survival_time_attr or "survival_time"
+            temp_rule.set_survival_time_attr(survival_time)
+            _ = temp_rule.calculate_coverage(X_np, y_np)
             return f"{temp_rule.conclusion.value:.2f}" if temp_rule.conclusion.value is not None else "N/A"
-        else:  # classification
-            coverage = temp_rule.calculate_coverage(X, y)
+        else:
+            coverage = temp_rule.calculate_coverage(X_np, y_np)
             return f"[{coverage.p}, {coverage.n}]"
 
-    # Dictionaries to track nodes that have already been added
-    condition_nodes = {}   # Maps condition string -> node id
-    conclusion_nodes = {}  # Maps conclusion string -> node id
+    condition_nodes = {}
+    conclusion_nodes = {}
 
     for i, rule in enumerate(rules):
         concl_str = str(rule.conclusion)
@@ -96,16 +156,13 @@ def visualize_rules_graph(rules, X, y, problem_type="classification"):
         rule_id = f"rule_{i}"
         net.add_node(rule_id, label=rule_label, color=rule_color, shape="box")
 
-        # Obtain conditions from the rule premise
         if hasattr(rule.premise, "subconditions") and rule.premise.subconditions:
             conditions = rule.premise.subconditions
         else:
             conditions = [rule.premise]
 
-        # Compute baseline label with no conditions
         baseline_label = compute_label(rule, [])
 
-        # Add edge from the rule node to the first condition if available
         if conditions:
             first_cond = conditions[0]
             cond_str = first_cond.to_string(rule.column_names)
@@ -123,7 +180,6 @@ def visualize_rules_graph(rules, X, y, problem_type="classification"):
             current_node = rule_id
             accumulated_conditions = []
 
-        # Add edges for subsequent conditions
         for cond in conditions[1:]:
             cond_str = cond.to_string(rule.column_names)
             if cond_str not in condition_nodes:
@@ -138,22 +194,34 @@ def visualize_rules_graph(rules, X, y, problem_type="classification"):
             accumulated_conditions.append(cond)
             current_node = cond_id
 
-        # Add edge from the last condition to the conclusion
         if concl_str not in conclusion_nodes:
             concl_id = f"concl_{len(conclusion_nodes)}"
             conclusion_nodes[concl_str] = concl_id
-            net.add_node(concl_id, label=concl_str, color=conclusion_color, shape="ellipse")
+            if problem_type == "classification":
+                concl_color = class2color[concl_str]
+            else:
+                concl_color = conclusion_color
+            net.add_node(concl_id, label=concl_str,
+                         color=concl_color, shape="ellipse")
         else:
             concl_id = conclusion_nodes[concl_str]
         final_edge_label = compute_label(rule, accumulated_conditions)
         net.add_edge(current_node, concl_id, color=rule_color, width=3, length=300,
                      label=final_edge_label)
 
-    # Generate and open the HTML visualization
-    html = net.generate_html(notebook=False)
-    output_file = ("interactive_regression_rules_graph.html" if problem_type=="regression"
-                   else "interactive_survival_rules_graph.html" if problem_type=="survival"
-                   else "interactive_classification_rules_graph.html")
+    if save_path:
+        output_file = save_path
+    else:
+        if problem_type == "regression":
+            output_file = "interactive_regression_rules_graph.html"
+        elif problem_type == "survival":
+            output_file = "interactive_survival_rules_graph.html"
+        else:
+            output_file = "interactive_classification_rules_graph.html"
+
+    html = net.generate_html()
     with open(output_file, "w", encoding="utf-8") as f:
         f.write(html)
-    webbrowser.open("file://" + os.path.realpath(output_file))
+    if show:
+        webbrowser.open("file://" + os.path.realpath(output_file))
+    return output_file

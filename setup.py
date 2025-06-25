@@ -23,7 +23,8 @@ setup(
         "imbalanced-learn>=0.10",
         "typeguard>=4.3",
         "packaging>=14.1",
-        "pyvis>=0.2.2"
+        "pyvis>=0.2.2",
+        "seaborn>=0.13.2",
     ],
     python_requires=">=3.9",
 )
