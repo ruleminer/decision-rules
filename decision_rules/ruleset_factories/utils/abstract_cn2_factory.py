@@ -1,7 +1,8 @@
 from abc import abstractmethod
 
-import pandas as pd
 import packaging.version
+import pandas as pd
+
 from decision_rules.core.ruleset import AbstractRuleSet
 from decision_rules.ruleset_factories._factories.abstract_factory import AbstractFactory
 
@@ -32,7 +33,7 @@ def check_if_orange_is_installed_and_correct_version():
             f"Please install/update using: `pip install Orange3>={MINIMUM_ORANGE_VERSION}`"
         )
 
-    
+
 class AbstractOrangeCN2RuleSetFactory(AbstractFactory):
     @abstractmethod
     def make(

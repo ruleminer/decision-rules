@@ -1,16 +1,18 @@
 # pylint: disable=protected-access
-from typing import List, Type
+from typing import List
+from typing import Type
 
 import numpy as np
 import pandas as pd
 
 from decision_rules.ruleset_factories._factories.abstract_factory import \
     AbstractFactory
-from decision_rules.ruleset_factories.utils.abstract_rulekit_factory import (  # pylint: disable=import-outside-toplevel
-    AbstractRuleKitRuleSetFactory,
-    check_if_rulekit_is_installed_and_correct_version)
-from decision_rules.survival.kaplan_meier import KaplanMeierEstimator, SurvInfo
-from decision_rules.survival.rule import SurvivalConclusion, SurvivalRule
+from decision_rules.ruleset_factories.utils.abstract_rulekit_factory import AbstractRuleKitRuleSetFactory
+from decision_rules.ruleset_factories.utils.abstract_rulekit_factory import check_if_rulekit_is_installed_and_correct_version
+from decision_rules.survival.kaplan_meier import KaplanMeierEstimator
+from decision_rules.survival.kaplan_meier import SurvInfo
+from decision_rules.survival.rule import SurvivalConclusion
+from decision_rules.survival.rule import SurvivalRule
 from decision_rules.survival.ruleset import SurvivalRuleSet
 
 
@@ -87,8 +89,10 @@ def get_rulekit_factory_class() -> Type[AbstractFactory]:
             for time in java_times:
                 times.append(float(time))
                 events_count.append(int(java_estimator.getEventsCountAt(time)))
-                at_risk_count.append(int(java_estimator.getRiskSetCountAt(time)))
-                probabilities.append(float(java_estimator.getProbabilityAt(time)))
+                at_risk_count.append(
+                    int(java_estimator.getRiskSetCountAt(time)))
+                probabilities.append(
+                    float(java_estimator.getProbabilityAt(time)))
 
             times = np.array(times)
             events_count = np.array(events_count)

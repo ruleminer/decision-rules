@@ -1,0 +1,1913 @@
+{
+  "meta": {
+    "attributes": [
+      "CRIM",
+      "ZN",
+      "INDUS",
+      "CHAS",
+      "NOX",
+      "RM",
+      "AGE",
+      "DIS",
+      "RAD",
+      "TAX",
+      "PTRATIO",
+      "B",
+      "LSTAT"
+    ],
+    "decision_attribute": "MEDV",
+    "y_train_median": 21.2,
+    "default_conclusion": {
+      "low": 21.2,
+      "value": 21.2,
+      "high": 21.2,
+      "fixed": false,
+      "train_covered_y_mean": null,
+      "train_covered_y_std": null,
+      "train_covered_y_min": null,
+      "train_covered_y_max": null
+    }
+  },
+  "rules": [
+    {
+      "uuid": "230b2f3b-db60-44d9-b9ec-c771520ee79b",
+      "string": "IF RM >= 7.42 OR DIS <= 1.13 THEN MEDV = {44.88} [38.61, 51.15]",
+      "premise": {
+        "type": "compound",
+        "attributes": [5, 7],
+        "negated": false,
+        "operator": "ALTERNATIVE",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [5],
+            "negated": false,
+            "left": 7.418,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [7],
+            "negated": false,
+            "left": null,
+            "right": 1.1333,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 38.613753550783414,
+        "value": 44.884375,
+        "high": 51.15499644921658,
+        "fixed": false,
+        "train_covered_y_mean": 44.884375,
+        "train_covered_y_std": 6.270621449216587,
+        "train_covered_y_min": 21.9,
+        "train_covered_y_max": 50.0
+      },
+      "coverage": { "p": 28, "n": 4, "P": 33, "N": 473 },
+      "voting_weight": 0.852152338735658
+    },
+    {
+      "uuid": "3fce7726-f298-4559-8f62-8608a80c8b96",
+      "string": "IF (RM >= 7.33 OR LSTAT <= 3.33) AND (LSTAT <= 5.19 OR PTRATIO <= 13.00 OR TAX <= 193.00) THEN MEDV = {44.44} [38.55, 50.34]",
+      "premise": {
+        "type": "compound",
+        "attributes": [5, 9, 10, 12],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [12, 5],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [5],
+                "negated": false,
+                "left": 7.33,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [12],
+                "negated": false,
+                "left": null,
+                "right": 3.325,
+                "left_closed": false,
+                "right_closed": true
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [9, 10, 12],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [12],
+                "negated": false,
+                "left": null,
+                "right": 5.1850000000000005,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [10],
+                "negated": false,
+                "left": null,
+                "right": 13.0,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [9],
+                "negated": false,
+                "left": null,
+                "right": 193.0,
+                "left_closed": false,
+                "right_closed": true
+              }
+            ]
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 38.54918059941854,
+        "value": 44.44444444444444,
+        "high": 50.339708289470344,
+        "fixed": false,
+        "train_covered_y_mean": 44.44444444444444,
+        "train_covered_y_std": 5.8952638450259025,
+        "train_covered_y_min": 31.5,
+        "train_covered_y_max": 50.0
+      },
+      "coverage": { "p": 29, "n": 7, "P": 33, "N": 473 },
+      "voting_weight": 0.8298420460508631
+    },
+    {
+      "uuid": "b8b1c1d3-e0c6-4223-b443-1a9a414217fd",
+      "string": "IF (LSTAT <= 4.62 OR RM >= 6.98) AND CRIM <= 2.74 AND NOX >= 0.40 AND DIS >= 1.89 AND RM = <6.49, 7.50> THEN MEDV = {33.13} [28.96, 37.30]",
+      "premise": {
+        "type": "compound",
+        "attributes": [0, 4, 5, 7, 12],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [12, 5],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [12],
+                "negated": false,
+                "left": null,
+                "right": 4.62,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [5],
+                "negated": false,
+                "left": 6.978,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [0],
+            "negated": false,
+            "left": null,
+            "right": 2.742235,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [4],
+            "negated": false,
+            "left": 0.397,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [7],
+            "negated": false,
+            "left": 1.88595,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [5],
+            "negated": false,
+            "left": 6.494999999999999,
+            "right": 7.5045,
+            "left_closed": true,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 28.963790892533076,
+        "value": 33.134,
+        "high": 37.304209107466924,
+        "fixed": false,
+        "train_covered_y_mean": 33.134,
+        "train_covered_y_std": 4.170209107466922,
+        "train_covered_y_min": 22.8,
+        "train_covered_y_max": 50.0
+      },
+      "coverage": { "p": 43, "n": 7, "P": 59, "N": 447 },
+      "voting_weight": 0.7670001082266806
+    },
+    {
+      "uuid": "e56f1026-2a00-4dbf-a669-471f0914faf6",
+      "string": "IF (RM >= 6.97 OR LSTAT <= 4.62 OR DIS <= 1.13) AND (CRIM <= 5.70 OR RM <= 6.16) AND RM <= 8.39 AND AGE >= 7.60 THEN MEDV = {37.32} [29.74, 44.90]",
+      "premise": {
+        "type": "compound",
+        "attributes": [0, 5, 6, 7, 12],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [12, 5, 7],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [5],
+                "negated": false,
+                "left": 6.9715,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [12],
+                "negated": false,
+                "left": null,
+                "right": 4.62,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [7],
+                "negated": false,
+                "left": null,
+                "right": 1.1333,
+                "left_closed": false,
+                "right_closed": true
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [0, 5],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [0],
+                "negated": false,
+                "left": null,
+                "right": 5.70057,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [5],
+                "negated": false,
+                "left": null,
+                "right": 6.156499999999999,
+                "left_closed": false,
+                "right_closed": true
+              }
+            ]
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [5],
+            "negated": false,
+            "left": null,
+            "right": 8.3865,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [6],
+            "negated": false,
+            "left": 7.6,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 29.73655750994317,
+        "value": 37.32000000000001,
+        "high": 44.90344249005685,
+        "fixed": false,
+        "train_covered_y_mean": 37.32000000000001,
+        "train_covered_y_std": 7.583442490056837,
+        "train_covered_y_min": 22.8,
+        "train_covered_y_max": 50.0
+      },
+      "coverage": { "p": 55, "n": 25, "P": 65, "N": 441 },
+      "voting_weight": 0.7240337117315807
+    },
+    {
+      "uuid": "693680cd-fdf5-4546-8902-4e0a1bc08ed2",
+      "string": "IF (RM >= 6.94 OR LSTAT <= 4.52) AND CRIM <= 54.29 AND PTRATIO <= 20.00 AND INDUS >= 1.21 AND RM = <6.49, 8.36> THEN MEDV = {36.42} [28.81, 44.03]",
+      "premise": {
+        "type": "compound",
+        "attributes": [0, 2, 5, 10, 12],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [12, 5],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [5],
+                "negated": false,
+                "left": 6.941,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [12],
+                "negated": false,
+                "left": null,
+                "right": 4.52,
+                "left_closed": false,
+                "right_closed": true
+              }
+            ]
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [0],
+            "negated": false,
+            "left": null,
+            "right": 54.29265,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [10],
+            "negated": false,
+            "left": null,
+            "right": 20.0,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [2],
+            "negated": false,
+            "left": 1.2149999999999999,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [5],
+            "negated": false,
+            "left": 6.494999999999999,
+            "right": 8.356,
+            "left_closed": true,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 28.810312903598195,
+        "value": 36.418181818181814,
+        "high": 44.026050732765434,
+        "fixed": false,
+        "train_covered_y_mean": 36.418181818181814,
+        "train_covered_y_std": 7.607868914583619,
+        "train_covered_y_min": 15.0,
+        "train_covered_y_max": 50.0
+      },
+      "coverage": { "p": 56, "n": 21, "P": 71, "N": 435 },
+      "voting_weight": 0.7159774808811047
+    },
+    {
+      "uuid": "cffab835-2109-4084-8823-03f46db4c794",
+      "string": "IF (RM >= 6.84 OR LSTAT <= 4.86) AND (PTRATIO <= 18.00 OR AGE <= 8.65) AND AGE >= 4.85 AND (NOX >= 0.40 OR ZN >= 81.00) AND INDUS >= 1.21 THEN MEDV = {36.77} [29.43, 44.11]",
+      "premise": {
+        "type": "compound",
+        "attributes": [1, 2, 4, 5, 6, 10, 12],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [12, 5],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [5],
+                "negated": false,
+                "left": 6.8375,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [12],
+                "negated": false,
+                "left": null,
+                "right": 4.855,
+                "left_closed": false,
+                "right_closed": true
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [10, 6],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [10],
+                "negated": false,
+                "left": null,
+                "right": 18.0,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [6],
+                "negated": false,
+                "left": null,
+                "right": 8.65,
+                "left_closed": false,
+                "right_closed": true
+              }
+            ]
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [6],
+            "negated": false,
+            "left": 4.85,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "compound",
+            "attributes": [1, 4],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [4],
+                "negated": false,
+                "left": 0.402,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [1],
+                "negated": false,
+                "left": 81.0,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [2],
+            "negated": false,
+            "left": 1.2149999999999999,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 29.433346935397633,
+        "value": 36.772839506172836,
+        "high": 44.112332076948036,
+        "fixed": false,
+        "train_covered_y_mean": 36.772839506172836,
+        "train_covered_y_std": 7.339492570775203,
+        "train_covered_y_min": 22.0,
+        "train_covered_y_max": 50.0
+      },
+      "coverage": { "p": 58, "n": 23, "P": 66, "N": 440 },
+      "voting_weight": 0.7591230017487757
+    },
+    {
+      "uuid": "f5e48ce4-9602-4d5e-a79b-0a0f21253bf1",
+      "string": "IF (RM >= 6.82 OR LSTAT <= 4.86) AND (PTRATIO <= 19.00 OR LSTAT <= 3.33) AND RM <= 7.46 AND INDUS <= 18.84 AND (LSTAT <= 9.65 OR CRIM >= 0.64) THEN MEDV = {32.57} [27.60, 37.55]",
+      "premise": {
+        "type": "compound",
+        "attributes": [0, 2, 5, 10, 12],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [12, 5],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [5],
+                "negated": false,
+                "left": 6.824999999999999,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [12],
+                "negated": false,
+                "left": null,
+                "right": 4.855,
+                "left_closed": false,
+                "right_closed": true
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [10, 12],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [10],
+                "negated": false,
+                "left": null,
+                "right": 19.0,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [12],
+                "negated": false,
+                "left": null,
+                "right": 3.325,
+                "left_closed": false,
+                "right_closed": true
+              }
+            ]
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [5],
+            "negated": false,
+            "left": null,
+            "right": 7.462,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [2],
+            "negated": false,
+            "left": null,
+            "right": 18.84,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "compound",
+            "attributes": [0, 12],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [12],
+                "negated": false,
+                "left": null,
+                "right": 9.65,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [0],
+                "negated": false,
+                "left": 0.6401049999999999,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 27.599810580889677,
+        "value": 32.57460317460317,
+        "high": 37.549395768316664,
+        "fixed": false,
+        "train_covered_y_mean": 32.57460317460317,
+        "train_covered_y_std": 4.9747925937134925,
+        "train_covered_y_min": 22.8,
+        "train_covered_y_max": 50.0
+      },
+      "coverage": { "p": 52, "n": 11, "P": 71, "N": 435 },
+      "voting_weight": 0.7438524668787165
+    },
+    {
+      "uuid": "2ce3411f-b6cc-4379-ad4e-4fffbfe40084",
+      "string": "IF (RM >= 6.80 OR LSTAT <= 4.84 OR RM <= 3.71) AND CRIM <= 17.02 AND RM <= 8.75 THEN MEDV = {35.35} [26.51, 44.19]",
+      "premise": {
+        "type": "compound",
+        "attributes": [0, 12, 5],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [12, 5],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [5],
+                "negated": false,
+                "left": 6.797,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [12],
+                "negated": false,
+                "left": null,
+                "right": 4.845,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [5],
+                "negated": false,
+                "left": null,
+                "right": 3.7119999999999997,
+                "left_closed": false,
+                "right_closed": true
+              }
+            ]
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [0],
+            "negated": false,
+            "left": null,
+            "right": 17.0237,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [5],
+            "negated": false,
+            "left": null,
+            "right": 8.7525,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 26.514196820369353,
+        "value": 35.35047619047619,
+        "high": 44.18675556058304,
+        "fixed": false,
+        "train_covered_y_mean": 35.35047619047619,
+        "train_covered_y_std": 8.83627937010684,
+        "train_covered_y_min": 8.4,
+        "train_covered_y_max": 50.0
+      },
+      "coverage": { "p": 73, "n": 32, "P": 94, "N": 412 },
+      "voting_weight": 0.6703116957836797
+    },
+    {
+      "uuid": "1e6113d8-8b4c-464d-b8a4-30ec60b7cae2",
+      "string": "IF (LSTAT >= 14.43 OR B <= 99.07 OR CRIM >= 14.38) AND (CRIM >= 0.29 OR NOX >= 0.58 OR AGE >= 96.80) AND (CRIM <= 59.53 OR CRIM >= 81.26) AND NOX >= 0.50 THEN MEDV = {14.09} [10.05, 18.12]",
+      "premise": {
+        "type": "compound",
+        "attributes": [0, 4, 6, 11, 12],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [0, 11, 12],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [12],
+                "negated": false,
+                "left": 14.434999999999999,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [11],
+                "negated": false,
+                "left": null,
+                "right": 99.07,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [0],
+                "negated": false,
+                "left": 14.37725,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [0, 4, 6],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [0],
+                "negated": false,
+                "left": 0.289575,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [4],
+                "negated": false,
+                "left": 0.582,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [6],
+                "negated": false,
+                "left": 96.80000000000001,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [0],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [0],
+                "negated": false,
+                "left": null,
+                "right": 59.5283,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [0],
+                "negated": false,
+                "left": 81.25515,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [4],
+            "negated": false,
+            "left": 0.498,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 10.053665803120554,
+        "value": 14.085714285714285,
+        "high": 18.11776276830802,
+        "fixed": false,
+        "train_covered_y_mean": 14.085714285714285,
+        "train_covered_y_std": 4.032048482593732,
+        "train_covered_y_min": 5.0,
+        "train_covered_y_max": 30.7
+      },
+      "coverage": { "p": 109, "n": 38, "P": 126, "N": 380 },
+      "voting_weight": 0.7287484901663128
+    },
+    {
+      "uuid": "d1fdda25-141f-4db2-acb6-b61e4d3facac",
+      "string": "IF (LSTAT >= 14.43 AND CRIM >= 0.22 AND AGE >= 77.95) OR B <= 27.37 OR CRIM >= 15.87 OR (LSTAT >= 23.98 AND NOX <= 0.58) THEN MEDV = {14.16} [10.14, 18.17]",
+      "premise": {
+        "type": "compound",
+        "attributes": [0, 4, 6, 11, 12],
+        "negated": false,
+        "operator": "ALTERNATIVE",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [0, 12, 6],
+            "negated": false,
+            "operator": "CONJUNCTION",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [12],
+                "negated": false,
+                "left": 14.434999999999999,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [0],
+                "negated": false,
+                "left": 0.22325,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [6],
+                "negated": false,
+                "left": 77.94999999999999,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [11],
+            "negated": false,
+            "left": null,
+            "right": 27.369999999999997,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [0],
+            "negated": false,
+            "left": 15.86735,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "compound",
+            "attributes": [12, 4],
+            "negated": false,
+            "operator": "CONJUNCTION",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [12],
+                "negated": false,
+                "left": 23.98,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [4],
+                "negated": false,
+                "left": null,
+                "right": 0.582,
+                "left_closed": false,
+                "right_closed": true
+              }
+            ]
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 10.14357005411981,
+        "value": 14.156944444444443,
+        "high": 18.170318834769077,
+        "fixed": false,
+        "train_covered_y_mean": 14.156944444444443,
+        "train_covered_y_std": 4.013374390324633,
+        "train_covered_y_min": 5.0,
+        "train_covered_y_max": 30.7
+      },
+      "coverage": { "p": 108, "n": 36, "P": 126, "N": 380 },
+      "voting_weight": 0.7306810658028132
+    },
+    {
+      "uuid": "ce6cd42c-e9b3-452b-8969-1bd2a4c47a5a",
+      "string": "IF (LSTAT >= 14.43 OR B <= 99.07 OR CRIM >= 14.38) AND (NOX >= 0.53 OR LSTAT >= 29.62 OR ZN >= 23.50) AND (AGE >= 73.30 OR DIS <= 2.49) AND (CRIM >= 0.10 OR CRIM <= 0.10) AND (CRIM <= 59.53 OR CRIM >= 81.26) THEN MEDV = {14.15} [10.16, 18.15]",
+      "premise": {
+        "type": "compound",
+        "attributes": [0, 1, 4, 6, 7, 11, 12],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [0, 11, 12],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [12],
+                "negated": false,
+                "left": 14.434999999999999,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [11],
+                "negated": false,
+                "left": null,
+                "right": 99.07,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [0],
+                "negated": false,
+                "left": 14.37725,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [1, 4, 12],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [4],
+                "negated": false,
+                "left": 0.531,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [12],
+                "negated": false,
+                "left": 29.615000000000002,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [1],
+                "negated": false,
+                "left": 23.5,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [6, 7],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [6],
+                "negated": false,
+                "left": 73.3,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [7],
+                "negated": false,
+                "left": null,
+                "right": 2.4868,
+                "left_closed": false,
+                "right_closed": true
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [0],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [0],
+                "negated": false,
+                "left": 0.102115,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [0],
+                "negated": false,
+                "left": null,
+                "right": 0.09573999999999999,
+                "left_closed": false,
+                "right_closed": true
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [0],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [0],
+                "negated": false,
+                "left": null,
+                "right": 59.5283,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [0],
+                "negated": false,
+                "left": 81.25515,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 10.15526894484345,
+        "value": 14.151655629139073,
+        "high": 18.148042313434697,
+        "fixed": false,
+        "train_covered_y_mean": 14.151655629139073,
+        "train_covered_y_std": 3.9963866842956235,
+        "train_covered_y_min": 5.0,
+        "train_covered_y_max": 30.7
+      },
+      "coverage": { "p": 111, "n": 40, "P": 126, "N": 380 },
+      "voting_weight": 0.7330982425254716
+    },
+    {
+      "uuid": "90b8da10-659e-4a0c-884f-acee90ef812b",
+      "string": "IF (LSTAT >= 14.43 OR B <= 99.07 OR CRIM >= 14.38) AND (AGE >= 73.30 OR DIS >= 7.64 OR B <= 5.17) AND (CRIM >= 0.15 OR INDUS >= 26.70 OR INDUS <= 4.59) AND CRIM > CHAS AND RM <= 7.35 THEN MEDV = {14.14} [10.08, 18.19]",
+      "premise": {
+        "type": "compound",
+        "attributes": [0, 2, 3, 5, 6, 7, 11, 12],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [0, 11, 12],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [12],
+                "negated": false,
+                "left": 14.434999999999999,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [11],
+                "negated": false,
+                "left": null,
+                "right": 99.07,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [0],
+                "negated": false,
+                "left": 14.37725,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [11, 6, 7],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [6],
+                "negated": false,
+                "left": 73.3,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [7],
+                "negated": false,
+                "left": 7.6373,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [11],
+                "negated": false,
+                "left": null,
+                "right": 5.165,
+                "left_closed": false,
+                "right_closed": true
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [0, 2],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [0],
+                "negated": false,
+                "left": 0.147465,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [2],
+                "negated": false,
+                "left": 26.695,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [2],
+                "negated": false,
+                "left": null,
+                "right": 4.59,
+                "left_closed": false,
+                "right_closed": true
+              }
+            ]
+          },
+          {
+            "type": "attributes",
+            "attributes": [0, 3],
+            "negated": false,
+            "operator": ">"
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [5],
+            "negated": false,
+            "left": null,
+            "right": 7.353,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 10.084607870362671,
+        "value": 14.136129032258063,
+        "high": 18.187650194153456,
+        "fixed": false,
+        "train_covered_y_mean": 14.136129032258063,
+        "train_covered_y_std": 4.051521161895393,
+        "train_covered_y_min": 5.0,
+        "train_covered_y_max": 30.7
+      },
+      "coverage": { "p": 111, "n": 44, "P": 126, "N": 380 },
+      "voting_weight": 0.717813417790687
+    },
+    {
+      "uuid": "96fcff33-8a0c-4aae-bc1c-573a0dcc5d90",
+      "string": "IF (LSTAT >= 14.43 OR B <= 99.07 OR CRIM >= 14.38) AND (AGE >= 97.10 OR CRIM >= 0.17) AND AGE >= 41.30 AND INDUS >= 6.55 THEN MEDV = {14.17} [10.20, 18.13]",
+      "premise": {
+        "type": "compound",
+        "attributes": [0, 2, 6, 11, 12],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [0, 11, 12],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [12],
+                "negated": false,
+                "left": 14.434999999999999,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [11],
+                "negated": false,
+                "left": null,
+                "right": 99.07,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [0],
+                "negated": false,
+                "left": 14.37725,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [0, 6],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [6],
+                "negated": false,
+                "left": 97.1,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [0],
+                "negated": false,
+                "left": 0.17152499999999998,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [6],
+            "negated": false,
+            "left": 41.3,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [2],
+            "negated": false,
+            "left": 6.555,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 10.199987522979416,
+        "value": 14.166878980891719,
+        "high": 18.13377043880402,
+        "fixed": false,
+        "train_covered_y_mean": 14.166878980891719,
+        "train_covered_y_std": 3.966891457912302,
+        "train_covered_y_min": 5.0,
+        "train_covered_y_max": 27.5
+      },
+      "coverage": { "p": 110, "n": 47, "P": 126, "N": 380 },
+      "voting_weight": 0.700468508226274
+    },
+    {
+      "uuid": "f00f4be3-20ab-4095-b040-792cdf56a4c5",
+      "string": "IF (LSTAT >= 14.43 OR B <= 99.07 OR CRIM >= 14.38) AND CRIM > CHAS AND (AGE >= 43.30 OR CRIM >= 0.10) THEN MEDV = {14.74} [10.39, 19.10]",
+      "premise": {
+        "type": "compound",
+        "attributes": [0, 3, 6, 11, 12],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [0, 11, 12],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [12],
+                "negated": false,
+                "left": 14.434999999999999,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [11],
+                "negated": false,
+                "left": null,
+                "right": 99.07,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [0],
+                "negated": false,
+                "left": 14.37725,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          },
+          {
+            "type": "attributes",
+            "attributes": [0, 3],
+            "negated": false,
+            "operator": ">"
+          },
+          {
+            "type": "compound",
+            "attributes": [0, 6],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [6],
+                "negated": false,
+                "left": 43.3,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [0],
+                "negated": false,
+                "left": 0.096135,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 10.388483487577254,
+        "value": 14.744508670520233,
+        "high": 19.10053385346321,
+        "fixed": false,
+        "train_covered_y_mean": 14.744508670520233,
+        "train_covered_y_std": 4.356025182942979,
+        "train_covered_y_min": 5.0,
+        "train_covered_y_max": 30.7
+      },
+      "coverage": { "p": 124, "n": 49, "P": 152, "N": 354 },
+      "voting_weight": 0.6546438753367622
+    },
+    {
+      "uuid": "1aa27d8b-caae-4073-8454-005dac758dbc",
+      "string": "IF (RM <= 6.72 OR CRIM >= 1.57 OR PTRATIO >= 20.50) AND (CRIM <= 7.92 OR NOX <= 0.58 OR NOX >= 0.76) AND RM >= 4.94 AND LSTAT <= 30.37 THEN MEDV = {21.04} [15.59, 26.48]",
+      "premise": {
+        "type": "compound",
+        "attributes": [0, 4, 5, 10, 12],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [0, 10, 5],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [5],
+                "negated": false,
+                "left": null,
+                "right": 6.7165,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [0],
+                "negated": false,
+                "left": 1.56592,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [10],
+                "negated": false,
+                "left": 20.5,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [0, 4],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [0],
+                "negated": false,
+                "left": null,
+                "right": 7.9159,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [4],
+                "negated": false,
+                "left": null,
+                "right": 0.58,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [4],
+                "negated": false,
+                "left": 0.755,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [5],
+            "negated": false,
+            "left": 4.9445,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [12],
+            "negated": false,
+            "left": null,
+            "right": 30.369999999999997,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 15.592588132340753,
+        "value": 21.03720238095238,
+        "high": 26.48181662956401,
+        "fixed": false,
+        "train_covered_y_mean": 21.03720238095238,
+        "train_covered_y_std": 5.444614248611627,
+        "train_covered_y_min": 7.0,
+        "train_covered_y_max": 50.0
+      },
+      "coverage": { "p": 270, "n": 66, "P": 284, "N": 222 },
+      "voting_weight": 0.6864758963758888
+    },
+    {
+      "uuid": "c6ce984a-3752-4416-8827-7bd3e8ce1d41",
+      "string": "IF (RM <= 6.72 OR PTRATIO >= 20.50) AND (LSTAT <= 16.21 OR CRIM <= 0.57) AND (B >= 116.02 OR CRIM <= 0.23) AND (LSTAT >= 4.46 OR AGE <= 9.35) AND LSTAT <= 29.80 AND (TAX >= 222.50 OR INDUS > LSTAT) AND RM >= 3.71 THEN MEDV = {21.37} [17.28, 25.46]",
+      "premise": {
+        "type": "compound",
+        "attributes": [0, 2, 5, 6, 9, 10, 11, 12],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [10, 5],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [5],
+                "negated": false,
+                "left": null,
+                "right": 6.7165,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [10],
+                "negated": false,
+                "left": 20.5,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [0, 12],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [12],
+                "negated": false,
+                "left": null,
+                "right": 16.215,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [0],
+                "negated": false,
+                "left": null,
+                "right": 0.573915,
+                "left_closed": false,
+                "right_closed": true
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [0, 11],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [11],
+                "negated": false,
+                "left": 116.02499999999999,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [0],
+                "negated": false,
+                "left": null,
+                "right": 0.229015,
+                "left_closed": false,
+                "right_closed": true
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [12, 6],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [12],
+                "negated": false,
+                "left": 4.46,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [6],
+                "negated": false,
+                "left": null,
+                "right": 9.350000000000001,
+                "left_closed": false,
+                "right_closed": true
+              }
+            ]
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [12],
+            "negated": false,
+            "left": null,
+            "right": 29.805,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "compound",
+            "attributes": [9, 2, 12],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [9],
+                "negated": false,
+                "left": 222.5,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "attributes",
+                "attributes": [2, 12],
+                "negated": false,
+                "operator": ">"
+              }
+            ]
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [5],
+            "negated": false,
+            "left": 3.7119999999999997,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 17.284388976324912,
+        "value": 21.36978417266187,
+        "high": 25.455179368998827,
+        "fixed": false,
+        "train_covered_y_mean": 21.36978417266187,
+        "train_covered_y_std": 4.085395196336958,
+        "train_covered_y_min": 7.0,
+        "train_covered_y_max": 50.0
+      },
+      "coverage": { "p": 235, "n": 43, "P": 252, "N": 254 },
+      "voting_weight": 0.7669961392863078
+    },
+    {
+      "uuid": "726f2fdc-9316-4a22-8855-9f822c4adfe0",
+      "string": "IF (LSTAT <= 14.40 OR AGE <= 73.20 OR INDUS <= 6.20) AND (RM <= 6.98 OR NOX >= 0.69) AND (LSTAT >= 4.77 OR NOX <= 0.40 OR CRIM <= 0.01) AND B >= 47.72 AND RM >= 5.19 THEN MEDV = {22.77} [18.49, 27.04]",
+      "premise": {
+        "type": "compound",
+        "attributes": [0, 2, 4, 5, 6, 11, 12],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [2, 12, 6],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [12],
+                "negated": false,
+                "left": null,
+                "right": 14.399999999999999,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [6],
+                "negated": false,
+                "left": null,
+                "right": 73.19999999999999,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [2],
+                "negated": false,
+                "left": null,
+                "right": 6.2,
+                "left_closed": false,
+                "right_closed": true
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [4, 5],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [5],
+                "negated": false,
+                "left": null,
+                "right": 6.978,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [4],
+                "negated": false,
+                "left": 0.692,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [0, 12, 4],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [12],
+                "negated": false,
+                "left": 4.77,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [4],
+                "negated": false,
+                "left": null,
+                "right": 0.398,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [0],
+                "negated": false,
+                "left": null,
+                "right": 0.014355,
+                "left_closed": false,
+                "right_closed": true
+              }
+            ]
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [11],
+            "negated": false,
+            "left": 47.724999999999994,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [5],
+            "negated": false,
+            "left": 5.186999999999999,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 18.492238238948275,
+        "value": 22.765098039215687,
+        "high": 27.0379578394831,
+        "fixed": false,
+        "train_covered_y_mean": 22.765098039215687,
+        "train_covered_y_std": 4.27285980026741,
+        "train_covered_y_min": 11.9,
+        "train_covered_y_max": 50.0
+      },
+      "coverage": { "p": 210, "n": 45, "P": 236, "N": 270 },
+      "voting_weight": 0.7215520018081241
+    }
+  ]
+}

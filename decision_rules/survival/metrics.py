@@ -6,6 +6,7 @@ from typing import Optional
 
 import numpy as np
 import pandas as pd
+
 from decision_rules.core.coverage import Coverage
 from decision_rules.core.metrics import AbstractRulesMetrics
 from decision_rules.survival.rule import SurvivalRule
@@ -40,7 +41,7 @@ class SurvivalRulesMetrics(AbstractRulesMetrics):
             "censored_count": lambda: int(rule.conclusion.estimator.censored_count_sum),
             "log_rank": lambda: float(rule.log_rank),
         }
-    
+
     def calculate_p_value(
         self,
         coverage: Optional[Coverage] = None,
@@ -59,7 +60,9 @@ class SurvivalRulesMetrics(AbstractRulesMetrics):
             float: The p-value for the rule.
         """
         if rule is None:
-            raise ValueError("A survival rule must be provided to calculate p_value.")
+            raise ValueError(
+                "A survival rule must be provided to calculate p_value.")
         if rule.log_rank is None:
-            raise ValueError(f"log_rank has not been computed for the rule with uuid: {rule.uuid}")
+            raise ValueError(
+                f"log_rank has not been computed for the rule with uuid: {rule.uuid}")
         return 1 - rule.log_rank

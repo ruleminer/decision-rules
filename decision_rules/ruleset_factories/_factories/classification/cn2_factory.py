@@ -1,19 +1,17 @@
-import pandas as pd
 from typing import Type
-from decision_rules.classification import (
-    ClassificationConclusion,
-    ClassificationRule,
-    ClassificationRuleSet,
-)
+
+import pandas as pd
+
+from decision_rules.classification import ClassificationConclusion
+from decision_rules.classification import ClassificationRule
+from decision_rules.classification import ClassificationRuleSet
+from decision_rules.conditions import CompoundCondition
+from decision_rules.conditions import ElementaryCondition
+from decision_rules.conditions import NominalCondition
 from decision_rules.core.condition import AbstractCondition
-from decision_rules.conditions import (
-    CompoundCondition,
-    ElementaryCondition,
-    NominalCondition,
-)
 from decision_rules.ruleset_factories._factories.abstract_factory import AbstractFactory
-from decision_rules.ruleset_factories.utils.abstract_cn2_factory import (
-    AbstractOrangeCN2RuleSetFactory, check_if_orange_is_installed_and_correct_version)
+from decision_rules.ruleset_factories.utils.abstract_cn2_factory import AbstractOrangeCN2RuleSetFactory
+from decision_rules.ruleset_factories.utils.abstract_cn2_factory import check_if_orange_is_installed_and_correct_version
 
 
 def get_orange_cn2_factory_class() -> Type[AbstractFactory]:

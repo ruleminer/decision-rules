@@ -1,13 +1,16 @@
 import re
-from typing import List
+from typing import Any, Iterable, List
 
+import numpy as np
 import pandas as pd
 from decision_rules.survival.kaplan_meier import KaplanMeierEstimator
 from decision_rules.survival.rule import SurvivalConclusion
 from decision_rules.survival.rule import SurvivalRule
 from decision_rules.survival.ruleset import SurvivalRuleSet
 from decision_rules.ruleset_factories.utils.abstract_text_factory import AbstractTextRuleSetFactory
-
+from decision_rules.core.exceptions import InvalidSurvivalTimeAttributeException
+from decision_rules.core.exceptions import RuleConclusionFormatException
+from decision_rules.core.exceptions import RuleConclusionFloatConversionException
 
 class TextRuleSetFactory(AbstractTextRuleSetFactory):
     """Generates survival ruleset from list of str rules
@@ -21,14 +24,37 @@ class TextRuleSetFactory(AbstractTextRuleSetFactory):
         survival_time_attr: str = "survival_time",
     ) -> SurvivalRuleSet:
         if survival_time_attr not in X_train.columns.tolist():
-            raise ValueError(f"Invalid survival time attribute name")
-        else:
-            self.survival_time_attr = survival_time_attr
-        ruleset: SurvivalRuleSet = super().make(
-            model, X_train, y_train
+            raise InvalidSurvivalTimeAttributeException(attribute=survival_time_attr)
+        labels_values, y_counts = np.unique(y_train, return_counts=True)
+        ruleset: SurvivalRuleSet = self._build_ruleset(
+            model=model,
+            y_counts=y_counts,
+            decision_attribute_name=y_train.name,
+            labels_values = labels_values,
+            columns_names=X_train.columns.tolist(),
+            survival_time_attr = survival_time_attr
         )
-        ruleset.y_values = self.labels_values
+        ruleset.y_values = labels_values
         ruleset.update(X_train, y_train)
+        return ruleset
+    
+    def _build_ruleset(
+        self,
+        model: list,
+        y_counts: np.ndarray,
+        decision_attribute_name: str,
+        labels_values: Iterable[Any],
+        columns_names: list[str],
+        survival_time_attr: str
+    ) -> SurvivalRuleSet:
+        self.survival_time_attr = survival_time_attr
+        ruleset = super()._build_ruleset(
+            model,
+            y_counts,
+            decision_attribute_name,
+            labels_values,
+            columns_names
+        )
         return ruleset
 
     def _make_ruleset(self, rules: List[SurvivalRule]) -> SurvivalRuleSet:
@@ -49,8 +75,7 @@ class TextRuleSetFactory(AbstractTextRuleSetFactory):
         match = re.search(pattern, conclusion_part)
 
         if not match:
-            raise ValueError(
-                f"Rule conclusion format is incorrect: {conclusion_part}")
+            raise RuleConclusionFormatException(conclusion_part=conclusion_part)
 
         try:
             probabilities_str, times_str = match.groups()
@@ -58,8 +83,7 @@ class TextRuleSetFactory(AbstractTextRuleSetFactory):
                              for prob in probabilities_str.split(',')]
             times = [float(time) for time in times_str.split(',')]
         except ValueError as e:
-            raise ValueError(
-                f"Error converting probabilities or times to float: {e}")
+            raise RuleConclusionFloatConversionException()
 
         zeros = [0] * len(times)
 
