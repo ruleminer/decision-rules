@@ -153,11 +153,18 @@ class _DiscreteSetConditionSerializer(_BaseConditionSerializer, JSONClassSeriali
     @staticmethod
     def _from_pydantic_model(
         model: _DiscreteSetConditionSerializer._Model,
-    ) -> DiscreteSetCondition:
-        condition = DiscreteSetCondition(
-            column_index=model.attributes[0],
-            values_set=set(model.values_set),
-        )
+    ) -> AbstractCondition:
+        if len(model.values_set) == 1:
+            value = next(iter(model.values_set))
+            condition = NominalCondition(
+                column_index=model.attributes[0],
+                value=value,
+            )     
+        else:
+            condition = DiscreteSetCondition(
+                column_index=model.attributes[0],
+                values_set=set(model.values_set),
+            )
         condition.negated = model.negated if model.negated is not None else False
         return condition
 
@@ -165,14 +172,22 @@ class _DiscreteSetConditionSerializer(_BaseConditionSerializer, JSONClassSeriali
     def _to_pydantic_model(
         instance: DiscreteSetCondition,
         mode: SerializationModes,  # pylint: disable=unused-argument
-    ) -> _DiscreteSetConditionSerializer._Model:
+    ) -> Union[_DiscreteSetConditionSerializer._Model, _NominalConditionSerializer._Model]:
+        if len(instance.values_set) == 1:
+            value = next(iter(instance.values_set))
+            nominal = NominalCondition(
+                column_index=instance.column_index,
+                value=value,
+            )
+            nominal.negated = instance.negated
+            return _NominalConditionSerializer._to_pydantic_model(nominal, mode)
+        
         return _DiscreteSetConditionSerializer._Model(
             type=_DiscreteSetConditionSerializer.condition_type,
             attributes=list(instance.attributes),
             negated=instance.negated,
             values_set=list(instance.values_set),
         )
-
 
 class _NominalAttributesEqualityConditionSerializer(
     _BaseConditionSerializer, JSONClassSerializer

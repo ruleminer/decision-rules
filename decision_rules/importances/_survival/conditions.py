@@ -46,13 +46,8 @@ class SurvivalRuleSetConditionImportances(AbstractRuleSetConditionImportances):
         return conditions_importances
 
     def _calculate_index_simplified(self, condition: AbstractCondition, rule: SurvivalRule, X: np.ndarray, y: np.ndarray) -> float:
-        rule_conditions = []
-        rule_conditions.extend(rule.premise.subconditions)
-        number_of_conditions = len(rule_conditions)
-        rule_conditions.remove(condition)
-
-        premise_without_evaluated_condition = CompoundCondition(
-            subconditions=rule_conditions, logic_operator=rule.premise.logic_operator)
+        number_of_conditions = len(rule.premise.subconditions)
+        premise_without_evaluated_condition = rule.premise.remove_condition_recursively(condition)
 
         rule_without_evaluated_condition = SurvivalRule(
             premise_without_evaluated_condition,
@@ -62,7 +57,7 @@ class SurvivalRuleSetConditionImportances(AbstractRuleSetConditionImportances):
         )
 
         factor = 1.0 / number_of_conditions
-        if len(rule_conditions) == 0:
+        if premise_without_evaluated_condition is None or len(premise_without_evaluated_condition.subconditions) == 0:
             return factor * (
                 self._calculate_measure(rule, X, y)
                 - self._calculate_measure(rule_without_evaluated_condition, X, y)
