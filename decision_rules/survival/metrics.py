@@ -41,7 +41,6 @@ class SurvivalRulesMetrics(AbstractRulesMetrics):
             "median_survival_time_ci_upper": lambda: float(rule.conclusion.median_survival_time_ci_upper),
             "events_count": lambda: int(rule.conclusion.estimator.events_count_sum),
             "censored_count": lambda: int(rule.conclusion.estimator.censored_count_sum),
-            "log_rank": lambda: float(rule.log_rank),
             "log_rank_stats": lambda: float(rule.log_rank_stats),
             'p_value': lambda: float(self.calculate_p_value(rule=rule)),
         }
