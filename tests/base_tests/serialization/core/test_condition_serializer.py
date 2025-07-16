@@ -1,13 +1,12 @@
 # pylint: disable=missing-module-docstring,missing-class-docstring,missing-function-docstring
+import json
 import unittest
 
-from decision_rules.conditions import AttributesRelationCondition
-from decision_rules.conditions import CompoundCondition
-from decision_rules.conditions import DiscreteSetCondition
-from decision_rules.conditions import ElementaryCondition
-from decision_rules.conditions import LogicOperators
-from decision_rules.conditions import NominalAttributesEqualityCondition
-from decision_rules.conditions import NominalCondition
+from decision_rules.conditions import (AttributesRelationCondition,
+                                       CompoundCondition, DiscreteSetCondition,
+                                       ElementaryCondition, LogicOperators,
+                                       NominalAttributesEqualityCondition,
+                                       NominalCondition)
 from decision_rules.serialization import JSONSerializer
 
 
@@ -21,6 +20,7 @@ class TestNominalConditionSerializer(unittest.TestCase):
         condition.negated = True
 
         serializer_cond = JSONSerializer.serialize(condition)
+        json.dumps(serializer_cond)
         deserializer_cond = JSONSerializer.deserialize(
             serializer_cond, NominalCondition
         )
@@ -41,6 +41,7 @@ class TestElementaryConditionSerializer(unittest.TestCase):
         condition.negated = True
 
         serializer_cond = JSONSerializer.serialize(condition)
+        json.dumps(serializer_cond)
         deserializer_cond = JSONSerializer.deserialize(
             serializer_cond, ElementaryCondition
         )
@@ -61,6 +62,7 @@ class TestAttributesRelationConditionSerializer(unittest.TestCase):
         condition.negated = True
 
         serializer_cond = JSONSerializer.serialize(condition)
+        json.dumps(serializer_cond)
         deserializer_cond = JSONSerializer.deserialize(
             serializer_cond, AttributesRelationCondition
         )
@@ -79,6 +81,7 @@ class TestNominalAttributesEqualityConditionSerializer(unittest.TestCase):
         condition.negated = True
 
         serializer_cond = JSONSerializer.serialize(condition)
+        json.dumps(serializer_cond)
         deserializer_cond = JSONSerializer.deserialize(
             serializer_cond, NominalAttributesEqualityCondition
         )
@@ -97,6 +100,7 @@ class TestDiscreteSetConditionSerializer(unittest.TestCase):
         condition.negated = True
 
         serializer_cond = JSONSerializer.serialize(condition)
+        json.dumps(serializer_cond)
         deserializer_cond = JSONSerializer.deserialize(
             serializer_cond, DiscreteSetCondition
         )
@@ -134,6 +138,7 @@ class TestCompoundConditionSerializer(unittest.TestCase):
         )
 
         serializer_cond = JSONSerializer.serialize(condition)
+        json.dumps(serializer_cond)
         deserializer_cond = JSONSerializer.deserialize(
             serializer_cond, CompoundCondition
         )

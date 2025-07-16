@@ -34,6 +34,7 @@ class ClassificationRulesMetrics(AbstractRulesMetrics):
             'n': lambda: int(rule.coverage.n),
             'P': lambda: int(rule.coverage.P),
             'N': lambda: int(rule.coverage.N),
+            'covered_count': lambda: int(rule.coverage.p + rule.coverage.n),
             'unique_in_pos': lambda: self._calculate_uniquely_covered_examples_in_pos_and_neg(
                 rule, X, y, covered_type='positive'
             ),
@@ -58,10 +59,6 @@ class ClassificationRulesMetrics(AbstractRulesMetrics):
             'correlation': lambda: float(measures.correlation(rule.coverage)),
             'lift': lambda: float(measures.lift(rule.coverage)),
             'p_value': lambda: float(self.calculate_p_value(coverage=rule.coverage)),
-            'TP': lambda: int(rule.coverage.p),
-            'FP': lambda: int(rule.coverage.n),
-            'TN': lambda: int(rule.coverage.N - rule.coverage.n),
-            'FN': lambda: int(rule.coverage.P - rule.coverage.p),
             'sensitivity': lambda: float(measures.sensitivity(rule.coverage)),
             'specificity': lambda: float(measures.specificity(rule.coverage)),
             'negative_predictive_value': lambda: float(self._calculate_negative_predictive_value(rule)),

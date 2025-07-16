@@ -8,6 +8,7 @@ from typing import Optional
 import numpy as np
 from decision_rules.core.coverage import Coverage
 from decision_rules.core.metrics import AbstractRulesMetrics
+from decision_rules import measures
 from decision_rules.regression.rule import RegressionRule
 from scipy.stats import chi2
 from sklearn.metrics import mean_absolute_error
@@ -47,6 +48,7 @@ class RegressionRulesMetrics(AbstractRulesMetrics):
             'n': lambda: int(rule.coverage.n),
             'P': lambda: int(rule.coverage.P),
             'N': lambda: int(rule.coverage.N),
+            'covered_count': lambda: int(rule.coverage.p + rule.coverage.n),
             'unique_in_pos': lambda: self._calculate_uniquely_covered_examples_in_pos_and_neg(
                 rule, X, y, covered_type='positive'
             ),
@@ -72,6 +74,8 @@ class RegressionRulesMetrics(AbstractRulesMetrics):
             'rmse': lambda: float(math.sqrt(mean_squared_error(y, rule_prediction))),
             'mape': lambda: float(mean_absolute_percentage_error(y, rule_prediction)),
             'p-value': lambda: float(self.calculate_p_value(rule=rule, y=y)),
+            'precision': lambda: float(measures.precision(rule.coverage)),
+            'coverage': lambda: float(measures.coverage(rule.coverage))
         }
 
     def calculate_p_value(self, coverage: Optional[Coverage] = None, rule: Optional[RegressionRule] = None, y: Optional[np.ndarray] = None) -> float:
