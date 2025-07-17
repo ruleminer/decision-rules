@@ -46,14 +46,28 @@ class AbstractRuleSetConditionImportances(ABC):
 
         return conditions_importances
 
+    def _get_all_atomic_conditions_from(self, condition: AbstractCondition) -> list[AbstractCondition]:
+        if not condition.subconditions:
+            return [condition]
+
+        atomic_conditions: list[AbstractCondition] = []
+        for subcondition in condition.subconditions:
+            sub_atomic = self._get_all_atomic_conditions_from(subcondition)
+            for cond in sub_atomic:
+                if cond not in atomic_conditions:
+                    atomic_conditions.append(cond)
+        return atomic_conditions
+
+
+
     def _get_conditions_with_rules(self, rules: list[AbstractRule]) -> dict[AbstractCondition, list[AbstractRule]]:
         conditions_with_rules = defaultdict(list)
         for rule in rules:
-            rule_conditions = rule.premise.subconditions
-            for condition in rule_conditions:
+            atomic_conditions = self._get_all_atomic_conditions_from(rule.premise)
+            for condition in atomic_conditions:
                 conditions_with_rules[condition].append(rule)
-
         return conditions_with_rules
+
 
     def _calculate_conditions_importances(self, conditions_with_rules: dict[str, list[AbstractRule]],  X: np.ndarray, y: np.ndarray, measure: Callable[[Coverage], float]) -> list[ConditionImportance]:
         conditions_importances = []
