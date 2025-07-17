@@ -53,18 +53,15 @@ class ClassificationRuleSetConditionImportances(AbstractRuleSetConditionImportan
         number_of_conditions = len(rule.premise.subconditions)
         premise_without_evaluated_condition = rule.premise.remove_condition_recursively(condition)
 
-        rule_without_evaluated_condition = ClassificationRule(
-            premise_without_evaluated_condition,
-            conclusion=rule.conclusion,
-            column_names=rule.column_names
-        )
         factor = 1.0 / number_of_conditions
         if premise_without_evaluated_condition is None or len(premise_without_evaluated_condition.subconditions) == 0:
-            return factor * (
-                self._calculate_measure(rule, X, y, measure)
-                - self._calculate_measure(rule_without_evaluated_condition, X, y, measure)
-            )
+            return factor * self._calculate_measure(rule, X, y, measure)
         else:
+            rule_without_evaluated_condition = ClassificationRule(
+                premise_without_evaluated_condition,
+                conclusion=rule.conclusion,
+                column_names=rule.column_names
+            )
             premise_with_only_evaluated_condition = CompoundCondition(
                 subconditions=[condition], logic_operator=rule.premise.logic_operator)
 
