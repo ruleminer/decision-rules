@@ -1,9 +1,16 @@
-import matplotlib.pyplot as plt
-import plotly.graph_objects as go
-from matplotlib.axes import Axes
-from matplotlib.figure import Figure
+try:
+    import matplotlib.pyplot as plt
+    from matplotlib.axes import Axes
+    from matplotlib.figure import Figure
+    import plotly.graph_objects as go
+except ImportError as e:
+    raise ImportError(
+        "To use visualization features, install all required packages: "
+        "`pip install decision_rules[visualization]`"
+    ) from e
 from typing import Optional, Union, Any
 from decision_rules.core.ruleset import AbstractRuleSet
+from decision_rules.helpers.frequent import get_condition_frequent, get_attribute_frequent
 
 
 def plot_condition_frequency(
@@ -46,7 +53,7 @@ def plot_condition_frequency(
         The axis object (only for Matplotlib; None for Plotly).
     """
     if hasattr(ruleset, "get_condition_frequent"):
-        condition_freq = ruleset.get_condition_frequent()
+        condition_freq = get_condition_frequent(ruleset)
     else:
         raise TypeError(
             "Input must be a AbstractRuleset object supporting get_condition_frequent()."
@@ -139,12 +146,10 @@ def plot_attribute_frequency(
         The axis object (only for Matplotlib; None for Plotly).
     """
     if hasattr(ruleset, "get_attribute_frequent"):
-        attribute_freq = ruleset.get_attribute_frequent()
-    elif hasattr(ruleset, "get_attribute_occurrences"):
-        attribute_freq = ruleset.get_attribute_occurrences()
+        attribute_freq = get_attribute_frequent(ruleset)
     else:
         raise TypeError(
-            "Input must be a RuleSet-like object supporting get_attribute_frequent() or get_attribute_occurrences()."
+            "Input must be a RuleSet-like object supporting get_attribute_frequent()"
         )
 
     sorted_attributes = sorted(attribute_freq.items(

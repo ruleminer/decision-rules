@@ -1,16 +1,23 @@
+try:
+    import matplotlib.pyplot as plt
+    import plotly.graph_objects as go
+    import plotly.colors
+    from matplotlib.axes import Axes
+    from matplotlib.figure import Figure
+except ImportError as e:
+    raise ImportError(
+        "To use visualization features, install all required packages: "
+        "`pip install decision_rules[visualization]`"
+    ) from e
+
 from typing import Union, Optional, Any
 import pandas as pd
-import matplotlib.pyplot as plt
-from matplotlib.axes import Axes
-from matplotlib.figure import Figure
 from decision_rules.survival.kaplan_meier import KaplanMeierEstimator
-import plotly.graph_objects as go
-import plotly.colors
-from decision_rules.survival.ruleset import SurvivalRuleSet
+from decision_rules.survival.ruleset import SurvivalRuleSet 
 from decision_rules.survival.rule import SurvivalRule
 
 
-def plot_kaplan_meier(
+def plot_kaplan_meier_curves(
     rules: Union[
         SurvivalRuleSet,
         SurvivalRule,
@@ -102,8 +109,6 @@ def plot_kaplan_meier(
             covered_estimator = KaplanMeierEstimator().fit(times_covered, events_covered)
 
     if show_uncovered and ruleset is not None and X is not None and y is not None:
-        X_np, y_np = ruleset._sanitize_dataset(X, y)
-        coverage_matrix = ruleset.calculate_coverage_matrix(X_np)
         # Uncovered by ruleset (not covered by any rule)
         uncovered_mask = ~coverage_matrix.any(axis=1)
         if uncovered_mask.sum() > 0:

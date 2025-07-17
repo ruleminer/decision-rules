@@ -1,9 +1,16 @@
-import matplotlib.pyplot as plt
+try:
+    import matplotlib.pyplot as plt
+    import plotly.express as px
+    from matplotlib.axes import Axes
+    from matplotlib.figure import Figure
+except ImportError as e:
+    raise ImportError(
+        "To use visualization features, install all required packages: "
+        "`pip install decision_rules[visualization]`"
+    ) from e
+
 import numpy as np
 import pandas as pd
-import plotly.express as px
-from matplotlib.axes import Axes
-from matplotlib.figure import Figure
 from typing import Optional, Union, Any
 from decision_rules.core.ruleset import AbstractRuleSet
 
@@ -37,9 +44,9 @@ def plot_ruleset_metrics(
     y : pandas.Series or array-like
         Target vector (ground truth labels or values).
     x_metric : str
-        Name of the metric to plot on the x-axis (must be a key in the metrics dict).
+        Name of the metric from 'calculate_rules_metrics' to plot on the x-axis.
     y_metric : str
-        Name of the metric to plot on the y-axis (must be a key in the metrics dict).
+        Name of the metric from 'calculate_rules_metric to plot on the y-axis.
     ax : matplotlib.axes.Axes or None, optional
         Axis to draw the plot on (matplotlib only). If None, a new figure and axis are created.
     show : bool, default=True

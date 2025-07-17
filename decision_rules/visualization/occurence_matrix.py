@@ -1,18 +1,30 @@
-import matplotlib.pyplot as plt
+try:
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+    import plotly.graph_objects as go
+    from matplotlib.axes import Axes
+    from matplotlib.figure import Figure
+except ImportError as e:
+    raise ImportError(
+        "To use visualization features, install all required packages: "
+        "`pip install decision_rules[visualization]`"
+    ) from e
+
 import numpy as np
-import seaborn as sns
 from itertools import combinations
-import plotly.graph_objects as go
-from matplotlib.axes import Axes
-from matplotlib.figure import Figure
 from typing import Optional, Union
 from decision_rules.core.ruleset import AbstractRuleSet
 
 
-def _get_top_pair_indices(co_occurrence, top_n):
+def _get_top_pair_indices(co_occurrence, top_n) -> list[int]:
     """
     Get the set of unique condition indices involved in the top N co-occurring condition pairs,
     including all ties (i.e., pairs with the same co-occurrence count as the N-th pair).
+
+    Returns
+    -------
+    list of int
+        Sorted list of unique condition indices present in the top N co-occurring pairs.
     """
     n = co_occurrence.shape[0]
     pairs = []

@@ -1,10 +1,17 @@
+try:
+    import matplotlib
+    import matplotlib.pyplot as plt
+    from pyvis.network import Network
+except ImportError as e:
+    raise ImportError(
+        "To use visualization features, install all required packages: "
+        "`pip install decision_rules[visualization]`"
+    ) from e
+
 import numpy as np
 import pandas as pd
 import os
 import webbrowser
-import matplotlib
-import matplotlib.pyplot as plt
-from pyvis.network import Network
 from typing import Optional, Union, Any
 from decision_rules.core.ruleset import AbstractRuleSet
 from decision_rules.core.rule import AbstractRule

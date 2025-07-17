@@ -1,10 +1,17 @@
-import matplotlib.pyplot as plt
+try:
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+    import plotly.graph_objects as go
+    from matplotlib.axes import Axes
+    from matplotlib.figure import Figure
+except ImportError as e:
+    raise ImportError(
+        "To use visualization features, install all required packages: "
+        "`pip install decision_rules[visualization]`"
+    ) from e
+
 import numpy as np
-import seaborn as sns
 from collections.abc import Sequence
-import plotly.graph_objects as go
-from matplotlib.axes import Axes
-from matplotlib.figure import Figure
 import pandas as pd
 from typing import Optional, Union, Any
 from decision_rules.regression.ruleset import RegressionRuleSet

@@ -1,8 +1,15 @@
-import matplotlib.pyplot as plt
+try:
+    import matplotlib.pyplot as plt
+    import plotly.graph_objects as go
+    from matplotlib.axes import Axes
+    from matplotlib.figure import Figure
+except ImportError as e:
+    raise ImportError(
+        "To use visualization features, install all required packages: "
+        "`pip install decision_rules[visualization]`"
+    ) from e
+
 import pandas as pd
-import plotly.graph_objects as go
-from matplotlib.axes import Axes
-from matplotlib.figure import Figure
 from typing import Optional, Union, Any
 from decision_rules.core.ruleset import AbstractRuleSet
 

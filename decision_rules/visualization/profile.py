@@ -1,17 +1,29 @@
-import matplotlib.pyplot as plt
+try:
+    import matplotlib.pyplot as plt
+    import plotly.graph_objects as go
+    from matplotlib.axes import Axes
+    from matplotlib.figure import Figure
+except ImportError as e:
+    raise ImportError(
+        "To use visualization features, install all required packages: "
+        "`pip install decision_rules[visualization]`"
+    ) from e
+
 from collections import defaultdict
 import numpy as np
 from typing import Optional, Union
-from matplotlib.axes import Axes
-from matplotlib.figure import Figure
-import plotly.graph_objects as go
 from decision_rules.core.ruleset import AbstractRuleSet
 from decision_rules.core.rule import AbstractRule
 
 
-def extract_rule_profile(rule, column_names):
+def extract_rule_profile(rule, column_names) -> list:
     """
     Extracts the attribute profile of a rule (list of attributes in order of occurrence).
+
+    Returns
+    -------
+    list
+        List of attribute names in the order they appear in the rule.
     """
     profile = []
 
@@ -170,10 +182,10 @@ def plot_rules_profile(
     fig, ax = plt.subplots(figsize=(
         10, 2 + 0.5 * len(sorted_attributes))) if ax is None else (ax.figure, ax)
     for idx, profile in zip(rule_indices, profiles):
-        L = len(profile)
-        positions = list(range(1, L + 1))
+        profile_length = len(profile)
+        positions = list(range(1, profile_length + 1))
         y = [sorted_attributes.index(attr) for attr in profile]
-        if L == 1:
+        if profile_length == 1:
             ax.plot(positions, y, linestyle="None",
                     marker="o", label=f"Rule {idx}")
         else:

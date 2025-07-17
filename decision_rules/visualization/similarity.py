@@ -1,10 +1,17 @@
+try:
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+    import plotly.graph_objects as go
+    from matplotlib.axes import Axes
+    from matplotlib.figure import Figure
+except ImportError as e:
+    raise ImportError(
+        "To use visualization features, install all required packages: "
+        "`pip install decision_rules[visualization]`"
+    ) from e
+
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from matplotlib.axes import Axes
-from matplotlib.figure import Figure
-import seaborn as sns
-import plotly.graph_objects as go
 from typing import Optional, Union
 from decision_rules.similarity.calculate import calculate_rule_similarity
 from decision_rules.core.ruleset import AbstractRuleSet
