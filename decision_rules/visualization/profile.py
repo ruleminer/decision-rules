@@ -28,21 +28,22 @@ def extract_rule_profile(rule, column_names) -> list:
     profile = []
 
     def traverse(condition):
-        if hasattr(condition, "subconditions") and condition.subconditions:
+        if condition.subconditions:
             for sub in condition.subconditions:
                 traverse(sub)
         else:
-            if hasattr(condition, "column_left") and hasattr(condition, "column_right"):
-                profile.append(column_names[condition.column_left])
-                profile.append(column_names[condition.column_right])
-            elif hasattr(condition, "column_index"):
-                profile.append(column_names[condition.column_index])
+            for idx in getattr(condition, "attributes", []):
+                profile.append(column_names[idx])
 
     traverse(rule.premise)
     return profile
 
 
-def attribute_lexicographical_sort_key(attr, attr_position_counts, max_length):
+def attribute_lexicographical_sort_key(
+    attr: str,
+    attr_position_counts: dict[str, list[int]],
+    max_length: int
+) -> tuple[int, ...]:
     """Sort key for lexicographical sorting of attributes by their position counts."""
     return tuple([-attr_position_counts[attr][pos] for pos in range(max_length)])
 
@@ -112,9 +113,10 @@ def plot_rules_profile(
         rule_indices = range(len(rules_list))
 
     # Build profiles
-    profiles = [extract_rule_profile(
-        rules_list[i], column_names) for i in rule_indices]
-    profiles = [p for p in profiles if len(p) > 0]
+    profiles = [
+        p for i in rule_indices
+        if len((p := extract_rule_profile(rules_list[i], column_names))) > 0
+    ]
     if not profiles:
         raise ValueError("No attributes to display in the rule profile.")
 

@@ -10,11 +10,17 @@ except ImportError as e:
     ) from e
 from typing import Optional, Union, Any
 from decision_rules.core.ruleset import AbstractRuleSet
+from decision_rules.core.rule import AbstractRule
 from decision_rules.helpers.frequent import get_condition_frequent, get_attribute_frequent
 
 
 def plot_condition_frequency(
-    ruleset: AbstractRuleSet,
+    rules: Union[
+        AbstractRuleSet,
+        AbstractRule,
+        list[AbstractRule]
+    ],
+    column_names: Optional[list] = None,
     max_conditions: int = 10,
     ax: Optional[Axes] = None,
     show: bool = True,
@@ -30,8 +36,10 @@ def plot_condition_frequency(
 
     Parameters
     ----------
-    ruleset : AbstractRuleSet
-        Rule set object supporting the get_condition_frequent() method.
+    rules : AbstractRuleSet, AbstractRule, or list of AbstractRule
+        Set of rules to visualize. Can be a RuleSet, a single Rule, or a list of Rule objects.
+    column_names : list or None, optional
+        List of attribute/column names. Required if `rules` is not a RuleSet.
     max_conditions : int, default=10
         Maximum number of most frequent conditions to display.
     ax : matplotlib.axes.Axes or None, optional
@@ -52,12 +60,16 @@ def plot_condition_frequency(
     ax : matplotlib.axes.Axes or None
         The axis object (only for Matplotlib; None for Plotly).
     """
-    if hasattr(ruleset, "get_condition_frequent"):
-        condition_freq = get_condition_frequent(ruleset)
-    else:
-        raise TypeError(
-            "Input must be a AbstractRuleset object supporting get_condition_frequent()."
-        )
+    # Normalize rules input
+    if hasattr(rules, "rules") and hasattr(rules, "column_names"):
+        rules_list = rules.rules
+        column_names = rules.column_names
+    elif isinstance(rules, (list, tuple)):
+        rules_list = list(rules)
+        if column_names is None:
+            raise ValueError(
+                "When passing a list of rules, column_names must also be provided.")
+    condition_freq = get_condition_frequent(rules_list, column_names)
 
     sorted_conditions = sorted(condition_freq.items(
     ), key=lambda x: x[1], reverse=True)[:max_conditions]
@@ -107,7 +119,12 @@ def plot_condition_frequency(
 
 
 def plot_attribute_frequency(
-    ruleset: AbstractRuleSet,
+    rules: Union[
+        AbstractRuleSet,
+        AbstractRule,
+        list[AbstractRule]
+    ],
+    column_names: Optional[list] = None,
     ax: Optional[Axes] = None,
     show: bool = True,
     title: str = "Attribute Frequency",
@@ -145,12 +162,17 @@ def plot_attribute_frequency(
     ax : matplotlib.axes.Axes or None
         The axis object (only for Matplotlib; None for Plotly).
     """
-    if hasattr(ruleset, "get_attribute_frequent"):
-        attribute_freq = get_attribute_frequent(ruleset)
-    else:
-        raise TypeError(
-            "Input must be a RuleSet-like object supporting get_attribute_frequent()"
-        )
+    # Normalize rules input
+    if hasattr(rules, "rules") and hasattr(rules, "column_names"):
+        rules_list = rules.rules
+        column_names = rules.column_names
+    elif isinstance(rules, (list, tuple)):
+        rules_list = list(rules)
+        if column_names is None:
+            raise ValueError(
+                "When passing a list of rules, column_names must also be provided.")
+
+    attribute_freq = get_attribute_frequent(rules_list, column_names)
 
     sorted_attributes = sorted(attribute_freq.items(
     ), key=lambda x: x[1], reverse=True)[:max_attributes]
