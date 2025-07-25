@@ -153,7 +153,7 @@ class _DiscreteSetConditionSerializer(_BaseConditionSerializer, JSONClassSeriali
     @staticmethod
     def _from_pydantic_model(
         model: _DiscreteSetConditionSerializer._Model,
-    ) -> AbstractCondition:
+    ) -> Union[DiscreteSetCondition, NominalCondition]:
         if len(model.values_set) == 1:
             value = next(iter(model.values_set))
             condition = NominalCondition(
