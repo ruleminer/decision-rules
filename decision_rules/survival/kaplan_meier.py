@@ -455,6 +455,7 @@ class KaplanMeierEstimator:
         survival_status: np.ndarray,
         covered_examples: np.ndarray,
         uncovered_examples: np.ndarray,
+        return_stats: bool = False,
     ) -> float:  # pylint: disable=missing-function-docstring
         covered_estimator = KaplanMeierEstimator().fit(
             survival_time[covered_examples], survival_status[covered_examples]
@@ -466,5 +467,9 @@ class KaplanMeierEstimator:
         stats_and_pvalue = KaplanMeierEstimator().compare_estimators(
             covered_estimator, uncovered_estimator
         )
-
-        return 1 - stats_and_pvalue["p_value"]
+        log_rank_stats = stats_and_pvalue["stats"]
+        log_rank = 1 - stats_and_pvalue["p_value"]
+        if return_stats:
+            return log_rank, log_rank_stats
+        else:
+            return log_rank

@@ -130,11 +130,12 @@ class SurvivalRule(AbstractRule):
         covered_examples_indexes = np.where(covered_mask)[0]
         uncovered_examples_indexes = np.where(uncovered_mask)[0]
         survival_time: np.ndarray = X[:, self.survival_time_attr_idx]
-        self.log_rank = KaplanMeierEstimator.log_rank(
+        self.log_rank, self.log_rank_stats = KaplanMeierEstimator.log_rank(
             survival_time,
             y,
             covered_examples_indexes,
-            uncovered_examples_indexes
+            uncovered_examples_indexes,
+            return_stats=True,
         )
         self.conclusion.value = self.conclusion.estimator.median_survival_time
         self.conclusion.median_survival_time_ci_lower = self.conclusion.estimator.median_survival_time_cli.iloc[

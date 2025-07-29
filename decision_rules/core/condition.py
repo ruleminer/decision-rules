@@ -6,9 +6,11 @@ from __future__ import annotations
 from abc import ABC
 from abc import abstractmethod
 from contextlib import contextmanager
+from copy import deepcopy
 
 import numpy as np
 import pandas as pd
+
 
 
 class AbstractCondition(ABC):
@@ -153,6 +155,34 @@ class AbstractCondition(ABC):
         if self.cached:
             self.__cached_uncovered_mask = uncovered_mask
         return uncovered_mask
+    
+    def remove_condition_recursively(self, condition_to_remove: AbstractCondition) -> AbstractCondition | None:
+        """
+        Removes all semantically equal occurrences of `condition_to_remove` from this condition tree.
+        If the entire condition gets removed, returns None.
+        """
+        from decision_rules.conditions import CompoundCondition
+
+        if not isinstance(self, CompoundCondition):
+            return None if self == condition_to_remove else deepcopy(self)
+
+        new_subconditions = []
+        for sub in self.subconditions:
+            cleaned = sub.remove_condition_recursively(condition_to_remove)
+            if cleaned is not None:
+                new_subconditions.append(cleaned)
+
+        if not new_subconditions:
+            return None
+
+        compound = CompoundCondition(
+            subconditions=new_subconditions,
+            logic_operator=self.logic_operator
+        )
+        compound.negated = self.negated
+        return compound
+
+
 
     @abstractmethod
     def update_column_indices(self, old_to_new_attr_mapping: dict[int, int]):
