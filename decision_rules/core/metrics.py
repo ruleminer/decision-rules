@@ -9,8 +9,7 @@ from typing import Optional
 
 import numpy as np
 import pandas as pd
-from decision_rules.conditions import CompoundCondition
-from decision_rules.core.condition import AbstractCondition
+from decision_rules.conditions import count_leaf_conditions
 from decision_rules.core.coverage import Coverage
 from decision_rules.core.rule import AbstractRule
 
@@ -186,15 +185,7 @@ class AbstractRulesMetrics(ABC):
         return int(np.count_nonzero(unique_mask))
 
     def _calculate_conditions_count(self, rule: AbstractRule) -> int:
-        def calculate_conditions_count_recursive(condition: AbstractCondition) -> int:
-            if isinstance(condition, CompoundCondition):
-                return sum([
-                    calculate_conditions_count_recursive(subcondition)
-                    for subcondition in condition.subconditions
-                ])
-            return 1
-
-        return calculate_conditions_count_recursive(rule.premise)
+        return count_leaf_conditions(rule.premise)
 
     def calculate(
         self,
