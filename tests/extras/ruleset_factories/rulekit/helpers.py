@@ -1,4 +1,14 @@
 import numpy as np
+import pandas as pd
+
+
+def prepare_nominal_xy(
+    X: pd.DataFrame, y: pd.Series
+) -> tuple[pd.DataFrame, pd.Series]:
+    """Prepare nominal features for RuleKit (object strings, no NaN)."""
+    X = X.fillna("").astype(str).astype(object)
+    y = y.astype(str).astype(object)
+    return X, y
 
 
 def compare_survival_prediction(

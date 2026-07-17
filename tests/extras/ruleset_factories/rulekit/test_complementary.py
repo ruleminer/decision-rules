@@ -6,6 +6,7 @@ from decision_rules.classification.ruleset import ClassificationRuleSet
 from decision_rules.ruleset_factories import ruleset_factory
 from rulekit.classification import RuleClassifier
 
+from tests.extras.ruleset_factories.rulekit.helpers import prepare_nominal_xy
 from tests.loaders import load_dataset_to_x_y
 
 
@@ -17,8 +18,7 @@ class TestComplementaryConditions(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         X, y = load_dataset_to_x_y(cls.dataset_path)
-        X = X.astype(str)
-        y = y.astype(str)
+        X, y = prepare_nominal_xy(X, y)
         rulekit_model = RuleClassifier(
             complementary_conditions=True
         )
@@ -27,8 +27,7 @@ class TestComplementaryConditions(unittest.TestCase):
 
     def test_if_prediction_same_as_rulekit(self):
         X, y = load_dataset_to_x_y(TestComplementaryConditions.dataset_path)
-        X = X.astype(str)
-        y = y.astype(str)
+        X, y = prepare_nominal_xy(X, y)
         ruleset: ClassificationRuleSet = ruleset_factory(
             self.rulekit_model, X, y
         )
