@@ -31,6 +31,16 @@ setup(
             "pyvis>=0.2.2",
             "plotly>=5.0.0",
         ],
+        "rulekit": [
+            "rulekit>=2.1.21",
+        ],
+        "cn2": [
+            "Orange3>=3.35.0",
+        ],
+        "ruleset_factories": [
+            "rulekit>=2.1.21",
+            "Orange3>=3.35.0",
+        ],
     },
     python_requires=">=3.9",
 )
