@@ -1,6 +1,7 @@
 """
 Contains logical conditions classes.
 """
+
 from __future__ import annotations
 
 from enum import Enum
@@ -307,8 +308,7 @@ class NominalAttributesEqualityCondition(AbstractCondition):
         return mask & np.logical_not(np.any(arrays == None, axis=0))
 
     def update_column_indices(self, old_to_new_attr_mapping: dict[int, int]):
-        self.column_indices = [old_to_new_attr_mapping[i]
-                               for i in self.column_indices]
+        self.column_indices = [old_to_new_attr_mapping[i] for i in self.column_indices]
 
     def to_string(self, columns_names: list[str]) -> str:
         operator: str = " != " if self.negated else " = "
@@ -383,17 +383,17 @@ class CompoundCondition(AbstractCondition):
 
     def __init__(
         self,
-        subconditions: list[ElementaryCondition],
+        subconditions: list[AbstractCondition],
         logic_operator: LogicOperators = LogicOperators.CONJUNCTION,
     ) -> None:
         """
         Args:
-            subconditions (list[ElementaryCondition])
+            subconditions (list[AbstractCondition])
             logic_operator (LogicOperators, optional): Defaults to LogicOperators.CONJUNCTION.
         """
         super().__init__()
 
-        self.subconditions: list[ElementaryCondition] = subconditions
+        self.subconditions: list[AbstractCondition] = subconditions
         self.logic_operator: LogicOperators = logic_operator
 
     @property
@@ -403,8 +403,11 @@ class CompoundCondition(AbstractCondition):
         )
 
     def _calculate_covered_mask(self, X: np.ndarray) -> np.ndarray:
-        if len(self.subconditions) == 0:
-            return np.ones(X.shape[0], dtype=bool)
+        if count_leaf_conditions(self) == 0:
+            if self.logic_operator == LogicOperators.ALTERNATIVE:
+                return np.ones(X.shape[0], dtype=bool)
+            return np.zeros(X.shape[0], dtype=bool)
+
         covered_mask = self.subconditions[0].covered_mask(X)
         if self.logic_operator == LogicOperators.CONJUNCTION:
             for i in range(1, len(self.subconditions)):
@@ -450,3 +453,14 @@ class CompoundCondition(AbstractCondition):
                 hash((s.__hash__() for s in self.subconditions)),
             )
         )
+
+
+def count_leaf_conditions(condition: AbstractCondition) -> int:
+    """Count the number of leaf conditions in a condition. Handles nested 
+    CompoundConditions recursively."""
+    if isinstance(condition, CompoundCondition):
+        return sum(
+            count_leaf_conditions(subcondition)
+            for subcondition in condition.subconditions
+        )
+    return 1

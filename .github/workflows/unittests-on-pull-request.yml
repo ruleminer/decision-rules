@@ -21,15 +21,11 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
-    - name: Install dependencies
+    - name: Install basic dependencies
       run: |
         python -m pip install --upgrade pip
         pip install .
 
-        pip install rulekit
-
-        pip install Orange3
-        
     - name: Run tests for the base package
       run: |
         python -m unittest discover ./tests/base_tests
